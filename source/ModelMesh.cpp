@@ -8,7 +8,9 @@ ModelMesh::ModelMesh()
 	m_position.y = 0;
 	m_position.z = 0;
 }
-
+ModelMesh::ModelMesh(void * fileStream, unsigned int fileSize){
+	MakeModelFromObj(fileStream, fileSize);
+}
 
 //Format obj: vertex normal list, vertex texcoord list, vertex list
 //faces:(vertex,texcoord, normal)
@@ -93,18 +95,19 @@ bool ModelMesh::MakeModelFromObj(void* fileStream, unsigned int fileSize){
 }
 
 void ModelMesh::Render(){
-
 	GX_Begin(GX_TRIANGLES, GX_VTXFMT0, out_vertices.size() );
 		
 		for (unsigned int i = 0; i < out_vertices.size(); i++){
 			
 			Vec3 vertex = out_vertices[i];
+			Vec3 normal = out_normals[i];
 			Vec2 uv = out_uvs[i];
 			
 			GX_Position3f32(vertex.x, vertex.y, vertex.z);
-			GX_Color3f32(0.0f,0.0f,0.0f);
+			GX_Normal3f32(normal.x,normal.y,normal.z);
 			GX_TexCoord2f32(uv.x,uv.y);
-		
+			//GX_Color3f32(0,0,0);
+					
 		}	
 
 	GX_End();

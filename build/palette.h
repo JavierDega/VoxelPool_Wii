@@ -1,0 +1,1 @@
+#define palette 0

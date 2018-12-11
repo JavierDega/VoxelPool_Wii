@@ -1,4 +1,5 @@
-main.o: E:/CT6COPRE/wii/Template_5/source/main.cpp \
+GraphicsSystem.o: E:/CT6COPRE/wii/Template_5/source/GraphicsSystem.cpp \
+ E:/CT6COPRE/wii/Template_5/include/GraphicsSystem.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
  C:/devkitPro/libogc/include/gctypes.h \
@@ -54,9 +55,10 @@ main.o: E:/CT6COPRE/wii/Template_5/source/main.cpp \
  C:/devkitPro/libogc/include/wiiuse/wiiuse.h \
  C:/devkitPro/libogc/include/bte/bte.h \
  C:/devkitPro/libogc/include/bte/bd_addr.h \
- E:/CT6COPRE/wii/Template_5/include/GraphicsSystem.h \
- E:/CT6COPRE/wii/Template_5/include/ModelMesh.h \
- E:/CT6COPRE/wii/Template_5/build/PoolWIP_obj.h
+ E:/CT6COPRE/wii/Template_5/build/palette.h \
+ E:/CT6COPRE/wii/Template_5/build/palette_tpl.h
+
+E:/CT6COPRE/wii/Template_5/include/GraphicsSystem.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 
@@ -168,8 +170,6 @@ C:/devkitPro/libogc/include/bte/bte.h:
 
 C:/devkitPro/libogc/include/bte/bd_addr.h:
 
-E:/CT6COPRE/wii/Template_5/include/GraphicsSystem.h:
+E:/CT6COPRE/wii/Template_5/build/palette.h:
 
-E:/CT6COPRE/wii/Template_5/include/ModelMesh.h:
-
-E:/CT6COPRE/wii/Template_5/build/PoolWIP_obj.h:
+E:/CT6COPRE/wii/Template_5/build/palette_tpl.h:

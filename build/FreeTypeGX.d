@@ -1,4 +1,5 @@
-main.o: E:/CT6COPRE/wii/Template_5/source/main.cpp \
+FreeTypeGX.o: E:/CT6COPRE/wii/Template_5/source/FreeTypeGX.cpp \
+ E:/CT6COPRE/wii/Template_5/include/FreeTypeGX.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
  C:/devkitPro/libogc/include/gctypes.h \
@@ -50,13 +51,22 @@ main.o: E:/CT6COPRE/wii/Template_5/source/main.cpp \
  C:/devkitPro/libogc/include/ogc/mutex.h \
  C:/devkitPro/libogc/include/ogc/system.h \
  C:/devkitPro/libogc/include/ogc/wiilaunch.h \
- C:/devkitPro/libogc/include/wiiuse/wpad.h \
- C:/devkitPro/libogc/include/wiiuse/wiiuse.h \
- C:/devkitPro/libogc/include/bte/bte.h \
- C:/devkitPro/libogc/include/bte/bd_addr.h \
- E:/CT6COPRE/wii/Template_5/include/GraphicsSystem.h \
- E:/CT6COPRE/wii/Template_5/include/ModelMesh.h \
- E:/CT6COPRE/wii/Template_5/build/PoolWIP_obj.h
+ C:/devkitPro/libogc/include/ft2build.h \
+ C:/devkitPro/libogc/include/freetype/config/ftheader.h \
+ C:/devkitPro/libogc/include/freetype/freetype.h \
+ C:/devkitPro/libogc/include/freetype/config/ftconfig.h \
+ C:/devkitPro/libogc/include/freetype/config/ftoption.h \
+ C:/devkitPro/libogc/include/freetype/config/ftstdlib.h \
+ C:/devkitPro/libogc/include/freetype/fterrors.h \
+ C:/devkitPro/libogc/include/freetype/ftmoderr.h \
+ C:/devkitPro/libogc/include/freetype/fterrdef.h \
+ C:/devkitPro/libogc/include/freetype/fttypes.h \
+ C:/devkitPro/libogc/include/freetype/ftsystem.h \
+ C:/devkitPro/libogc/include/freetype/ftimage.h \
+ C:/devkitPro/libogc/include/freetype/ftbitmap.h \
+ E:/CT6COPRE/wii/Template_5/include/Metaphrasis.h
+
+E:/CT6COPRE/wii/Template_5/include/FreeTypeGX.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 
@@ -160,16 +170,30 @@ C:/devkitPro/libogc/include/ogc/system.h:
 
 C:/devkitPro/libogc/include/ogc/wiilaunch.h:
 
-C:/devkitPro/libogc/include/wiiuse/wpad.h:
+C:/devkitPro/libogc/include/ft2build.h:
 
-C:/devkitPro/libogc/include/wiiuse/wiiuse.h:
+C:/devkitPro/libogc/include/freetype/config/ftheader.h:
 
-C:/devkitPro/libogc/include/bte/bte.h:
+C:/devkitPro/libogc/include/freetype/freetype.h:
 
-C:/devkitPro/libogc/include/bte/bd_addr.h:
+C:/devkitPro/libogc/include/freetype/config/ftconfig.h:
 
-E:/CT6COPRE/wii/Template_5/include/GraphicsSystem.h:
+C:/devkitPro/libogc/include/freetype/config/ftoption.h:
 
-E:/CT6COPRE/wii/Template_5/include/ModelMesh.h:
+C:/devkitPro/libogc/include/freetype/config/ftstdlib.h:
 
-E:/CT6COPRE/wii/Template_5/build/PoolWIP_obj.h:
+C:/devkitPro/libogc/include/freetype/fterrors.h:
+
+C:/devkitPro/libogc/include/freetype/ftmoderr.h:
+
+C:/devkitPro/libogc/include/freetype/fterrdef.h:
+
+C:/devkitPro/libogc/include/freetype/fttypes.h:
+
+C:/devkitPro/libogc/include/freetype/ftsystem.h:
+
+C:/devkitPro/libogc/include/freetype/ftimage.h:
+
+C:/devkitPro/libogc/include/freetype/ftbitmap.h:
+
+E:/CT6COPRE/wii/Template_5/include/Metaphrasis.h:

@@ -13,7 +13,7 @@ typedef struct Vector2Str{
 class ModelMesh{
 public:
 	ModelMesh();
-	
+	ModelMesh(void * fileStream, unsigned int fileSize);
 	//Read in obj
 	bool MakeModelFromObj(void* fileStream, unsigned int fileSize);
 	void Render();
