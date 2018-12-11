@@ -73,7 +73,7 @@ int main(int argc, char **argv) {
 		
 		//Font
 		//Set up vtx desc and tex format?
-		
+		graphicsSystem->SetFontVtxDesc();
 		//RENDER
 		textStyle = FTGX_JUSTIFY_CENTER;
 		textStyle = isUnderlined	? textStyle | FTGX_STYLE_UNDERLINE	: textStyle;
@@ -90,6 +90,9 @@ int main(int argc, char **argv) {
 		
 		//Model RENDER
 		//Set up vtx desc and texture load
+		graphicsSystem->SetModelVtxDesc();
+		GX_LoadTexObj(texObj, GX_TEXMAP0);
+		GX_InvalidateTexAll();
 		//RENDER
 		
 		

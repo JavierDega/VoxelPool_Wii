@@ -3,7 +3,7 @@
 GraphicsSystem::GraphicsSystem(VideoSystem *videoSystem) {
 
 	//Init vars
-	background = {0, 0, 0xaa, 0xff};
+	background = {255, 255, 255, 0xff};
 	cam = {0.0F, 0.0F, 0.0F};
 	up = {0.0F, 1.0F, 0.0F};
 	look = {0.0F, 0.0F, -1.0F};

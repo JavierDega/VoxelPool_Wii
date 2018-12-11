@@ -9,7 +9,7 @@
 #define DEFAULT_FIFO_SIZE (1024*1024)
 
 class GraphicsSystem {
-	private:
+	public:
 		void* gsFifo;
 		uint32_t gsWidth;
 		uint32_t gsHeight;
@@ -17,7 +17,6 @@ class GraphicsSystem {
 		void initializeGraphicsSystem(VideoSystem *videoSystem);
 		void SetFontVtxDesc();
 		void SetModelVtxDesc();
-	public:
 		GraphicsSystem(VideoSystem *videoSystem);
 		void EndScene(uint32_t *frameBuffer);
 		void SetDirectionalLight(u32 theta, u32 phi);
