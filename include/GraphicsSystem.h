@@ -1,47 +1,36 @@
-#include <stdlib.h>
-#include <math.h>
+#ifndef GRAPHICSSYSTEM_H_
+#define GRAPHICSSYSTEM_H_
+
 #include <gccore.h>
 #include <malloc.h>
 #include <string.h>
-#include <wiiuse/wpad.h>
+#include "VideoSystem.h"
 
-#define FRAMEBUFFER_SIZE 2
-#define DEFAULT_FIFO_SIZE (256*1024)
+#define DEFAULT_FIFO_SIZE (1024*1024)
 
-class GraphicsSystem{
-	public:
-	
-		GraphicsSystem();
-		~GraphicsSystem();
-		GXRModeObj* GetVideoMode();
-		uint32_t *GetVideoFrameBuffer();
-		void InitializeGraphicsSystem();
-		void SetTransformation(guVector translation, f32 rotation,
-		guVector * rotAxis, guVector scale, u32 slotIndex);
-		void SetPerspective();
-		void SetUpLighting();
-		void SetLight();
-		void UpdateScene();
-		
-		
-		//Variables
-		GXRModeObj * rmode;
-		void * frameBuffer[FRAMEBUFFER_SIZE];
-		uint32_t fb;
-		void* gpfifo;
+class GraphicsSystem {
+	private:
+		void* gsFifo;
 		uint32_t gsWidth;
 		uint32_t gsHeight;
 		
-		//Tex
-		TPLFile paletteTPL;
-		GXTexObj texture;
-		
-		//Matrix
-		Mtx44 projection;
-		Mtx view; // view and perspective matrices
-		Mtx model, modelview;
-		Mtx44 perspective;
-		guVector cam, up, look;
+		void initializeGraphicsSystem(VideoSystem *videoSystem);
 
+	public:
+		GraphicsSystem(VideoSystem *videoSystem);
+		void updateScene(uint32_t *frameBuffer);
+		
+		
+	//Variables
+	Mtx view,mv,mr,mvi; // view and perspective matrices
+	Mtx model, modelview;
+	Mtx44 perspective;
+	GXColor background;
+	guVector cam, up, look;
+	
+	//Light
+	GXColor litcolors [3];
 
 };
+
+#endif /*GRAPHICSSYSTEM_H_*/

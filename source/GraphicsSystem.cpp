@@ -1,141 +1,113 @@
 #include "GraphicsSystem.h"
-#include "palette.h"
-#include "palette_tpl.h"
 
-GraphicsSystem::GraphicsSystem(){
+GraphicsSystem::GraphicsSystem(VideoSystem *videoSystem) {
+
+	//Init vars
+	background = {0, 0, 0xaa, 0xff};
 	cam = {0.0F, 0.0F, 0.0F};
 	up = {0.0F, 1.0F, 0.0F};
 	look = {0.0F, 0.0F, -1.0F};
+	
+	litcolors[0] = { 0xD0, 0xD0, 0xD0, 0xFF }; // Light color 1
+    litcolors[1] = { 0x40, 0x40, 0x40, 0xFF }; // Ambient 1
+    litcolors[2] = { 0x80, 0x80, 0x80, 0xFF };  // Material 1
+	
+	//Init GP
+	this->initializeGraphicsSystem(videoSystem);
 }
 
-void GraphicsSystem::InitializeGraphicsSystem(){
-	
-	//Variables
-	u32 xfbHeight;
-	GXColor background = {0, 0, 0, 0xff};
-	f32 yscale = 0;
-	
-	VIDEO_Init();
-	WPAD_Init();
-	
-	rmode = VIDEO_GetPreferredMode(NULL);
-	
-	// allocate 2 framebuffers for double buffering
-	frameBuffer[0] = SYS_AllocateFramebuffer(rmode);
-	frameBuffer[1] = SYS_AllocateFramebuffer(rmode);
+void GraphicsSystem::initializeGraphicsSystem(VideoSystem *videoSystem) {
 
-	// configure video
-	VIDEO_Configure(rmode);
-	VIDEO_SetNextFramebuffer(frameBuffer[fb]);
-	VIDEO_Flush();
-	VIDEO_WaitVSync();
-	if(rmode->viTVMode&VI_NON_INTERLACE) VIDEO_WaitVSync();
+	GXRModeObj *videoMode = videoSystem->getVideoMode();
 
-	fb ^= 1;
+	// Initialize GX system
+	this->gsFifo = memalign(32, DEFAULT_FIFO_SIZE);
+	memset(this->gsFifo, 0, DEFAULT_FIFO_SIZE);
+	GX_Init(this->gsFifo, DEFAULT_FIFO_SIZE);
 
-	// init the flipper
-	GX_Init(gpfifo,DEFAULT_FIFO_SIZE);
- 
-	// clears the bg to color and clears the z buffer
+	// Set the background clear color
 	GX_SetCopyClear(background, 0x00ffffff);
- 
-	// other gx setup
-	GX_SetViewport(0,0,rmode->fbWidth,rmode->efbHeight,0,1);
-	yscale = GX_GetYScaleFactor(rmode->efbHeight,rmode->xfbHeight);
-	xfbHeight = GX_SetDispCopyYScale(yscale);
-	GX_SetScissor(0,0,rmode->fbWidth,rmode->efbHeight);
-	GX_SetDispCopySrc(0,0,rmode->fbWidth,rmode->efbHeight);
-	GX_SetDispCopyDst(rmode->fbWidth,xfbHeight);
-	GX_SetCopyFilter(rmode->aa,rmode->sample_pattern,GX_TRUE,rmode->vfilter);
-	GX_SetFieldMode(rmode->field_rendering,((rmode->viHeight==2*rmode->xfbHeight)?GX_ENABLE:GX_DISABLE));
- 
-	if (rmode->aa) {
+
+	// Setup the viewport display 
+	f32 yscale = GX_GetYScaleFactor(videoMode->efbHeight, videoMode->xfbHeight);
+	uint32_t xfbHeight = GX_SetDispCopyYScale(yscale);
+
+	GX_SetViewport(0, 0,videoMode->fbWidth,videoMode->efbHeight, 0, 1);
+	GX_SetScissor(0, 0, videoMode->fbWidth, videoMode->efbHeight);
+	GX_SetDispCopySrc(0, 0, videoMode->fbWidth, videoMode->efbHeight);
+	GX_SetDispCopyDst(videoMode->fbWidth, xfbHeight);
+	GX_SetCopyFilter(videoMode->aa, videoMode->sample_pattern, GX_TRUE, videoMode->vfilter);
+
+	// Store graphics system width and height
+	this->gsWidth = (uint32_t)videoMode->fbWidth;
+	this->gsHeight = (uint32_t)videoMode->efbHeight;
+	
+	GX_SetFieldMode(videoMode->field_rendering, ((videoMode->viHeight == 2 * videoMode->xfbHeight) ? GX_ENABLE : GX_DISABLE));
+
+	// Anti-aliasing initialization
+	if(videoMode->aa){
 		GX_SetPixelFmt(GX_PF_RGB565_Z16, GX_ZC_LINEAR);
-	} else {
+	}
+	else{
 		GX_SetPixelFmt(GX_PF_RGB8_Z24, GX_ZC_LINEAR);
 	}
 
 	GX_SetCullMode(GX_CULL_NONE);
-	GX_CopyDisp(frameBuffer[fb],GX_TRUE);
+	GX_CopyDisp(videoSystem->getVideoFramebuffer(), GX_TRUE);
 	GX_SetDispCopyGamma(GX_GM_1_0);
 
-	// setup the vertex attribute table
-	// describes the data
-	// args: vat location 0-7, type of data, data format, size, scale
-	// so for ex. in the first call we are sending position data with
-	// 3 values X,Y,Z of size F32. scale sets the number of fractional
-	// bits for non float data.
+	// Texture vertex format setup
 	GX_ClearVtxDesc();
 	GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
-	GX_SetVtxDesc(GX_VA_NRM, GX_DIRECT);
 	GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+	GX_SetVtxDesc(GX_VA_CLR0, GX_DIRECT);
 
-	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
-	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_NRM_XYZ, GX_F32, 0);
-	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_F32, 0);	
+	// Texture vertext format 0 initialization
+	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XY, GX_F32, 0);
+	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_F32, 0);
+	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGBA, GX_RGBA8, 0);
 
+	
 
-	//Matrix	
-	// setup our camera at the origin
-	// looking down the -z axis with y up
-	guLookAt(view, &cam, &up, &look);
-
-
-	// set number of rasterized color channels
 	GX_SetNumChans(1);
 
-	//set number of textures to generate
+	// Tev graphics pipeline initialization
 	GX_SetNumTexGens(1);
-
-    GX_InvVtxCache();
-	GX_InvalidateTexAll();
-
-	TPL_OpenTPLFromMemory(&paletteTPL, (void *)palette_tpl,palette_tpl_size);
-	TPL_GetTexture(&paletteTPL,palette,&texture);
-	
-	//Texture set
-	// setup texture coordinate generation
-	// args: texcoord slot 0-7, matrix type, source to generate texture coordinates from, matrix to use
-	GX_SetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX3x4, GX_TG_TEX0, GX_IDENTITY);
-
-	// Set up TEV to paint the textures properly.
-	GX_SetTevOp(GX_TEVSTAGE0,GX_MODULATE);
+	GX_SetTevOp(GX_TEVSTAGE0, GX_MODULATE);
 	GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
+	GX_SetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX3x4, GX_TG_TEX0, GX_IDENTITY);	
 
-	// Load up the textures (just one this time).
-	GX_LoadTexObj(&texture, GX_TEXMAP0);
-}
-
-void GraphicsSystem::SetPerspective(){
+	GX_InvalidateTexAll();
 	
-	f32 w = rmode->viWidth;
-    f32 h = rmode->viHeight;
-	guPerspective(projection, 45, (f32)w/h, 0.1F, 300.0F);
-	GX_LoadProjectionMtx(projection, GX_PERSPECTIVE);
-
-}
-
-void GraphicsSystem::SetTransformation(guVector translation, f32 rotation,
-		guVector * rotAxis, guVector scale, u32 slotIndex){
 	
-	guMtxIdentity(model);
-	guMtxRotAxisDeg(model, rotAxis, rotation);
-	guMtxTransApply(model, model, translation.x, translation.y, translation.z);
-	guMtxConcat(view,model,modelview);
-	// load the modelview matrix into matrix memory
-	GX_LoadPosMtxImm(modelview, slotIndex);
-	GX_SetCurrentMtx(slotIndex);
-}
-void GraphicsSystem::UpdateScene(){
+	// Reset the model view matrix
+	guMtxIdentity(modelview);
+	guMtxTransApply(modelview, modelview, 0.0f, 0.0f, -5.0f);
+	
+	// Apply changes to model view matrix
+	GX_LoadPosMtxImm(modelview,GX_PNMTX0);
+	guOrtho(perspective,0,479,0,639,0,300);
 
+	// Apply changes to the projection matrix
+	GX_LoadProjectionMtx(perspective, GX_ORTHOGRAPHIC);
+
+	GX_SetViewport(0, 0, videoMode->fbWidth, videoMode->efbHeight, 0, 1);
+	GX_SetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
+	GX_SetAlphaUpdate(GX_TRUE);
+
+	// The final scissor box
+	GX_SetScissorBoxOffset(0, 0);
+	GX_SetScissor(0, 0, this->gsWidth, this->gsHeight);
+}
+
+void GraphicsSystem::updateScene(uint32_t *frameBuffer) {
 	GX_SetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
+	GX_SetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
 	GX_SetColorUpdate(GX_TRUE);
-	GX_CopyDisp(frameBuffer[fb],GX_TRUE);
-
+	GX_SetAlphaUpdate(GX_TRUE);
+	GX_CopyDisp(frameBuffer,GX_TRUE);
+	
 	GX_DrawDone();
-
-	VIDEO_SetNextFramebuffer(frameBuffer[fb]);
-	VIDEO_Flush();
-	VIDEO_WaitVSync();
-	fb ^= 1;
+	
+	GX_InvalidateTexAll();
 }
