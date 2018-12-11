@@ -19,8 +19,8 @@ class GraphicsSystem {
 		void SetModelVtxDesc();
 	public:
 		GraphicsSystem(VideoSystem *videoSystem);
-		void updateScene(uint32_t *frameBuffer);
-		
+		void EndScene(uint32_t *frameBuffer);
+		void SetDirectionalLight(u32 theta, u32 phi);
 		
 	//Variables
 	Mtx view,mv,mr,mvi; // view and perspective matrices

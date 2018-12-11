@@ -1,5 +1,5 @@
 #include "GraphicsSystem.h"
-
+#include <math.h>
 GraphicsSystem::GraphicsSystem(VideoSystem *videoSystem) {
 
 	//Init vars
@@ -8,8 +8,12 @@ GraphicsSystem::GraphicsSystem(VideoSystem *videoSystem) {
 	up = {0.0F, 1.0F, 0.0F};
 	look = {0.0F, 0.0F, -1.0F};
 	
+	//setup our camera at the origin
+	//looking down the -z axis wth y up
+	guLookAt(view, &cam, &up, &look);
+	
 	litcolors[0] = { 0xD0, 0xD0, 0xD0, 0xFF }; // Light color 1
-    litcolors[1] = { 0x40, 0x40, 0x40, 0xFF }; // Ambient 1
+    litcolors[1] = { 255, 255, 255, 0xFF }; // Ambient 1
     litcolors[2] = { 0x80, 0x80, 0x80, 0xFF };  // Material 1
 	
 	//Init GP
@@ -122,7 +126,7 @@ void GraphicsSystem::initializeGraphicsSystem(VideoSystem *videoSystem) {
 	GX_SetScissor(0, 0, this->gsWidth, this->gsHeight);
 }
 
-void GraphicsSystem::updateScene(uint32_t *frameBuffer) {
+void GraphicsSystem::EndScene(uint32_t *frameBuffer) {
 	GX_SetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
 	GX_SetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
 	GX_SetColorUpdate(GX_TRUE);
@@ -132,4 +136,33 @@ void GraphicsSystem::updateScene(uint32_t *frameBuffer) {
 	GX_DrawDone();
 	
 	GX_InvalidateTexAll();
+}
+
+void GraphicsSystem::SetDirectionalLight(u32 theta,u32 phi)
+{
+	guVector lpos;
+	f32 _theta,_phi;
+	GXLightObj lobj;
+	
+	GXColor litcol = litcolors[0];
+	GXColor ambcol = litcolors[1];
+	GXColor matcol = litcolors[2];
+	
+	_theta = (f32)theta*M_PI/180.0f;
+	_phi = (f32)phi*M_PI/180.0f;
+	lpos.x = 1000.0f * cosf(_phi) * sinf(_theta);
+	lpos.y = 1000.0f * sinf(_phi);
+	lpos.z = 1000.0f * cosf(_phi) * cosf(_theta);
+
+	guVecMultiply(view,&lpos,&lpos);
+
+	GX_InitLightPos(&lobj,lpos.x,lpos.y,lpos.z);
+	GX_InitLightColor(&lobj,litcol);
+	GX_LoadLightObj(&lobj,GX_LIGHT0);
+	
+	// set number of rasterized color channels
+	GX_SetNumChans(1);
+    GX_SetChanCtrl(GX_COLOR0A0,GX_ENABLE,GX_SRC_REG,GX_SRC_REG,GX_LIGHT0,GX_DF_CLAMP,GX_AF_NONE);
+    GX_SetChanAmbColor(GX_COLOR0A0,ambcol);
+    GX_SetChanMatColor(GX_COLOR0A0,matcol);
 }

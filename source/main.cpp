@@ -58,6 +58,9 @@ int main(int argc, char **argv) {
 		}
 
 		
+		//Lighting
+		graphicsSystem->SetDirectionalLight(8, 20);
+		//Font
 		textStyle = FTGX_JUSTIFY_CENTER;
 		textStyle = isUnderlined	? textStyle | FTGX_STYLE_UNDERLINE	: textStyle;
 		textStyle = isStrike		? textStyle | FTGX_STYLE_STRIKE		: textStyle;
@@ -70,7 +73,7 @@ int main(int argc, char **argv) {
 		fontSystem->drawText(320,	350,	_TEXT("fox jumps over"),	(GXColor){0xff, 0x00, 0xff, 0xff},	textStyle);
 		fontSystem->drawText(320,	425,	_TEXT("the lazy dog"),		(GXColor){0x00, 0xff, 0xff, 0xff},	textStyle);
 
-		graphicsSystem->updateScene(videoSystem->getVideoFramebuffer());
+		graphicsSystem->EndScene(videoSystem->getVideoFramebuffer());
 		videoSystem->flipVideoFramebuffer();
 	}
 
