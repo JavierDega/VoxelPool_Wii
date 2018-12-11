@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
 	PadSystem *padSystem = new PadSystem();
 	//Font
 	FreeTypeGX *fontSystem = new FreeTypeGX(GX_TF_IA8, GX_VTXFMT0);
-	fontSystem->setCompatibilityMode( FTGX_COMPATIBILITY_DEFAULT_TEVOP_GX_BLEND
+	fontSystem->setCompatibilityMode(FTGX_COMPATIBILITY_DEFAULT_TEVOP_GX_MODULATE
 	| FTGX_COMPATIBILITY_DEFAULT_VTXDESC_GX_DIRECT);//BLEND AND TEX DIRECT
 	FT_UInt fontSize = 64;
 	fontSystem->loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, fontSize, false);	// Initialize the font system with the font parameters from rursus_compact_mono_ttf.h
@@ -91,7 +91,6 @@ int main(int argc, char **argv) {
 		//Model RENDER
 		//Set up vtx desc and texture load
 		graphicsSystem->SetModelVtxDesc();
-		
 		//myPoolModel->Render();
 		//RENDER
 		

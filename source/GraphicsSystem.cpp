@@ -4,6 +4,7 @@
 #include "palette_tpl.h"
 #include "palette.h"
 
+//Constructor
 GraphicsSystem::GraphicsSystem(VideoSystem *videoSystem) {
 
 	//Init vars
@@ -24,8 +25,17 @@ GraphicsSystem::GraphicsSystem(VideoSystem *videoSystem) {
 	this->initializeGraphicsSystem(videoSystem);
 }
 
+//Font settings
 void GraphicsSystem::SetFontVtxDesc(){
 
+	GX_SetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY);
+	//For now lets put matrix transformations here
+	guMtxIdentity(model);
+	guMtxTransApply(model, model, 0.0f,0.0f,-70.0f);
+	guMtxConcat(view,model,modelview);
+	// Apply changes to model view matrix
+	GX_LoadPosMtxImm(modelview,GX_PNMTX0);
+	
 	GX_ClearVtxDesc();
 	GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
 	GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
@@ -36,14 +46,16 @@ void GraphicsSystem::SetFontVtxDesc(){
 //Also loads Texture, since all models use palette.bmp
 void GraphicsSystem::SetModelVtxDesc(){
 	
-	GX_InvalidateTexAll();
+	GX_SetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX3x4, GX_TG_TEX0, GX_TEXMTX0);
+	//Texture	
 	GX_LoadTexObj(&paletteTexture, GX_TEXMAP0);
+	//Desc
 	GX_ClearVtxDesc();
 	GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
 	GX_SetVtxDesc(GX_VA_NRM, GX_DIRECT);
 	GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
 	
-	
+	//Matrix
 	//For now lets put matrix transformations here
 	guMtxIdentity(model);
 	guMtxTransApply(model, model, 0.0f,0.0f,-70.0f);
@@ -111,9 +123,9 @@ void GraphicsSystem::initializeGraphicsSystem(VideoSystem *videoSystem) {
 
 	// Tev graphics pipeline initialization
 	GX_SetNumTexGens(1);
-	GX_SetTevOp(GX_TEVSTAGE0, GX_BLEND);
-	GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
-	GX_SetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX3x4, GX_TG_TEX0, GX_IDENTITY);	
+	GX_SetTevOp(GX_TEVSTAGE0, GX_MODULATE);//Same for both
+	GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);//Same for both
+	GX_SetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX3x4, GX_TG_TEX0, GX_IDENTITY);//Different
 	
 	//Lighting
 	f32 w = videoMode->viWidth;
@@ -128,12 +140,6 @@ void GraphicsSystem::initializeGraphicsSystem(VideoSystem *videoSystem) {
 	TPL_OpenTPLFromMemory(&paletteTPL, (void *)palette_tpl,palette_tpl_size);
 	TPL_GetTexture(&paletteTPL,palette,&paletteTexture);
 	
-	// Reset the model view matrix
-	guMtxIdentity(modelview);
-	guMtxTransApply(modelview, modelview, 0.0f, 0.0f, -5.0f);
-	
-	// Apply changes to model view matrix
-	GX_LoadPosMtxImm(modelview,GX_PNMTX0);
 	guOrtho(perspective,0,479,0,639,0,300);
 
 	// Apply changes to the projection matrix
