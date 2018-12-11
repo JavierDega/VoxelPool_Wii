@@ -29,19 +29,29 @@
  * @return Program exit status code.
  */
 int main(int argc, char **argv) {
+	//Systems
+	//Video
 	VideoSystem* videoSystem = new VideoSystem();
+	//GX
 	GraphicsSystem *graphicsSystem = new GraphicsSystem(videoSystem);
+	//Input
 	PadSystem *padSystem = new PadSystem();
-
+	//Font
 	FreeTypeGX *fontSystem = new FreeTypeGX(GX_TF_IA8, GX_VTXFMT0);
+	fontSystem->setCompatibilityMode( FTGX_COMPATIBILITY_DEFAULT_TEVOP_GX_BLEND
+	| FTGX_COMPATIBILITY_DEFAULT_VTXDESC_GX_DIRECT);//BLEND AND TEX DIRECT
 	FT_UInt fontSize = 64;
 	fontSystem->loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, fontSize, false);	// Initialize the font system with the font parameters from rursus_compact_mono_ttf.h
+
 
 	uint32_t buttons = 0x0000;
 	uint32_t textStyle = FTGX_JUSTIFY_CENTER;
 	bool isUnderlined = false;
 	bool isStrike = false;
-
+	
+	//Create model
+	ModelMesh * myPoolModel = new ModelMesh((void *)PoolWIP_obj, PoolWIP_obj_size);
+	
 	while(!padSystem->pressedExitButton(buttons = padSystem->scanPads(0))) {
 
 		if(padSystem->pressedUp(buttons)) {	// Increase font size
@@ -60,7 +70,11 @@ int main(int argc, char **argv) {
 		
 		//Lighting
 		graphicsSystem->SetDirectionalLight(8, 20);
+		
 		//Font
+		//Set up vtx desc and tex format?
+		
+		//RENDER
 		textStyle = FTGX_JUSTIFY_CENTER;
 		textStyle = isUnderlined	? textStyle | FTGX_STYLE_UNDERLINE	: textStyle;
 		textStyle = isStrike		? textStyle | FTGX_STYLE_STRIKE		: textStyle;
@@ -72,7 +86,14 @@ int main(int argc, char **argv) {
 		fontSystem->drawText(320,	275,	_TEXT("the quick brown"),	(GXColor){0xff, 0xff, 0x00, 0xff},	textStyle);
 		fontSystem->drawText(320,	350,	_TEXT("fox jumps over"),	(GXColor){0xff, 0x00, 0xff, 0xff},	textStyle);
 		fontSystem->drawText(320,	425,	_TEXT("the lazy dog"),		(GXColor){0x00, 0xff, 0xff, 0xff},	textStyle);
-
+		
+		
+		//Model RENDER
+		//Set up vtx desc and texture load
+		//RENDER
+		
+		
+		
 		graphicsSystem->EndScene(videoSystem->getVideoFramebuffer());
 		videoSystem->flipVideoFramebuffer();
 	}
