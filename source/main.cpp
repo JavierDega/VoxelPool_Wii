@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
 	GraphicsSystem *graphicsSystem = new GraphicsSystem(videoSystem);
 	PadSystem *padSystem = new PadSystem();
 
-	FreeTypeGX *fontSystem = new FreeTypeGX(GX_TF_IA8);
+	FreeTypeGX *fontSystem = new FreeTypeGX(GX_TF_IA8, GX_VTXFMT0);
 	FT_UInt fontSize = 64;
 	fontSystem->loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, fontSize, false);	// Initialize the font system with the font parameters from rursus_compact_mono_ttf.h
 

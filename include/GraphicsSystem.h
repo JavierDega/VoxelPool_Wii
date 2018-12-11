@@ -15,7 +15,8 @@ class GraphicsSystem {
 		uint32_t gsHeight;
 		
 		void initializeGraphicsSystem(VideoSystem *videoSystem);
-
+		void SetFontVtxDesc();
+		void SetModelVtxDesc();
 	public:
 		GraphicsSystem(VideoSystem *videoSystem);
 		void updateScene(uint32_t *frameBuffer);

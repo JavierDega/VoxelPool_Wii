@@ -16,6 +16,23 @@ GraphicsSystem::GraphicsSystem(VideoSystem *videoSystem) {
 	this->initializeGraphicsSystem(videoSystem);
 }
 
+void GraphicsSystem::SetFontVtxDesc(){
+
+	GX_ClearVtxDesc();
+	GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+	GX_SetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+
+}
+
+void GraphicsSystem::SetModelVtxDesc(){
+	
+	GX_ClearVtxDesc();
+	GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GX_SetVtxDesc(GX_VA_NRM, GX_DIRECT);
+	GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+}
+
 void GraphicsSystem::initializeGraphicsSystem(VideoSystem *videoSystem) {
 
 	GXRModeObj *videoMode = videoSystem->getVideoMode();
@@ -55,19 +72,16 @@ void GraphicsSystem::initializeGraphicsSystem(VideoSystem *videoSystem) {
 	GX_SetCullMode(GX_CULL_NONE);
 	GX_CopyDisp(videoSystem->getVideoFramebuffer(), GX_TRUE);
 	GX_SetDispCopyGamma(GX_GM_1_0);
+	
 
 	// Texture vertex format setup
-	GX_ClearVtxDesc();
-	GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
-	GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
-	GX_SetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+	SetFontVtxDesc();
 
 	// Texture vertext format 0 initialization
 	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XY, GX_F32, 0);
+	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_NRM_XYZ, GX_F32, 0);
 	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_F32, 0);
 	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGBA, GX_RGBA8, 0);
-
-	
 
 	GX_SetNumChans(1);
 
@@ -76,7 +90,15 @@ void GraphicsSystem::initializeGraphicsSystem(VideoSystem *videoSystem) {
 	GX_SetTevOp(GX_TEVSTAGE0, GX_MODULATE);
 	GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
 	GX_SetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX3x4, GX_TG_TEX0, GX_IDENTITY);	
-
+	
+	//Lighting
+	f32 w = videoMode->viWidth;
+	f32 h = videoMode->viHeight;
+	guLightPerspective(mv,45, (f32)w/h, 1.05F, 1.0F, 0.0F, 0.0F);
+    guMtxTrans(mr, 0.0F, 0.0F, -1.0F);
+    guMtxConcat(mv, mr, mv);
+    GX_LoadTexMtxImm(mv, GX_TEXMTX0, GX_MTX3x4);
+	
 	GX_InvalidateTexAll();
 	
 	
