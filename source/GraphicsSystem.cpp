@@ -12,9 +12,9 @@ GraphicsSystem::GraphicsSystem(VideoSystem *videoSystem) {
 	//looking down the -z axis wth y up
 	guLookAt(view, &cam, &up, &look);
 	
-	litcolors[0] = { 0xD0, 0xD0, 0xD0, 0xFF }; // Light color 1
-    litcolors[1] = { 255, 255, 255, 0xFF }; // Ambient 1
-    litcolors[2] = { 0x80, 0x80, 0x80, 0xFF };  // Material 1
+	litcolors[0] = { 0, 0, 0, 255}; // Light color 1
+    litcolors[1] = { 255, 255, 255, 255 }; // Ambient 1
+    litcolors[2] = { 255, 0, 0, 255 };  // Material 1
 	
 	//Init GP
 	this->initializeGraphicsSystem(videoSystem);
