@@ -51,7 +51,9 @@ GraphicsSystem.o: E:/CT6COPRE/wii/Template_5/source/GraphicsSystem.cpp \
  C:/devkitPro/libogc/include/ogc/mutex.h \
  C:/devkitPro/libogc/include/ogc/system.h \
  C:/devkitPro/libogc/include/ogc/wiilaunch.h \
- E:/CT6COPRE/wii/Template_5/include/VideoSystem.h
+ E:/CT6COPRE/wii/Template_5/include/VideoSystem.h \
+ E:/CT6COPRE/wii/Template_5/build/palette_tpl.h \
+ E:/CT6COPRE/wii/Template_5/build/palette.h
 
 E:/CT6COPRE/wii/Template_5/include/GraphicsSystem.h:
 
@@ -158,3 +160,7 @@ C:/devkitPro/libogc/include/ogc/system.h:
 C:/devkitPro/libogc/include/ogc/wiilaunch.h:
 
 E:/CT6COPRE/wii/Template_5/include/VideoSystem.h:
+
+E:/CT6COPRE/wii/Template_5/build/palette_tpl.h:
+
+E:/CT6COPRE/wii/Template_5/build/palette.h:

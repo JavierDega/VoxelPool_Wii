@@ -91,8 +91,8 @@ int main(int argc, char **argv) {
 		//Model RENDER
 		//Set up vtx desc and texture load
 		graphicsSystem->SetModelVtxDesc();
-		GX_LoadTexObj(texObj, GX_TEXMAP0);
-		GX_InvalidateTexAll();
+		
+		//myPoolModel->Render();
 		//RENDER
 		
 		

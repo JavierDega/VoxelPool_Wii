@@ -6,6 +6,7 @@
 #include <string.h>
 #include "VideoSystem.h"
 
+
 #define DEFAULT_FIFO_SIZE (1024*1024)
 
 class GraphicsSystem {
@@ -30,6 +31,10 @@ class GraphicsSystem {
 	
 	//Light
 	GXColor litcolors [3];
+	
+	//Tex
+	TPLFile paletteTPL;
+	GXTexObj paletteTexture;
 
 };
 

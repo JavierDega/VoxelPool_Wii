@@ -1,5 +1,9 @@
 #include "GraphicsSystem.h"
 #include <math.h>
+
+#include "palette_tpl.h"
+#include "palette.h"
+
 GraphicsSystem::GraphicsSystem(VideoSystem *videoSystem) {
 
 	//Init vars
@@ -29,12 +33,28 @@ void GraphicsSystem::SetFontVtxDesc(){
 
 }
 
+//Also loads Texture, since all models use palette.bmp
 void GraphicsSystem::SetModelVtxDesc(){
 	
+	GX_InvalidateTexAll();
+	GX_LoadTexObj(&paletteTexture, GX_TEXMAP0);
 	GX_ClearVtxDesc();
 	GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
 	GX_SetVtxDesc(GX_VA_NRM, GX_DIRECT);
 	GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+	
+	
+	//For now lets put matrix transformations here
+	guMtxIdentity(model);
+	guMtxTransApply(model, model, 0.0f,0.0f,-70.0f);
+	guMtxConcat(view,model,modelview);
+
+	// load the modelview matrix into matrix memory
+	GX_LoadPosMtxImm(modelview, GX_PNMTX0);
+	
+	guMtxInverse(modelview,mvi);
+	guMtxTranspose(mvi,modelview);
+	GX_LoadNrmMtxImm(modelview, GX_PNMTX0);
 }
 
 void GraphicsSystem::initializeGraphicsSystem(VideoSystem *videoSystem) {
@@ -104,7 +124,9 @@ void GraphicsSystem::initializeGraphicsSystem(VideoSystem *videoSystem) {
     GX_LoadTexMtxImm(mv, GX_TEXMTX0, GX_MTX3x4);
 	
 	GX_InvalidateTexAll();
-	
+	//Load palette.bmp texture
+	TPL_OpenTPLFromMemory(&paletteTPL, (void *)palette_tpl,palette_tpl_size);
+	TPL_GetTexture(&paletteTPL,palette,&paletteTexture);
 	
 	// Reset the model view matrix
 	guMtxIdentity(modelview);
@@ -162,7 +184,7 @@ void GraphicsSystem::SetDirectionalLight(u32 theta,u32 phi)
 	
 	// set number of rasterized color channels
 	GX_SetNumChans(1);
-    GX_SetChanCtrl(GX_COLOR0A0,GX_ENABLE,GX_SRC_REG,GX_SRC_REG,GX_LIGHT0,GX_DF_CLAMP,GX_AF_NONE);
+    GX_SetChanCtrl(GX_COLOR0A0,GX_ENABLE,GX_SRC_VTX,GX_SRC_VTX,GX_LIGHT0,GX_DF_CLAMP,GX_AF_NONE);
     GX_SetChanAmbColor(GX_COLOR0A0,ambcol);
     GX_SetChanMatColor(GX_COLOR0A0,matcol);
 }
