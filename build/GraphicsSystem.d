@@ -52,6 +52,10 @@ GraphicsSystem.o: E:/CT6COPRE/wii/Template_5/source/GraphicsSystem.cpp \
  C:/devkitPro/libogc/include/ogc/system.h \
  C:/devkitPro/libogc/include/ogc/wiilaunch.h \
  E:/CT6COPRE/wii/Template_5/include/VideoSystem.h \
+ C:/devkitPro/libogc/include/wiiuse/wpad.h \
+ C:/devkitPro/libogc/include/wiiuse/wiiuse.h \
+ C:/devkitPro/libogc/include/bte/bte.h \
+ C:/devkitPro/libogc/include/bte/bd_addr.h \
  E:/CT6COPRE/wii/Template_5/build/palette_tpl.h \
  E:/CT6COPRE/wii/Template_5/build/palette.h
 
@@ -160,6 +164,14 @@ C:/devkitPro/libogc/include/ogc/system.h:
 C:/devkitPro/libogc/include/ogc/wiilaunch.h:
 
 E:/CT6COPRE/wii/Template_5/include/VideoSystem.h:
+
+C:/devkitPro/libogc/include/wiiuse/wpad.h:
+
+C:/devkitPro/libogc/include/wiiuse/wiiuse.h:
+
+C:/devkitPro/libogc/include/bte/bte.h:
+
+C:/devkitPro/libogc/include/bte/bd_addr.h:
 
 E:/CT6COPRE/wii/Template_5/build/palette_tpl.h:
 

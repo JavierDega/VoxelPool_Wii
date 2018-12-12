@@ -16,21 +16,24 @@ class GraphicsSystem {
 		uint32_t gsHeight;
 		
 		void initializeGraphicsSystem(VideoSystem *videoSystem);
-		void SetFontVtxDesc();
-		void SetModelVtxDesc();
+		void SetFontDesc();
+		void SetModelDesc();
 		GraphicsSystem(VideoSystem *videoSystem);
 		void EndScene(uint32_t *frameBuffer);
-		void SetDirectionalLight(u32 theta, u32 phi);
+		void SetLight();
 		
 	//Variables
 	Mtx view,mv,mr,mvi; // view and perspective matrices
 	Mtx model, modelview;
-	Mtx44 perspective;
+	Mtx44 projection;
 	GXColor background;
 	guVector cam, up, look;
 	
+	guVector rotAxis;
+	float rotValue;
+	
 	//Light
-	GXColor litcolors [3];
+	GXColor lightColor [3];
 	
 	//Tex
 	TPLFile paletteTPL;

@@ -1,6 +1,11 @@
 #include "ModelMesh.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <malloc.h>
+#include <math.h>
+#include <gccore.h>
+#include <wiiuse/wpad.h>
 #include <gccore.h>
 ModelMesh::ModelMesh()
 {
@@ -95,14 +100,13 @@ bool ModelMesh::MakeModelFromObj(void* fileStream, unsigned int fileSize){
 }
 
 void ModelMesh::Render(){
-	GX_Begin(GX_TRIANGLES, GX_VTXFMT0, out_vertices.size() );
+	GX_Begin(GX_TRIANGLES, GX_VTXFMT1, out_vertices.size() );
 		
 		for (unsigned int i = 0; i < out_vertices.size(); i++){
 			
 			Vec3 vertex = out_vertices[i];
 			Vec3 normal = out_normals[i];
 			Vec2 uv = out_uvs[i];
-			
 			GX_Position3f32(vertex.x, vertex.y, vertex.z);
 			GX_Normal3f32(normal.x,normal.y,normal.z);
 			GX_TexCoord2f32(uv.x,uv.y);
@@ -111,6 +115,5 @@ void ModelMesh::Render(){
 		}	
 
 	GX_End();
-							
 
 }

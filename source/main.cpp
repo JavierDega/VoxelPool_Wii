@@ -55,31 +55,41 @@ int main(int argc, char **argv) {
 	while(!padSystem->pressedExitButton(buttons = padSystem->scanPads(0))) {
 
 		if(padSystem->pressedUp(buttons)) {	// Increase font size
-			fontSystem->loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, ++fontSize, false);
+			//fontSystem->loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, ++fontSize, false);
+			graphicsSystem->cam.y++;
+			graphicsSystem->look.y++;
 		}
 		if(padSystem->pressedDown(buttons)) {	// Decrease font size
-			fontSystem->loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, fontSize > 6 ? --fontSize : fontSize, false);
+			//fontSystem->loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, fontSize > 6 ? --fontSize : fontSize, false);
+			graphicsSystem->cam.y--;
+			graphicsSystem->look.y--;
 		}
 		if(padSystem->pressedLeft(buttons)) {	// Toggle text underlining
-			isUnderlined = !isUnderlined;
+			//isUnderlined = !isUnderlined;
+			graphicsSystem->cam.x--;
+			graphicsSystem->look.x--;
 		}
 		if(padSystem->pressedRight(buttons)) {	// Toggle text strikethrough
-			isStrike = !isStrike;
+			//isStrike = !isStrike;
+			graphicsSystem->cam.x++;
+			graphicsSystem->look.x++;
 		}
 
-		
+			//setup our camera at the origin
+		//looking down the -z axis wth y up
+		guLookAt(graphicsSystem->view, &graphicsSystem->cam, &graphicsSystem->up, &graphicsSystem->look);
 		//Lighting
-		graphicsSystem->SetDirectionalLight(8, 20);
+		graphicsSystem->SetLight();
 		
 		//Font
 		//Set up vtx desc and tex format?
-		graphicsSystem->SetFontVtxDesc();
+		graphicsSystem->SetFontDesc();
 		//RENDER
 		textStyle = FTGX_JUSTIFY_CENTER;
 		textStyle = isUnderlined	? textStyle | FTGX_STYLE_UNDERLINE	: textStyle;
 		textStyle = isStrike		? textStyle | FTGX_STYLE_STRIKE		: textStyle;
 
-		fontSystem->drawText(320,	50,		_TEXT("THE QUICK BROWN"),	(GXColor){0xff, 0x00, 0x00, 0xff},	textStyle | FTGX_ALIGN_TOP);
+		fontSystem->drawText(320,	50,		_TEXT("THE QUICK BROWN"),	(GXColor){0xff, 0x00, 0x00, 0},	textStyle | FTGX_ALIGN_TOP);
 		fontSystem->drawText(320,	125,	_TEXT("FOX JUMPS OVER"),	(GXColor){0x00, 0xff, 0x00, 0xff},	textStyle | FTGX_ALIGN_MIDDLE);
 		fontSystem->drawText(320,	200,	_TEXT("THE LAZY DOG"),		(GXColor){0x00, 0x00, 0xff, 0xff},	textStyle | FTGX_ALIGN_BOTTOM);
 
@@ -90,10 +100,9 @@ int main(int argc, char **argv) {
 		
 		//Model RENDER
 		//Set up vtx desc and texture load
-		graphicsSystem->SetModelVtxDesc();
-		//myPoolModel->Render();
+		graphicsSystem->SetModelDesc();
+		myPoolModel->Render();
 		//RENDER
-		
 		
 		
 		graphicsSystem->EndScene(videoSystem->getVideoFramebuffer());
