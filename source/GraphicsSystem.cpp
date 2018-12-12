@@ -118,7 +118,7 @@ void GraphicsSystem::initializeGraphicsSystem(VideoSystem *videoSystem) {
 	// and aspect ratio based on the display resolution
     f32 w = videoMode->viWidth;
     f32 h = videoMode->viHeight;
-	guPerspective(projection, 45, (f32)w/h, 0.1F, 300.0F);
+	guPerspective(projection, 45, (f32)w/h, 0.1F, 1000.0F);
 	GX_LoadProjectionMtx(projection, GX_PERSPECTIVE);
 }
 
@@ -126,7 +126,8 @@ void GraphicsSystem::initializeGraphicsSystem(VideoSystem *videoSystem) {
 void GraphicsSystem::SetFontDesc(){
 	//For now lets put matrix transformations here
 	guMtxIdentity(model);
-	guMtxTransApply(model, model, 0.0f,0.0f,-5.0f);
+	guMtxScaleApply(model, model, 0.1f, -0.1f, 0.1f);
+	guMtxTransApply(model, model, -12.5f,10.0f,-40.0f);
 	guMtxConcat(view,model,modelview);
 	// Apply changes to model view matrix
 	GX_LoadPosMtxImm(modelview,GX_PNMTX0);
@@ -152,7 +153,7 @@ void GraphicsSystem::SetModelDesc(){
 	//For now lets put matrix transformations here
 	guMtxIdentity(model);
 	guMtxRotAxisDeg(model, &rotAxis, rotValue);
-	guMtxTransApply(model, model, 0.0f,-20.0f,-80.0f);
+	guMtxTransApply(model, model, 0.0f,-20.0f,-100.0f);
 	guMtxConcat(view,model,modelview);
 
 	// load the modelview matrix into matrix memory

@@ -1,7 +1,7 @@
 #ifndef PADSYSTEM_H_
 #define PADSYSTEM_H_
 
-#define __WIISYSTEM__
+//#define __WIISYSTEM__
 #include <stdlib.h>
 #include <gccore.h>
 

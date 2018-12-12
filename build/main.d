@@ -57,7 +57,6 @@ main.o: E:/CT6COPRE/wii/Template_5/source/main.cpp \
  E:/CT6COPRE/wii/Template_5/include/GraphicsSystem.h \
  E:/CT6COPRE/wii/Template_5/include/VideoSystem.h \
  E:/CT6COPRE/wii/Template_5/include/VideoSystem.h \
- E:/CT6COPRE/wii/Template_5/include/PadSystem.h \
  E:/CT6COPRE/wii/Template_5/include/FreeTypeGX.h \
  C:/devkitPro/libogc/include/ft2build.h \
  C:/devkitPro/libogc/include/freetype/config/ftheader.h \
@@ -192,8 +191,6 @@ E:/CT6COPRE/wii/Template_5/include/GraphicsSystem.h:
 E:/CT6COPRE/wii/Template_5/include/VideoSystem.h:
 
 E:/CT6COPRE/wii/Template_5/include/VideoSystem.h:
-
-E:/CT6COPRE/wii/Template_5/include/PadSystem.h:
 
 E:/CT6COPRE/wii/Template_5/include/FreeTypeGX.h:
 
