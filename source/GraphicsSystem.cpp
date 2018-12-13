@@ -6,6 +6,8 @@
 #include <math.h>
 #include <wiiuse/wpad.h>
 
+#include "DebugSystem.h"
+
 #include "palette_tpl.h"
 #include "palette.h"
 
@@ -189,6 +191,11 @@ void GraphicsSystem::SetLight()
 	GX_LIGHT0,GX_DF_CLAMP,GX_AF_NONE);
     GX_SetChanAmbColor(GX_COLOR0A0,lightColor[1]);
     GX_SetChanMatColor(GX_COLOR0A0,lightColor[2]);
+	
+	DebugSystem * ds = DebugSystem::GetInstance();
+	ds->AddLog(std::to_wstring(lpos.x));
+	ds->AddLog(std::to_wstring(lpos.y));
+	ds->AddLog(std::to_wstring(lpos.z));
 }
 
 void GraphicsSystem::SetDirectionalLight(u32 theta,u32 phi)
@@ -214,4 +221,10 @@ void GraphicsSystem::SetDirectionalLight(u32 theta,u32 phi)
     GX_SetChanCtrl(GX_COLOR0A0,GX_ENABLE,GX_SRC_REG,GX_SRC_VTX,GX_LIGHT0,GX_DF_CLAMP,GX_AF_NONE);
     GX_SetChanAmbColor(GX_COLOR0A0,lightColor[1]);
     GX_SetChanMatColor(GX_COLOR0A0,lightColor[2]);
+	
+	DebugSystem * ds = DebugSystem::GetInstance();
+	ds->AddLog(std::to_wstring(lpos.x));
+	ds->AddLog(std::to_wstring(lpos.y));
+	ds->AddLog(std::to_wstring(lpos.z));
+	
 }

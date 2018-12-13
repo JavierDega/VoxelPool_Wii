@@ -37,20 +37,10 @@ int main(int argc, char **argv) {
 	VideoSystem* videoSystem = new VideoSystem();
 	//GX
 	GraphicsSystem *graphicsSystem = new GraphicsSystem(videoSystem);
-	//Font
-	FreeTypeGX *fontSystem = new FreeTypeGX(GX_TF_IA8, GX_VTXFMT0);
-	fontSystem->setCompatibilityMode(FTGX_COMPATIBILITY_DEFAULT_TEVOP_GX_MODULATE
-	| FTGX_COMPATIBILITY_DEFAULT_VTXDESC_GX_DIRECT);//BLEND AND TEX DIRECT
-	FT_UInt fontSize = 20;
-	fontSystem->loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, fontSize, false);	// Initialize the font system with the font parameters from rursus_compact_mono_ttf.h
-
 	
+	//Debug/font
 	DebugSystem * debugSystem = DebugSystem::GetInstance();
 	debugSystem->m_isEnabled = true;
-	
-	uint32_t textStyle = FTGX_JUSTIFY_CENTER;
-	bool isUnderlined = false;
-	bool isStrike = false;
 	
 	//Create model
 	ModelMesh * myPoolModel = new ModelMesh((void *)PoolWIP_obj, PoolWIP_obj_size);
@@ -97,7 +87,6 @@ int main(int argc, char **argv) {
 		if (buttonsDown & PAD_BUTTON_X){
 			debugSystem->m_isEnabled = !debugSystem->m_isEnabled;
 		}
-		debugSystem->Update();
 		//setup our camera at the origin
 		//looking down the -z axis wth y up
 		guLookAt(graphicsSystem->view, &graphicsSystem->cam, &graphicsSystem->up, &graphicsSystem->look);
@@ -111,31 +100,16 @@ int main(int argc, char **argv) {
 		graphicsSystem->SetModelDesc();
 		myPoolModel->Render();
 		
+		//Debug
+		debugSystem->Update();
 		debugSystem->SetFontTransform(graphicsSystem);
 		debugSystem->Render();
-		//Font
-		//Set up vtx desc and tex format?
-		/*
-		graphicsSystem->SetFontDesc();
-		//RENDER
-		textStyle = FTGX_JUSTIFY_CENTER;
-		textStyle = isUnderlined	? textStyle | FTGX_STYLE_UNDERLINE	: textStyle;
-		textStyle = isStrike		? textStyle | FTGX_STYLE_STRIKE		: textStyle;
-
-		fontSystem->drawText(0,	-40,		_TEXT("THE QUICK BROWN"),	(GXColor){0xff, 0x00, 0x00, 0xff},	textStyle | FTGX_ALIGN_TOP);
-		fontSystem->drawText(0,	-10,	_TEXT("FOX JUMPS OVER"),	(GXColor){0x00, 0xff, 0x00, 0xff},	textStyle | FTGX_ALIGN_MIDDLE);
-		fontSystem->drawText(0,	20,	_TEXT("THE LAZY DOG"),		(GXColor){0x00, 0x00, 0xff, 0xff},	textStyle | FTGX_ALIGN_BOTTOM);
-
-		fontSystem->drawText(0,	50,	_TEXT("the quick brown"),	(GXColor){0xff, 0xff, 0x00, 0xff},	textStyle);
-		fontSystem->drawText(0,	80,	_TEXT("fox jumps over"),	(GXColor){0xff, 0x00, 0xff, 0xff},	textStyle);
-		fontSystem->drawText(0,	110,	_TEXT("the lazy dog"),		(GXColor){0x00, 0xff, 0xff, 0xff},	textStyle);
-		*/
 			
 		graphicsSystem->EndScene(videoSystem->getVideoFramebuffer());
 		videoSystem->flipVideoFramebuffer();
 	}
 
-	delete fontSystem;
+	delete debugSystem;
 	delete graphicsSystem;
 	delete videoSystem;
 	

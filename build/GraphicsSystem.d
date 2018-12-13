@@ -56,6 +56,23 @@ GraphicsSystem.o: E:/CT6COPRE/wii/Template_5/source/GraphicsSystem.cpp \
  C:/devkitPro/libogc/include/wiiuse/wiiuse.h \
  C:/devkitPro/libogc/include/bte/bte.h \
  C:/devkitPro/libogc/include/bte/bd_addr.h \
+ E:/CT6COPRE/wii/Template_5/include/DebugSystem.h \
+ E:/CT6COPRE/wii/Template_5/include/FreeTypeGX.h \
+ C:/devkitPro/libogc/include/ft2build.h \
+ C:/devkitPro/libogc/include/freetype/config/ftheader.h \
+ C:/devkitPro/libogc/include/freetype/freetype.h \
+ C:/devkitPro/libogc/include/freetype/config/ftconfig.h \
+ C:/devkitPro/libogc/include/freetype/config/ftoption.h \
+ C:/devkitPro/libogc/include/freetype/config/ftstdlib.h \
+ C:/devkitPro/libogc/include/freetype/fterrors.h \
+ C:/devkitPro/libogc/include/freetype/ftmoderr.h \
+ C:/devkitPro/libogc/include/freetype/fterrdef.h \
+ C:/devkitPro/libogc/include/freetype/fttypes.h \
+ C:/devkitPro/libogc/include/freetype/ftsystem.h \
+ C:/devkitPro/libogc/include/freetype/ftimage.h \
+ C:/devkitPro/libogc/include/freetype/ftbitmap.h \
+ E:/CT6COPRE/wii/Template_5/include/Metaphrasis.h \
+ E:/CT6COPRE/wii/Template_5/include/GraphicsSystem.h \
  E:/CT6COPRE/wii/Template_5/build/palette_tpl.h \
  E:/CT6COPRE/wii/Template_5/build/palette.h
 
@@ -172,6 +189,40 @@ C:/devkitPro/libogc/include/wiiuse/wiiuse.h:
 C:/devkitPro/libogc/include/bte/bte.h:
 
 C:/devkitPro/libogc/include/bte/bd_addr.h:
+
+E:/CT6COPRE/wii/Template_5/include/DebugSystem.h:
+
+E:/CT6COPRE/wii/Template_5/include/FreeTypeGX.h:
+
+C:/devkitPro/libogc/include/ft2build.h:
+
+C:/devkitPro/libogc/include/freetype/config/ftheader.h:
+
+C:/devkitPro/libogc/include/freetype/freetype.h:
+
+C:/devkitPro/libogc/include/freetype/config/ftconfig.h:
+
+C:/devkitPro/libogc/include/freetype/config/ftoption.h:
+
+C:/devkitPro/libogc/include/freetype/config/ftstdlib.h:
+
+C:/devkitPro/libogc/include/freetype/fterrors.h:
+
+C:/devkitPro/libogc/include/freetype/ftmoderr.h:
+
+C:/devkitPro/libogc/include/freetype/fterrdef.h:
+
+C:/devkitPro/libogc/include/freetype/fttypes.h:
+
+C:/devkitPro/libogc/include/freetype/ftsystem.h:
+
+C:/devkitPro/libogc/include/freetype/ftimage.h:
+
+C:/devkitPro/libogc/include/freetype/ftbitmap.h:
+
+E:/CT6COPRE/wii/Template_5/include/Metaphrasis.h:
+
+E:/CT6COPRE/wii/Template_5/include/GraphicsSystem.h:
 
 E:/CT6COPRE/wii/Template_5/build/palette_tpl.h:
 
