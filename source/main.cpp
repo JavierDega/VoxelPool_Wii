@@ -94,8 +94,13 @@ int main(int argc, char **argv) {
 		//looking down the -z axis wth y up
 		guLookAt(graphicsSystem->view, &graphicsSystem->cam, &graphicsSystem->up, &graphicsSystem->look);
 		//Lighting
-		graphicsSystem->SetLight();
+		graphicsSystem->SetDirectionalLight(8, 20);		
 		
+		//Model RENDER
+		//Set up vtx desc and texture load
+		graphicsSystem->SetModelDesc();
+		myPoolModel->Render();
+	
 		//Font
 		//Set up vtx desc and tex format?
 		graphicsSystem->SetFontDesc();
@@ -104,21 +109,14 @@ int main(int argc, char **argv) {
 		textStyle = isUnderlined	? textStyle | FTGX_STYLE_UNDERLINE	: textStyle;
 		textStyle = isStrike		? textStyle | FTGX_STYLE_STRIKE		: textStyle;
 
-		fontSystem->drawText(0,	-40,		_TEXT("THE QUICK BROWN"),	(GXColor){0xff, 0x00, 0x00, 0},	textStyle | FTGX_ALIGN_TOP);
+		fontSystem->drawText(0,	-40,		_TEXT("THE QUICK BROWN"),	(GXColor){0xff, 0x00, 0x00, 0xff},	textStyle | FTGX_ALIGN_TOP);
 		fontSystem->drawText(0,	-10,	_TEXT("FOX JUMPS OVER"),	(GXColor){0x00, 0xff, 0x00, 0xff},	textStyle | FTGX_ALIGN_MIDDLE);
 		fontSystem->drawText(0,	20,	_TEXT("THE LAZY DOG"),		(GXColor){0x00, 0x00, 0xff, 0xff},	textStyle | FTGX_ALIGN_BOTTOM);
 
 		fontSystem->drawText(0,	50,	_TEXT("the quick brown"),	(GXColor){0xff, 0xff, 0x00, 0xff},	textStyle);
 		fontSystem->drawText(0,	80,	_TEXT("fox jumps over"),	(GXColor){0xff, 0x00, 0xff, 0xff},	textStyle);
 		fontSystem->drawText(0,	110,	_TEXT("the lazy dog"),		(GXColor){0x00, 0xff, 0xff, 0xff},	textStyle);
-		
-		
-		//Model RENDER
-		//Set up vtx desc and texture load
-		graphicsSystem->SetModelDesc();
-		myPoolModel->Render();
-		//RENDER
-		
+
 		
 		graphicsSystem->EndScene(videoSystem->getVideoFramebuffer());
 		videoSystem->flipVideoFramebuffer();

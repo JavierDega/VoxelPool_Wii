@@ -14,7 +14,7 @@
 GraphicsSystem::GraphicsSystem(VideoSystem *videoSystem) {
 
 	//Init vars
-	background = {255, 255, 255, 0xff};
+	background = {255, 255, 255, 0};
 	cam = {0.0F, 0.0F, 0.0F};
 	up = {0.0F, 1.0F, 0.0F};
 	look = {0.0F, 0.0F, -1.0F};
@@ -80,7 +80,7 @@ void GraphicsSystem::initializeGraphicsSystem(VideoSystem *videoSystem) {
 	GX_ClearVtxDesc();
 
 	// Texture vertext format 0 initialization
-	//FreeTypeGX draws to this index
+	//FreeTypeGX draws fonts to this index
 	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XY, GX_F32, 0);
 	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_NRM_XYZ, GX_F32, 0);
 	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_F32, 0);
@@ -93,20 +93,15 @@ void GraphicsSystem::initializeGraphicsSystem(VideoSystem *videoSystem) {
 
 	//Set number of rasterized color channels
 	GX_SetNumChans(1);
-
-	// Tev graphics pipeline initialization
-	GX_SetNumTexGens(1);
 	
 	GX_InvVtxCache();
 	GX_InvalidateTexAll();
 	
-	// setup texture coordinate generation
-	// args: texcoord slot 0-7, matrix type, source to generate texture coordinates from, matrix to use
-	GX_SetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY);
-
-	// Set up TEV to paint the textures properly.
-	GX_SetTevOp(GX_TEVSTAGE0,GX_MODULATE);
+	// Tev graphics pipeline initialization
+	GX_SetNumTexGens(1);
+	GX_SetTevOp(GX_TEVSTAGE0, GX_MODULATE);
 	GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
+	GX_SetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY);	
 	
 	//Load palette.bmp texture
 	TPL_OpenTPLFromMemory(&paletteTPL, (void *)palette_tpl,palette_tpl_size);
@@ -120,6 +115,7 @@ void GraphicsSystem::initializeGraphicsSystem(VideoSystem *videoSystem) {
     f32 h = videoMode->viHeight;
 	guPerspective(projection, 45, (f32)w/h, 0.1F, 1000.0F);
 	GX_LoadProjectionMtx(projection, GX_PERSPECTIVE);
+	
 }
 
 //Font settings
@@ -164,6 +160,8 @@ void GraphicsSystem::SetModelDesc(){
 
 void GraphicsSystem::EndScene(uint32_t *frameBuffer) {
 	GX_SetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
+	GX_SetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
+	GX_SetAlphaUpdate(GX_TRUE);
 	GX_SetColorUpdate(GX_TRUE);
 	GX_CopyDisp(frameBuffer, GX_TRUE);
 	
@@ -187,7 +185,33 @@ void GraphicsSystem::SetLight()
 	
 	// set number of rasterized color channels
 	GX_SetNumChans(1);
-    GX_SetChanCtrl(GX_COLOR0A0,GX_ENABLE,GX_SRC_REG,GX_SRC_REG,GX_LIGHT0,GX_DF_CLAMP,GX_AF_NONE);
+    GX_SetChanCtrl(GX_COLOR0A0,GX_ENABLE,GX_SRC_REG,GX_SRC_REG,
+	GX_LIGHT0,GX_DF_CLAMP,GX_AF_NONE);
+    GX_SetChanAmbColor(GX_COLOR0A0,lightColor[1]);
+    GX_SetChanMatColor(GX_COLOR0A0,lightColor[2]);
+}
+
+void GraphicsSystem::SetDirectionalLight(u32 theta,u32 phi)
+{
+	guVector lpos;
+	f32 _theta,_phi;
+	GXLightObj lobj;
+
+	_theta = (f32)theta*M_PI/180.0f;
+	_phi = (f32)phi*M_PI/180.0f;
+	lpos.x = 1000.0f * cosf(_phi) * sinf(_theta);
+	lpos.y = 1000.0f * sinf(_phi);
+	lpos.z = 1000.0f * cosf(_phi) * cosf(_theta);
+
+	guVecMultiply(view,&lpos,&lpos);
+
+	GX_InitLightPos(&lobj,lpos.x,lpos.y,lpos.z);
+	GX_InitLightColor(&lobj,lightColor[0]);
+	GX_LoadLightObj(&lobj,GX_LIGHT0);
+	
+	// set number of rasterized color channels
+	GX_SetNumChans(1);
+    GX_SetChanCtrl(GX_COLOR0A0,GX_ENABLE,GX_SRC_REG,GX_SRC_VTX,GX_LIGHT0,GX_DF_CLAMP,GX_AF_NONE);
     GX_SetChanAmbColor(GX_COLOR0A0,lightColor[1]);
     GX_SetChanMatColor(GX_COLOR0A0,lightColor[2]);
 }

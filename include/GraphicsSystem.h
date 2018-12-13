@@ -21,6 +21,7 @@ class GraphicsSystem {
 		GraphicsSystem(VideoSystem *videoSystem);
 		void EndScene(uint32_t *frameBuffer);
 		void SetLight();
+		void SetDirectionalLight(u32 theta, u32 phi);
 		
 	//Variables
 	Mtx view,mv,mr,mvi; // view and perspective matrices
