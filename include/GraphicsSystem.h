@@ -3,7 +3,6 @@
 
 #include <gccore.h>
 #include <malloc.h>
-#include <string.h>
 #include "VideoSystem.h"
 
 
@@ -15,7 +14,7 @@ class GraphicsSystem {
 		uint32_t gsWidth;
 		uint32_t gsHeight;
 		
-		void initializeGraphicsSystem(VideoSystem *videoSystem);
+		void InitializeGraphicsSystem(VideoSystem *videoSystem);
 		void SetFontDesc();
 		void SetModelDesc();
 		GraphicsSystem(VideoSystem *videoSystem);
@@ -24,7 +23,7 @@ class GraphicsSystem {
 		void SetDirectionalLight(u32 theta, u32 phi);
 		
 	//Variables
-	Mtx view,mv,mr,mvi; // view and perspective matrices
+	Mtx view; // view and perspective matrices
 	Mtx model, modelview;
 	Mtx44 projection;
 	GXColor background;

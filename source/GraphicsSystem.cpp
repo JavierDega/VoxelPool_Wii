@@ -4,7 +4,6 @@
 #include <string.h>
 #include <malloc.h>
 #include <math.h>
-#include <gccore.h>
 #include <wiiuse/wpad.h>
 
 #include "palette_tpl.h"
@@ -28,14 +27,14 @@ GraphicsSystem::GraphicsSystem(VideoSystem *videoSystem) {
 	rotValue = 0;
 	
 	lightColor[0] =  { 255, 255, 255, 255 }; // Light color 1
-    lightColor[1] = { 128, 128, 128, 255 }; // Ambient 1
+    lightColor[1] = { 180, 180, 180, 255 }; // Ambient 1
     lightColor[2] =  { 255, 255, 255, 255 };  // Material 1
 	
 	//Init GP
-	this->initializeGraphicsSystem(videoSystem);
+	this->InitializeGraphicsSystem(videoSystem);
 }
 
-void GraphicsSystem::initializeGraphicsSystem(VideoSystem *videoSystem) {
+void GraphicsSystem::InitializeGraphicsSystem(VideoSystem *videoSystem) {
 
 	GXRModeObj *videoMode = videoSystem->getVideoMode();
 
@@ -47,7 +46,7 @@ void GraphicsSystem::initializeGraphicsSystem(VideoSystem *videoSystem) {
 	// Set the background clear color
 	GX_SetCopyClear(background, 0x00ffffff);
 
-	// Setup the viewport display 
+	// Setup the viewport display
 	f32 yscale = GX_GetYScaleFactor(videoMode->efbHeight, videoMode->xfbHeight);
 	uint32_t xfbHeight = GX_SetDispCopyYScale(yscale);
 
@@ -107,12 +106,12 @@ void GraphicsSystem::initializeGraphicsSystem(VideoSystem *videoSystem) {
 	TPL_OpenTPLFromMemory(&paletteTPL, (void *)palette_tpl,palette_tpl_size);
 	TPL_GetTexture(&paletteTPL,palette,&paletteTexture);
 	
-	
 	// setup our projection matrix
 	// this creates a perspective matrix with a view angle of 90,
 	// and aspect ratio based on the display resolution
     f32 w = videoMode->viWidth;
-    f32 h = videoMode->viHeight;
+    f32 h = videoMode->viHeight;	
+	//Render mtx
 	guPerspective(projection, 45, (f32)w/h, 0.1F, 1000.0F);
 	GX_LoadProjectionMtx(projection, GX_PERSPECTIVE);
 	
@@ -120,6 +119,12 @@ void GraphicsSystem::initializeGraphicsSystem(VideoSystem *videoSystem) {
 
 //Font settings
 void GraphicsSystem::SetFontDesc(){
+	//Desc
+	GX_ClearVtxDesc();
+	GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+	GX_SetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+
 	//For now lets put matrix transformations here
 	guMtxIdentity(model);
 	guMtxScaleApply(model, model, 0.1f, -0.1f, 0.1f);
@@ -128,11 +133,6 @@ void GraphicsSystem::SetFontDesc(){
 	// Apply changes to model view matrix
 	GX_LoadPosMtxImm(modelview,GX_PNMTX0);
 	
-	GX_ClearVtxDesc();
-	GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
-	GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
-	GX_SetVtxDesc(GX_VA_CLR0, GX_DIRECT);
-
 }
 
 //Also loads Texture, since all models use palette.bmp
@@ -159,7 +159,7 @@ void GraphicsSystem::SetModelDesc(){
 }
 
 void GraphicsSystem::EndScene(uint32_t *frameBuffer) {
-	GX_SetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
+	GX_SetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);	
 	GX_SetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
 	GX_SetAlphaUpdate(GX_TRUE);
 	GX_SetColorUpdate(GX_TRUE);
@@ -185,7 +185,7 @@ void GraphicsSystem::SetLight()
 	
 	// set number of rasterized color channels
 	GX_SetNumChans(1);
-    GX_SetChanCtrl(GX_COLOR0A0,GX_ENABLE,GX_SRC_REG,GX_SRC_REG,
+    GX_SetChanCtrl(GX_COLOR0A0,GX_ENABLE,GX_SRC_REG,GX_SRC_VTX,
 	GX_LIGHT0,GX_DF_CLAMP,GX_AF_NONE);
     GX_SetChanAmbColor(GX_COLOR0A0,lightColor[1]);
     GX_SetChanMatColor(GX_COLOR0A0,lightColor[2]);

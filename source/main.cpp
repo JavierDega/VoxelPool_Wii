@@ -4,13 +4,13 @@
 ---------------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <malloc.h>
 #include <math.h>
 #include <gccore.h>
 #include <wiiuse/wpad.h>
 
 #include "GraphicsSystem.h"
+#include "DebugSystem.h"
 #include "VideoSystem.h"
 
 #include "FreeTypeGX.h"
@@ -44,19 +44,23 @@ int main(int argc, char **argv) {
 	FT_UInt fontSize = 20;
 	fontSystem->loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, fontSize, false);	// Initialize the font system with the font parameters from rursus_compact_mono_ttf.h
 
-
+	
+	DebugSystem * debugSystem = DebugSystem::GetInstance();
+	debugSystem->m_isEnabled = true;
+	
 	uint32_t textStyle = FTGX_JUSTIFY_CENTER;
 	bool isUnderlined = false;
 	bool isStrike = false;
 	
 	//Create model
 	ModelMesh * myPoolModel = new ModelMesh((void *)PoolWIP_obj, PoolWIP_obj_size);
-	
+	u32 rotValue = 0;
 	while(1) {
 	
 		WPAD_ScanPads();
 		PAD_ScanPads();
 		u16 buttonsHeld = PAD_ButtonsHeld(0);
+		u16 buttonsDown = PAD_ButtonsDown(0);
 		if ( buttonsHeld & PAD_BUTTON_LEFT ){
 			graphicsSystem->cam.x--;
 			graphicsSystem->look.x--;
@@ -89,20 +93,29 @@ int main(int argc, char **argv) {
 			graphicsSystem->look.z--;
 		
 		}
-
+		
+		if (buttonsDown & PAD_BUTTON_X){
+			debugSystem->m_isEnabled = !debugSystem->m_isEnabled;
+		}
+		debugSystem->Update();
 		//setup our camera at the origin
 		//looking down the -z axis wth y up
 		guLookAt(graphicsSystem->view, &graphicsSystem->cam, &graphicsSystem->up, &graphicsSystem->look);
 		//Lighting
-		graphicsSystem->SetDirectionalLight(8, 20);		
-		
+		//Lighting direction is rotating with view
+		graphicsSystem->SetLight();
+		rotValue++;
+		//**ORDER OR RENDERING MATTERS BECAUSE OF Z BUFFERS(FONT TRANSPARENCY)**//		
 		//Model RENDER
 		//Set up vtx desc and texture load
 		graphicsSystem->SetModelDesc();
 		myPoolModel->Render();
-	
+		
+		debugSystem->SetFontTransform(graphicsSystem);
+		debugSystem->Render();
 		//Font
 		//Set up vtx desc and tex format?
+		/*
 		graphicsSystem->SetFontDesc();
 		//RENDER
 		textStyle = FTGX_JUSTIFY_CENTER;
@@ -116,8 +129,8 @@ int main(int argc, char **argv) {
 		fontSystem->drawText(0,	50,	_TEXT("the quick brown"),	(GXColor){0xff, 0xff, 0x00, 0xff},	textStyle);
 		fontSystem->drawText(0,	80,	_TEXT("fox jumps over"),	(GXColor){0xff, 0x00, 0xff, 0xff},	textStyle);
 		fontSystem->drawText(0,	110,	_TEXT("the lazy dog"),		(GXColor){0x00, 0xff, 0xff, 0xff},	textStyle);
-
-		
+		*/
+			
 		graphicsSystem->EndScene(videoSystem->getVideoFramebuffer());
 		videoSystem->flipVideoFramebuffer();
 	}
