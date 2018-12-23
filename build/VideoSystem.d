@@ -1,5 +1,6 @@
-VideoSystem.o: E:/CT6COPRE/wii/Template_5/source/VideoSystem.cpp \
- E:/CT6COPRE/wii/Template_5/include/VideoSystem.h \
+VideoSystem.o: \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/source/VideoSystem.cpp \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/VideoSystem.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
  C:/devkitPro/libogc/include/gctypes.h \
@@ -52,7 +53,7 @@ VideoSystem.o: E:/CT6COPRE/wii/Template_5/source/VideoSystem.cpp \
  C:/devkitPro/libogc/include/ogc/system.h \
  C:/devkitPro/libogc/include/ogc/wiilaunch.h
 
-E:/CT6COPRE/wii/Template_5/include/VideoSystem.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/VideoSystem.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 

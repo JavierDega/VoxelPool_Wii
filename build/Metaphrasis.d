@@ -1,5 +1,6 @@
-Metaphrasis.o: E:/CT6COPRE/wii/Template_5/source/Metaphrasis.cpp \
- E:/CT6COPRE/wii/Template_5/include/Metaphrasis.h \
+Metaphrasis.o: \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/source/Metaphrasis.cpp \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
  C:/devkitPro/libogc/include/gctypes.h \
@@ -52,7 +53,7 @@ Metaphrasis.o: E:/CT6COPRE/wii/Template_5/source/Metaphrasis.cpp \
  C:/devkitPro/libogc/include/ogc/system.h \
  C:/devkitPro/libogc/include/ogc/wiilaunch.h
 
-E:/CT6COPRE/wii/Template_5/include/Metaphrasis.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 

@@ -1,5 +1,6 @@
-ModelMesh.o: E:/CT6COPRE/wii/Template_5/source/ModelMesh.cpp \
- E:/CT6COPRE/wii/Template_5/include/ModelMesh.h \
+ModelMesh.o: \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/source/ModelMesh.cpp \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/ModelMesh.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
  C:/devkitPro/libogc/include/gctypes.h \
@@ -56,7 +57,7 @@ ModelMesh.o: E:/CT6COPRE/wii/Template_5/source/ModelMesh.cpp \
  C:/devkitPro/libogc/include/bte/bte.h \
  C:/devkitPro/libogc/include/bte/bd_addr.h
 
-E:/CT6COPRE/wii/Template_5/include/ModelMesh.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/ModelMesh.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 

@@ -1,5 +1,6 @@
-GraphicsSystem.o: E:/CT6COPRE/wii/Template_5/source/GraphicsSystem.cpp \
- E:/CT6COPRE/wii/Template_5/include/GraphicsSystem.h \
+GraphicsSystem.o: \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/source/GraphicsSystem.cpp \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GraphicsSystem.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
  C:/devkitPro/libogc/include/gctypes.h \
@@ -51,32 +52,32 @@ GraphicsSystem.o: E:/CT6COPRE/wii/Template_5/source/GraphicsSystem.cpp \
  C:/devkitPro/libogc/include/ogc/mutex.h \
  C:/devkitPro/libogc/include/ogc/system.h \
  C:/devkitPro/libogc/include/ogc/wiilaunch.h \
- E:/CT6COPRE/wii/Template_5/include/VideoSystem.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/VideoSystem.h \
  C:/devkitPro/libogc/include/wiiuse/wpad.h \
  C:/devkitPro/libogc/include/wiiuse/wiiuse.h \
  C:/devkitPro/libogc/include/bte/bte.h \
  C:/devkitPro/libogc/include/bte/bd_addr.h \
- E:/CT6COPRE/wii/Template_5/include/DebugSystem.h \
- E:/CT6COPRE/wii/Template_5/include/FreeTypeGX.h \
- C:/devkitPro/libogc/include/ft2build.h \
- C:/devkitPro/libogc/include/freetype/config/ftheader.h \
- C:/devkitPro/libogc/include/freetype/freetype.h \
- C:/devkitPro/libogc/include/freetype/config/ftconfig.h \
- C:/devkitPro/libogc/include/freetype/config/ftoption.h \
- C:/devkitPro/libogc/include/freetype/config/ftstdlib.h \
- C:/devkitPro/libogc/include/freetype/fterrors.h \
- C:/devkitPro/libogc/include/freetype/ftmoderr.h \
- C:/devkitPro/libogc/include/freetype/fterrdef.h \
- C:/devkitPro/libogc/include/freetype/fttypes.h \
- C:/devkitPro/libogc/include/freetype/ftsystem.h \
- C:/devkitPro/libogc/include/freetype/ftimage.h \
- C:/devkitPro/libogc/include/freetype/ftbitmap.h \
- E:/CT6COPRE/wii/Template_5/include/Metaphrasis.h \
- E:/CT6COPRE/wii/Template_5/include/GraphicsSystem.h \
- E:/CT6COPRE/wii/Template_5/build/palette_tpl.h \
- E:/CT6COPRE/wii/Template_5/build/palette.h
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/DebugSystem.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/FreeTypeGX.h \
+ C:/devkitPro/portlibs/ppc/include/ft2build.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/config/ftheader.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/freetype.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/config/ftconfig.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/config/ftoption.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/config/ftstdlib.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/fttypes.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/ftsystem.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/ftimage.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/fterrors.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/ftmoderr.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GraphicsSystem.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/build/palette_tpl.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/build/palette.h
 
-E:/CT6COPRE/wii/Template_5/include/GraphicsSystem.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GraphicsSystem.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 
@@ -180,7 +181,7 @@ C:/devkitPro/libogc/include/ogc/system.h:
 
 C:/devkitPro/libogc/include/ogc/wiilaunch.h:
 
-E:/CT6COPRE/wii/Template_5/include/VideoSystem.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/VideoSystem.h:
 
 C:/devkitPro/libogc/include/wiiuse/wpad.h:
 
@@ -190,40 +191,40 @@ C:/devkitPro/libogc/include/bte/bte.h:
 
 C:/devkitPro/libogc/include/bte/bd_addr.h:
 
-E:/CT6COPRE/wii/Template_5/include/DebugSystem.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/DebugSystem.h:
 
-E:/CT6COPRE/wii/Template_5/include/FreeTypeGX.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/FreeTypeGX.h:
 
-C:/devkitPro/libogc/include/ft2build.h:
+C:/devkitPro/portlibs/ppc/include/ft2build.h:
 
-C:/devkitPro/libogc/include/freetype/config/ftheader.h:
+C:/devkitPro/portlibs/ppc/include/freetype/config/ftheader.h:
 
-C:/devkitPro/libogc/include/freetype/freetype.h:
+C:/devkitPro/portlibs/ppc/include/freetype/freetype.h:
 
-C:/devkitPro/libogc/include/freetype/config/ftconfig.h:
+C:/devkitPro/portlibs/ppc/include/freetype/config/ftconfig.h:
 
-C:/devkitPro/libogc/include/freetype/config/ftoption.h:
+C:/devkitPro/portlibs/ppc/include/freetype/config/ftoption.h:
 
-C:/devkitPro/libogc/include/freetype/config/ftstdlib.h:
+C:/devkitPro/portlibs/ppc/include/freetype/config/ftstdlib.h:
 
-C:/devkitPro/libogc/include/freetype/fterrors.h:
+C:/devkitPro/portlibs/ppc/include/freetype/fttypes.h:
 
-C:/devkitPro/libogc/include/freetype/ftmoderr.h:
+C:/devkitPro/portlibs/ppc/include/freetype/ftsystem.h:
 
-C:/devkitPro/libogc/include/freetype/fterrdef.h:
+C:/devkitPro/portlibs/ppc/include/freetype/ftimage.h:
 
-C:/devkitPro/libogc/include/freetype/fttypes.h:
+C:/devkitPro/portlibs/ppc/include/freetype/fterrors.h:
 
-C:/devkitPro/libogc/include/freetype/ftsystem.h:
+C:/devkitPro/portlibs/ppc/include/freetype/ftmoderr.h:
 
-C:/devkitPro/libogc/include/freetype/ftimage.h:
+C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h:
 
-C:/devkitPro/libogc/include/freetype/ftbitmap.h:
+C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h:
 
-E:/CT6COPRE/wii/Template_5/include/Metaphrasis.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h:
 
-E:/CT6COPRE/wii/Template_5/include/GraphicsSystem.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GraphicsSystem.h:
 
-E:/CT6COPRE/wii/Template_5/build/palette_tpl.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/build/palette_tpl.h:
 
-E:/CT6COPRE/wii/Template_5/build/palette.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/build/palette.h:

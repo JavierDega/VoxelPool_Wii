@@ -1,3 +1,3 @@
 palette.tpl: \
- E:/CT6COPRE/wii/Template_5/textures/palette.scf \
-  E:/CT6COPRE/wii/Template_5/textures/palette.bmp 
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/textures/palette.scf \
+  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/textures/palette.bmp 

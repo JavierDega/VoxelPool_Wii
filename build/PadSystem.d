@@ -1,5 +1,6 @@
-PadSystem.o: E:/CT6COPRE/wii/Template_5/source/PadSystem.cpp \
- E:/CT6COPRE/wii/Template_5/include/PadSystem.h \
+PadSystem.o: \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/source/PadSystem.cpp \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/PadSystem.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
  C:/devkitPro/libogc/include/gctypes.h \
@@ -52,7 +53,7 @@ PadSystem.o: E:/CT6COPRE/wii/Template_5/source/PadSystem.cpp \
  C:/devkitPro/libogc/include/ogc/system.h \
  C:/devkitPro/libogc/include/ogc/wiilaunch.h
 
-E:/CT6COPRE/wii/Template_5/include/PadSystem.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/PadSystem.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 
