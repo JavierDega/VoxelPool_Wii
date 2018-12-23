@@ -14,15 +14,15 @@ PadSystem * PadSystem::GetInstance()
 }
 //Constructor
 PadSystem::PadSystem() {
-	buttonsHeld = 0;
-	buttonsUp = 0;
-	buttonsDown = 0;
+	m_buttonsHeld = 0;
+	m_buttonsUp = 0;
+	m_buttonsDown = 0;
 }
 //Destructor
 PadSystem::~PadSystem(){
-	buttonsHeld = 0;
-	buttonsUp = 0;
-	buttonsDown = 0;
+	m_buttonsHeld = 0;
+	m_buttonsUp = 0;
+	m_buttonsDown = 0;
 }	
 void PadSystem::Initialize() {
 	PAD_Init();
@@ -31,7 +31,7 @@ void PadSystem::Initialize() {
 
 void PadSystem::ScanPads(int controller) {
 	PAD_ScanPads();
-	buttonsHeld = PAD_ButtonsHeld(controller);
-	buttonsDown = PAD_ButtonsDown(controller);
-	buttonsUp = PAD_ButtonsUp(controller);
+	m_buttonsHeld = PAD_ButtonsHeld(controller);
+	m_buttonsDown = PAD_ButtonsDown(controller);
+	m_buttonsUp = PAD_ButtonsUp(controller);
 }

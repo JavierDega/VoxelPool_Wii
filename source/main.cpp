@@ -41,31 +41,31 @@ int main(int argc, char **argv) {
 	u32 rotValue = 0;
 	while(1) {
 		ps->ScanPads(0);
-		if ( ps->buttonsHeld & PAD_BUTTON_LEFT ){
+		if ( ps->m_buttonsHeld & PAD_BUTTON_LEFT ){
 			gs->cam.x--;
 			gs->look.x--;
 		}
-		if ( ps->buttonsHeld & PAD_BUTTON_RIGHT ){
+		if ( ps->m_buttonsHeld & PAD_BUTTON_RIGHT ){
 			gs->cam.x++;
 			gs->look.x++;
 		}
-		if ( ps->buttonsHeld & PAD_BUTTON_UP ){
+		if ( ps->m_buttonsHeld & PAD_BUTTON_UP ){
 			gs->cam.y++;
 			gs->look.y++;
 		}
-		if ( ps->buttonsHeld & PAD_BUTTON_DOWN ){
+		if ( ps->m_buttonsHeld & PAD_BUTTON_DOWN ){
 			gs->cam.y--;
 			gs->look.y--;
 		}
-		if ( ps->buttonsHeld & PAD_BUTTON_A ){
+		if ( ps->m_buttonsHeld & PAD_BUTTON_A ){
 			gs->cam.z++;
 			gs->look.z++;
 		}
-		if ( ps->buttonsHeld & PAD_BUTTON_B ){
+		if ( ps->m_buttonsHeld & PAD_BUTTON_B ){
 			gs->cam.z--;
 			gs->look.z--;
 		}
-		if ( ps->buttonsDown & PAD_BUTTON_X){
+		if ( ps->m_buttonsDown & PAD_BUTTON_X){
 			ds->m_isEnabled = !ds->m_isEnabled;
 		}
 
