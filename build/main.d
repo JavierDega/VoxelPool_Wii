@@ -55,8 +55,8 @@ main.o: \
  C:/devkitPro/libogc/include/wiiuse/wiiuse.h \
  C:/devkitPro/libogc/include/bte/bte.h \
  C:/devkitPro/libogc/include/bte/bd_addr.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GraphicsSystem.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/VideoSystem.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/PadSystem.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GraphicSystem.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/DebugSystem.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/FreeTypeGX.h \
  C:/devkitPro/portlibs/ppc/include/ft2build.h \
@@ -73,9 +73,7 @@ main.o: \
  C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h \
  C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GraphicsSystem.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/VideoSystem.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/FreeTypeGX.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GraphicSystem.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/build/rursus_compact_mono_ttf.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/ModelMesh.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/build/PoolWIP_obj.h
@@ -190,9 +188,9 @@ C:/devkitPro/libogc/include/bte/bte.h:
 
 C:/devkitPro/libogc/include/bte/bd_addr.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GraphicsSystem.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/PadSystem.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/VideoSystem.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GraphicSystem.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/DebugSystem.h:
 
@@ -226,11 +224,7 @@ C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GraphicsSystem.h:
-
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/VideoSystem.h:
-
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/FreeTypeGX.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GraphicSystem.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/build/rursus_compact_mono_ttf.h:
 

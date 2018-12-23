@@ -2,7 +2,7 @@
 #define DEBUGSYSTEM_H_
 
 #include "FreeTypeGX.h"
-#include "GraphicsSystem.h"
+#include "GraphicSystem.h"
 
 #include <gccore.h>
 #include <stdlib.h>
@@ -21,21 +21,20 @@ class DebugSystem {
 	DebugSystem();
 	public:
 	~DebugSystem();
-		
-	
-	void SetFontTransform(GraphicsSystem* gs);
+	//Singleton
+	static DebugSystem* GetInstance();	
+	//Funcs
+	void Initialize();
+	void SetFontTransform(GraphicSystem* gs);
 	void AddLog(std::wstring log);
 	void Update();
 	//Render logs at right height, using freetypeGX
 	void Render();
-	//Singleton
-	static DebugSystem* GetInstance();
 	
 	//Variables
 	bool m_isEnabled;
 	//Debug font
 	FreeTypeGX * m_debugFont;
-
 	std::vector < std::wstring > m_stringLogs;
 };
 

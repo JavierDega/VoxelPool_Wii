@@ -8,11 +8,9 @@
 #include <gccore.h>
 #include <wiiuse/wpad.h>
 
-#include "GraphicsSystem.h"
+#include "PadSystem.h"
+#include "GraphicSystem.h"
 #include "DebugSystem.h"
-#include "VideoSystem.h"
-
-#include "FreeTypeGX.h"
 
 #include "rursus_compact_mono_ttf.h"	// Include the compiled font.
 										// Once compiled you can view the contents of this file in example1/all/rursus_compact_mono_ttf.h
@@ -29,88 +27,71 @@
 int main(int argc, char **argv) {
 	//Systems
 	//Input
-	WPAD_Init();
-	PAD_Init();
-	
-	//Video
-	VideoSystem* videoSystem = new VideoSystem();
+	PadSystem * ps = PadSystem::GetInstance();
+	ps->Initialize();
 	//GX
-	GraphicsSystem *graphicsSystem = new GraphicsSystem(videoSystem);
-	
+	GraphicSystem * gs = GraphicSystem::GetInstance();
+	gs->Initialize();
 	//Debug/font
-	DebugSystem * debugSystem = DebugSystem::GetInstance();
-	debugSystem->m_isEnabled = true;
+	DebugSystem * ds = DebugSystem::GetInstance();
+	ds->Initialize();
 	
 	//Create model
 	ModelMesh * myPoolModel = new ModelMesh((void *)PoolWIP_obj, PoolWIP_obj_size);
 	u32 rotValue = 0;
 	while(1) {
-	
-		WPAD_ScanPads();
-		PAD_ScanPads();
-		u16 buttonsHeld = PAD_ButtonsHeld(0);
-		u16 buttonsDown = PAD_ButtonsDown(0);
-		if ( buttonsHeld & PAD_BUTTON_LEFT ){
-			graphicsSystem->cam.x--;
-			graphicsSystem->look.x--;
-		
+		ps->ScanPads(0);
+		if ( ps->buttonsHeld & PAD_BUTTON_LEFT ){
+			gs->cam.x--;
+			gs->look.x--;
 		}
-		if ( buttonsHeld & PAD_BUTTON_RIGHT ){
-			graphicsSystem->cam.x++;
-			graphicsSystem->look.x++;
-		
+		if ( ps->buttonsHeld & PAD_BUTTON_RIGHT ){
+			gs->cam.x++;
+			gs->look.x++;
 		}
-		if ( buttonsHeld & PAD_BUTTON_UP ){
-			graphicsSystem->cam.y++;
-			graphicsSystem->look.y++;
-		
+		if ( ps->buttonsHeld & PAD_BUTTON_UP ){
+			gs->cam.y++;
+			gs->look.y++;
 		}
-		if ( buttonsHeld & PAD_BUTTON_DOWN ){
-			graphicsSystem->cam.y--;
-			graphicsSystem->look.y--;
-		
+		if ( ps->buttonsHeld & PAD_BUTTON_DOWN ){
+			gs->cam.y--;
+			gs->look.y--;
 		}
-		
-		if ( buttonsHeld & PAD_BUTTON_A ){
-			graphicsSystem->cam.z++;
-			graphicsSystem->look.z++;
-		
+		if ( ps->buttonsHeld & PAD_BUTTON_A ){
+			gs->cam.z++;
+			gs->look.z++;
 		}
-		
-		if ( buttonsHeld & PAD_BUTTON_B ){
-			graphicsSystem->cam.z--;
-			graphicsSystem->look.z--;
-		
+		if ( ps->buttonsHeld & PAD_BUTTON_B ){
+			gs->cam.z--;
+			gs->look.z--;
 		}
-		
-		if (buttonsDown & PAD_BUTTON_X){
-			debugSystem->m_isEnabled = !debugSystem->m_isEnabled;
+		if ( ps->buttonsDown & PAD_BUTTON_X){
+			ds->m_isEnabled = !ds->m_isEnabled;
 		}
-		//setup our camera at the origin
+
+		//Setup our camera at the origin
 		//looking down the -z axis wth y up
-		guLookAt(graphicsSystem->view, &graphicsSystem->cam, &graphicsSystem->up, &graphicsSystem->look);
+		guLookAt(gs->view, &gs->cam, &gs->up, &gs->look);
 		//Lighting
 		//Lighting direction is rotating with view
-		graphicsSystem->SetLight();
+		gs->SetLight();
 		rotValue++;
 		//**ORDER OR RENDERING MATTERS BECAUSE OF Z BUFFERS(FONT TRANSPARENCY)**//		
 		//Model RENDER
 		//Set up vtx desc and texture load
-		graphicsSystem->SetModelDesc();
+		gs->SetModelDesc();
 		myPoolModel->Render();
 		
-		//Debug
-		debugSystem->Update();
-		debugSystem->SetFontTransform(graphicsSystem);
-		debugSystem->Render();
+		//Debug (Fonts after geometry for transparency)
+		ds->Update();
+		ds->SetFontTransform(gs);
+		ds->Render();
 			
-		graphicsSystem->EndScene(videoSystem->getVideoFramebuffer());
-		videoSystem->flipVideoFramebuffer();
+		gs->EndScene();
 	}
 
-	delete debugSystem;
-	delete graphicsSystem;
-	delete videoSystem;
+	delete ds;
+	delete gs;
 	
 	return 0;
 }

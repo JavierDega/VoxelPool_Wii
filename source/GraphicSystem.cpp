@@ -1,4 +1,4 @@
-#include "GraphicsSystem.h"
+#include "GraphicSystem.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,8 +11,20 @@
 #include "palette_tpl.h"
 #include "palette.h"
 
+//Instance
+GraphicSystem * GraphicSystem::m_instance = NULL;
+GraphicSystem * GraphicSystem::GetInstance()
+{
+	//Singleton
+	if (m_instance == NULL)
+	{
+		m_instance = new GraphicSystem();
+	}
+	return m_instance;
+}
+
 //Constructor
-GraphicsSystem::GraphicsSystem(VideoSystem *videoSystem) {
+GraphicSystem::GraphicSystem() {
 
 	//Init vars
 	background = {255, 255, 255, 0};
@@ -30,20 +42,40 @@ GraphicsSystem::GraphicsSystem(VideoSystem *videoSystem) {
 	
 	lightColor[0] =  { 255, 255, 255, 255 }; // Light color 1
     lightColor[1] = { 180, 180, 180, 255 }; // Ambient 1
-    lightColor[2] =  { 255, 255, 255, 255 };  // Material 1
 	
-	//Init GP
-	this->InitializeGraphicsSystem(videoSystem);
+	//Video
+	videoFrameBufferIndex = 0;
 }
+//Destructor
+GraphicSystem::~GraphicSystem(){
 
-void GraphicsSystem::InitializeGraphicsSystem(VideoSystem *videoSystem) {
+}
+void GraphicSystem::Initialize() {
 
-	GXRModeObj *videoMode = videoSystem->getVideoMode();
+	VIDEO_Init();
+	
+	videoMode = VIDEO_GetPreferredMode(NULL);
+
+	for(uint8_t videoIndex = 0; videoIndex < FRAMEBUFFER_SIZE; videoIndex++) {
+		videoFrameBuffer[videoIndex] = (uint32_t *)MEM_K0_TO_K1(SYS_AllocateFramebuffer(videoMode));
+		VIDEO_ClearFrameBuffer(videoMode, videoFrameBuffer[videoIndex], COLOR_BLACK);
+	}
+	videoFrameBufferIndex = 0;
+	
+	VIDEO_Configure(videoMode);
+	VIDEO_SetNextFramebuffer(videoFrameBuffer[0]);
+	VIDEO_SetBlack(FALSE);
+	VIDEO_Flush();
+	VIDEO_WaitVSync();
+	
+	if(videoMode->viTVMode & VI_NON_INTERLACE) {
+		VIDEO_WaitVSync();
+	}
 
 	// Initialize GX system
-	this->gsFifo = memalign(32, DEFAULT_FIFO_SIZE);
-	memset(this->gsFifo, 0, DEFAULT_FIFO_SIZE);
-	GX_Init(this->gsFifo, DEFAULT_FIFO_SIZE);
+	gsFifo = memalign(32, DEFAULT_FIFO_SIZE);
+	memset(gsFifo, 0, DEFAULT_FIFO_SIZE);
+	GX_Init(gsFifo, DEFAULT_FIFO_SIZE);
 
 	// Set the background clear color
 	GX_SetCopyClear(background, 0x00ffffff);
@@ -59,8 +91,8 @@ void GraphicsSystem::InitializeGraphicsSystem(VideoSystem *videoSystem) {
 	GX_SetCopyFilter(videoMode->aa, videoMode->sample_pattern, GX_TRUE, videoMode->vfilter);
 
 	// Store graphics system width and height
-	this->gsWidth = (uint32_t)videoMode->fbWidth;
-	this->gsHeight = (uint32_t)videoMode->efbHeight;
+	gsWidth = (uint32_t)videoMode->fbWidth;
+	gsHeight = (uint32_t)videoMode->efbHeight;
 	
 	GX_SetFieldMode(videoMode->field_rendering, ((videoMode->viHeight == 2 * videoMode->xfbHeight) ? GX_ENABLE : GX_DISABLE));
 
@@ -73,7 +105,7 @@ void GraphicsSystem::InitializeGraphicsSystem(VideoSystem *videoSystem) {
 	}
 
 	GX_SetCullMode(GX_CULL_NONE);
-	GX_CopyDisp(videoSystem->getVideoFramebuffer(), GX_TRUE);
+	GX_CopyDisp(GetVideoFramebuffer(), GX_TRUE);
 	GX_SetDispCopyGamma(GX_GM_1_0);
 	
 
@@ -92,22 +124,24 @@ void GraphicsSystem::InitializeGraphicsSystem(VideoSystem *videoSystem) {
 	GX_SetVtxAttrFmt(GX_VTXFMT1, GX_VA_NRM, GX_NRM_XYZ, GX_F32, 0);
 	GX_SetVtxAttrFmt(GX_VTXFMT1, GX_VA_TEX0, GX_TEX_ST, GX_F32, 0);
 
-	//Set number of rasterized color channels
+	// set number of rasterized color channels
 	GX_SetNumChans(1);
-	
+
+	//set number of textures to generate
+	GX_SetNumTexGens(1);
+
 	GX_InvVtxCache();
 	GX_InvalidateTexAll();
-	
-	// Tev graphics pipeline initialization
-	GX_SetNumTexGens(1);
-	GX_SetTevOp(GX_TEVSTAGE0, GX_MODULATE);
-	GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
-	GX_SetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY);	
 	
 	//Load palette.bmp texture
 	TPL_OpenTPLFromMemory(&paletteTPL, (void *)palette_tpl,palette_tpl_size);
 	TPL_GetTexture(&paletteTPL,palette,&paletteTexture);
 	
+	//Setup TEV (Texture Environment) Stage
+	GX_SetTevOp(GX_TEVSTAGE0, GX_MODULATE);
+	GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
+	GX_SetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY);	
+
 	// setup our projection matrix
 	// this creates a perspective matrix with a view angle of 90,
 	// and aspect ratio based on the display resolution
@@ -120,7 +154,7 @@ void GraphicsSystem::InitializeGraphicsSystem(VideoSystem *videoSystem) {
 }
 
 //Font settings
-void GraphicsSystem::SetFontDesc(){
+void GraphicSystem::SetFontDesc(){
 	//Desc
 	GX_ClearVtxDesc();
 	GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
@@ -134,11 +168,10 @@ void GraphicsSystem::SetFontDesc(){
 	guMtxConcat(view,model,modelview);
 	// Apply changes to model view matrix
 	GX_LoadPosMtxImm(modelview,GX_PNMTX0);
-	
 }
 
 //Also loads Texture, since all models use palette.bmp
-void GraphicsSystem::SetModelDesc(){
+void GraphicSystem::SetModelDesc(){
 	//Texture	
 	GX_LoadTexObj(&paletteTexture, GX_TEXMAP0);
 	//Desc
@@ -156,30 +189,42 @@ void GraphicsSystem::SetModelDesc(){
 
 	// load the modelview matrix into matrix memory
 	GX_LoadPosMtxImm(modelview, GX_PNMTX0);
-	
+	/*
+		guMtxInverse(modelview,mvi);
+		guMtxTranspose(mvi,modelview);
+		GX_LoadNrmMtxImm(modelview, GX_PNMTX0);
+	*/
+	GX_LoadNrmMtxImm(modelview, GX_PNMTX0);
 	rotValue+= 0.1f;
 }
 
-void GraphicsSystem::EndScene(uint32_t *frameBuffer) {
+void GraphicSystem::EndScene() {
 	GX_SetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);	
 	GX_SetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
 	GX_SetAlphaUpdate(GX_TRUE);
 	GX_SetColorUpdate(GX_TRUE);
-	GX_CopyDisp(frameBuffer, GX_TRUE);
+	GX_CopyDisp(videoFrameBuffer, GX_TRUE);
 	
 	GX_DrawDone();
+
+	VIDEO_SetNextFramebuffer(GetVideoFramebuffer());
+
+	VIDEO_Flush();
+	VIDEO_WaitVSync();
+
+	videoFrameBufferIndex ^= 1;
 }
 
-void GraphicsSystem::SetLight()
+void GraphicSystem::SetLight()
 {
 	guVector lpos;
 	GXLightObj lobj;
 
 	lpos.x = 0.0f;
-	lpos.y = 0.0f;
+	lpos.y = 100.0f;
 	lpos.z = 0.0f;
 	
-	guVecMultiply(view,&lpos,&lpos);
+	//guVecMultiply(view,&lpos,&lpos);
 
 	GX_InitLightPos(&lobj,lpos.x,lpos.y,lpos.z);
 	GX_InitLightColor(&lobj,lightColor[0]);
@@ -190,41 +235,19 @@ void GraphicsSystem::SetLight()
     GX_SetChanCtrl(GX_COLOR0A0,GX_ENABLE,GX_SRC_REG,GX_SRC_VTX,
 	GX_LIGHT0,GX_DF_CLAMP,GX_AF_NONE);
     GX_SetChanAmbColor(GX_COLOR0A0,lightColor[1]);
-    GX_SetChanMatColor(GX_COLOR0A0,lightColor[2]);
+    //GX_SetChanMatColor(GX_COLOR0A0,lightColor[2]);NOT USED
 	
 	DebugSystem * ds = DebugSystem::GetInstance();
+
 	ds->AddLog(std::to_wstring(lpos.x));
+	ds->AddLog(L"x: ");
 	ds->AddLog(std::to_wstring(lpos.y));
+	ds->AddLog(L"y: ");
 	ds->AddLog(std::to_wstring(lpos.z));
+	ds->AddLog(L"z: ");
 }
 
-void GraphicsSystem::SetDirectionalLight(u32 theta,u32 phi)
-{
-	guVector lpos;
-	f32 _theta,_phi;
-	GXLightObj lobj;
-
-	_theta = (f32)theta*M_PI/180.0f;
-	_phi = (f32)phi*M_PI/180.0f;
-	lpos.x = 1000.0f * cosf(_phi) * sinf(_theta);
-	lpos.y = 1000.0f * sinf(_phi);
-	lpos.z = 1000.0f * cosf(_phi) * cosf(_theta);
-
-	guVecMultiply(view,&lpos,&lpos);
-
-	GX_InitLightPos(&lobj,lpos.x,lpos.y,lpos.z);
-	GX_InitLightColor(&lobj,lightColor[0]);
-	GX_LoadLightObj(&lobj,GX_LIGHT0);
-	
-	// set number of rasterized color channels
-	GX_SetNumChans(1);
-    GX_SetChanCtrl(GX_COLOR0A0,GX_ENABLE,GX_SRC_REG,GX_SRC_VTX,GX_LIGHT0,GX_DF_CLAMP,GX_AF_NONE);
-    GX_SetChanAmbColor(GX_COLOR0A0,lightColor[1]);
-    GX_SetChanMatColor(GX_COLOR0A0,lightColor[2]);
-	
-	DebugSystem * ds = DebugSystem::GetInstance();
-	ds->AddLog(std::to_wstring(lpos.x));
-	ds->AddLog(std::to_wstring(lpos.y));
-	ds->AddLog(std::to_wstring(lpos.z));
-	
+//Video funcs
+uint32_t * GraphicSystem::GetVideoFramebuffer() {
+	return videoFrameBuffer[videoFrameBufferIndex];
 }

@@ -15,33 +15,8 @@ DebugSystem * DebugSystem::GetInstance()
 }
 //Constructor
 DebugSystem::DebugSystem() {
-
 	m_isEnabled = false;
-	
-	//Init font
-	//Font
-	m_debugFont = new FreeTypeGX(GX_TF_IA8, GX_VTXFMT0);
-	m_debugFont->setCompatibilityMode(FTGX_COMPATIBILITY_DEFAULT_TEVOP_GX_MODULATE
-	| FTGX_COMPATIBILITY_DEFAULT_VTXDESC_GX_DIRECT);//BLEND AND TEX DIRECT
-	FT_UInt fontSize = 15;
-	m_debugFont->loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, fontSize, false);	// Initialize the font system with the font parameters from rursus_compact_mono_ttf.h
-	
-	
-	
-	//Set default logs
-	std::wstring log = L"Default string log";
-	m_stringLogs.insert(m_stringLogs.begin(), log);
-	m_stringLogs.insert(m_stringLogs.begin(), log);
-	m_stringLogs.insert(m_stringLogs.begin(), log);
-	m_stringLogs.insert(m_stringLogs.begin(), log);
-	m_stringLogs.insert(m_stringLogs.begin(), log);
-	m_stringLogs.insert(m_stringLogs.begin(), log);
-	m_stringLogs.insert(m_stringLogs.begin(), log);
-	m_stringLogs.insert(m_stringLogs.begin(), log);
-	m_stringLogs.insert(m_stringLogs.begin(), log);
-	m_stringLogs.insert(m_stringLogs.begin(), log);
 }
-
 //Destructor
 DebugSystem::~DebugSystem() {
 	//Debug system is persistent, and only deleted at application quit.
@@ -59,8 +34,29 @@ DebugSystem::~DebugSystem() {
 	}
 
 }
-
-void DebugSystem::SetFontTransform(GraphicsSystem * gs){
+void DebugSystem::Initialize(){
+	//Init font
+	//Font
+	m_debugFont = new FreeTypeGX(GX_TF_IA8, GX_VTXFMT0);
+	m_debugFont->setCompatibilityMode(FTGX_COMPATIBILITY_DEFAULT_TEVOP_GX_MODULATE
+	| FTGX_COMPATIBILITY_DEFAULT_VTXDESC_GX_DIRECT);//BLEND AND TEX DIRECT
+	FT_UInt fontSize = 15;
+	m_debugFont->loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, fontSize, false);	// Initialize the font system with the font parameters from rursus_compact_mono_ttf.h
+	
+	//Set default logs
+	std::wstring log = L"Default string log";
+	m_stringLogs.insert(m_stringLogs.begin(), log);
+	m_stringLogs.insert(m_stringLogs.begin(), log);
+	m_stringLogs.insert(m_stringLogs.begin(), log);
+	m_stringLogs.insert(m_stringLogs.begin(), log);
+	m_stringLogs.insert(m_stringLogs.begin(), log);
+	m_stringLogs.insert(m_stringLogs.begin(), log);
+	m_stringLogs.insert(m_stringLogs.begin(), log);
+	m_stringLogs.insert(m_stringLogs.begin(), log);
+	m_stringLogs.insert(m_stringLogs.begin(), log);
+	m_stringLogs.insert(m_stringLogs.begin(), log);
+}
+void DebugSystem::SetFontTransform(GraphicSystem * gs){
 	//Position: view's camera origin + X units in look direction
 	//Desc
 	GX_ClearVtxDesc();
@@ -82,15 +78,12 @@ void DebugSystem::AddLog(std::wstring log){
 }
 //Update logs?Remove extra logs
 void DebugSystem::Update(){
-	
 	while (m_stringLogs.size() > 10){
 		m_stringLogs.pop_back();
 	}
-
 }
 
-void DebugSystem::Render(){
-	
+void DebugSystem::Render(){	
 	if (m_isEnabled){
 		m_debugFont->drawText(-150, -115, m_stringLogs[0].c_str(), (GXColor){0xff, 0x00, 0x00, 0xff}, FTGX_ALIGN_TOP | FTGX_JUSTIFY_LEFT);
 		m_debugFont->drawText(-150, -100, m_stringLogs[1].c_str(), (GXColor){0xff, 0x00, 0x00, 0xff},	FTGX_ALIGN_TOP | FTGX_JUSTIFY_LEFT);
