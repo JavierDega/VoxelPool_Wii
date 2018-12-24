@@ -105,7 +105,7 @@ void GraphicSystem::Initialize() {
 	}
 
 	GX_SetCullMode(GX_CULL_NONE);
-	GX_CopyDisp(GetVideoFramebuffer(), GX_TRUE);
+	GX_CopyDisp(GetVideoFrameBuffer(), GX_TRUE);
 	GX_SetDispCopyGamma(GX_GM_1_0);
 	
 
@@ -150,7 +150,6 @@ void GraphicSystem::Initialize() {
 	//Render mtx
 	guPerspective(projection, 45, (f32)w/h, 0.1F, 1000.0F);
 	GX_LoadProjectionMtx(projection, GX_PERSPECTIVE);
-	
 }
 
 //Font settings
@@ -203,11 +202,11 @@ void GraphicSystem::EndScene() {
 	GX_SetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
 	GX_SetAlphaUpdate(GX_TRUE);
 	GX_SetColorUpdate(GX_TRUE);
-	GX_CopyDisp(videoFrameBuffer, GX_TRUE);
+	GX_CopyDisp(GetVideoFrameBuffer(), GX_TRUE);
 	
 	GX_DrawDone();
 
-	VIDEO_SetNextFramebuffer(GetVideoFramebuffer());
+	VIDEO_SetNextFramebuffer(GetVideoFrameBuffer());
 
 	VIDEO_Flush();
 	VIDEO_WaitVSync();
@@ -248,6 +247,6 @@ void GraphicSystem::SetLight()
 }
 
 //Video funcs
-uint32_t * GraphicSystem::GetVideoFramebuffer() {
+uint32_t * GraphicSystem::GetVideoFrameBuffer() {
 	return videoFrameBuffer[videoFrameBufferIndex];
 }

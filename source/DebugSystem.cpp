@@ -15,7 +15,7 @@ DebugSystem * DebugSystem::GetInstance()
 }
 //Constructor
 DebugSystem::DebugSystem() {
-	m_isEnabled = false;
+	m_isEnabled = true;
 }
 //Destructor
 DebugSystem::~DebugSystem() {
@@ -71,6 +71,7 @@ void DebugSystem::SetFontTransform(GraphicSystem * gs){
 	guMtxConcat(gs->view,gs->model,gs->modelview);
 	// Apply changes to model view matrix
 	GX_LoadPosMtxImm(gs->modelview,GX_PNMTX0);
+	//NrmMtx?
 }
 
 void DebugSystem::AddLog(std::wstring log){

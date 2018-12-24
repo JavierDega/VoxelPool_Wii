@@ -1,5 +1,7 @@
-main.o: \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/source/main.cpp \
+MeshComponent.o: \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/source/MeshComponent.cpp \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/MeshComponent.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
  C:/devkitPro/libogc/include/gctypes.h \
@@ -54,30 +56,11 @@ main.o: \
  C:/devkitPro/libogc/include/wiiuse/wpad.h \
  C:/devkitPro/libogc/include/wiiuse/wiiuse.h \
  C:/devkitPro/libogc/include/bte/bte.h \
- C:/devkitPro/libogc/include/bte/bd_addr.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/PadSystem.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GraphicSystem.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/DebugSystem.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/FreeTypeGX.h \
- C:/devkitPro/portlibs/ppc/include/ft2build.h \
- C:/devkitPro/portlibs/ppc/include/freetype/config/ftheader.h \
- C:/devkitPro/portlibs/ppc/include/freetype/freetype.h \
- C:/devkitPro/portlibs/ppc/include/freetype/config/ftconfig.h \
- C:/devkitPro/portlibs/ppc/include/freetype/config/ftoption.h \
- C:/devkitPro/portlibs/ppc/include/freetype/config/ftstdlib.h \
- C:/devkitPro/portlibs/ppc/include/freetype/fttypes.h \
- C:/devkitPro/portlibs/ppc/include/freetype/ftsystem.h \
- C:/devkitPro/portlibs/ppc/include/freetype/ftimage.h \
- C:/devkitPro/portlibs/ppc/include/freetype/fterrors.h \
- C:/devkitPro/portlibs/ppc/include/freetype/ftmoderr.h \
- C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h \
- C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GraphicSystem.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/build/rursus_compact_mono_ttf.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/MeshComponent.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/build/PoolWIP_obj.h
+ C:/devkitPro/libogc/include/bte/bd_addr.h
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/MeshComponent.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 
@@ -188,49 +171,3 @@ C:/devkitPro/libogc/include/wiiuse/wiiuse.h:
 C:/devkitPro/libogc/include/bte/bte.h:
 
 C:/devkitPro/libogc/include/bte/bd_addr.h:
-
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/PadSystem.h:
-
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GraphicSystem.h:
-
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/DebugSystem.h:
-
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/FreeTypeGX.h:
-
-C:/devkitPro/portlibs/ppc/include/ft2build.h:
-
-C:/devkitPro/portlibs/ppc/include/freetype/config/ftheader.h:
-
-C:/devkitPro/portlibs/ppc/include/freetype/freetype.h:
-
-C:/devkitPro/portlibs/ppc/include/freetype/config/ftconfig.h:
-
-C:/devkitPro/portlibs/ppc/include/freetype/config/ftoption.h:
-
-C:/devkitPro/portlibs/ppc/include/freetype/config/ftstdlib.h:
-
-C:/devkitPro/portlibs/ppc/include/freetype/fttypes.h:
-
-C:/devkitPro/portlibs/ppc/include/freetype/ftsystem.h:
-
-C:/devkitPro/portlibs/ppc/include/freetype/ftimage.h:
-
-C:/devkitPro/portlibs/ppc/include/freetype/fterrors.h:
-
-C:/devkitPro/portlibs/ppc/include/freetype/ftmoderr.h:
-
-C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h:
-
-C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h:
-
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h:
-
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GraphicSystem.h:
-
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/build/rursus_compact_mono_ttf.h:
-
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/MeshComponent.h:
-
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component.h:
-
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/build/PoolWIP_obj.h:

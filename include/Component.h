@@ -14,5 +14,5 @@ public:
 
 	//Variables
 	GameObject * m_owner;
-}
+};
 #endif /*COMPONENT_H_*/

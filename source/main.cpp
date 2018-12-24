@@ -14,7 +14,7 @@
 
 #include "rursus_compact_mono_ttf.h"	// Include the compiled font.
 										// Once compiled you can view the contents of this file in example1/all/rursus_compact_mono_ttf.h
-#include "ModelMesh.h"
+#include "MeshComponent.h"
 #include "PoolWIP_obj.h"
 /**
  * Program entry point.
@@ -37,8 +37,7 @@ int main(int argc, char **argv) {
 	ds->Initialize();
 	
 	//Create model
-	ModelMesh * myPoolModel = new ModelMesh((void *)PoolWIP_obj, PoolWIP_obj_size);
-	u32 rotValue = 0;
+	MeshComponent * myPoolModel = new MeshComponent(nullptr, (void *)PoolWIP_obj, PoolWIP_obj_size);
 	while(1) {
 		ps->ScanPads(0);
 		if ( ps->m_buttonsHeld & PAD_BUTTON_LEFT ){
@@ -75,21 +74,20 @@ int main(int argc, char **argv) {
 		//Lighting
 		//Lighting direction is rotating with view
 		gs->SetLight();
-		rotValue++;
 		//**ORDER OR RENDERING MATTERS BECAUSE OF Z BUFFERS(FONT TRANSPARENCY)**//		
 		//Model RENDER
 		//Set up vtx desc and texture load
 		gs->SetModelDesc();
 		myPoolModel->Render();
+
 		
 		//Debug (Fonts after geometry for transparency)
 		ds->Update();
 		ds->SetFontTransform(gs);
 		ds->Render();
-			
 		gs->EndScene();
 	}
-
+	delete ps;
 	delete ds;
 	delete gs;
 	

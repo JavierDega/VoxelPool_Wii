@@ -26,7 +26,6 @@ PadSystem::~PadSystem(){
 }	
 void PadSystem::Initialize() {
 	PAD_Init();
-	//WPAD_Init();
 }
 
 void PadSystem::ScanPads(int controller) {

@@ -24,7 +24,7 @@ class GraphicSystem {
 	void EndScene();
 	void SetLight();
 	//Video
-	uint32_t * GetVideoFramebuffer();
+	uint32_t * GetVideoFrameBuffer();
 		
 	//Variables
 	//GX
