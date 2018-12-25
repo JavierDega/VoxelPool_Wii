@@ -2,9 +2,8 @@
 #define PADSYSTEM_H_
 
 #include "System/System.h"
-#include <stdlib.h>
-#include <gccore.h>
 #include <wiiuse/wpad.h> 
+
 class PadSystem : public System {
 	private:
 	/*Here will be the instance stored*/

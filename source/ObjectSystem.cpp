@@ -1,6 +1,5 @@
 #include "System/ObjectSystem.h"
 
-
 //Instance
 ObjectSystem * ObjectSystem::m_instance = NULL;
 ObjectSystem * ObjectSystem::GetInstance()

@@ -6,6 +6,13 @@ TransformComponent::TransformComponent(GameObject * owner, guVector position) :
 {
 
 }
+TransformComponent::TransformComponent(GameObject * owner) : 
+	Component(owner) 
+{
+	m_position.x = 0;
+	m_position.y = 0;
+	m_position.z = 0;
+}
 //Destructor
 TransformComponent::~TransformComponent(){
 	//Empty vars

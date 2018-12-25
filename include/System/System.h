@@ -7,9 +7,9 @@
 class System
 {
 public:
-	System() {}
+	System();
 	///All systems need a virtual destructor to have their destructor called 
- 	virtual ~System() {}
+ 	virtual ~System();
  	// It's good practice to separate the construction and initialization code.
   	virtual void Initialize() = 0;
   	// All systems must update each game loop

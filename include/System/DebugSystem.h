@@ -4,10 +4,7 @@
 #include "System/System.h"
 #include "System/GraphicSystem.h"
 #include "FreeTypeGX.h"
-#include <gccore.h>
-#include <stdlib.h>
 #include <vector>
-#include <malloc.h>
 
 //Holds a queue of strings running down the screen depending on their position of the queue.
 //The queue should be of limited size and delete last member when it exceeds its size

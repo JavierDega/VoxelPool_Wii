@@ -3,7 +3,6 @@
 
 #include "System/System.h"
 #include <gccore.h>
-#include <malloc.h>
 
 #define FRAMEBUFFER_SIZE 2
 #define DEFAULT_FIFO_SIZE (1024*1024)

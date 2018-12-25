@@ -70,10 +70,6 @@ GraphicSystem.o: \
  C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h \
  C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h \
- C:/devkitPro/libogc/include/wiiuse/wpad.h \
- C:/devkitPro/libogc/include/wiiuse/wiiuse.h \
- C:/devkitPro/libogc/include/bte/bte.h \
- C:/devkitPro/libogc/include/bte/bd_addr.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/build/palette_tpl.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/build/palette.h
 
@@ -216,14 +212,6 @@ C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h:
 C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h:
-
-C:/devkitPro/libogc/include/wiiuse/wpad.h:
-
-C:/devkitPro/libogc/include/wiiuse/wiiuse.h:
-
-C:/devkitPro/libogc/include/bte/bte.h:
-
-C:/devkitPro/libogc/include/bte/bd_addr.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/build/palette_tpl.h:
 

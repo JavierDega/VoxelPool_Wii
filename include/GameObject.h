@@ -7,6 +7,8 @@
 #include <vector>
 class GameObject{
 public:
+	GameObject();
+	~GameObject();
 	//Functions
 	void AddComponent( Component component );
 	//Messages

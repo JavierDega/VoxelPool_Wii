@@ -1,10 +1,6 @@
 #include "System/GraphicSystem.h"
 #include "System/DebugSystem.h"
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include <wiiuse/wpad.h>
 
 #include "palette_tpl.h"
 #include "palette.h"
