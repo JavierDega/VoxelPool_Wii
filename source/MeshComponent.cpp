@@ -11,18 +11,19 @@ MeshComponent::MeshComponent(GameObject * owner, void * fileStream, unsigned int
 //Destructor
 MeshComponent::~MeshComponent(){
 	//Empty vectors?
-	while (!out_vertices.empty()){
-		out_vertices.pop_back();
+	while (!m_vertices.empty()){
+		m_vertices.pop_back();
 	}
-	while (!out_uvs.empty()){
-		out_uvs.pop_back();
+	while (!m_uvs.empty()){
+		m_uvs.pop_back();
 	}
-	while (!out_normals.empty()){
-		out_normals.pop_back();
+	while (!m_normals.empty()){
+		m_normals.pop_back();
 	}
 }
 //Format obj: vertex normal list, vertex texcoord list, vertex list
 //faces:(vertex,texcoord, normal)
+//@Replace by taking vertices from GraphicSystem, using string name indexing
 bool MeshComponent::MakeModelFromObj(void* fileStream, unsigned int fileSize){
 	//Temp variables
 	std::vector< unsigned int > vertexIndices, uvIndices, normalIndices;
@@ -92,20 +93,20 @@ bool MeshComponent::MakeModelFromObj(void* fileStream, unsigned int fileSize){
 		guVector uv = temp_uvs[uvIndex - 1];
 		guVector normal = temp_normals[normalIndex - 1];
 		
-		out_vertices.push_back(vertex);
-		out_uvs.push_back(uv);
-		out_normals.push_back(normal);
+		m_vertices.push_back(vertex);
+		m_uvs.push_back(uv);
+		m_normals.push_back(normal);
 	
 	}
 	return true;
 }
 //Logic to be moved onto Systems, for a more data driven approach
 void MeshComponent::Render(){
-	GX_Begin(GX_TRIANGLES, GX_VTXFMT1, out_vertices.size() );
-		for (unsigned int i = 0; i < out_vertices.size(); i++){
-			guVector vertex = out_vertices[i];
-			guVector normal = out_normals[i];
-			guVector uv = out_uvs[i];
+	GX_Begin(GX_TRIANGLES, GX_VTXFMT1, m_vertices.size() );
+		for (unsigned int i = 0; i < m_vertices.size(); i++){
+			guVector vertex = m_vertices[i];
+			guVector normal = m_normals[i];
+			guVector uv = m_uvs[i];
 			GX_Position3f32(vertex.x, vertex.y, vertex.z);
 			GX_Normal3f32(normal.x,normal.y,normal.z);
 			GX_TexCoord2f32(uv.x,uv.y);

@@ -243,11 +243,11 @@ c:/devkitpro/devkitppc/bin/../lib/gcc/powerpc-eabi/8.2.0/../../../../powerpc-eab
 c:/devkitpro/devkitppc/bin/../lib/gcc/powerpc-eabi/8.2.0/../../../../powerpc-eabi/lib\libstdc++.a(eh_alloc.o)
                               c:/devkitpro/devkitppc/bin/../lib/gcc/powerpc-eabi/8.2.0/../../../../powerpc-eabi/lib\libstdc++.a(new_op.o) (__cxa_allocate_exception)
 c:/devkitpro/devkitppc/bin/../lib/gcc/powerpc-eabi/8.2.0/../../../../powerpc-eabi/lib\libstdc++.a(del_op.o)
-                              GameObject.o (_ZdlPv)
+                              ObjectSystem.o (_ZdlPv)
 c:/devkitpro/devkitppc/bin/../lib/gcc/powerpc-eabi/8.2.0/../../../../powerpc-eabi/lib\libstdc++.a(eh_aux_runtime.o)
                               FreeTypeGX.o (__cxa_throw_bad_array_new_length)
 c:/devkitpro/devkitppc/bin/../lib/gcc/powerpc-eabi/8.2.0/../../../../powerpc-eabi/lib\libstdc++.a(si_class_type_info.o)
-                              DebugSystem.o (_ZTVN10__cxxabiv120__si_class_type_infoE)
+                              ObjectSystem.o (_ZTVN10__cxxabiv120__si_class_type_infoE)
 c:/devkitpro/devkitppc/bin/../lib/gcc/powerpc-eabi/8.2.0/../../../../powerpc-eabi/lib\libstdc++.a(tree.o)
                               FreeTypeGX.o (_ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base)
 c:/devkitpro/devkitppc/bin/../lib/gcc/powerpc-eabi/8.2.0/../../../../powerpc-eabi/lib\libstdc++.a(wstring-inst.o)
@@ -451,9 +451,9 @@ c:/devkitpro/devkitppc/bin/../lib/gcc/powerpc-eabi/8.2.0/../../../../powerpc-eab
 c:/devkitpro/devkitppc/bin/../lib/gcc/powerpc-eabi/8.2.0/../../../../powerpc-eabi/lib\libc.a(lib_a-memcmp.o)
                               C:/devkitPro/libogc/lib/wii\libogc.a(conf.o) (memcmp)
 c:/devkitpro/devkitppc/bin/../lib/gcc/powerpc-eabi/8.2.0/../../../../powerpc-eabi/lib\libc.a(lib_a-memcpy.o)
-                              MeshComponent.o (memcpy)
+                              ObjectSystem.o (memcpy)
 c:/devkitpro/devkitppc/bin/../lib/gcc/powerpc-eabi/8.2.0/../../../../powerpc-eabi/lib\libc.a(lib_a-memmove.o)
-                              MeshComponent.o (memmove)
+                              ObjectSystem.o (memmove)
 c:/devkitpro/devkitppc/bin/../lib/gcc/powerpc-eabi/8.2.0/../../../../powerpc-eabi/lib\libc.a(lib_a-memset.o)
                               Metaphrasis.o (memset)
 c:/devkitpro/devkitppc/bin/../lib/gcc/powerpc-eabi/8.2.0/../../../../powerpc-eabi/lib\libc.a(lib_a-printf.o)
@@ -735,17 +735,39 @@ Discarded input sections
                 0x0000000000000000        0x8 Metaphrasis.o
  .rodata._ZTV11Metaphrasis
                 0x0000000000000000       0x10 Metaphrasis.o
+ .group         0x0000000000000000        0xc ObjectSystem.o
+ .group         0x0000000000000000        0x8 ObjectSystem.o
+ .group         0x0000000000000000        0xc ObjectSystem.o
+ .group         0x0000000000000000        0x8 ObjectSystem.o
+ .group         0x0000000000000000        0xc ObjectSystem.o
+ .group         0x0000000000000000        0xc ObjectSystem.o
  .text          0x0000000000000000        0x0 ObjectSystem.o
  .data          0x0000000000000000        0x0 ObjectSystem.o
  .bss           0x0000000000000000        0x0 ObjectSystem.o
- .text._ZN12ObjectSystem11GetInstanceEv
-                0x0000000000000000       0x68 ObjectSystem.o
- .text._ZN12ObjectSystemC2Ev
-                0x0000000000000000       0x20 ObjectSystem.o
  .text._ZN12ObjectSystem10InitializeEv
                 0x0000000000000000        0x4 ObjectSystem.o
  .text._ZN12ObjectSystem6UpdateEf
                 0x0000000000000000        0x4 ObjectSystem.o
+ .text._ZN12ObjectSystemD2Ev
+                0x0000000000000000       0x20 ObjectSystem.o
+ .text._ZN12ObjectSystemD0Ev
+                0x0000000000000000       0x4c ObjectSystem.o
+ .text._ZN12ObjectSystem11GetInstanceEv
+                0x0000000000000000       0x68 ObjectSystem.o
+ .text._ZN12ObjectSystemC2Ev
+                0x0000000000000000       0x20 ObjectSystem.o
+ .text._ZNSt6vectorIP10GameObjectSaIS1_EE17_M_realloc_insertIJRKS1_EEEvN9__gnu_cxx17__normal_iteratorIPS1_S3_EEDpOT_
+                0x0000000000000000      0x158 ObjectSystem.o
+ .text._ZN12ObjectSystem9AddObjectEP10GameObject
+                0x0000000000000000       0x60 ObjectSystem.o
+ .text._ZN12ObjectSystem16RemoveAllObjectsEv
+                0x0000000000000000       0xd0 ObjectSystem.o
+ .rodata._ZTS12ObjectSystem
+                0x0000000000000000        0xf ObjectSystem.o
+ .rodata._ZTI12ObjectSystem
+                0x0000000000000000        0xc ObjectSystem.o
+ .rodata._ZTV12ObjectSystem
+                0x0000000000000000       0x18 ObjectSystem.o
  .sbss._ZN12ObjectSystem10m_instanceE
                 0x0000000000000000        0x4 ObjectSystem.o
  .group         0x0000000000000000        0xc GameObject.o
@@ -773,6 +795,10 @@ Discarded input sections
                 0x0000000000000000       0x28 DebugSystem.o
  .text._ZN11DebugSystem6RenderEv
                 0x0000000000000000       0x10 DebugSystem.o
+ .sdata._ZTS6System
+                0x0000000000000000        0x8 DebugSystem.o
+ .sdata._ZTI6System
+                0x0000000000000000        0x8 DebugSystem.o
  .group         0x0000000000000000        0x8 Component.o
  .group         0x0000000000000000        0xc Component.o
  .group         0x0000000000000000        0xc Component.o
@@ -10489,7 +10515,7 @@ Linker script and memory map
  .eh_frame      0x0000000080162180      0x1a0 Metaphrasis.o
                                         0x240 (size before relaxing)
  .eh_frame      0x0000000080162320        0x0 ObjectSystem.o
-                                         0x80 (size before relaxing)
+                                        0x160 (size before relaxing)
  .eh_frame      0x0000000080162320        0x0 GameObject.o
                                          0x8c (size before relaxing)
  .eh_frame      0x0000000080162320      0x2cc DebugSystem.o
@@ -11152,10 +11178,10 @@ Linker script and memory map
                 0x000000008017f7ac                _impure_ptr
  *(.sdata.*)
  .sdata._ZTS6System
-                0x000000008017f7b0        0x8 DebugSystem.o
+                0x000000008017f7b0        0x8 ObjectSystem.o
                 0x000000008017f7b0                _ZTS6System
  .sdata._ZTI6System
-                0x000000008017f7b8        0x8 DebugSystem.o
+                0x000000008017f7b8        0x8 ObjectSystem.o
                 0x000000008017f7b8                _ZTI6System
  .sdata._ZTI9Component
                 0x000000008017f7c0        0x8 Component.o
@@ -12143,380 +12169,380 @@ Linker script and memory map
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x0000000000000000     0x25b8
+.debug_aranges  0x0000000000000000     0x25e0
  *(.debug_aranges)
  .debug_aranges
                 0x0000000000000000       0x20 main.o
  .debug_aranges
                 0x0000000000000020       0x88 Metaphrasis.o
  .debug_aranges
-                0x00000000000000a8       0x38 ObjectSystem.o
+                0x00000000000000a8       0x60 ObjectSystem.o
  .debug_aranges
-                0x00000000000000e0       0x30 GameObject.o
+                0x0000000000000108       0x30 GameObject.o
  .debug_aranges
-                0x0000000000000110       0x80 DebugSystem.o
+                0x0000000000000138       0x80 DebugSystem.o
  .debug_aranges
-                0x0000000000000190       0x30 Component.o
+                0x00000000000001b8       0x30 Component.o
  .debug_aranges
-                0x00000000000001c0       0x50 MeshComponent.o
+                0x00000000000001e8       0x50 MeshComponent.o
  .debug_aranges
-                0x0000000000000210       0x78 GraphicSystem.o
+                0x0000000000000238       0x78 GraphicSystem.o
  .debug_aranges
-                0x0000000000000288       0x30 TransformComponent.o
+                0x00000000000002b0       0x30 TransformComponent.o
  .debug_aranges
-                0x00000000000002b8      0x158 FreeTypeGX.o
+                0x00000000000002e0      0x158 FreeTypeGX.o
  .debug_aranges
-                0x0000000000000410       0x50 PadSystem.o
+                0x0000000000000438       0x50 PadSystem.o
  .debug_aranges
-                0x0000000000000460       0xe0 C:/devkitPro/libogc/lib/wii\libogc.a(video.o)
+                0x0000000000000488       0xe0 C:/devkitPro/libogc/lib/wii\libogc.a(video.o)
  .debug_aranges
-                0x0000000000000540      0x138 C:/devkitPro/libogc/lib/wii\libogc.a(pad.o)
+                0x0000000000000568      0x138 C:/devkitPro/libogc/lib/wii\libogc.a(pad.o)
  .debug_aranges
-                0x0000000000000678      0x248 C:/devkitPro/libogc/lib/wii\libogc.a(system.o)
+                0x00000000000006a0      0x248 C:/devkitPro/libogc/lib/wii\libogc.a(system.o)
  .debug_aranges
-                0x00000000000008c0       0x60 C:/devkitPro/libogc/lib/wii\libogc.a(cond.o)
+                0x00000000000008e8       0x60 C:/devkitPro/libogc/lib/wii\libogc.a(cond.o)
  .debug_aranges
-                0x0000000000000920      0x708 C:/devkitPro/libogc/lib/wii\libogc.a(gx.o)
+                0x0000000000000948      0x708 C:/devkitPro/libogc/lib/wii\libogc.a(gx.o)
  .debug_aranges
-                0x0000000000001028      0x188 C:/devkitPro/libogc/lib/wii\libogc.a(gu.o)
+                0x0000000000001050      0x188 C:/devkitPro/libogc/lib/wii\libogc.a(gu.o)
  .debug_aranges
-                0x00000000000011b0       0x28 C:/devkitPro/libogc/lib/wii\libogc.a(decrementer.o)
+                0x00000000000011d8       0x28 C:/devkitPro/libogc/lib/wii\libogc.a(decrementer.o)
  .debug_aranges
-                0x00000000000011d8       0x48 C:/devkitPro/libogc/lib/wii\libogc.a(message.o)
+                0x0000000000001200       0x48 C:/devkitPro/libogc/lib/wii\libogc.a(message.o)
  .debug_aranges
-                0x0000000000001220       0xf0 C:/devkitPro/libogc/lib/wii\libogc.a(si.o)
+                0x0000000000001248       0xf0 C:/devkitPro/libogc/lib/wii\libogc.a(si.o)
  .debug_aranges
-                0x0000000000001310       0x50 C:/devkitPro/libogc/lib/wii\libogc.a(tpl.o)
+                0x0000000000001338       0x50 C:/devkitPro/libogc/lib/wii\libogc.a(tpl.o)
  .debug_aranges
-                0x0000000000001360      0x130 C:/devkitPro/libogc/lib/wii\libogc.a(ipc.o)
+                0x0000000000001388      0x130 C:/devkitPro/libogc/lib/wii\libogc.a(ipc.o)
  .debug_aranges
-                0x0000000000001490       0x88 C:/devkitPro/libogc/lib/wii\libogc.a(timesupp.o)
+                0x00000000000014b8       0x88 C:/devkitPro/libogc/lib/wii\libogc.a(timesupp.o)
  .debug_aranges
-                0x0000000000001518       0x38 C:/devkitPro/libogc/lib/wii\libogc.a(lock_supp.o)
+                0x0000000000001540       0x38 C:/devkitPro/libogc/lib/wii\libogc.a(lock_supp.o)
  .debug_aranges
-                0x0000000000001550       0x38 C:/devkitPro/libogc/lib/wii\libogc.a(newlibc.o)
+                0x0000000000001578       0x38 C:/devkitPro/libogc/lib/wii\libogc.a(newlibc.o)
  .debug_aranges
-                0x0000000000001588       0x20 C:/devkitPro/libogc/lib/wii\libogc.a(sbrk.o)
+                0x00000000000015b0       0x20 C:/devkitPro/libogc/lib/wii\libogc.a(sbrk.o)
  .debug_aranges
-                0x00000000000015a8       0x30 C:/devkitPro/libogc/lib/wii\libogc.a(malloc_lock.o)
+                0x00000000000015d0       0x30 C:/devkitPro/libogc/lib/wii\libogc.a(malloc_lock.o)
  .debug_aranges
-                0x00000000000015d8       0x68 C:/devkitPro/libogc/lib/wii\libogc.a(stm.o)
+                0x0000000000001600       0x68 C:/devkitPro/libogc/lib/wii\libogc.a(stm.o)
  .debug_aranges
-                0x0000000000001640       0x70 C:/devkitPro/libogc/lib/wii\libogc.a(ios.o)
+                0x0000000000001668       0x70 C:/devkitPro/libogc/lib/wii\libogc.a(ios.o)
  .debug_aranges
-                0x00000000000016b0      0x1f8 C:/devkitPro/libogc/lib/wii\libogc.a(es.o)
+                0x00000000000016d8      0x1f8 C:/devkitPro/libogc/lib/wii\libogc.a(es.o)
  .debug_aranges
-                0x00000000000018a8       0x20 C:/devkitPro/libogc/lib/wii\libogc.a(argv.o)
+                0x00000000000018d0       0x20 C:/devkitPro/libogc/lib/wii\libogc.a(argv.o)
  .debug_aranges
-                0x00000000000018c8      0x108 C:/devkitPro/libogc/lib/wii\libogc.a(conf.o)
+                0x00000000000018f0      0x108 C:/devkitPro/libogc/lib/wii\libogc.a(conf.o)
  .debug_aranges
-                0x00000000000019d0       0x70 C:/devkitPro/libogc/lib/wii\libogc.a(wiilaunch.o)
+                0x00000000000019f8       0x70 C:/devkitPro/libogc/lib/wii\libogc.a(wiilaunch.o)
  .debug_aranges
-                0x0000000000001a40       0x20 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_priority.o)
+                0x0000000000001a68       0x20 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_priority.o)
  .debug_aranges
-                0x0000000000001a60       0x98 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threadq.o)
+                0x0000000000001a88       0x98 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threadq.o)
  .debug_aranges
-                0x0000000000001af8       0xf0 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threads.o)
+                0x0000000000001b20       0xf0 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threads.o)
  .debug_aranges
-                0x0000000000001be8       0x60 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_messages.o)
+                0x0000000000001c10       0x60 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_messages.o)
  .debug_aranges
-                0x0000000000001c48       0xb8 C:/devkitPro/libogc/lib/wii\libogc.a(lwp.o)
+                0x0000000000001c70       0xb8 C:/devkitPro/libogc/lib/wii\libogc.a(lwp.o)
  .debug_aranges
-                0x0000000000001d00       0x28 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_stack.o)
+                0x0000000000001d28       0x28 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_stack.o)
  .debug_aranges
-                0x0000000000001d28       0x38 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_mutex.o)
+                0x0000000000001d50       0x38 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_mutex.o)
  .debug_aranges
-                0x0000000000001d60       0x48 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_watchdog.o)
+                0x0000000000001d88       0x48 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_watchdog.o)
  .debug_aranges
-                0x0000000000001da8       0x38 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_wkspace.o)
+                0x0000000000001dd0       0x38 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_wkspace.o)
  .debug_aranges
-                0x0000000000001de0       0x50 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_objmgr.o)
+                0x0000000000001e08       0x50 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_objmgr.o)
  .debug_aranges
-                0x0000000000001e30       0x38 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_heap.o)
+                0x0000000000001e58       0x38 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_heap.o)
  .debug_aranges
-                0x0000000000001e68       0x18 C:/devkitPro/libogc/lib/wii\libogc.a(sys_state.o)
+                0x0000000000001e90       0x18 C:/devkitPro/libogc/lib/wii\libogc.a(sys_state.o)
  .debug_aranges
-                0x0000000000001e80       0x58 C:/devkitPro/libogc/lib/wii\libogc.a(exception.o)
+                0x0000000000001ea8       0x58 C:/devkitPro/libogc/lib/wii\libogc.a(exception.o)
  .debug_aranges
-                0x0000000000001ed8       0x68 C:/devkitPro/libogc/lib/wii\libogc.a(irq.o)
+                0x0000000000001f00       0x68 C:/devkitPro/libogc/lib/wii\libogc.a(irq.o)
  .debug_aranges
-                0x0000000000001f40       0x40 C:/devkitPro/libogc/lib/wii\libogc.a(semaphore.o)
+                0x0000000000001f68       0x40 C:/devkitPro/libogc/lib/wii\libogc.a(semaphore.o)
  .debug_aranges
-                0x0000000000001f80       0xf0 C:/devkitPro/libogc/lib/wii\libogc.a(exi.o)
+                0x0000000000001fa8       0xf0 C:/devkitPro/libogc/lib/wii\libogc.a(exi.o)
  .debug_aranges
-                0x0000000000002070       0x50 C:/devkitPro/libogc/lib/wii\libogc.a(mutex.o)
+                0x0000000000002098       0x50 C:/devkitPro/libogc/lib/wii\libogc.a(mutex.o)
  .debug_aranges
-                0x00000000000020c0       0x30 C:/devkitPro/libogc/lib/wii\libogc.a(kprintf.o)
+                0x00000000000020e8       0x30 C:/devkitPro/libogc/lib/wii\libogc.a(kprintf.o)
  .debug_aranges
-                0x00000000000020f0      0x130 C:/devkitPro/libogc/lib/wii\libogc.a(network_wii.o)
+                0x0000000000002118      0x130 C:/devkitPro/libogc/lib/wii\libogc.a(network_wii.o)
  .debug_aranges
-                0x0000000000002220       0x70 C:/devkitPro/libogc/lib/wii\libogc.a(console.o)
+                0x0000000000002248       0x70 C:/devkitPro/libogc/lib/wii\libogc.a(console.o)
  .debug_aranges
-                0x0000000000002290       0x40 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_queue.o)
+                0x00000000000022b8       0x40 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_queue.o)
  .debug_aranges
-                0x00000000000022d0       0x38 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_sema.o)
+                0x00000000000022f8       0x38 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_sema.o)
  .debug_aranges
-                0x0000000000002308       0x18 C:/devkitPro/libogc/lib/wii\libogc.a(console_font_8x16.o)
+                0x0000000000002330       0x18 C:/devkitPro/libogc/lib/wii\libogc.a(console_font_8x16.o)
  .debug_aranges
-                0x0000000000002320       0xa8 C:/devkitPro/libogc/lib/wii\libogc.a(usbgecko.o)
+                0x0000000000002348       0xa8 C:/devkitPro/libogc/lib/wii\libogc.a(usbgecko.o)
  .debug_aranges
-                0x00000000000023c8       0x30 C:/devkitPro/libogc/lib/wii\libogc.a(network_common.o)
+                0x00000000000023f0       0x30 C:/devkitPro/libogc/lib/wii\libogc.a(network_common.o)
  .debug_aranges
-                0x00000000000023f8       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(png.o)
+                0x0000000000002420       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(png.o)
  .debug_aranges
-                0x0000000000002418       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngerror.o)
+                0x0000000000002440       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngerror.o)
  .debug_aranges
-                0x0000000000002438       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngget.o)
+                0x0000000000002460       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngget.o)
  .debug_aranges
-                0x0000000000002458       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngmem.o)
+                0x0000000000002480       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngmem.o)
  .debug_aranges
-                0x0000000000002478       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngread.o)
+                0x00000000000024a0       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngread.o)
  .debug_aranges
-                0x0000000000002498       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrio.o)
+                0x00000000000024c0       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrio.o)
  .debug_aranges
-                0x00000000000024b8       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrtran.o)
+                0x00000000000024e0       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrtran.o)
  .debug_aranges
-                0x00000000000024d8       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrutil.o)
+                0x0000000000002500       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrutil.o)
  .debug_aranges
-                0x00000000000024f8       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngset.o)
+                0x0000000000002520       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngset.o)
  .debug_aranges
-                0x0000000000002518       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngtrans.o)
+                0x0000000000002540       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngtrans.o)
  .debug_aranges
-                0x0000000000002538       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwrite.o)
+                0x0000000000002560       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwrite.o)
  .debug_aranges
-                0x0000000000002558       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwtran.o)
+                0x0000000000002580       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwtran.o)
  .debug_aranges
-                0x0000000000002578       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwutil.o)
+                0x00000000000025a0       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwutil.o)
  .debug_aranges
-                0x0000000000002598       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwio.o)
+                0x00000000000025c0       0x20 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwio.o)
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000    0xf4502
+.debug_info     0x0000000000000000    0xf73a7
  *(.debug_info)
  .debug_info    0x0000000000000000     0x540b main.o
  .debug_info    0x000000000000540b     0x1c78 Metaphrasis.o
- .debug_info    0x0000000000007083     0x3ee0 ObjectSystem.o
- .debug_info    0x000000000000af63     0x41cc GameObject.o
- .debug_info    0x000000000000f12f    0x145bf DebugSystem.o
- .debug_info    0x00000000000236ee     0x2cdd Component.o
- .debug_info    0x00000000000263cb     0xbe96 MeshComponent.o
- .debug_info    0x0000000000032261     0xbffb GraphicSystem.o
- .debug_info    0x000000000003e25c     0x11d8 TransformComponent.o
- .debug_info    0x000000000003f434    0x12c9a FreeTypeGX.o
- .debug_info    0x00000000000520ce     0x20b9 PadSystem.o
- .debug_info    0x0000000000054187     0x4868 C:/devkitPro/libogc/lib/wii\libogc.a(video.o)
- .debug_info    0x00000000000589ef     0x2833 C:/devkitPro/libogc/lib/wii\libogc.a(pad.o)
- .debug_info    0x000000000005b222     0x694d C:/devkitPro/libogc/lib/wii\libogc.a(system.o)
- .debug_info    0x0000000000061b6f     0x1cc0 C:/devkitPro/libogc/lib/wii\libogc.a(cond.o)
- .debug_info    0x000000000006382f     0xc653 C:/devkitPro/libogc/lib/wii\libogc.a(gx.o)
- .debug_info    0x000000000006fe82     0x24b4 C:/devkitPro/libogc/lib/wii\libogc.a(gu.o)
- .debug_info    0x0000000000072336     0x1209 C:/devkitPro/libogc/lib/wii\libogc.a(decrementer.o)
- .debug_info    0x000000000007353f     0x1c1e C:/devkitPro/libogc/lib/wii\libogc.a(message.o)
- .debug_info    0x000000000007515d     0x2a48 C:/devkitPro/libogc/lib/wii\libogc.a(si.o)
- .debug_info    0x0000000000077ba5     0x1ba4 C:/devkitPro/libogc/lib/wii\libogc.a(tpl.o)
- .debug_info    0x0000000000079749     0x4224 C:/devkitPro/libogc/lib/wii\libogc.a(ipc.o)
- .debug_info    0x000000000007d96d     0x1a54 C:/devkitPro/libogc/lib/wii\libogc.a(timesupp.o)
- .debug_info    0x000000000007f3c1      0xbe1 C:/devkitPro/libogc/lib/wii\libogc.a(lock_supp.o)
- .debug_info    0x000000000007ffa2     0x13d7 C:/devkitPro/libogc/lib/wii\libogc.a(newlibc.o)
- .debug_info    0x0000000000081379      0xc6b C:/devkitPro/libogc/lib/wii\libogc.a(sbrk.o)
- .debug_info    0x0000000000081fe4     0x175a C:/devkitPro/libogc/lib/wii\libogc.a(malloc_lock.o)
- .debug_info    0x000000000008373e      0xfef C:/devkitPro/libogc/lib/wii\libogc.a(stm.o)
- .debug_info    0x000000000008472d     0x14fb C:/devkitPro/libogc/lib/wii\libogc.a(ios.o)
- .debug_info    0x0000000000085c28     0x3f22 C:/devkitPro/libogc/lib/wii\libogc.a(es.o)
- .debug_info    0x0000000000089b4a      0xa48 C:/devkitPro/libogc/lib/wii\libogc.a(argv.o)
- .debug_info    0x000000000008a592     0x1e97 C:/devkitPro/libogc/lib/wii\libogc.a(conf.o)
- .debug_info    0x000000000008c429     0x1d62 C:/devkitPro/libogc/lib/wii\libogc.a(wiilaunch.o)
- .debug_info    0x000000000008e18b      0x17e C:/devkitPro/libogc/lib/wii\libogc.a(lwp_priority.o)
- .debug_info    0x000000000008e309     0x2cdd C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threadq.o)
- .debug_info    0x0000000000090fe6     0x3bea C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threads.o)
- .debug_info    0x0000000000094bd0     0x2409 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_messages.o)
- .debug_info    0x0000000000096fd9     0x29b8 C:/devkitPro/libogc/lib/wii\libogc.a(lwp.o)
- .debug_info    0x0000000000099991     0x13ff C:/devkitPro/libogc/lib/wii\libogc.a(lwp_stack.o)
- .debug_info    0x000000000009ad90     0x156e C:/devkitPro/libogc/lib/wii\libogc.a(lwp_mutex.o)
- .debug_info    0x000000000009c2fe     0x19ce C:/devkitPro/libogc/lib/wii\libogc.a(lwp_watchdog.o)
- .debug_info    0x000000000009dccc      0xd1f C:/devkitPro/libogc/lib/wii\libogc.a(lwp_wkspace.o)
- .debug_info    0x000000000009e9eb     0x19c7 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_objmgr.o)
- .debug_info    0x00000000000a03b2     0x163d C:/devkitPro/libogc/lib/wii\libogc.a(lwp_heap.o)
- .debug_info    0x00000000000a19ef      0x123 C:/devkitPro/libogc/lib/wii\libogc.a(sys_state.o)
- .debug_info    0x00000000000a1b12     0x1ff8 C:/devkitPro/libogc/lib/wii\libogc.a(exception.o)
- .debug_info    0x00000000000a3b0a     0x18fc C:/devkitPro/libogc/lib/wii\libogc.a(irq.o)
- .debug_info    0x00000000000a5406     0x18ca C:/devkitPro/libogc/lib/wii\libogc.a(semaphore.o)
- .debug_info    0x00000000000a6cd0     0x3b1c C:/devkitPro/libogc/lib/wii\libogc.a(exi.o)
- .debug_info    0x00000000000aa7ec     0x1cec C:/devkitPro/libogc/lib/wii\libogc.a(mutex.o)
- .debug_info    0x00000000000ac4d8      0xdfa C:/devkitPro/libogc/lib/wii\libogc.a(kprintf.o)
- .debug_info    0x00000000000ad2d2     0x3b9a C:/devkitPro/libogc/lib/wii\libogc.a(network_wii.o)
- .debug_info    0x00000000000b0e6c     0x2439 C:/devkitPro/libogc/lib/wii\libogc.a(console.o)
- .debug_info    0x00000000000b32a5      0xfe0 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_queue.o)
- .debug_info    0x00000000000b4285     0x1581 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_sema.o)
- .debug_info    0x00000000000b5806       0x4f C:/devkitPro/libogc/lib/wii\libogc.a(console_font_8x16.o)
- .debug_info    0x00000000000b5855     0x34c0 C:/devkitPro/libogc/lib/wii\libogc.a(usbgecko.o)
- .debug_info    0x00000000000b8d15      0xced C:/devkitPro/libogc/lib/wii\libogc.a(network_common.o)
- .debug_info    0x00000000000b9a02     0x6ce1 C:/devkitPro/portlibs/ppc/lib\libpng.a(png.o)
- .debug_info    0x00000000000c06e3     0x2fa7 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngerror.o)
- .debug_info    0x00000000000c368a     0x37a6 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngget.o)
- .debug_info    0x00000000000c6e30     0x2531 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngmem.o)
- .debug_info    0x00000000000c9361     0x6519 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngread.o)
- .debug_info    0x00000000000cf87a     0x1f9d C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrio.o)
- .debug_info    0x00000000000d1817     0x5b5a C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrtran.o)
- .debug_info    0x00000000000d7371     0x6be5 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrutil.o)
- .debug_info    0x00000000000ddf56     0x4804 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngset.o)
- .debug_info    0x00000000000e275a     0x25b6 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngtrans.o)
- .debug_info    0x00000000000e4d10     0x4c8b C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwrite.o)
- .debug_info    0x00000000000e999b     0x27d4 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwtran.o)
- .debug_info    0x00000000000ec16f     0x6343 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwutil.o)
- .debug_info    0x00000000000f24b2     0x2050 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwio.o)
+ .debug_info    0x0000000000007083     0x6d85 ObjectSystem.o
+ .debug_info    0x000000000000de08     0x41cc GameObject.o
+ .debug_info    0x0000000000011fd4    0x145bf DebugSystem.o
+ .debug_info    0x0000000000026593     0x2cdd Component.o
+ .debug_info    0x0000000000029270     0xbe96 MeshComponent.o
+ .debug_info    0x0000000000035106     0xbffb GraphicSystem.o
+ .debug_info    0x0000000000041101     0x11d8 TransformComponent.o
+ .debug_info    0x00000000000422d9    0x12c9a FreeTypeGX.o
+ .debug_info    0x0000000000054f73     0x20b9 PadSystem.o
+ .debug_info    0x000000000005702c     0x4868 C:/devkitPro/libogc/lib/wii\libogc.a(video.o)
+ .debug_info    0x000000000005b894     0x2833 C:/devkitPro/libogc/lib/wii\libogc.a(pad.o)
+ .debug_info    0x000000000005e0c7     0x694d C:/devkitPro/libogc/lib/wii\libogc.a(system.o)
+ .debug_info    0x0000000000064a14     0x1cc0 C:/devkitPro/libogc/lib/wii\libogc.a(cond.o)
+ .debug_info    0x00000000000666d4     0xc653 C:/devkitPro/libogc/lib/wii\libogc.a(gx.o)
+ .debug_info    0x0000000000072d27     0x24b4 C:/devkitPro/libogc/lib/wii\libogc.a(gu.o)
+ .debug_info    0x00000000000751db     0x1209 C:/devkitPro/libogc/lib/wii\libogc.a(decrementer.o)
+ .debug_info    0x00000000000763e4     0x1c1e C:/devkitPro/libogc/lib/wii\libogc.a(message.o)
+ .debug_info    0x0000000000078002     0x2a48 C:/devkitPro/libogc/lib/wii\libogc.a(si.o)
+ .debug_info    0x000000000007aa4a     0x1ba4 C:/devkitPro/libogc/lib/wii\libogc.a(tpl.o)
+ .debug_info    0x000000000007c5ee     0x4224 C:/devkitPro/libogc/lib/wii\libogc.a(ipc.o)
+ .debug_info    0x0000000000080812     0x1a54 C:/devkitPro/libogc/lib/wii\libogc.a(timesupp.o)
+ .debug_info    0x0000000000082266      0xbe1 C:/devkitPro/libogc/lib/wii\libogc.a(lock_supp.o)
+ .debug_info    0x0000000000082e47     0x13d7 C:/devkitPro/libogc/lib/wii\libogc.a(newlibc.o)
+ .debug_info    0x000000000008421e      0xc6b C:/devkitPro/libogc/lib/wii\libogc.a(sbrk.o)
+ .debug_info    0x0000000000084e89     0x175a C:/devkitPro/libogc/lib/wii\libogc.a(malloc_lock.o)
+ .debug_info    0x00000000000865e3      0xfef C:/devkitPro/libogc/lib/wii\libogc.a(stm.o)
+ .debug_info    0x00000000000875d2     0x14fb C:/devkitPro/libogc/lib/wii\libogc.a(ios.o)
+ .debug_info    0x0000000000088acd     0x3f22 C:/devkitPro/libogc/lib/wii\libogc.a(es.o)
+ .debug_info    0x000000000008c9ef      0xa48 C:/devkitPro/libogc/lib/wii\libogc.a(argv.o)
+ .debug_info    0x000000000008d437     0x1e97 C:/devkitPro/libogc/lib/wii\libogc.a(conf.o)
+ .debug_info    0x000000000008f2ce     0x1d62 C:/devkitPro/libogc/lib/wii\libogc.a(wiilaunch.o)
+ .debug_info    0x0000000000091030      0x17e C:/devkitPro/libogc/lib/wii\libogc.a(lwp_priority.o)
+ .debug_info    0x00000000000911ae     0x2cdd C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threadq.o)
+ .debug_info    0x0000000000093e8b     0x3bea C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threads.o)
+ .debug_info    0x0000000000097a75     0x2409 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_messages.o)
+ .debug_info    0x0000000000099e7e     0x29b8 C:/devkitPro/libogc/lib/wii\libogc.a(lwp.o)
+ .debug_info    0x000000000009c836     0x13ff C:/devkitPro/libogc/lib/wii\libogc.a(lwp_stack.o)
+ .debug_info    0x000000000009dc35     0x156e C:/devkitPro/libogc/lib/wii\libogc.a(lwp_mutex.o)
+ .debug_info    0x000000000009f1a3     0x19ce C:/devkitPro/libogc/lib/wii\libogc.a(lwp_watchdog.o)
+ .debug_info    0x00000000000a0b71      0xd1f C:/devkitPro/libogc/lib/wii\libogc.a(lwp_wkspace.o)
+ .debug_info    0x00000000000a1890     0x19c7 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_objmgr.o)
+ .debug_info    0x00000000000a3257     0x163d C:/devkitPro/libogc/lib/wii\libogc.a(lwp_heap.o)
+ .debug_info    0x00000000000a4894      0x123 C:/devkitPro/libogc/lib/wii\libogc.a(sys_state.o)
+ .debug_info    0x00000000000a49b7     0x1ff8 C:/devkitPro/libogc/lib/wii\libogc.a(exception.o)
+ .debug_info    0x00000000000a69af     0x18fc C:/devkitPro/libogc/lib/wii\libogc.a(irq.o)
+ .debug_info    0x00000000000a82ab     0x18ca C:/devkitPro/libogc/lib/wii\libogc.a(semaphore.o)
+ .debug_info    0x00000000000a9b75     0x3b1c C:/devkitPro/libogc/lib/wii\libogc.a(exi.o)
+ .debug_info    0x00000000000ad691     0x1cec C:/devkitPro/libogc/lib/wii\libogc.a(mutex.o)
+ .debug_info    0x00000000000af37d      0xdfa C:/devkitPro/libogc/lib/wii\libogc.a(kprintf.o)
+ .debug_info    0x00000000000b0177     0x3b9a C:/devkitPro/libogc/lib/wii\libogc.a(network_wii.o)
+ .debug_info    0x00000000000b3d11     0x2439 C:/devkitPro/libogc/lib/wii\libogc.a(console.o)
+ .debug_info    0x00000000000b614a      0xfe0 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_queue.o)
+ .debug_info    0x00000000000b712a     0x1581 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_sema.o)
+ .debug_info    0x00000000000b86ab       0x4f C:/devkitPro/libogc/lib/wii\libogc.a(console_font_8x16.o)
+ .debug_info    0x00000000000b86fa     0x34c0 C:/devkitPro/libogc/lib/wii\libogc.a(usbgecko.o)
+ .debug_info    0x00000000000bbbba      0xced C:/devkitPro/libogc/lib/wii\libogc.a(network_common.o)
+ .debug_info    0x00000000000bc8a7     0x6ce1 C:/devkitPro/portlibs/ppc/lib\libpng.a(png.o)
+ .debug_info    0x00000000000c3588     0x2fa7 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngerror.o)
+ .debug_info    0x00000000000c652f     0x37a6 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngget.o)
+ .debug_info    0x00000000000c9cd5     0x2531 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngmem.o)
+ .debug_info    0x00000000000cc206     0x6519 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngread.o)
+ .debug_info    0x00000000000d271f     0x1f9d C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrio.o)
+ .debug_info    0x00000000000d46bc     0x5b5a C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrtran.o)
+ .debug_info    0x00000000000da216     0x6be5 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrutil.o)
+ .debug_info    0x00000000000e0dfb     0x4804 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngset.o)
+ .debug_info    0x00000000000e55ff     0x25b6 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngtrans.o)
+ .debug_info    0x00000000000e7bb5     0x4c8b C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwrite.o)
+ .debug_info    0x00000000000ec840     0x27d4 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwtran.o)
+ .debug_info    0x00000000000ef014     0x6343 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwutil.o)
+ .debug_info    0x00000000000f5357     0x2050 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwio.o)
 
-.debug_abbrev   0x0000000000000000    0x15bb3
+.debug_abbrev   0x0000000000000000    0x15e53
  *(.debug_abbrev)
  .debug_abbrev  0x0000000000000000      0x6b6 main.o
  .debug_abbrev  0x00000000000006b6      0x469 Metaphrasis.o
- .debug_abbrev  0x0000000000000b1f      0x7b4 ObjectSystem.o
- .debug_abbrev  0x00000000000012d3      0x912 GameObject.o
- .debug_abbrev  0x0000000000001be5      0xf93 DebugSystem.o
- .debug_abbrev  0x0000000000002b78      0x72e Component.o
- .debug_abbrev  0x00000000000032a6      0x9fe MeshComponent.o
- .debug_abbrev  0x0000000000003ca4      0xc5d GraphicSystem.o
- .debug_abbrev  0x0000000000004901      0x335 TransformComponent.o
- .debug_abbrev  0x0000000000004c36      0xed3 FreeTypeGX.o
- .debug_abbrev  0x0000000000005b09      0x6d7 PadSystem.o
- .debug_abbrev  0x00000000000061e0      0x5e7 C:/devkitPro/libogc/lib/wii\libogc.a(video.o)
- .debug_abbrev  0x00000000000067c7      0x607 C:/devkitPro/libogc/lib/wii\libogc.a(pad.o)
- .debug_abbrev  0x0000000000006dce      0x74c C:/devkitPro/libogc/lib/wii\libogc.a(system.o)
- .debug_abbrev  0x000000000000751a      0x431 C:/devkitPro/libogc/lib/wii\libogc.a(cond.o)
- .debug_abbrev  0x000000000000794b      0x794 C:/devkitPro/libogc/lib/wii\libogc.a(gx.o)
- .debug_abbrev  0x00000000000080df      0x4db C:/devkitPro/libogc/lib/wii\libogc.a(gu.o)
- .debug_abbrev  0x00000000000085ba      0x27e C:/devkitPro/libogc/lib/wii\libogc.a(decrementer.o)
- .debug_abbrev  0x0000000000008838      0x409 C:/devkitPro/libogc/lib/wii\libogc.a(message.o)
- .debug_abbrev  0x0000000000008c41      0x62f C:/devkitPro/libogc/lib/wii\libogc.a(si.o)
- .debug_abbrev  0x0000000000009270      0x381 C:/devkitPro/libogc/lib/wii\libogc.a(tpl.o)
- .debug_abbrev  0x00000000000095f1      0x69b C:/devkitPro/libogc/lib/wii\libogc.a(ipc.o)
- .debug_abbrev  0x0000000000009c8c      0x4d0 C:/devkitPro/libogc/lib/wii\libogc.a(timesupp.o)
- .debug_abbrev  0x000000000000a15c      0x277 C:/devkitPro/libogc/lib/wii\libogc.a(lock_supp.o)
- .debug_abbrev  0x000000000000a3d3      0x317 C:/devkitPro/libogc/lib/wii\libogc.a(newlibc.o)
- .debug_abbrev  0x000000000000a6ea      0x292 C:/devkitPro/libogc/lib/wii\libogc.a(sbrk.o)
- .debug_abbrev  0x000000000000a97c      0x36a C:/devkitPro/libogc/lib/wii\libogc.a(malloc_lock.o)
- .debug_abbrev  0x000000000000ace6      0x37b C:/devkitPro/libogc/lib/wii\libogc.a(stm.o)
- .debug_abbrev  0x000000000000b061      0x419 C:/devkitPro/libogc/lib/wii\libogc.a(ios.o)
- .debug_abbrev  0x000000000000b47a      0x530 C:/devkitPro/libogc/lib/wii\libogc.a(es.o)
- .debug_abbrev  0x000000000000b9aa      0x215 C:/devkitPro/libogc/lib/wii\libogc.a(argv.o)
- .debug_abbrev  0x000000000000bbbf      0x399 C:/devkitPro/libogc/lib/wii\libogc.a(conf.o)
- .debug_abbrev  0x000000000000bf58      0x4f1 C:/devkitPro/libogc/lib/wii\libogc.a(wiilaunch.o)
- .debug_abbrev  0x000000000000c449       0xf6 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_priority.o)
- .debug_abbrev  0x000000000000c53f      0x564 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threadq.o)
- .debug_abbrev  0x000000000000caa3      0x636 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threads.o)
- .debug_abbrev  0x000000000000d0d9      0x414 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_messages.o)
- .debug_abbrev  0x000000000000d4ed      0x558 C:/devkitPro/libogc/lib/wii\libogc.a(lwp.o)
- .debug_abbrev  0x000000000000da45      0x2f8 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_stack.o)
- .debug_abbrev  0x000000000000dd3d      0x320 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_mutex.o)
- .debug_abbrev  0x000000000000e05d      0x444 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_watchdog.o)
- .debug_abbrev  0x000000000000e4a1      0x2da C:/devkitPro/libogc/lib/wii\libogc.a(lwp_wkspace.o)
- .debug_abbrev  0x000000000000e77b      0x413 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_objmgr.o)
- .debug_abbrev  0x000000000000eb8e      0x351 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_heap.o)
- .debug_abbrev  0x000000000000eedf       0x91 C:/devkitPro/libogc/lib/wii\libogc.a(sys_state.o)
- .debug_abbrev  0x000000000000ef70      0x43a C:/devkitPro/libogc/lib/wii\libogc.a(exception.o)
- .debug_abbrev  0x000000000000f3aa      0x39c C:/devkitPro/libogc/lib/wii\libogc.a(irq.o)
- .debug_abbrev  0x000000000000f746      0x3c3 C:/devkitPro/libogc/lib/wii\libogc.a(semaphore.o)
- .debug_abbrev  0x000000000000fb09      0x5e6 C:/devkitPro/libogc/lib/wii\libogc.a(exi.o)
- .debug_abbrev  0x00000000000100ef      0x43d C:/devkitPro/libogc/lib/wii\libogc.a(mutex.o)
- .debug_abbrev  0x000000000001052c      0x3a9 C:/devkitPro/libogc/lib/wii\libogc.a(kprintf.o)
- .debug_abbrev  0x00000000000108d5      0x551 C:/devkitPro/libogc/lib/wii\libogc.a(network_wii.o)
- .debug_abbrev  0x0000000000010e26      0x4b1 C:/devkitPro/libogc/lib/wii\libogc.a(console.o)
- .debug_abbrev  0x00000000000112d7      0x331 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_queue.o)
- .debug_abbrev  0x0000000000011608      0x333 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_sema.o)
- .debug_abbrev  0x000000000001193b       0x40 C:/devkitPro/libogc/lib/wii\libogc.a(console_font_8x16.o)
- .debug_abbrev  0x000000000001197b      0x530 C:/devkitPro/libogc/lib/wii\libogc.a(usbgecko.o)
- .debug_abbrev  0x0000000000011eab      0x298 C:/devkitPro/libogc/lib/wii\libogc.a(network_common.o)
- .debug_abbrev  0x0000000000012143      0x5af C:/devkitPro/portlibs/ppc/lib\libpng.a(png.o)
- .debug_abbrev  0x00000000000126f2      0x53d C:/devkitPro/portlibs/ppc/lib\libpng.a(pngerror.o)
- .debug_abbrev  0x0000000000012c2f      0x3d4 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngget.o)
- .debug_abbrev  0x0000000000013003      0x3d8 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngmem.o)
- .debug_abbrev  0x00000000000133db      0x4db C:/devkitPro/portlibs/ppc/lib\libpng.a(pngread.o)
- .debug_abbrev  0x00000000000138b6      0x249 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrio.o)
- .debug_abbrev  0x0000000000013aff      0x43b C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrtran.o)
- .debug_abbrev  0x0000000000013f3a      0x53a C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrutil.o)
- .debug_abbrev  0x0000000000014474      0x45d C:/devkitPro/portlibs/ppc/lib\libpng.a(pngset.o)
- .debug_abbrev  0x00000000000148d1      0x30b C:/devkitPro/portlibs/ppc/lib\libpng.a(pngtrans.o)
- .debug_abbrev  0x0000000000014bdc      0x527 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwrite.o)
- .debug_abbrev  0x0000000000015103      0x318 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwtran.o)
- .debug_abbrev  0x000000000001541b      0x527 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwutil.o)
- .debug_abbrev  0x0000000000015942      0x271 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwio.o)
+ .debug_abbrev  0x0000000000000b1f      0xa54 ObjectSystem.o
+ .debug_abbrev  0x0000000000001573      0x912 GameObject.o
+ .debug_abbrev  0x0000000000001e85      0xf93 DebugSystem.o
+ .debug_abbrev  0x0000000000002e18      0x72e Component.o
+ .debug_abbrev  0x0000000000003546      0x9fe MeshComponent.o
+ .debug_abbrev  0x0000000000003f44      0xc5d GraphicSystem.o
+ .debug_abbrev  0x0000000000004ba1      0x335 TransformComponent.o
+ .debug_abbrev  0x0000000000004ed6      0xed3 FreeTypeGX.o
+ .debug_abbrev  0x0000000000005da9      0x6d7 PadSystem.o
+ .debug_abbrev  0x0000000000006480      0x5e7 C:/devkitPro/libogc/lib/wii\libogc.a(video.o)
+ .debug_abbrev  0x0000000000006a67      0x607 C:/devkitPro/libogc/lib/wii\libogc.a(pad.o)
+ .debug_abbrev  0x000000000000706e      0x74c C:/devkitPro/libogc/lib/wii\libogc.a(system.o)
+ .debug_abbrev  0x00000000000077ba      0x431 C:/devkitPro/libogc/lib/wii\libogc.a(cond.o)
+ .debug_abbrev  0x0000000000007beb      0x794 C:/devkitPro/libogc/lib/wii\libogc.a(gx.o)
+ .debug_abbrev  0x000000000000837f      0x4db C:/devkitPro/libogc/lib/wii\libogc.a(gu.o)
+ .debug_abbrev  0x000000000000885a      0x27e C:/devkitPro/libogc/lib/wii\libogc.a(decrementer.o)
+ .debug_abbrev  0x0000000000008ad8      0x409 C:/devkitPro/libogc/lib/wii\libogc.a(message.o)
+ .debug_abbrev  0x0000000000008ee1      0x62f C:/devkitPro/libogc/lib/wii\libogc.a(si.o)
+ .debug_abbrev  0x0000000000009510      0x381 C:/devkitPro/libogc/lib/wii\libogc.a(tpl.o)
+ .debug_abbrev  0x0000000000009891      0x69b C:/devkitPro/libogc/lib/wii\libogc.a(ipc.o)
+ .debug_abbrev  0x0000000000009f2c      0x4d0 C:/devkitPro/libogc/lib/wii\libogc.a(timesupp.o)
+ .debug_abbrev  0x000000000000a3fc      0x277 C:/devkitPro/libogc/lib/wii\libogc.a(lock_supp.o)
+ .debug_abbrev  0x000000000000a673      0x317 C:/devkitPro/libogc/lib/wii\libogc.a(newlibc.o)
+ .debug_abbrev  0x000000000000a98a      0x292 C:/devkitPro/libogc/lib/wii\libogc.a(sbrk.o)
+ .debug_abbrev  0x000000000000ac1c      0x36a C:/devkitPro/libogc/lib/wii\libogc.a(malloc_lock.o)
+ .debug_abbrev  0x000000000000af86      0x37b C:/devkitPro/libogc/lib/wii\libogc.a(stm.o)
+ .debug_abbrev  0x000000000000b301      0x419 C:/devkitPro/libogc/lib/wii\libogc.a(ios.o)
+ .debug_abbrev  0x000000000000b71a      0x530 C:/devkitPro/libogc/lib/wii\libogc.a(es.o)
+ .debug_abbrev  0x000000000000bc4a      0x215 C:/devkitPro/libogc/lib/wii\libogc.a(argv.o)
+ .debug_abbrev  0x000000000000be5f      0x399 C:/devkitPro/libogc/lib/wii\libogc.a(conf.o)
+ .debug_abbrev  0x000000000000c1f8      0x4f1 C:/devkitPro/libogc/lib/wii\libogc.a(wiilaunch.o)
+ .debug_abbrev  0x000000000000c6e9       0xf6 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_priority.o)
+ .debug_abbrev  0x000000000000c7df      0x564 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threadq.o)
+ .debug_abbrev  0x000000000000cd43      0x636 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threads.o)
+ .debug_abbrev  0x000000000000d379      0x414 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_messages.o)
+ .debug_abbrev  0x000000000000d78d      0x558 C:/devkitPro/libogc/lib/wii\libogc.a(lwp.o)
+ .debug_abbrev  0x000000000000dce5      0x2f8 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_stack.o)
+ .debug_abbrev  0x000000000000dfdd      0x320 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_mutex.o)
+ .debug_abbrev  0x000000000000e2fd      0x444 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_watchdog.o)
+ .debug_abbrev  0x000000000000e741      0x2da C:/devkitPro/libogc/lib/wii\libogc.a(lwp_wkspace.o)
+ .debug_abbrev  0x000000000000ea1b      0x413 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_objmgr.o)
+ .debug_abbrev  0x000000000000ee2e      0x351 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_heap.o)
+ .debug_abbrev  0x000000000000f17f       0x91 C:/devkitPro/libogc/lib/wii\libogc.a(sys_state.o)
+ .debug_abbrev  0x000000000000f210      0x43a C:/devkitPro/libogc/lib/wii\libogc.a(exception.o)
+ .debug_abbrev  0x000000000000f64a      0x39c C:/devkitPro/libogc/lib/wii\libogc.a(irq.o)
+ .debug_abbrev  0x000000000000f9e6      0x3c3 C:/devkitPro/libogc/lib/wii\libogc.a(semaphore.o)
+ .debug_abbrev  0x000000000000fda9      0x5e6 C:/devkitPro/libogc/lib/wii\libogc.a(exi.o)
+ .debug_abbrev  0x000000000001038f      0x43d C:/devkitPro/libogc/lib/wii\libogc.a(mutex.o)
+ .debug_abbrev  0x00000000000107cc      0x3a9 C:/devkitPro/libogc/lib/wii\libogc.a(kprintf.o)
+ .debug_abbrev  0x0000000000010b75      0x551 C:/devkitPro/libogc/lib/wii\libogc.a(network_wii.o)
+ .debug_abbrev  0x00000000000110c6      0x4b1 C:/devkitPro/libogc/lib/wii\libogc.a(console.o)
+ .debug_abbrev  0x0000000000011577      0x331 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_queue.o)
+ .debug_abbrev  0x00000000000118a8      0x333 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_sema.o)
+ .debug_abbrev  0x0000000000011bdb       0x40 C:/devkitPro/libogc/lib/wii\libogc.a(console_font_8x16.o)
+ .debug_abbrev  0x0000000000011c1b      0x530 C:/devkitPro/libogc/lib/wii\libogc.a(usbgecko.o)
+ .debug_abbrev  0x000000000001214b      0x298 C:/devkitPro/libogc/lib/wii\libogc.a(network_common.o)
+ .debug_abbrev  0x00000000000123e3      0x5af C:/devkitPro/portlibs/ppc/lib\libpng.a(png.o)
+ .debug_abbrev  0x0000000000012992      0x53d C:/devkitPro/portlibs/ppc/lib\libpng.a(pngerror.o)
+ .debug_abbrev  0x0000000000012ecf      0x3d4 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngget.o)
+ .debug_abbrev  0x00000000000132a3      0x3d8 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngmem.o)
+ .debug_abbrev  0x000000000001367b      0x4db C:/devkitPro/portlibs/ppc/lib\libpng.a(pngread.o)
+ .debug_abbrev  0x0000000000013b56      0x249 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrio.o)
+ .debug_abbrev  0x0000000000013d9f      0x43b C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrtran.o)
+ .debug_abbrev  0x00000000000141da      0x53a C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrutil.o)
+ .debug_abbrev  0x0000000000014714      0x45d C:/devkitPro/portlibs/ppc/lib\libpng.a(pngset.o)
+ .debug_abbrev  0x0000000000014b71      0x30b C:/devkitPro/portlibs/ppc/lib\libpng.a(pngtrans.o)
+ .debug_abbrev  0x0000000000014e7c      0x527 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwrite.o)
+ .debug_abbrev  0x00000000000153a3      0x318 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwtran.o)
+ .debug_abbrev  0x00000000000156bb      0x527 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwutil.o)
+ .debug_abbrev  0x0000000000015be2      0x271 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwio.o)
 
-.debug_line     0x0000000000000000    0x44d42
+.debug_line     0x0000000000000000    0x45301
  *(.debug_line)
  .debug_line    0x0000000000000000      0x807 main.o
  .debug_line    0x0000000000000807      0xdee Metaphrasis.o
- .debug_line    0x00000000000015f5      0x61f ObjectSystem.o
- .debug_line    0x0000000000001c14      0x811 GameObject.o
- .debug_line    0x0000000000002425     0x232a DebugSystem.o
- .debug_line    0x000000000000474f      0x556 Component.o
- .debug_line    0x0000000000004ca5     0x1d3b MeshComponent.o
- .debug_line    0x00000000000069e0     0x173a GraphicSystem.o
- .debug_line    0x000000000000811a      0x336 TransformComponent.o
- .debug_line    0x0000000000008450     0x2ddb FreeTypeGX.o
- .debug_line    0x000000000000b22b      0x600 PadSystem.o
- .debug_line    0x000000000000b82b     0x281e C:/devkitPro/libogc/lib/wii\libogc.a(video.o)
- .debug_line    0x000000000000e049     0x18ef C:/devkitPro/libogc/lib/wii\libogc.a(pad.o)
- .debug_line    0x000000000000f938     0x2dc1 C:/devkitPro/libogc/lib/wii\libogc.a(system.o)
- .debug_line    0x00000000000126f9      0x956 C:/devkitPro/libogc/lib/wii\libogc.a(cond.o)
- .debug_line    0x000000000001304f     0x9abf C:/devkitPro/libogc/lib/wii\libogc.a(gx.o)
- .debug_line    0x000000000001cb0e     0x202d C:/devkitPro/libogc/lib/wii\libogc.a(gu.o)
- .debug_line    0x000000000001eb3b      0x2f1 C:/devkitPro/libogc/lib/wii\libogc.a(decrementer.o)
- .debug_line    0x000000000001ee2c      0x781 C:/devkitPro/libogc/lib/wii\libogc.a(message.o)
- .debug_line    0x000000000001f5ad     0x152d C:/devkitPro/libogc/lib/wii\libogc.a(si.o)
- .debug_line    0x0000000000020ada      0x9e2 C:/devkitPro/libogc/lib/wii\libogc.a(tpl.o)
- .debug_line    0x00000000000214bc     0x2479 C:/devkitPro/libogc/lib/wii\libogc.a(ipc.o)
- .debug_line    0x0000000000023935      0x93b C:/devkitPro/libogc/lib/wii\libogc.a(timesupp.o)
- .debug_line    0x0000000000024270      0x380 C:/devkitPro/libogc/lib/wii\libogc.a(lock_supp.o)
- .debug_line    0x00000000000245f0      0x48f C:/devkitPro/libogc/lib/wii\libogc.a(newlibc.o)
- .debug_line    0x0000000000024a7f      0x447 C:/devkitPro/libogc/lib/wii\libogc.a(sbrk.o)
- .debug_line    0x0000000000024ec6      0x630 C:/devkitPro/libogc/lib/wii\libogc.a(malloc_lock.o)
- .debug_line    0x00000000000254f6      0x5df C:/devkitPro/libogc/lib/wii\libogc.a(stm.o)
- .debug_line    0x0000000000025ad5      0x8ed C:/devkitPro/libogc/lib/wii\libogc.a(ios.o)
- .debug_line    0x00000000000263c2     0x1ec3 C:/devkitPro/libogc/lib/wii\libogc.a(es.o)
- .debug_line    0x0000000000028285      0x25d C:/devkitPro/libogc/lib/wii\libogc.a(argv.o)
- .debug_line    0x00000000000284e2      0xf48 C:/devkitPro/libogc/lib/wii\libogc.a(conf.o)
- .debug_line    0x000000000002942a      0xa69 C:/devkitPro/libogc/lib/wii\libogc.a(wiilaunch.o)
- .debug_line    0x0000000000029e93      0x183 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_priority.o)
- .debug_line    0x000000000002a016     0x1602 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threadq.o)
- .debug_line    0x000000000002b618     0x2008 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threads.o)
- .debug_line    0x000000000002d620      0xc13 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_messages.o)
- .debug_line    0x000000000002e233     0x12f2 C:/devkitPro/libogc/lib/wii\libogc.a(lwp.o)
- .debug_line    0x000000000002f525      0x37a C:/devkitPro/libogc/lib/wii\libogc.a(lwp_stack.o)
- .debug_line    0x000000000002f89f      0x5bb C:/devkitPro/libogc/lib/wii\libogc.a(lwp_mutex.o)
- .debug_line    0x000000000002fe5a      0x944 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_watchdog.o)
- .debug_line    0x000000000003079e      0x368 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_wkspace.o)
- .debug_line    0x0000000000030b06      0x793 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_objmgr.o)
- .debug_line    0x0000000000031299      0x99a C:/devkitPro/libogc/lib/wii\libogc.a(lwp_heap.o)
- .debug_line    0x0000000000031c33      0x190 C:/devkitPro/libogc/lib/wii\libogc.a(sys_state.o)
- .debug_line    0x0000000000031dc3      0x6e3 C:/devkitPro/libogc/lib/wii\libogc.a(exception.o)
- .debug_line    0x00000000000324a6      0xbb1 C:/devkitPro/libogc/lib/wii\libogc.a(irq.o)
- .debug_line    0x0000000000033057      0x673 C:/devkitPro/libogc/lib/wii\libogc.a(semaphore.o)
- .debug_line    0x00000000000336ca     0x1e9e C:/devkitPro/libogc/lib/wii\libogc.a(exi.o)
- .debug_line    0x0000000000035568      0x895 C:/devkitPro/libogc/lib/wii\libogc.a(mutex.o)
- .debug_line    0x0000000000035dfd      0x8e7 C:/devkitPro/libogc/lib/wii\libogc.a(kprintf.o)
- .debug_line    0x00000000000366e4     0x1987 C:/devkitPro/libogc/lib/wii\libogc.a(network_wii.o)
- .debug_line    0x000000000003806b      0xedb C:/devkitPro/libogc/lib/wii\libogc.a(console.o)
- .debug_line    0x0000000000038f46      0x4c1 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_queue.o)
- .debug_line    0x0000000000039407      0x48b C:/devkitPro/libogc/lib/wii\libogc.a(lwp_sema.o)
- .debug_line    0x0000000000039892       0x75 C:/devkitPro/libogc/lib/wii\libogc.a(console_font_8x16.o)
- .debug_line    0x0000000000039907     0x1441 C:/devkitPro/libogc/lib/wii\libogc.a(usbgecko.o)
- .debug_line    0x000000000003ad48      0x5d9 C:/devkitPro/libogc/lib/wii\libogc.a(network_common.o)
- .debug_line    0x000000000003b321     0x1540 C:/devkitPro/portlibs/ppc/lib\libpng.a(png.o)
- .debug_line    0x000000000003c861      0x568 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngerror.o)
- .debug_line    0x000000000003cdc9      0x992 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngget.o)
- .debug_line    0x000000000003d75b      0x2d0 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngmem.o)
- .debug_line    0x000000000003da2b     0x14e9 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngread.o)
- .debug_line    0x000000000003ef14      0x21a C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrio.o)
- .debug_line    0x000000000003f12e     0x16f1 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrtran.o)
- .debug_line    0x000000000004081f     0x1407 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrutil.o)
- .debug_line    0x0000000000041c26      0xa27 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngset.o)
- .debug_line    0x000000000004264d      0x52c C:/devkitPro/portlibs/ppc/lib\libpng.a(pngtrans.o)
- .debug_line    0x0000000000042b79      0xba4 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwrite.o)
- .debug_line    0x000000000004371d      0x3df C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwtran.o)
- .debug_line    0x0000000000043afc     0x100a C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwutil.o)
- .debug_line    0x0000000000044b06      0x23c C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwio.o)
+ .debug_line    0x00000000000015f5      0xbca ObjectSystem.o
+ .debug_line    0x00000000000021bf      0x826 GameObject.o
+ .debug_line    0x00000000000029e5     0x232a DebugSystem.o
+ .debug_line    0x0000000000004d0f      0x556 Component.o
+ .debug_line    0x0000000000005265     0x1d3a MeshComponent.o
+ .debug_line    0x0000000000006f9f     0x173a GraphicSystem.o
+ .debug_line    0x00000000000086d9      0x336 TransformComponent.o
+ .debug_line    0x0000000000008a0f     0x2ddb FreeTypeGX.o
+ .debug_line    0x000000000000b7ea      0x600 PadSystem.o
+ .debug_line    0x000000000000bdea     0x281e C:/devkitPro/libogc/lib/wii\libogc.a(video.o)
+ .debug_line    0x000000000000e608     0x18ef C:/devkitPro/libogc/lib/wii\libogc.a(pad.o)
+ .debug_line    0x000000000000fef7     0x2dc1 C:/devkitPro/libogc/lib/wii\libogc.a(system.o)
+ .debug_line    0x0000000000012cb8      0x956 C:/devkitPro/libogc/lib/wii\libogc.a(cond.o)
+ .debug_line    0x000000000001360e     0x9abf C:/devkitPro/libogc/lib/wii\libogc.a(gx.o)
+ .debug_line    0x000000000001d0cd     0x202d C:/devkitPro/libogc/lib/wii\libogc.a(gu.o)
+ .debug_line    0x000000000001f0fa      0x2f1 C:/devkitPro/libogc/lib/wii\libogc.a(decrementer.o)
+ .debug_line    0x000000000001f3eb      0x781 C:/devkitPro/libogc/lib/wii\libogc.a(message.o)
+ .debug_line    0x000000000001fb6c     0x152d C:/devkitPro/libogc/lib/wii\libogc.a(si.o)
+ .debug_line    0x0000000000021099      0x9e2 C:/devkitPro/libogc/lib/wii\libogc.a(tpl.o)
+ .debug_line    0x0000000000021a7b     0x2479 C:/devkitPro/libogc/lib/wii\libogc.a(ipc.o)
+ .debug_line    0x0000000000023ef4      0x93b C:/devkitPro/libogc/lib/wii\libogc.a(timesupp.o)
+ .debug_line    0x000000000002482f      0x380 C:/devkitPro/libogc/lib/wii\libogc.a(lock_supp.o)
+ .debug_line    0x0000000000024baf      0x48f C:/devkitPro/libogc/lib/wii\libogc.a(newlibc.o)
+ .debug_line    0x000000000002503e      0x447 C:/devkitPro/libogc/lib/wii\libogc.a(sbrk.o)
+ .debug_line    0x0000000000025485      0x630 C:/devkitPro/libogc/lib/wii\libogc.a(malloc_lock.o)
+ .debug_line    0x0000000000025ab5      0x5df C:/devkitPro/libogc/lib/wii\libogc.a(stm.o)
+ .debug_line    0x0000000000026094      0x8ed C:/devkitPro/libogc/lib/wii\libogc.a(ios.o)
+ .debug_line    0x0000000000026981     0x1ec3 C:/devkitPro/libogc/lib/wii\libogc.a(es.o)
+ .debug_line    0x0000000000028844      0x25d C:/devkitPro/libogc/lib/wii\libogc.a(argv.o)
+ .debug_line    0x0000000000028aa1      0xf48 C:/devkitPro/libogc/lib/wii\libogc.a(conf.o)
+ .debug_line    0x00000000000299e9      0xa69 C:/devkitPro/libogc/lib/wii\libogc.a(wiilaunch.o)
+ .debug_line    0x000000000002a452      0x183 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_priority.o)
+ .debug_line    0x000000000002a5d5     0x1602 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threadq.o)
+ .debug_line    0x000000000002bbd7     0x2008 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threads.o)
+ .debug_line    0x000000000002dbdf      0xc13 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_messages.o)
+ .debug_line    0x000000000002e7f2     0x12f2 C:/devkitPro/libogc/lib/wii\libogc.a(lwp.o)
+ .debug_line    0x000000000002fae4      0x37a C:/devkitPro/libogc/lib/wii\libogc.a(lwp_stack.o)
+ .debug_line    0x000000000002fe5e      0x5bb C:/devkitPro/libogc/lib/wii\libogc.a(lwp_mutex.o)
+ .debug_line    0x0000000000030419      0x944 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_watchdog.o)
+ .debug_line    0x0000000000030d5d      0x368 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_wkspace.o)
+ .debug_line    0x00000000000310c5      0x793 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_objmgr.o)
+ .debug_line    0x0000000000031858      0x99a C:/devkitPro/libogc/lib/wii\libogc.a(lwp_heap.o)
+ .debug_line    0x00000000000321f2      0x190 C:/devkitPro/libogc/lib/wii\libogc.a(sys_state.o)
+ .debug_line    0x0000000000032382      0x6e3 C:/devkitPro/libogc/lib/wii\libogc.a(exception.o)
+ .debug_line    0x0000000000032a65      0xbb1 C:/devkitPro/libogc/lib/wii\libogc.a(irq.o)
+ .debug_line    0x0000000000033616      0x673 C:/devkitPro/libogc/lib/wii\libogc.a(semaphore.o)
+ .debug_line    0x0000000000033c89     0x1e9e C:/devkitPro/libogc/lib/wii\libogc.a(exi.o)
+ .debug_line    0x0000000000035b27      0x895 C:/devkitPro/libogc/lib/wii\libogc.a(mutex.o)
+ .debug_line    0x00000000000363bc      0x8e7 C:/devkitPro/libogc/lib/wii\libogc.a(kprintf.o)
+ .debug_line    0x0000000000036ca3     0x1987 C:/devkitPro/libogc/lib/wii\libogc.a(network_wii.o)
+ .debug_line    0x000000000003862a      0xedb C:/devkitPro/libogc/lib/wii\libogc.a(console.o)
+ .debug_line    0x0000000000039505      0x4c1 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_queue.o)
+ .debug_line    0x00000000000399c6      0x48b C:/devkitPro/libogc/lib/wii\libogc.a(lwp_sema.o)
+ .debug_line    0x0000000000039e51       0x75 C:/devkitPro/libogc/lib/wii\libogc.a(console_font_8x16.o)
+ .debug_line    0x0000000000039ec6     0x1441 C:/devkitPro/libogc/lib/wii\libogc.a(usbgecko.o)
+ .debug_line    0x000000000003b307      0x5d9 C:/devkitPro/libogc/lib/wii\libogc.a(network_common.o)
+ .debug_line    0x000000000003b8e0     0x1540 C:/devkitPro/portlibs/ppc/lib\libpng.a(png.o)
+ .debug_line    0x000000000003ce20      0x568 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngerror.o)
+ .debug_line    0x000000000003d388      0x992 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngget.o)
+ .debug_line    0x000000000003dd1a      0x2d0 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngmem.o)
+ .debug_line    0x000000000003dfea     0x14e9 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngread.o)
+ .debug_line    0x000000000003f4d3      0x21a C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrio.o)
+ .debug_line    0x000000000003f6ed     0x16f1 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrtran.o)
+ .debug_line    0x0000000000040dde     0x1407 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrutil.o)
+ .debug_line    0x00000000000421e5      0xa27 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngset.o)
+ .debug_line    0x0000000000042c0c      0x52c C:/devkitPro/portlibs/ppc/lib\libpng.a(pngtrans.o)
+ .debug_line    0x0000000000043138      0xba4 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwrite.o)
+ .debug_line    0x0000000000043cdc      0x3df C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwtran.o)
+ .debug_line    0x00000000000440bb     0x100a C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwutil.o)
+ .debug_line    0x00000000000450c5      0x23c C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwio.o)
 
 .debug_frame    0x0000000000000000     0x4ad8
  *(.debug_frame)
@@ -12535,225 +12561,225 @@ Linker script and memory map
  .debug_frame   0x0000000000004174      0x8dc C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwutil.o)
  .debug_frame   0x0000000000004a50       0x88 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwio.o)
 
-.debug_str      0x0000000000000000    0x36704
+.debug_str      0x0000000000000000    0x37f25
  *(.debug_str)
  .debug_str     0x0000000000000000     0x2596 main.o
                                        0x2a9a (size before relaxing)
  .debug_str     0x0000000000002596      0x46e Metaphrasis.o
                                         0xec5 (size before relaxing)
- .debug_str     0x0000000000002a04     0x3b55 ObjectSystem.o
-                                       0x4dbd (size before relaxing)
- .debug_str     0x0000000000006559     0x11c7 GameObject.o
+ .debug_str     0x0000000000002a04     0x58af ObjectSystem.o
+                                       0x6b94 (size before relaxing)
+ .debug_str     0x00000000000082b3      0xe9d GameObject.o
                                        0x417f (size before relaxing)
- .debug_str     0x0000000000007720    0x16554 DebugSystem.o
+ .debug_str     0x0000000000009150    0x16512 DebugSystem.o
                                       0x18fad (size before relaxing)
- .debug_str     0x000000000001dc74      0x218 Component.o
+ .debug_str     0x000000000001f662       0xe0 Component.o
                                        0x337a (size before relaxing)
- .debug_str     0x000000000001de8c     0x5496 MeshComponent.o
-                                       0x6cd6 (size before relaxing)
- .debug_str     0x0000000000023322      0x796 GraphicSystem.o
+ .debug_str     0x000000000001f742     0x5401 MeshComponent.o
+                                       0x6cd0 (size before relaxing)
+ .debug_str     0x0000000000024b43      0x796 GraphicSystem.o
                                        0x859b (size before relaxing)
- .debug_str     0x0000000000023ab8      0x142 TransformComponent.o
+ .debug_str     0x00000000000252d9      0x142 TransformComponent.o
                                         0xbcb (size before relaxing)
- .debug_str     0x0000000000023bfa     0x4d25 FreeTypeGX.o
+ .debug_str     0x000000000002541b     0x4d25 FreeTypeGX.o
                                       0x112d8 (size before relaxing)
- .debug_str     0x000000000002891f      0x18a PadSystem.o
+ .debug_str     0x000000000002a140      0x18a PadSystem.o
                                        0x14f8 (size before relaxing)
- .debug_str     0x0000000000028aa9      0x8ed C:/devkitPro/libogc/lib/wii\libogc.a(video.o)
+ .debug_str     0x000000000002a2ca      0x8ed C:/devkitPro/libogc/lib/wii\libogc.a(video.o)
                                        0x13be (size before relaxing)
- .debug_str     0x0000000000029396      0x621 C:/devkitPro/libogc/lib/wii\libogc.a(pad.o)
+ .debug_str     0x000000000002abb7      0x621 C:/devkitPro/libogc/lib/wii\libogc.a(pad.o)
                                        0x101d (size before relaxing)
- .debug_str     0x00000000000299b7     0x1717 C:/devkitPro/libogc/lib/wii\libogc.a(system.o)
+ .debug_str     0x000000000002b1d8     0x1717 C:/devkitPro/libogc/lib/wii\libogc.a(system.o)
                                        0x24fc (size before relaxing)
- .debug_str     0x000000000002b0ce      0x1fb C:/devkitPro/libogc/lib/wii\libogc.a(cond.o)
+ .debug_str     0x000000000002c8ef      0x1fb C:/devkitPro/libogc/lib/wii\libogc.a(cond.o)
                                         0xe45 (size before relaxing)
- .debug_str     0x000000000002b2c9     0x1c86 C:/devkitPro/libogc/lib/wii\libogc.a(gx.o)
+ .debug_str     0x000000000002caea     0x1c86 C:/devkitPro/libogc/lib/wii\libogc.a(gx.o)
                                        0x2c2f (size before relaxing)
- .debug_str     0x000000000002cf4f      0x407 C:/devkitPro/libogc/lib/wii\libogc.a(gu.o)
+ .debug_str     0x000000000002e770      0x407 C:/devkitPro/libogc/lib/wii\libogc.a(gu.o)
                                         0xa9c (size before relaxing)
- .debug_str     0x000000000002d356       0x8b C:/devkitPro/libogc/lib/wii\libogc.a(decrementer.o)
+ .debug_str     0x000000000002eb77       0x8b C:/devkitPro/libogc/lib/wii\libogc.a(decrementer.o)
                                         0xb42 (size before relaxing)
- .debug_str     0x000000000002d3e1      0x1de C:/devkitPro/libogc/lib/wii\libogc.a(message.o)
+ .debug_str     0x000000000002ec02      0x1de C:/devkitPro/libogc/lib/wii\libogc.a(message.o)
                                         0xda3 (size before relaxing)
- .debug_str     0x000000000002d5bf      0x2e2 C:/devkitPro/libogc/lib/wii\libogc.a(si.o)
+ .debug_str     0x000000000002ede0      0x2e2 C:/devkitPro/libogc/lib/wii\libogc.a(si.o)
                                        0x1028 (size before relaxing)
- .debug_str     0x000000000002d8a1      0x164 C:/devkitPro/libogc/lib/wii\libogc.a(tpl.o)
+ .debug_str     0x000000000002f0c2      0x164 C:/devkitPro/libogc/lib/wii\libogc.a(tpl.o)
                                         0xce3 (size before relaxing)
- .debug_str     0x000000000002da05      0x618 C:/devkitPro/libogc/lib/wii\libogc.a(ipc.o)
+ .debug_str     0x000000000002f226      0x618 C:/devkitPro/libogc/lib/wii\libogc.a(ipc.o)
                                         0xeb3 (size before relaxing)
- .debug_str     0x000000000002e01d      0x13d C:/devkitPro/libogc/lib/wii\libogc.a(timesupp.o)
+ .debug_str     0x000000000002f83e      0x13d C:/devkitPro/libogc/lib/wii\libogc.a(timesupp.o)
                                         0xd5b (size before relaxing)
- .debug_str     0x000000000002e15a       0xcc C:/devkitPro/libogc/lib/wii\libogc.a(lock_supp.o)
+ .debug_str     0x000000000002f97b       0xcc C:/devkitPro/libogc/lib/wii\libogc.a(lock_supp.o)
                                         0x6e5 (size before relaxing)
- .debug_str     0x000000000002e226       0xf5 C:/devkitPro/libogc/lib/wii\libogc.a(newlibc.o)
+ .debug_str     0x000000000002fa47       0xf5 C:/devkitPro/libogc/lib/wii\libogc.a(newlibc.o)
                                         0xbe9 (size before relaxing)
- .debug_str     0x000000000002e31b       0xad C:/devkitPro/libogc/lib/wii\libogc.a(sbrk.o)
+ .debug_str     0x000000000002fb3c       0xad C:/devkitPro/libogc/lib/wii\libogc.a(sbrk.o)
                                         0x72d (size before relaxing)
- .debug_str     0x000000000002e3c8      0x1ef C:/devkitPro/libogc/lib/wii\libogc.a(malloc_lock.o)
+ .debug_str     0x000000000002fbe9      0x1ef C:/devkitPro/libogc/lib/wii\libogc.a(malloc_lock.o)
                                         0xda3 (size before relaxing)
- .debug_str     0x000000000002e5b7      0x15c C:/devkitPro/libogc/lib/wii\libogc.a(stm.o)
+ .debug_str     0x000000000002fdd8      0x15c C:/devkitPro/libogc/lib/wii\libogc.a(stm.o)
                                         0x849 (size before relaxing)
- .debug_str     0x000000000002e713      0x252 C:/devkitPro/libogc/lib/wii\libogc.a(ios.o)
+ .debug_str     0x000000000002ff34      0x252 C:/devkitPro/libogc/lib/wii\libogc.a(ios.o)
                                         0x9ae (size before relaxing)
- .debug_str     0x000000000002e965      0x620 C:/devkitPro/libogc/lib/wii\libogc.a(es.o)
+ .debug_str     0x0000000000030186      0x620 C:/devkitPro/libogc/lib/wii\libogc.a(es.o)
                                        0x13d4 (size before relaxing)
- .debug_str     0x000000000002ef85       0x5f C:/devkitPro/libogc/lib/wii\libogc.a(argv.o)
+ .debug_str     0x00000000000307a6       0x5f C:/devkitPro/libogc/lib/wii\libogc.a(argv.o)
                                         0x635 (size before relaxing)
- .debug_str     0x000000000002efe4      0x3f1 C:/devkitPro/libogc/lib/wii\libogc.a(conf.o)
+ .debug_str     0x0000000000030805      0x3f1 C:/devkitPro/libogc/lib/wii\libogc.a(conf.o)
                                         0xb7a (size before relaxing)
- .debug_str     0x000000000002f3d5      0x214 C:/devkitPro/libogc/lib/wii\libogc.a(wiilaunch.o)
+ .debug_str     0x0000000000030bf6      0x214 C:/devkitPro/libogc/lib/wii\libogc.a(wiilaunch.o)
                                         0xd34 (size before relaxing)
- .debug_str     0x000000000002f5e9       0x50 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_priority.o)
+ .debug_str     0x0000000000030e0a       0x50 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_priority.o)
                                         0x225 (size before relaxing)
- .debug_str     0x000000000002f639      0x390 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threadq.o)
+ .debug_str     0x0000000000030e5a      0x390 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threadq.o)
                                        0x102b (size before relaxing)
- .debug_str     0x000000000002f9c9      0x4e5 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threads.o)
+ .debug_str     0x00000000000311ea      0x4e5 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threads.o)
                                        0x1396 (size before relaxing)
- .debug_str     0x000000000002feae      0x239 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_messages.o)
+ .debug_str     0x00000000000316cf      0x239 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_messages.o)
                                        0x1055 (size before relaxing)
- .debug_str     0x00000000000300e7      0x22f C:/devkitPro/libogc/lib/wii\libogc.a(lwp.o)
+ .debug_str     0x0000000000031908      0x22f C:/devkitPro/libogc/lib/wii\libogc.a(lwp.o)
                                        0x109c (size before relaxing)
- .debug_str     0x0000000000030316       0x60 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_stack.o)
+ .debug_str     0x0000000000031b37       0x60 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_stack.o)
                                         0xc1b (size before relaxing)
- .debug_str     0x0000000000030376       0x7c C:/devkitPro/libogc/lib/wii\libogc.a(lwp_mutex.o)
+ .debug_str     0x0000000000031b97       0x7c C:/devkitPro/libogc/lib/wii\libogc.a(lwp_mutex.o)
                                         0xd16 (size before relaxing)
- .debug_str     0x00000000000303f2       0xd7 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_watchdog.o)
+ .debug_str     0x0000000000031c13       0xd7 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_watchdog.o)
                                         0xcbe (size before relaxing)
- .debug_str     0x00000000000304c9      0x119 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_wkspace.o)
+ .debug_str     0x0000000000031cea      0x119 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_wkspace.o)
                                         0x80b (size before relaxing)
- .debug_str     0x00000000000305e2       0x97 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_objmgr.o)
+ .debug_str     0x0000000000031e03       0x97 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_objmgr.o)
                                         0xdc0 (size before relaxing)
- .debug_str     0x0000000000030679      0x1d5 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_heap.o)
+ .debug_str     0x0000000000031e9a      0x1d5 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_heap.o)
                                         0x938 (size before relaxing)
- .debug_str     0x000000000003084e       0x4d C:/devkitPro/libogc/lib/wii\libogc.a(sys_state.o)
+ .debug_str     0x000000000003206f       0x4d C:/devkitPro/libogc/lib/wii\libogc.a(sys_state.o)
                                         0x1f3 (size before relaxing)
- .debug_str     0x000000000003089b      0x210 C:/devkitPro/libogc/lib/wii\libogc.a(exception.o)
+ .debug_str     0x00000000000320bc      0x210 C:/devkitPro/libogc/lib/wii\libogc.a(exception.o)
                                        0x10bd (size before relaxing)
- .debug_str     0x0000000000030aab      0x16f C:/devkitPro/libogc/lib/wii\libogc.a(irq.o)
+ .debug_str     0x00000000000322cc      0x16f C:/devkitPro/libogc/lib/wii\libogc.a(irq.o)
                                         0xce1 (size before relaxing)
- .debug_str     0x0000000000030c1a      0x15c C:/devkitPro/libogc/lib/wii\libogc.a(semaphore.o)
+ .debug_str     0x000000000003243b      0x15c C:/devkitPro/libogc/lib/wii\libogc.a(semaphore.o)
                                         0xd2a (size before relaxing)
- .debug_str     0x0000000000030d76      0x305 C:/devkitPro/libogc/lib/wii\libogc.a(exi.o)
+ .debug_str     0x0000000000032597      0x305 C:/devkitPro/libogc/lib/wii\libogc.a(exi.o)
                                         0xf74 (size before relaxing)
- .debug_str     0x000000000003107b       0xd1 C:/devkitPro/libogc/lib/wii\libogc.a(mutex.o)
+ .debug_str     0x000000000003289c       0xd1 C:/devkitPro/libogc/lib/wii\libogc.a(mutex.o)
                                         0xeea (size before relaxing)
- .debug_str     0x000000000003114c       0x8f C:/devkitPro/libogc/lib/wii\libogc.a(kprintf.o)
+ .debug_str     0x000000000003296d       0x8f C:/devkitPro/libogc/lib/wii\libogc.a(kprintf.o)
                                         0x6b1 (size before relaxing)
- .debug_str     0x00000000000311db      0x79a C:/devkitPro/libogc/lib/wii\libogc.a(network_wii.o)
+ .debug_str     0x00000000000329fc      0x79a C:/devkitPro/libogc/lib/wii\libogc.a(network_wii.o)
                                        0x15a1 (size before relaxing)
- .debug_str     0x0000000000031975      0x367 C:/devkitPro/libogc/lib/wii\libogc.a(console.o)
+ .debug_str     0x0000000000033196      0x367 C:/devkitPro/libogc/lib/wii\libogc.a(console.o)
                                        0x1189 (size before relaxing)
- .debug_str     0x0000000000031cdc       0x6b C:/devkitPro/libogc/lib/wii\libogc.a(lwp_queue.o)
+ .debug_str     0x00000000000334fd       0x6b C:/devkitPro/libogc/lib/wii\libogc.a(lwp_queue.o)
                                         0x7a5 (size before relaxing)
- .debug_str     0x0000000000031d47       0x6d C:/devkitPro/libogc/lib/wii\libogc.a(lwp_sema.o)
+ .debug_str     0x0000000000033568       0x6d C:/devkitPro/libogc/lib/wii\libogc.a(lwp_sema.o)
                                         0xc6d (size before relaxing)
- .debug_str     0x0000000000031db4       0x55 C:/devkitPro/libogc/lib/wii\libogc.a(console_font_8x16.o)
+ .debug_str     0x00000000000335d5       0x55 C:/devkitPro/libogc/lib/wii\libogc.a(console_font_8x16.o)
                                         0x145 (size before relaxing)
- .debug_str     0x0000000000031e09      0x20b C:/devkitPro/libogc/lib/wii\libogc.a(usbgecko.o)
+ .debug_str     0x000000000003362a      0x20b C:/devkitPro/libogc/lib/wii\libogc.a(usbgecko.o)
                                         0xd91 (size before relaxing)
- .debug_str     0x0000000000032014       0xa6 C:/devkitPro/libogc/lib/wii\libogc.a(network_common.o)
+ .debug_str     0x0000000000033835       0xa6 C:/devkitPro/libogc/lib/wii\libogc.a(network_common.o)
                                         0x6d2 (size before relaxing)
- .debug_str     0x00000000000320ba     0x1725 C:/devkitPro/portlibs/ppc/lib\libpng.a(png.o)
+ .debug_str     0x00000000000338db     0x1725 C:/devkitPro/portlibs/ppc/lib\libpng.a(png.o)
                                        0x20b0 (size before relaxing)
- .debug_str     0x00000000000337df      0x226 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngerror.o)
+ .debug_str     0x0000000000035000      0x226 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngerror.o)
                                        0x1873 (size before relaxing)
- .debug_str     0x0000000000033a05      0x69b C:/devkitPro/portlibs/ppc/lib\libpng.a(pngget.o)
+ .debug_str     0x0000000000035226      0x69b C:/devkitPro/portlibs/ppc/lib\libpng.a(pngget.o)
                                        0x1bd4 (size before relaxing)
- .debug_str     0x00000000000340a0       0xf2 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngmem.o)
+ .debug_str     0x00000000000358c1       0xf2 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngmem.o)
                                        0x1614 (size before relaxing)
- .debug_str     0x0000000000034192      0xa2f C:/devkitPro/portlibs/ppc/lib\libpng.a(pngread.o)
+ .debug_str     0x00000000000359b3      0xa2f C:/devkitPro/portlibs/ppc/lib\libpng.a(pngread.o)
                                        0x227a (size before relaxing)
- .debug_str     0x0000000000034bc1       0x2d C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrio.o)
+ .debug_str     0x00000000000363e2       0x2d C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrio.o)
                                        0x14db (size before relaxing)
- .debug_str     0x0000000000034bee      0x5e0 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrtran.o)
+ .debug_str     0x000000000003640f      0x5e0 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrtran.o)
                                        0x1d49 (size before relaxing)
- .debug_str     0x00000000000351ce      0x5c1 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrutil.o)
+ .debug_str     0x00000000000369ef      0x5c1 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrutil.o)
                                        0x1ff1 (size before relaxing)
- .debug_str     0x000000000003578f      0x359 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngset.o)
+ .debug_str     0x0000000000036fb0      0x359 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngset.o)
                                        0x1d01 (size before relaxing)
- .debug_str     0x0000000000035ae8       0xd7 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngtrans.o)
+ .debug_str     0x0000000000037309       0xd7 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngtrans.o)
                                        0x16c4 (size before relaxing)
- .debug_str     0x0000000000035bbf      0x726 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwrite.o)
+ .debug_str     0x00000000000373e0      0x726 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwrite.o)
                                        0x2153 (size before relaxing)
- .debug_str     0x00000000000362e5       0x6c C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwtran.o)
+ .debug_str     0x0000000000037b06       0x6c C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwtran.o)
                                        0x158e (size before relaxing)
- .debug_str     0x0000000000036351      0x37a C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwutil.o)
+ .debug_str     0x0000000000037b72      0x37a C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwutil.o)
                                        0x1cf0 (size before relaxing)
- .debug_str     0x00000000000366cb       0x39 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwio.o)
+ .debug_str     0x0000000000037eec       0x39 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwio.o)
                                        0x151e (size before relaxing)
 
-.debug_loc      0x0000000000000000    0x86569
+.debug_loc      0x0000000000000000    0x87b7d
  *(.debug_loc)
  .debug_loc     0x0000000000000000       0xb0 main.o
  .debug_loc     0x00000000000000b0      0xd82 Metaphrasis.o
- .debug_loc     0x0000000000000e32      0x125 ObjectSystem.o
- .debug_loc     0x0000000000000f57      0x8e6 GameObject.o
- .debug_loc     0x000000000000183d     0x54a0 DebugSystem.o
- .debug_loc     0x0000000000006cdd       0x3a Component.o
- .debug_loc     0x0000000000006d17     0x5cd6 MeshComponent.o
- .debug_loc     0x000000000000c9ed     0x3662 GraphicSystem.o
- .debug_loc     0x000000000001004f       0xdd TransformComponent.o
- .debug_loc     0x000000000001012c     0x7639 FreeTypeGX.o
- .debug_loc     0x0000000000017765      0x179 PadSystem.o
- .debug_loc     0x00000000000178de     0x37ff C:/devkitPro/libogc/lib/wii\libogc.a(video.o)
- .debug_loc     0x000000000001b0dd     0x1b30 C:/devkitPro/libogc/lib/wii\libogc.a(pad.o)
- .debug_loc     0x000000000001cc0d     0x360f C:/devkitPro/libogc/lib/wii\libogc.a(system.o)
- .debug_loc     0x000000000002021c      0xb0a C:/devkitPro/libogc/lib/wii\libogc.a(cond.o)
- .debug_loc     0x0000000000020d26     0xd6fe C:/devkitPro/libogc/lib/wii\libogc.a(gx.o)
- .debug_loc     0x000000000002e424     0x1485 C:/devkitPro/libogc/lib/wii\libogc.a(gu.o)
- .debug_loc     0x000000000002f8a9       0x25 C:/devkitPro/libogc/lib/wii\libogc.a(decrementer.o)
- .debug_loc     0x000000000002f8ce      0xac4 C:/devkitPro/libogc/lib/wii\libogc.a(message.o)
- .debug_loc     0x0000000000030392     0x1c87 C:/devkitPro/libogc/lib/wii\libogc.a(si.o)
- .debug_loc     0x0000000000032019     0x1001 C:/devkitPro/libogc/lib/wii\libogc.a(tpl.o)
- .debug_loc     0x000000000003301a     0x41a5 C:/devkitPro/libogc/lib/wii\libogc.a(ipc.o)
- .debug_loc     0x00000000000371bf      0x6d0 C:/devkitPro/libogc/lib/wii\libogc.a(timesupp.o)
- .debug_loc     0x000000000003788f      0x1d3 C:/devkitPro/libogc/lib/wii\libogc.a(lock_supp.o)
- .debug_loc     0x0000000000037a62      0x1fa C:/devkitPro/libogc/lib/wii\libogc.a(newlibc.o)
- .debug_loc     0x0000000000037c5c      0x46a C:/devkitPro/libogc/lib/wii\libogc.a(sbrk.o)
- .debug_loc     0x00000000000380c6      0x2f6 C:/devkitPro/libogc/lib/wii\libogc.a(malloc_lock.o)
- .debug_loc     0x00000000000383bc      0x1f4 C:/devkitPro/libogc/lib/wii\libogc.a(stm.o)
- .debug_loc     0x00000000000385b0      0x968 C:/devkitPro/libogc/lib/wii\libogc.a(ios.o)
- .debug_loc     0x0000000000038f18     0x3deb C:/devkitPro/libogc/lib/wii\libogc.a(es.o)
- .debug_loc     0x000000000003cd03       0x15 C:/devkitPro/libogc/lib/wii\libogc.a(argv.o)
- .debug_loc     0x000000000003cd18      0xd4a C:/devkitPro/libogc/lib/wii\libogc.a(conf.o)
- .debug_loc     0x000000000003da62      0xc80 C:/devkitPro/libogc/lib/wii\libogc.a(wiilaunch.o)
- .debug_loc     0x000000000003e6e2       0x16 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_priority.o)
- .debug_loc     0x000000000003e6f8     0x23c3 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threadq.o)
- .debug_loc     0x0000000000040abb     0x200a C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threads.o)
- .debug_loc     0x0000000000042ac5     0x160e C:/devkitPro/libogc/lib/wii\libogc.a(lwp_messages.o)
- .debug_loc     0x00000000000440d3     0x1538 C:/devkitPro/libogc/lib/wii\libogc.a(lwp.o)
- .debug_loc     0x000000000004560b      0x113 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_stack.o)
- .debug_loc     0x000000000004571e      0x368 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_mutex.o)
- .debug_loc     0x0000000000045a86      0x86a C:/devkitPro/libogc/lib/wii\libogc.a(lwp_watchdog.o)
- .debug_loc     0x00000000000462f0       0xab C:/devkitPro/libogc/lib/wii\libogc.a(lwp_wkspace.o)
- .debug_loc     0x000000000004639b      0x6ef C:/devkitPro/libogc/lib/wii\libogc.a(lwp_objmgr.o)
- .debug_loc     0x0000000000046a8a      0xbf1 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_heap.o)
- .debug_loc     0x000000000004767b      0x654 C:/devkitPro/libogc/lib/wii\libogc.a(exception.o)
- .debug_loc     0x0000000000047ccf      0x85a C:/devkitPro/libogc/lib/wii\libogc.a(irq.o)
- .debug_loc     0x0000000000048529      0x5a3 C:/devkitPro/libogc/lib/wii\libogc.a(semaphore.o)
- .debug_loc     0x0000000000048acc     0x3eec C:/devkitPro/libogc/lib/wii\libogc.a(exi.o)
- .debug_loc     0x000000000004c9b8      0x930 C:/devkitPro/libogc/lib/wii\libogc.a(mutex.o)
- .debug_loc     0x000000000004d2e8      0xfd3 C:/devkitPro/libogc/lib/wii\libogc.a(kprintf.o)
- .debug_loc     0x000000000004e2bb     0x2f91 C:/devkitPro/libogc/lib/wii\libogc.a(network_wii.o)
- .debug_loc     0x000000000005124c      0xfbf C:/devkitPro/libogc/lib/wii\libogc.a(console.o)
- .debug_loc     0x000000000005220b      0x466 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_queue.o)
- .debug_loc     0x0000000000052671      0x3cd C:/devkitPro/libogc/lib/wii\libogc.a(lwp_sema.o)
- .debug_loc     0x0000000000052a3e     0x2baa C:/devkitPro/libogc/lib/wii\libogc.a(usbgecko.o)
- .debug_loc     0x00000000000555e8      0x44c C:/devkitPro/libogc/lib/wii\libogc.a(network_common.o)
- .debug_loc     0x0000000000055a34     0x78a7 C:/devkitPro/portlibs/ppc/lib\libpng.a(png.o)
- .debug_loc     0x000000000005d2db     0x15fc C:/devkitPro/portlibs/ppc/lib\libpng.a(pngerror.o)
- .debug_loc     0x000000000005e8d7     0x20bf C:/devkitPro/portlibs/ppc/lib\libpng.a(pngget.o)
- .debug_loc     0x0000000000060996      0x8ab C:/devkitPro/portlibs/ppc/lib\libpng.a(pngmem.o)
- .debug_loc     0x0000000000061241     0x60fa C:/devkitPro/portlibs/ppc/lib\libpng.a(pngread.o)
- .debug_loc     0x000000000006733b      0x20f C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrio.o)
- .debug_loc     0x000000000006754a     0x8c1e C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrtran.o)
- .debug_loc     0x0000000000070168     0x7684 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrutil.o)
- .debug_loc     0x00000000000777ec     0x3b26 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngset.o)
- .debug_loc     0x000000000007b312      0xcb6 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngtrans.o)
- .debug_loc     0x000000000007bfc8     0x2d07 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwrite.o)
- .debug_loc     0x000000000007eccf     0x11ad C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwtran.o)
- .debug_loc     0x000000000007fe7c     0x6468 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwutil.o)
- .debug_loc     0x00000000000862e4      0x285 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwio.o)
+ .debug_loc     0x0000000000000e32     0x16f9 ObjectSystem.o
+ .debug_loc     0x000000000000252b      0x926 GameObject.o
+ .debug_loc     0x0000000000002e51     0x54a0 DebugSystem.o
+ .debug_loc     0x00000000000082f1       0x3a Component.o
+ .debug_loc     0x000000000000832b     0x5cd6 MeshComponent.o
+ .debug_loc     0x000000000000e001     0x3662 GraphicSystem.o
+ .debug_loc     0x0000000000011663       0xdd TransformComponent.o
+ .debug_loc     0x0000000000011740     0x7639 FreeTypeGX.o
+ .debug_loc     0x0000000000018d79      0x179 PadSystem.o
+ .debug_loc     0x0000000000018ef2     0x37ff C:/devkitPro/libogc/lib/wii\libogc.a(video.o)
+ .debug_loc     0x000000000001c6f1     0x1b30 C:/devkitPro/libogc/lib/wii\libogc.a(pad.o)
+ .debug_loc     0x000000000001e221     0x360f C:/devkitPro/libogc/lib/wii\libogc.a(system.o)
+ .debug_loc     0x0000000000021830      0xb0a C:/devkitPro/libogc/lib/wii\libogc.a(cond.o)
+ .debug_loc     0x000000000002233a     0xd6fe C:/devkitPro/libogc/lib/wii\libogc.a(gx.o)
+ .debug_loc     0x000000000002fa38     0x1485 C:/devkitPro/libogc/lib/wii\libogc.a(gu.o)
+ .debug_loc     0x0000000000030ebd       0x25 C:/devkitPro/libogc/lib/wii\libogc.a(decrementer.o)
+ .debug_loc     0x0000000000030ee2      0xac4 C:/devkitPro/libogc/lib/wii\libogc.a(message.o)
+ .debug_loc     0x00000000000319a6     0x1c87 C:/devkitPro/libogc/lib/wii\libogc.a(si.o)
+ .debug_loc     0x000000000003362d     0x1001 C:/devkitPro/libogc/lib/wii\libogc.a(tpl.o)
+ .debug_loc     0x000000000003462e     0x41a5 C:/devkitPro/libogc/lib/wii\libogc.a(ipc.o)
+ .debug_loc     0x00000000000387d3      0x6d0 C:/devkitPro/libogc/lib/wii\libogc.a(timesupp.o)
+ .debug_loc     0x0000000000038ea3      0x1d3 C:/devkitPro/libogc/lib/wii\libogc.a(lock_supp.o)
+ .debug_loc     0x0000000000039076      0x1fa C:/devkitPro/libogc/lib/wii\libogc.a(newlibc.o)
+ .debug_loc     0x0000000000039270      0x46a C:/devkitPro/libogc/lib/wii\libogc.a(sbrk.o)
+ .debug_loc     0x00000000000396da      0x2f6 C:/devkitPro/libogc/lib/wii\libogc.a(malloc_lock.o)
+ .debug_loc     0x00000000000399d0      0x1f4 C:/devkitPro/libogc/lib/wii\libogc.a(stm.o)
+ .debug_loc     0x0000000000039bc4      0x968 C:/devkitPro/libogc/lib/wii\libogc.a(ios.o)
+ .debug_loc     0x000000000003a52c     0x3deb C:/devkitPro/libogc/lib/wii\libogc.a(es.o)
+ .debug_loc     0x000000000003e317       0x15 C:/devkitPro/libogc/lib/wii\libogc.a(argv.o)
+ .debug_loc     0x000000000003e32c      0xd4a C:/devkitPro/libogc/lib/wii\libogc.a(conf.o)
+ .debug_loc     0x000000000003f076      0xc80 C:/devkitPro/libogc/lib/wii\libogc.a(wiilaunch.o)
+ .debug_loc     0x000000000003fcf6       0x16 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_priority.o)
+ .debug_loc     0x000000000003fd0c     0x23c3 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threadq.o)
+ .debug_loc     0x00000000000420cf     0x200a C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threads.o)
+ .debug_loc     0x00000000000440d9     0x160e C:/devkitPro/libogc/lib/wii\libogc.a(lwp_messages.o)
+ .debug_loc     0x00000000000456e7     0x1538 C:/devkitPro/libogc/lib/wii\libogc.a(lwp.o)
+ .debug_loc     0x0000000000046c1f      0x113 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_stack.o)
+ .debug_loc     0x0000000000046d32      0x368 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_mutex.o)
+ .debug_loc     0x000000000004709a      0x86a C:/devkitPro/libogc/lib/wii\libogc.a(lwp_watchdog.o)
+ .debug_loc     0x0000000000047904       0xab C:/devkitPro/libogc/lib/wii\libogc.a(lwp_wkspace.o)
+ .debug_loc     0x00000000000479af      0x6ef C:/devkitPro/libogc/lib/wii\libogc.a(lwp_objmgr.o)
+ .debug_loc     0x000000000004809e      0xbf1 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_heap.o)
+ .debug_loc     0x0000000000048c8f      0x654 C:/devkitPro/libogc/lib/wii\libogc.a(exception.o)
+ .debug_loc     0x00000000000492e3      0x85a C:/devkitPro/libogc/lib/wii\libogc.a(irq.o)
+ .debug_loc     0x0000000000049b3d      0x5a3 C:/devkitPro/libogc/lib/wii\libogc.a(semaphore.o)
+ .debug_loc     0x000000000004a0e0     0x3eec C:/devkitPro/libogc/lib/wii\libogc.a(exi.o)
+ .debug_loc     0x000000000004dfcc      0x930 C:/devkitPro/libogc/lib/wii\libogc.a(mutex.o)
+ .debug_loc     0x000000000004e8fc      0xfd3 C:/devkitPro/libogc/lib/wii\libogc.a(kprintf.o)
+ .debug_loc     0x000000000004f8cf     0x2f91 C:/devkitPro/libogc/lib/wii\libogc.a(network_wii.o)
+ .debug_loc     0x0000000000052860      0xfbf C:/devkitPro/libogc/lib/wii\libogc.a(console.o)
+ .debug_loc     0x000000000005381f      0x466 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_queue.o)
+ .debug_loc     0x0000000000053c85      0x3cd C:/devkitPro/libogc/lib/wii\libogc.a(lwp_sema.o)
+ .debug_loc     0x0000000000054052     0x2baa C:/devkitPro/libogc/lib/wii\libogc.a(usbgecko.o)
+ .debug_loc     0x0000000000056bfc      0x44c C:/devkitPro/libogc/lib/wii\libogc.a(network_common.o)
+ .debug_loc     0x0000000000057048     0x78a7 C:/devkitPro/portlibs/ppc/lib\libpng.a(png.o)
+ .debug_loc     0x000000000005e8ef     0x15fc C:/devkitPro/portlibs/ppc/lib\libpng.a(pngerror.o)
+ .debug_loc     0x000000000005feeb     0x20bf C:/devkitPro/portlibs/ppc/lib\libpng.a(pngget.o)
+ .debug_loc     0x0000000000061faa      0x8ab C:/devkitPro/portlibs/ppc/lib\libpng.a(pngmem.o)
+ .debug_loc     0x0000000000062855     0x60fa C:/devkitPro/portlibs/ppc/lib\libpng.a(pngread.o)
+ .debug_loc     0x000000000006894f      0x20f C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrio.o)
+ .debug_loc     0x0000000000068b5e     0x8c1e C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrtran.o)
+ .debug_loc     0x000000000007177c     0x7684 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrutil.o)
+ .debug_loc     0x0000000000078e00     0x3b26 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngset.o)
+ .debug_loc     0x000000000007c926      0xcb6 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngtrans.o)
+ .debug_loc     0x000000000007d5dc     0x2d07 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwrite.o)
+ .debug_loc     0x00000000000802e3     0x11ad C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwtran.o)
+ .debug_loc     0x0000000000081490     0x6468 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwutil.o)
+ .debug_loc     0x00000000000878f8      0x285 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwio.o)
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -12832,72 +12858,72 @@ LOAD c:/devkitpro/devkitppc/bin/../lib/gcc/powerpc-eabi/8.2.0/crtend.o
 LOAD c:/devkitpro/devkitppc/bin/../lib/gcc/powerpc-eabi/8.2.0/ecrtn.o
 OUTPUT(C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/Template_5.elf elf32-powerpc)
 
-.debug_ranges   0x0000000000000000    0x109d0
+.debug_ranges   0x0000000000000000    0x10cc8
  .debug_ranges  0x0000000000000000       0x10 main.o
  .debug_ranges  0x0000000000000010       0xf0 Metaphrasis.o
- .debug_ranges  0x0000000000000100       0x88 ObjectSystem.o
- .debug_ranges  0x0000000000000188      0x1f0 GameObject.o
- .debug_ranges  0x0000000000000378     0x11d8 DebugSystem.o
- .debug_ranges  0x0000000000001550       0x20 Component.o
- .debug_ranges  0x0000000000001570      0xb20 MeshComponent.o
- .debug_ranges  0x0000000000002090      0x718 GraphicSystem.o
- .debug_ranges  0x00000000000027a8       0x50 TransformComponent.o
- .debug_ranges  0x00000000000027f8     0x1100 FreeTypeGX.o
- .debug_ranges  0x00000000000038f8       0x70 PadSystem.o
- .debug_ranges  0x0000000000003968      0xa20 C:/devkitPro/libogc/lib/wii\libogc.a(video.o)
- .debug_ranges  0x0000000000004388      0x398 C:/devkitPro/libogc/lib/wii\libogc.a(pad.o)
- .debug_ranges  0x0000000000004720      0xc38 C:/devkitPro/libogc/lib/wii\libogc.a(system.o)
- .debug_ranges  0x0000000000005358      0x300 C:/devkitPro/libogc/lib/wii\libogc.a(cond.o)
- .debug_ranges  0x0000000000005658     0x1af0 C:/devkitPro/libogc/lib/wii\libogc.a(gx.o)
- .debug_ranges  0x0000000000007148      0x1f0 C:/devkitPro/libogc/lib/wii\libogc.a(gu.o)
- .debug_ranges  0x0000000000007338       0x18 C:/devkitPro/libogc/lib/wii\libogc.a(decrementer.o)
- .debug_ranges  0x0000000000007350      0x278 C:/devkitPro/libogc/lib/wii\libogc.a(message.o)
- .debug_ranges  0x00000000000075c8      0x268 C:/devkitPro/libogc/lib/wii\libogc.a(si.o)
- .debug_ranges  0x0000000000007830       0x40 C:/devkitPro/libogc/lib/wii\libogc.a(tpl.o)
- .debug_ranges  0x0000000000007870      0x990 C:/devkitPro/libogc/lib/wii\libogc.a(ipc.o)
- .debug_ranges  0x0000000000008200      0x168 C:/devkitPro/libogc/lib/wii\libogc.a(timesupp.o)
- .debug_ranges  0x0000000000008368       0x28 C:/devkitPro/libogc/lib/wii\libogc.a(lock_supp.o)
- .debug_ranges  0x0000000000008390       0x40 C:/devkitPro/libogc/lib/wii\libogc.a(newlibc.o)
- .debug_ranges  0x00000000000083d0       0x70 C:/devkitPro/libogc/lib/wii\libogc.a(sbrk.o)
- .debug_ranges  0x0000000000008440      0x210 C:/devkitPro/libogc/lib/wii\libogc.a(malloc_lock.o)
- .debug_ranges  0x0000000000008650       0xa0 C:/devkitPro/libogc/lib/wii\libogc.a(stm.o)
- .debug_ranges  0x00000000000086f0      0x140 C:/devkitPro/libogc/lib/wii\libogc.a(ios.o)
- .debug_ranges  0x0000000000008830      0x290 C:/devkitPro/libogc/lib/wii\libogc.a(es.o)
- .debug_ranges  0x0000000000008ac0       0x10 C:/devkitPro/libogc/lib/wii\libogc.a(argv.o)
- .debug_ranges  0x0000000000008ad0       0xf8 C:/devkitPro/libogc/lib/wii\libogc.a(conf.o)
- .debug_ranges  0x0000000000008bc8      0x1a0 C:/devkitPro/libogc/lib/wii\libogc.a(wiilaunch.o)
- .debug_ranges  0x0000000000008d68       0x10 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_priority.o)
- .debug_ranges  0x0000000000008d78      0x6a0 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threadq.o)
- .debug_ranges  0x0000000000009418      0x898 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threads.o)
- .debug_ranges  0x0000000000009cb0      0x3c0 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_messages.o)
- .debug_ranges  0x000000000000a070      0x7a0 C:/devkitPro/libogc/lib/wii\libogc.a(lwp.o)
- .debug_ranges  0x000000000000a810       0x30 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_stack.o)
- .debug_ranges  0x000000000000a840       0x48 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_mutex.o)
- .debug_ranges  0x000000000000a888      0x1d0 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_watchdog.o)
- .debug_ranges  0x000000000000aa58       0x58 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_wkspace.o)
- .debug_ranges  0x000000000000aab0      0x1d0 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_objmgr.o)
- .debug_ranges  0x000000000000ac80      0x1d0 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_heap.o)
- .debug_ranges  0x000000000000ae50      0x180 C:/devkitPro/libogc/lib/wii\libogc.a(exception.o)
- .debug_ranges  0x000000000000afd0       0xd8 C:/devkitPro/libogc/lib/wii\libogc.a(irq.o)
- .debug_ranges  0x000000000000b0a8      0x1e0 C:/devkitPro/libogc/lib/wii\libogc.a(semaphore.o)
- .debug_ranges  0x000000000000b288      0x638 C:/devkitPro/libogc/lib/wii\libogc.a(exi.o)
- .debug_ranges  0x000000000000b8c0      0x2b8 C:/devkitPro/libogc/lib/wii\libogc.a(mutex.o)
- .debug_ranges  0x000000000000bb78       0x68 C:/devkitPro/libogc/lib/wii\libogc.a(kprintf.o)
- .debug_ranges  0x000000000000bbe0      0x358 C:/devkitPro/libogc/lib/wii\libogc.a(network_wii.o)
- .debug_ranges  0x000000000000bf38      0x118 C:/devkitPro/libogc/lib/wii\libogc.a(console.o)
- .debug_ranges  0x000000000000c050       0xb0 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_queue.o)
- .debug_ranges  0x000000000000c100       0x78 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_sema.o)
- .debug_ranges  0x000000000000c178      0x5d8 C:/devkitPro/libogc/lib/wii\libogc.a(usbgecko.o)
- .debug_ranges  0x000000000000c750       0x20 C:/devkitPro/libogc/lib/wii\libogc.a(network_common.o)
- .debug_ranges  0x000000000000c770      0xb90 C:/devkitPro/portlibs/ppc/lib\libpng.a(png.o)
- .debug_ranges  0x000000000000d300      0x120 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngerror.o)
- .debug_ranges  0x000000000000d420      0x190 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngget.o)
- .debug_ranges  0x000000000000d5b0       0x88 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngmem.o)
- .debug_ranges  0x000000000000d638      0xca8 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngread.o)
- .debug_ranges  0x000000000000e2e0      0xec8 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrtran.o)
- .debug_ranges  0x000000000000f1a8      0x610 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrutil.o)
- .debug_ranges  0x000000000000f7b8      0x188 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngset.o)
- .debug_ranges  0x000000000000f940       0xb8 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngtrans.o)
- .debug_ranges  0x000000000000f9f8      0x550 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwrite.o)
- .debug_ranges  0x000000000000ff48      0x270 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwtran.o)
- .debug_ranges  0x00000000000101b8      0x818 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwutil.o)
+ .debug_ranges  0x0000000000000100      0x378 ObjectSystem.o
+ .debug_ranges  0x0000000000000478      0x1f8 GameObject.o
+ .debug_ranges  0x0000000000000670     0x11d8 DebugSystem.o
+ .debug_ranges  0x0000000000001848       0x20 Component.o
+ .debug_ranges  0x0000000000001868      0xb20 MeshComponent.o
+ .debug_ranges  0x0000000000002388      0x718 GraphicSystem.o
+ .debug_ranges  0x0000000000002aa0       0x50 TransformComponent.o
+ .debug_ranges  0x0000000000002af0     0x1100 FreeTypeGX.o
+ .debug_ranges  0x0000000000003bf0       0x70 PadSystem.o
+ .debug_ranges  0x0000000000003c60      0xa20 C:/devkitPro/libogc/lib/wii\libogc.a(video.o)
+ .debug_ranges  0x0000000000004680      0x398 C:/devkitPro/libogc/lib/wii\libogc.a(pad.o)
+ .debug_ranges  0x0000000000004a18      0xc38 C:/devkitPro/libogc/lib/wii\libogc.a(system.o)
+ .debug_ranges  0x0000000000005650      0x300 C:/devkitPro/libogc/lib/wii\libogc.a(cond.o)
+ .debug_ranges  0x0000000000005950     0x1af0 C:/devkitPro/libogc/lib/wii\libogc.a(gx.o)
+ .debug_ranges  0x0000000000007440      0x1f0 C:/devkitPro/libogc/lib/wii\libogc.a(gu.o)
+ .debug_ranges  0x0000000000007630       0x18 C:/devkitPro/libogc/lib/wii\libogc.a(decrementer.o)
+ .debug_ranges  0x0000000000007648      0x278 C:/devkitPro/libogc/lib/wii\libogc.a(message.o)
+ .debug_ranges  0x00000000000078c0      0x268 C:/devkitPro/libogc/lib/wii\libogc.a(si.o)
+ .debug_ranges  0x0000000000007b28       0x40 C:/devkitPro/libogc/lib/wii\libogc.a(tpl.o)
+ .debug_ranges  0x0000000000007b68      0x990 C:/devkitPro/libogc/lib/wii\libogc.a(ipc.o)
+ .debug_ranges  0x00000000000084f8      0x168 C:/devkitPro/libogc/lib/wii\libogc.a(timesupp.o)
+ .debug_ranges  0x0000000000008660       0x28 C:/devkitPro/libogc/lib/wii\libogc.a(lock_supp.o)
+ .debug_ranges  0x0000000000008688       0x40 C:/devkitPro/libogc/lib/wii\libogc.a(newlibc.o)
+ .debug_ranges  0x00000000000086c8       0x70 C:/devkitPro/libogc/lib/wii\libogc.a(sbrk.o)
+ .debug_ranges  0x0000000000008738      0x210 C:/devkitPro/libogc/lib/wii\libogc.a(malloc_lock.o)
+ .debug_ranges  0x0000000000008948       0xa0 C:/devkitPro/libogc/lib/wii\libogc.a(stm.o)
+ .debug_ranges  0x00000000000089e8      0x140 C:/devkitPro/libogc/lib/wii\libogc.a(ios.o)
+ .debug_ranges  0x0000000000008b28      0x290 C:/devkitPro/libogc/lib/wii\libogc.a(es.o)
+ .debug_ranges  0x0000000000008db8       0x10 C:/devkitPro/libogc/lib/wii\libogc.a(argv.o)
+ .debug_ranges  0x0000000000008dc8       0xf8 C:/devkitPro/libogc/lib/wii\libogc.a(conf.o)
+ .debug_ranges  0x0000000000008ec0      0x1a0 C:/devkitPro/libogc/lib/wii\libogc.a(wiilaunch.o)
+ .debug_ranges  0x0000000000009060       0x10 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_priority.o)
+ .debug_ranges  0x0000000000009070      0x6a0 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threadq.o)
+ .debug_ranges  0x0000000000009710      0x898 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_threads.o)
+ .debug_ranges  0x0000000000009fa8      0x3c0 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_messages.o)
+ .debug_ranges  0x000000000000a368      0x7a0 C:/devkitPro/libogc/lib/wii\libogc.a(lwp.o)
+ .debug_ranges  0x000000000000ab08       0x30 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_stack.o)
+ .debug_ranges  0x000000000000ab38       0x48 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_mutex.o)
+ .debug_ranges  0x000000000000ab80      0x1d0 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_watchdog.o)
+ .debug_ranges  0x000000000000ad50       0x58 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_wkspace.o)
+ .debug_ranges  0x000000000000ada8      0x1d0 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_objmgr.o)
+ .debug_ranges  0x000000000000af78      0x1d0 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_heap.o)
+ .debug_ranges  0x000000000000b148      0x180 C:/devkitPro/libogc/lib/wii\libogc.a(exception.o)
+ .debug_ranges  0x000000000000b2c8       0xd8 C:/devkitPro/libogc/lib/wii\libogc.a(irq.o)
+ .debug_ranges  0x000000000000b3a0      0x1e0 C:/devkitPro/libogc/lib/wii\libogc.a(semaphore.o)
+ .debug_ranges  0x000000000000b580      0x638 C:/devkitPro/libogc/lib/wii\libogc.a(exi.o)
+ .debug_ranges  0x000000000000bbb8      0x2b8 C:/devkitPro/libogc/lib/wii\libogc.a(mutex.o)
+ .debug_ranges  0x000000000000be70       0x68 C:/devkitPro/libogc/lib/wii\libogc.a(kprintf.o)
+ .debug_ranges  0x000000000000bed8      0x358 C:/devkitPro/libogc/lib/wii\libogc.a(network_wii.o)
+ .debug_ranges  0x000000000000c230      0x118 C:/devkitPro/libogc/lib/wii\libogc.a(console.o)
+ .debug_ranges  0x000000000000c348       0xb0 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_queue.o)
+ .debug_ranges  0x000000000000c3f8       0x78 C:/devkitPro/libogc/lib/wii\libogc.a(lwp_sema.o)
+ .debug_ranges  0x000000000000c470      0x5d8 C:/devkitPro/libogc/lib/wii\libogc.a(usbgecko.o)
+ .debug_ranges  0x000000000000ca48       0x20 C:/devkitPro/libogc/lib/wii\libogc.a(network_common.o)
+ .debug_ranges  0x000000000000ca68      0xb90 C:/devkitPro/portlibs/ppc/lib\libpng.a(png.o)
+ .debug_ranges  0x000000000000d5f8      0x120 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngerror.o)
+ .debug_ranges  0x000000000000d718      0x190 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngget.o)
+ .debug_ranges  0x000000000000d8a8       0x88 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngmem.o)
+ .debug_ranges  0x000000000000d930      0xca8 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngread.o)
+ .debug_ranges  0x000000000000e5d8      0xec8 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrtran.o)
+ .debug_ranges  0x000000000000f4a0      0x610 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngrutil.o)
+ .debug_ranges  0x000000000000fab0      0x188 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngset.o)
+ .debug_ranges  0x000000000000fc38       0xb8 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngtrans.o)
+ .debug_ranges  0x000000000000fcf0      0x550 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwrite.o)
+ .debug_ranges  0x0000000000010240      0x270 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwtran.o)
+ .debug_ranges  0x00000000000104b0      0x818 C:/devkitPro/portlibs/ppc/lib\libpng.a(pngwutil.o)

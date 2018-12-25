@@ -7,7 +7,7 @@ public:
 	//USE DYNAMIC CASTS FOR TYPE IDENTIFICATION?
 	Component(GameObject * owner);
 	virtual ~Component();
-	//Messaging
+	//@Messaging how to use them?
 	//virtual bool Receive (ComponentMessage * msg) = 0;
 
 	//Variables

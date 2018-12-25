@@ -19,6 +19,8 @@ class ObjectSystem : public System {
 	//Funcs
 	void Initialize();
 	void Update( float dt );
+	GameObject * AddObject( GameObject * gameObject);
+	void RemoveAllObjects();
 		
 	//Variables
 	std::vector < GameObject * > m_objectList;

@@ -8,6 +8,7 @@
 //Model class
 class MeshComponent : public Component{
 public:
+	//@Files to be taken from GraphicSystem, utilizing string name indexing
 	MeshComponent(GameObject * owner, void * fileStream, unsigned int fileSize);
 	virtual ~MeshComponent();
 	//Messaging
@@ -17,8 +18,8 @@ public:
 	void Render();
 	
 	//Variables
-	std::vector < guVector > out_vertices;
-    std::vector < guVector > out_uvs;
-    std::vector < guVector > out_normals;
+	std::vector < guVector > m_vertices;
+    std::vector < guVector > m_uvs;
+    std::vector < guVector > m_normals;
 };
 #endif /*MESHCOMPONENT_H_*/

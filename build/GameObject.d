@@ -54,7 +54,9 @@ GameObject.o: \
  C:/devkitPro/libogc/include/ogc/usbstorage.h \
  C:/devkitPro/libogc/include/ogc/mutex.h \
  C:/devkitPro/libogc/include/ogc/system.h \
- C:/devkitPro/libogc/include/ogc/wiilaunch.h
+ C:/devkitPro/libogc/include/ogc/wiilaunch.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/ObjectSystem.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/System.h
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GameObject.h:
 
@@ -165,3 +167,7 @@ C:/devkitPro/libogc/include/ogc/mutex.h:
 C:/devkitPro/libogc/include/ogc/system.h:
 
 C:/devkitPro/libogc/include/ogc/wiilaunch.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/ObjectSystem.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/System.h:
