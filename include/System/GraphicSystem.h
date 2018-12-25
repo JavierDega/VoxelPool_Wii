@@ -1,13 +1,14 @@
 #ifndef GRAPHICSYSTEM_H_
 #define GRAPHICSYSTEM_H_
 
+#include "System/System.h"
 #include <gccore.h>
 #include <malloc.h>
 
 #define FRAMEBUFFER_SIZE 2
 #define DEFAULT_FIFO_SIZE (1024*1024)
 
-class GraphicSystem {
+class GraphicSystem : public System {
 	private:
 	/*Here will be the instance stored*/
 	static GraphicSystem* m_instance;
@@ -19,6 +20,7 @@ class GraphicSystem {
 	static GraphicSystem* GetInstance();	
 	//Funcs
 	void Initialize();
+	void Update( float dt );
 	void SetFontDesc();
 	void SetModelDesc();
 	void EndScene();

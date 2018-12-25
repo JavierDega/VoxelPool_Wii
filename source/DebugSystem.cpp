@@ -1,4 +1,4 @@
-#include "DebugSystem.h"
+#include "System/DebugSystem.h"
 
 #include "rursus_compact_mono_ttf.h"	// Include the compiled font.
 
@@ -34,6 +34,7 @@ DebugSystem::~DebugSystem() {
 	}
 
 }
+//Init
 void DebugSystem::Initialize(){
 	//Init font
 	//Font
@@ -56,6 +57,15 @@ void DebugSystem::Initialize(){
 	m_stringLogs.insert(m_stringLogs.begin(), log);
 	m_stringLogs.insert(m_stringLogs.begin(), log);
 }
+//Update logs?Remove extra logs
+void DebugSystem::Update( float dt ){
+	while (m_stringLogs.size() > 10){
+		m_stringLogs.pop_back();
+	}
+	//Delete logs after certain time?
+
+	Render();
+}
 void DebugSystem::SetFontTransform(GraphicSystem * gs){
 	//Position: view's camera origin + X units in look direction
 	//Desc
@@ -77,13 +87,6 @@ void DebugSystem::SetFontTransform(GraphicSystem * gs){
 void DebugSystem::AddLog(std::wstring log){
 	m_stringLogs.insert(m_stringLogs.begin(), log);
 }
-//Update logs?Remove extra logs
-void DebugSystem::Update(){
-	while (m_stringLogs.size() > 10){
-		m_stringLogs.pop_back();
-	}
-}
-
 void DebugSystem::Render(){	
 	if (m_isEnabled){
 		m_debugFont->drawText(-150, -115, m_stringLogs[0].c_str(), (GXColor){0xff, 0x00, 0x00, 0xff}, FTGX_ALIGN_TOP | FTGX_JUSTIFY_LEFT);

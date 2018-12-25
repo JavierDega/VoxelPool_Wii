@@ -1,11 +1,11 @@
 #ifndef PADSYSTEM_H_
 #define PADSYSTEM_H_
 
+#include "System/System.h"
 #include <stdlib.h>
 #include <gccore.h>
 #include <wiiuse/wpad.h> 
-
-class PadSystem {
+class PadSystem : public System {
 	private:
 	/*Here will be the instance stored*/
 	static PadSystem* m_instance;
@@ -16,7 +16,8 @@ class PadSystem {
 	//Singleton
 	static PadSystem* GetInstance();
 	//Funcs
-	void Initialize();
+	virtual void Initialize();
+	virtual void Update( float dt ); 
 	void ScanPads(int controller);
 
 	//Variables

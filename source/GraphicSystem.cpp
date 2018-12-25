@@ -1,12 +1,10 @@
-#include "GraphicSystem.h"
+#include "System/GraphicSystem.h"
+#include "System/DebugSystem.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <malloc.h>
 #include <math.h>
 #include <wiiuse/wpad.h>
-
-#include "DebugSystem.h"
 
 #include "palette_tpl.h"
 #include "palette.h"
@@ -46,10 +44,11 @@ GraphicSystem::GraphicSystem() {
 	//Video
 	videoFrameBufferIndex = 0;
 }
-//Destructor
+//Destructor (Singleton so..?)
 GraphicSystem::~GraphicSystem(){
 
 }
+//Init
 void GraphicSystem::Initialize() {
 
 	VIDEO_Init();
@@ -108,7 +107,6 @@ void GraphicSystem::Initialize() {
 	GX_CopyDisp(GetVideoFrameBuffer(), GX_TRUE);
 	GX_SetDispCopyGamma(GX_GM_1_0);
 	
-
 	// Texture vertex format setup
 	GX_ClearVtxDesc();
 
@@ -151,7 +149,12 @@ void GraphicSystem::Initialize() {
 	guPerspective(projection, 45, (f32)w/h, 0.1F, 1000.0F);
 	GX_LoadProjectionMtx(projection, GX_PERSPECTIVE);
 }
+//Update
+void GraphicSystem::Update( float dt ){
+	//Draw all renderable components: ie ModelMeshes, FontMeshes(FTGX) and DebugFonts(FTGX)?
+	//Utilizing their owner's transform components
 
+}
 //Font settings
 void GraphicSystem::SetFontDesc(){
 	//Desc
@@ -198,6 +201,7 @@ void GraphicSystem::SetModelDesc(){
 }
 
 void GraphicSystem::EndScene() {
+	//Draw done (Immediate mode)
 	GX_SetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);	
 	GX_SetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
 	GX_SetAlphaUpdate(GX_TRUE);
@@ -216,6 +220,7 @@ void GraphicSystem::EndScene() {
 
 void GraphicSystem::SetLight()
 {
+	//Part of Update
 	guVector lpos;
 	GXLightObj lobj;
 

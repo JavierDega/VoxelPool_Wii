@@ -1,27 +1,32 @@
-#include "MeshComponent.h"
+#include "Component/MeshComponent.h"
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-#include <malloc.h>
-#include <math.h>
-#include <gccore.h>
-#include <wiiuse/wpad.h>
-#include <gccore.h>
+
+//Constructor
 MeshComponent::MeshComponent(GameObject * owner, void * fileStream, unsigned int fileSize)
 	: Component(owner)
 {
 	MakeModelFromObj(fileStream, fileSize);	
 }
-
+//Destructor
+MeshComponent::~MeshComponent(){
+	//Empty vectors?
+	while (!out_vertices.empty()){
+		out_vertices.pop_back();
+	}
+	while (!out_uvs.empty()){
+		out_uvs.pop_back();
+	}
+	while (!out_normals.empty()){
+		out_normals.pop_back();
+	}
+}
 //Format obj: vertex normal list, vertex texcoord list, vertex list
 //faces:(vertex,texcoord, normal)
 bool MeshComponent::MakeModelFromObj(void* fileStream, unsigned int fileSize){
-	
 	//Temp variables
 	std::vector< unsigned int > vertexIndices, uvIndices, normalIndices;
-	std::vector< Vec3 > temp_vertices;
-	std::vector< Vec2 > temp_uvs;
-	std::vector< Vec3 > temp_normals;
+	std::vector< guVector > temp_vertices, temp_uvs, temp_normals;
 	
 	FILE * file = fmemopen(fileStream, fileSize, "r");
 	
@@ -42,17 +47,17 @@ bool MeshComponent::MakeModelFromObj(void* fileStream, unsigned int fileSize){
 		//else : analizar el header
 		
 		if (strcmp(lineHeader, "v") == 0){
-			Vec3 vertex;
+			guVector vertex;
 			fscanf(file, "%f %f %f\n", &vertex.x, &vertex.y, &vertex.z);
 			temp_vertices.push_back(vertex);
 		}
 		else if (strcmp(lineHeader, "vt") == 0){
-			Vec2 uv;
+			guVector uv;
 			fscanf(file, "%f %f\n", &uv.x, &uv.y);
 			temp_uvs.push_back(uv);
 		}
 		else if (strcmp(lineHeader, "vn") == 0){
-			Vec3 normal;
+			guVector normal;
 			fscanf(file, "%f %f %f\n", &normal.x, &normal.y, &normal.z);
 			temp_normals.push_back(normal);
 		}
@@ -83,9 +88,9 @@ bool MeshComponent::MakeModelFromObj(void* fileStream, unsigned int fileSize){
 		unsigned int uvIndex = uvIndices[i];
 		unsigned int normalIndex = normalIndices[i];
 		
-		Vec3 vertex = temp_vertices[vertexIndex - 1];
-		Vec2 uv = temp_uvs[uvIndex - 1];
-		Vec3 normal = temp_normals[normalIndex - 1];
+		guVector vertex = temp_vertices[vertexIndex - 1];
+		guVector uv = temp_uvs[uvIndex - 1];
+		guVector normal = temp_normals[normalIndex - 1];
 		
 		out_vertices.push_back(vertex);
 		out_uvs.push_back(uv);
@@ -98,9 +103,9 @@ bool MeshComponent::MakeModelFromObj(void* fileStream, unsigned int fileSize){
 void MeshComponent::Render(){
 	GX_Begin(GX_TRIANGLES, GX_VTXFMT1, out_vertices.size() );
 		for (unsigned int i = 0; i < out_vertices.size(); i++){
-			Vec3 vertex = out_vertices[i];
-			Vec3 normal = out_normals[i];
-			Vec2 uv = out_uvs[i];
+			guVector vertex = out_vertices[i];
+			guVector normal = out_normals[i];
+			guVector uv = out_uvs[i];
 			GX_Position3f32(vertex.x, vertex.y, vertex.z);
 			GX_Normal3f32(normal.x,normal.y,normal.z);
 			GX_TexCoord2f32(uv.x,uv.y);

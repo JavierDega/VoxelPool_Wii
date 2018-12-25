@@ -3,12 +3,10 @@
 
 class GameObject;
 class Component{
-protected:
-	//USE DYNAMIC CASTS FOR TYPE IDENTIFICATION?
-	Component(GameObject * owner)
-		: m_owner(owner) {}
 public:
-	virtual ~Component(){};
+	//USE DYNAMIC CASTS FOR TYPE IDENTIFICATION?
+	Component(GameObject * owner);
+	virtual ~Component();
 	//Messaging
 	//virtual bool Receive (ComponentMessage * msg) = 0;
 

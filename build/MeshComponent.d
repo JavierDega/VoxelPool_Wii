@@ -1,7 +1,7 @@
 MeshComponent.o: \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/source/MeshComponent.cpp \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/MeshComponent.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/MeshComponent.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
  C:/devkitPro/libogc/include/gctypes.h \
@@ -52,15 +52,11 @@ MeshComponent.o: \
  C:/devkitPro/libogc/include/ogc/usbstorage.h \
  C:/devkitPro/libogc/include/ogc/mutex.h \
  C:/devkitPro/libogc/include/ogc/system.h \
- C:/devkitPro/libogc/include/ogc/wiilaunch.h \
- C:/devkitPro/libogc/include/wiiuse/wpad.h \
- C:/devkitPro/libogc/include/wiiuse/wiiuse.h \
- C:/devkitPro/libogc/include/bte/bte.h \
- C:/devkitPro/libogc/include/bte/bd_addr.h
+ C:/devkitPro/libogc/include/ogc/wiilaunch.h
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/MeshComponent.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/MeshComponent.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 
@@ -163,11 +159,3 @@ C:/devkitPro/libogc/include/ogc/mutex.h:
 C:/devkitPro/libogc/include/ogc/system.h:
 
 C:/devkitPro/libogc/include/ogc/wiilaunch.h:
-
-C:/devkitPro/libogc/include/wiiuse/wpad.h:
-
-C:/devkitPro/libogc/include/wiiuse/wiiuse.h:
-
-C:/devkitPro/libogc/include/bte/bte.h:
-
-C:/devkitPro/libogc/include/bte/bd_addr.h:

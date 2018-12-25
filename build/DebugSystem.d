@@ -1,7 +1,9 @@
 DebugSystem.o: \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/source/DebugSystem.cpp \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/DebugSystem.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/FreeTypeGX.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/DebugSystem.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/System.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/GraphicSystem.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
  C:/devkitPro/libogc/include/gctypes.h \
@@ -53,6 +55,7 @@ DebugSystem.o: \
  C:/devkitPro/libogc/include/ogc/mutex.h \
  C:/devkitPro/libogc/include/ogc/system.h \
  C:/devkitPro/libogc/include/ogc/wiilaunch.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/FreeTypeGX.h \
  C:/devkitPro/portlibs/ppc/include/ft2build.h \
  C:/devkitPro/portlibs/ppc/include/freetype/config/ftheader.h \
  C:/devkitPro/portlibs/ppc/include/freetype/freetype.h \
@@ -67,12 +70,15 @@ DebugSystem.o: \
  C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h \
  C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GraphicSystem.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/build/rursus_compact_mono_ttf.h
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/DebugSystem.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/DebugSystem.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/FreeTypeGX.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/System.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/GraphicSystem.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 
@@ -176,6 +182,8 @@ C:/devkitPro/libogc/include/ogc/system.h:
 
 C:/devkitPro/libogc/include/ogc/wiilaunch.h:
 
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/FreeTypeGX.h:
+
 C:/devkitPro/portlibs/ppc/include/ft2build.h:
 
 C:/devkitPro/portlibs/ppc/include/freetype/config/ftheader.h:
@@ -203,7 +211,5 @@ C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h:
 C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h:
-
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GraphicSystem.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/build/rursus_compact_mono_ttf.h:

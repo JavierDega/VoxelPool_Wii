@@ -1,7 +1,6 @@
-PadSystem.o: \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/source/PadSystem.cpp \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/PadSystem.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/System.h \
+TransformComponent.o: \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/source/TransformComponent.cpp \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/TransformComponent.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
@@ -53,15 +52,9 @@ PadSystem.o: \
  C:/devkitPro/libogc/include/ogc/usbstorage.h \
  C:/devkitPro/libogc/include/ogc/mutex.h \
  C:/devkitPro/libogc/include/ogc/system.h \
- C:/devkitPro/libogc/include/ogc/wiilaunch.h \
- C:/devkitPro/libogc/include/wiiuse/wpad.h \
- C:/devkitPro/libogc/include/wiiuse/wiiuse.h \
- C:/devkitPro/libogc/include/bte/bte.h \
- C:/devkitPro/libogc/include/bte/bd_addr.h
+ C:/devkitPro/libogc/include/ogc/wiilaunch.h
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/PadSystem.h:
-
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/System.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/TransformComponent.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h:
 
@@ -166,11 +159,3 @@ C:/devkitPro/libogc/include/ogc/mutex.h:
 C:/devkitPro/libogc/include/ogc/system.h:
 
 C:/devkitPro/libogc/include/ogc/wiilaunch.h:
-
-C:/devkitPro/libogc/include/wiiuse/wpad.h:
-
-C:/devkitPro/libogc/include/wiiuse/wiiuse.h:
-
-C:/devkitPro/libogc/include/bte/bte.h:
-
-C:/devkitPro/libogc/include/bte/bd_addr.h:

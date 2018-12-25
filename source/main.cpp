@@ -8,13 +8,12 @@
 #include <gccore.h>
 #include <wiiuse/wpad.h>
 
-#include "PadSystem.h"
-#include "GraphicSystem.h"
-#include "DebugSystem.h"
+#include "System/PadSystem.h"
+#include "System/GraphicSystem.h"
+#include "System/DebugSystem.h"
 
-#include "rursus_compact_mono_ttf.h"	// Include the compiled font.
-										// Once compiled you can view the contents of this file in example1/all/rursus_compact_mono_ttf.h
-#include "MeshComponent.h"
+#include "Component/MeshComponent.h"
+
 #include "PoolWIP_obj.h"
 /**
  * Program entry point.
@@ -82,9 +81,8 @@ int main(int argc, char **argv) {
 
 		
 		//Debug (Fonts after geometry for transparency)
-		ds->Update();
+		ds->Update( 0 );
 		ds->SetFontTransform(gs);
-		ds->Render();
 		gs->EndScene();
 	}
 	delete ps;

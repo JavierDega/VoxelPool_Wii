@@ -1,4 +1,4 @@
-#include "PadSystem.h"
+#include "System/PadSystem.h"
 
 
 //Instance
@@ -24,10 +24,17 @@ PadSystem::~PadSystem(){
 	m_buttonsUp = 0;
 	m_buttonsDown = 0;
 }	
+//Init
 void PadSystem::Initialize() {
 	PAD_Init();
 }
-
+//Update
+void PadSystem::Update( float dt ){
+	//Scan input
+	ScanPads(0);
+	//React to input?
+}
+//Scan
 void PadSystem::ScanPads(int controller) {
 	PAD_ScanPads();
 	m_buttonsHeld = PAD_ButtonsHeld(controller);
