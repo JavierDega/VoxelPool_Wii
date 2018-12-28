@@ -20,7 +20,7 @@ class PadSystem : public System {
 	void ScanPads(int controller);
 
 	//Variables
-	u32 m_buttonsHeld, m_buttonsDown, m_buttonsUp;
+	u16 m_buttonsHeld, m_buttonsDown, m_buttonsUp;
 
 	/*//From "PAD.H"
 	u32 PAD_Init(void);

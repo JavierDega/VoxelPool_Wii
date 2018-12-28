@@ -2,10 +2,21 @@
 #define GRAPHICSYSTEM_H_
 
 #include "System/System.h"
+#include "FreeTypeGX.h"
+#include <string>
+#include <vector>
 #include <gccore.h>
 
 #define FRAMEBUFFER_SIZE 2
 #define DEFAULT_FIFO_SIZE (1024*1024)
+
+typedef struct MeshStr{
+	//Variables
+	std::string name;
+	std::vector < guVector > m_vertices;
+    std::vector < guVector > m_uvs;
+    std::vector < guVector > m_normals;
+}Mesh;
 
 class GraphicSystem : public System {
 	private:
@@ -20,15 +31,16 @@ class GraphicSystem : public System {
 	//Funcs
 	void Initialize();
 	void Update( float dt );
-	void SetFontDesc();
-	void SetModelDesc();
-	void EndScene();
+	void InitGXVideo();
+	bool LoadMeshFromObj(std::string name, void* fileStream, unsigned int fileSize);
 	void SetLight();
-	//Video
+	void EndDraw();
 	uint32_t * GetVideoFrameBuffer();
+	//Debug
+	void AddLog(std::wstring log);
+	void AddLog(std::string log);
 		
 	//Variables
-	//GX
 	//Video
 	GXRModeObj *videoMode;
 	uint32_t *videoFrameBuffer[FRAMEBUFFER_SIZE];
@@ -37,21 +49,22 @@ class GraphicSystem : public System {
 	void* gsFifo;
 	uint32_t gsWidth;
 	uint32_t gsHeight;
-	//Matrices
-	Mtx view; // view and perspective matrices
-	Mtx model, modelview;
-	Mtx44 projection;
-	guVector cam, up, look;
-	
-	guVector rotAxis;
-	float rotValue;
+	//Matrices - Coordinate spaces
+	Mtx m_view, m_model, m_modelview;
+	Mtx44 m_projection;
+	guVector m_cam, m_up, m_look;
+	//Models
+	std::vector<Mesh> m_meshes;
 	//Lighting
-	GXColor lightColor [2];
-	GXColor background;
+	GXColor m_lightColor [2];
+	GXColor m_background;
 	//Tex
-	TPLFile paletteTPL;
-	GXTexObj paletteTexture;
-
+	TPLFile m_paletteTPL;
+	GXTexObj m_paletteTexture;
+	//Debug
+	bool m_debug;
+	FreeTypeGX  m_debugFont;
+	std::vector < std::wstring > m_stringLogs;
 };
 
 #endif /*GRAPHICSYSTEM_H_*/

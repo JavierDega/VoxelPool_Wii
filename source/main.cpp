@@ -8,13 +8,13 @@
 #include <gccore.h>
 #include <wiiuse/wpad.h>
 
+#include "System/ObjectSystem.h"
 #include "System/PadSystem.h"
 #include "System/GraphicSystem.h"
-#include "System/DebugSystem.h"
-
+#include "GameObject.h"
 #include "Component/MeshComponent.h"
+#include "Component/FontComponent.h"
 
-#include "PoolWIP_obj.h"
 /**
  * Program entry point.
  *
@@ -25,68 +25,36 @@
  */
 int main(int argc, char **argv) {
 	//Systems
+	//ObjectFactory
+	ObjectSystem * os = ObjectSystem::GetInstance();
+	os->Initialize();
 	//Input
 	PadSystem * ps = PadSystem::GetInstance();
 	ps->Initialize();
-	//GX
+	//GX/Video/Debug
 	GraphicSystem * gs = GraphicSystem::GetInstance();
 	gs->Initialize();
-	//Debug/font
-	DebugSystem * ds = DebugSystem::GetInstance();
-	ds->Initialize();
 	
-	//Create model
-	MeshComponent * myPoolModel = new MeshComponent(nullptr, (void *)PoolWIP_obj, PoolWIP_obj_size);
+	//GameObjects
+	GameObject * poolTable = os->AddObject();
+	poolTable->m_transform.m_position.z = -100.0f;
+	poolTable->AddComponent(new MeshComponent(poolTable, "PoolWIP"));
+
+	GameObject * titleText = os->AddObject();
+	titleText->m_transform.m_position = guVector{0, 25, -50.0f};
+	titleText->AddComponent(new FontComponent(titleText, L"SpacePool_Wii", GXColor{0, 0, 0, 255}));
+
+	//Timestepping
+	float dt = 0.0f;
 	while(1) {
-		ps->ScanPads(0);
-		if ( ps->m_buttonsHeld & PAD_BUTTON_LEFT ){
-			gs->cam.x--;
-			gs->look.x--;
-		}
-		if ( ps->m_buttonsHeld & PAD_BUTTON_RIGHT ){
-			gs->cam.x++;
-			gs->look.x++;
-		}
-		if ( ps->m_buttonsHeld & PAD_BUTTON_UP ){
-			gs->cam.y++;
-			gs->look.y++;
-		}
-		if ( ps->m_buttonsHeld & PAD_BUTTON_DOWN ){
-			gs->cam.y--;
-			gs->look.y--;
-		}
-		if ( ps->m_buttonsHeld & PAD_BUTTON_A ){
-			gs->cam.z++;
-			gs->look.z++;
-		}
-		if ( ps->m_buttonsHeld & PAD_BUTTON_B ){
-			gs->cam.z--;
-			gs->look.z--;
-		}
-		if ( ps->m_buttonsDown & PAD_BUTTON_X){
-			ds->m_isEnabled = !ds->m_isEnabled;
-		}
-
-		//Setup our camera at the origin
-		//looking down the -z axis wth y up
-		guLookAt(gs->view, &gs->cam, &gs->up, &gs->look);
-		//Lighting
-		//Lighting direction is rotating with view
-		gs->SetLight();
-		//**ORDER OR RENDERING MATTERS BECAUSE OF Z BUFFERS(FONT TRANSPARENCY)**//		
-		//Model RENDER
-		//Set up vtx desc and texture load
-		gs->SetModelDesc();
-		myPoolModel->Render();
-
-		
-		//Debug (Fonts after geometry for transparency)
-		ds->Update( 0 );
-		ds->SetFontTransform(gs);
-		gs->EndScene();
+		//Input
+		ps->Update(dt);
+		//Draw
+		gs->Update(dt);
+		exit(0);
 	}
+	delete os;
 	delete ps;
-	delete ds;
 	delete gs;
 	
 	return 0;

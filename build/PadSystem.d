@@ -57,7 +57,23 @@ PadSystem.o: \
  C:/devkitPro/libogc/include/ogc/mutex.h \
  C:/devkitPro/libogc/include/ogc/system.h \
  C:/devkitPro/libogc/include/ogc/wiilaunch.h \
- C:/devkitPro/libogc/include/bte/bd_addr.h
+ C:/devkitPro/libogc/include/bte/bd_addr.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/GraphicSystem.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/FreeTypeGX.h \
+ C:/devkitPro/portlibs/ppc/include/ft2build.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/config/ftheader.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/freetype.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/config/ftconfig.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/config/ftoption.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/config/ftstdlib.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/fttypes.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/ftsystem.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/ftimage.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/fterrors.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/ftmoderr.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/PadSystem.h:
 
@@ -174,3 +190,35 @@ C:/devkitPro/libogc/include/ogc/system.h:
 C:/devkitPro/libogc/include/ogc/wiilaunch.h:
 
 C:/devkitPro/libogc/include/bte/bd_addr.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/GraphicSystem.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/FreeTypeGX.h:
+
+C:/devkitPro/portlibs/ppc/include/ft2build.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/config/ftheader.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/freetype.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/config/ftconfig.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/config/ftoption.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/config/ftstdlib.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/fttypes.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/ftsystem.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/ftimage.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/fterrors.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/ftmoderr.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h:

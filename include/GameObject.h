@@ -8,17 +8,17 @@
 class GameObject{
 public:
 	GameObject();
+	GameObject(guVector position);
 	~GameObject();
 	//Functions
-	void AddComponent( Component component );
+	void AddComponent( Component * component );
 	//Messages
 	//virtual void Send(ComponentMessage * msg);
 	//virtual Component * FindComponent(ComponentType type);
-	void Initialize();
 	//Variables
 	//All gameobjects have a transform component
 	TransformComponent m_transform;
 	//Cache coherency avoiding 'new'
-	std::vector<Component> m_components;
+	std::vector<Component *> m_components;
 };
 #endif /*GAMEOBJECT_H_*/

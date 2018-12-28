@@ -3,6 +3,8 @@
 
 #include "System/System.h"
 #include "GameObject.h"
+#include "Component/MeshComponent.h"
+#include "Component/FontComponent.h"
 #include <vector>
 
 ///OBJECT FACTORY/ STORES POINTERS TO GAMEOBJECTS AND ALLOWS US TO FILTER COMPONENTS
@@ -20,11 +22,13 @@ class ObjectSystem : public System {
 	//Funcs
 	void Initialize();
 	void Update( float dt );
-	GameObject * AddObject( GameObject * gameObject);
+	GameObject * AddObject();
 	void RemoveAllObjects();
+	std::vector< MeshComponent * > GetMeshComponentList();
+	std::vector< FontComponent * > GetFontComponentList();
 		
 	//Variables
-	std::vector < GameObject * > m_objectList;
+	std::vector < GameObject > m_objectList;
 };
 
 #endif /*OBJECTSYSTEM_H_*/

@@ -56,7 +56,24 @@ GameObject.o: \
  C:/devkitPro/libogc/include/ogc/system.h \
  C:/devkitPro/libogc/include/ogc/wiilaunch.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/ObjectSystem.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/System.h
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/System.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/MeshComponent.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/FontComponent.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/FreeTypeGX.h \
+ C:/devkitPro/portlibs/ppc/include/ft2build.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/config/ftheader.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/freetype.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/config/ftconfig.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/config/ftoption.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/config/ftstdlib.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/fttypes.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/ftsystem.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/ftimage.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/fterrors.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/ftmoderr.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h \
+ C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GameObject.h:
 
@@ -171,3 +188,37 @@ C:/devkitPro/libogc/include/ogc/wiilaunch.h:
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/ObjectSystem.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/System.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/MeshComponent.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/FontComponent.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/FreeTypeGX.h:
+
+C:/devkitPro/portlibs/ppc/include/ft2build.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/config/ftheader.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/freetype.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/config/ftconfig.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/config/ftoption.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/config/ftstdlib.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/fttypes.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/ftsystem.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/ftimage.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/fterrors.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/ftmoderr.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h:
+
+C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h:
