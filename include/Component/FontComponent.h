@@ -1,6 +1,6 @@
 #ifndef FONTCOMPONENT_H_
 #define FONTCOMPONENT_H_
-
+//si
 #include "Component/Component.h"
 #include "FreeTypeGX.h"
 #include <gccore.h>
