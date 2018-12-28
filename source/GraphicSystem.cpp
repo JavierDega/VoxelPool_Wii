@@ -33,11 +33,10 @@ GraphicSystem::GraphicSystem() {
 	
 	//Video
 	videoFrameBufferIndex = 0;
-
 	//Debug
 	m_debug = true;
-	m_debugFont = FreeTypeGX(GX_TF_IA8, GX_VTXFMT0);
-	m_debugFont.setCompatibilityMode(FTGX_COMPATIBILITY_DEFAULT_TEVOP_GX_MODULATE
+	m_font = new FreeTypeGX(GX_TF_IA8, GX_VTXFMT0);
+	m_font->setCompatibilityMode(FTGX_COMPATIBILITY_DEFAULT_TEVOP_GX_MODULATE
 	| FTGX_COMPATIBILITY_DEFAULT_VTXDESC_GX_DIRECT);//BLEND AND TEX DIRECT
 }
 //Destructor (Singleton so..?)
@@ -49,7 +48,7 @@ void GraphicSystem::Initialize() {
 	//GX/VIDEO
 	InitGXVideo();
 	//FONT
-	m_debugFont.loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, 15, false);
+	m_font->loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, 15, false);
 	//MODEL PARSE
 	LoadMeshFromObj("PoolWIP", (void *)PoolWIP_obj, PoolWIP_obj_size);
 }
@@ -69,7 +68,7 @@ void GraphicSystem::Update( float dt ){
 	GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
 	GX_SetVtxDesc(GX_VA_NRM, GX_DIRECT);
 	GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
-	
+
 	//RENDER MESHES
 	for (u16 i = 0 ; i < meshList.size(); i++){
 		MeshComponent * mesh = meshList[i];
@@ -82,7 +81,6 @@ void GraphicSystem::Update( float dt ){
 		// load the modelview matrix into matrix memory
 		GX_LoadPosMtxImm(m_modelview, GX_PNMTX0);
 		GX_LoadNrmMtxImm(m_modelview, GX_PNMTX0);
-
 		//Render
 		GX_Begin(GX_TRIANGLES, GX_VTXFMT1, mesh->m_vertices.size() );
 		for (unsigned int i = 0; i < mesh->m_vertices.size(); i++){
@@ -94,7 +92,7 @@ void GraphicSystem::Update( float dt ){
 			GX_TexCoord2f32(uv.x,uv.y);
 		}	
 		GX_End();
-
+		exit(0);
 	}
 	//Second stage: Draw all FontComponents with their desc
 	std:: vector < FontComponent *> fontList = os->GetFontComponentList();
@@ -103,7 +101,6 @@ void GraphicSystem::Update( float dt ){
 	GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
 	GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
 	GX_SetVtxDesc(GX_VA_CLR0, GX_DIRECT);
-	
 	//RENDER FONTS
 	for (u16 i = 0; i < fontList.size(); i++){
 		FontComponent * font = fontList[i];
@@ -118,10 +115,9 @@ void GraphicSystem::Update( float dt ){
 
 		//Render
 		//@Make default arguments into flexible FontComponent m_variables.
-		font->m_font.drawText(0, 0, font->m_text.c_str(), font->m_color);
+		m_font->drawText(0, 0, font->m_text.c_str(), font->m_color);
 	}
-
-	//DEBUG
+	//DEBUG FONTS
 	while (m_stringLogs.size() > 10){
 		m_stringLogs.pop_back();
 	}
@@ -137,10 +133,9 @@ void GraphicSystem::Update( float dt ){
 		GX_LoadPosMtxImm(m_modelview,GX_PNMTX0);
 
 		for (u16 i = 0; i< m_stringLogs.size(); i++){
-			m_debugFont.drawText(-150, -115 + i*15, m_stringLogs[i].c_str(), (GXColor){255, 0, 0, 255}, FTGX_ALIGN_TOP | FTGX_JUSTIFY_LEFT);
+			m_font->drawText(-150, -115 + i*15, m_stringLogs[i].c_str(), (GXColor){255, 0, 0, 255}, FTGX_ALIGN_TOP | FTGX_JUSTIFY_LEFT);
 		}
 	}
-
 	//End frame draw
 	EndDraw();
 }

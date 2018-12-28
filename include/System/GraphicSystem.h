@@ -55,6 +55,8 @@ class GraphicSystem : public System {
 	guVector m_cam, m_up, m_look;
 	//Models
 	std::vector<Mesh> m_meshes;
+	//Font
+	FreeTypeGX * m_font;
 	//Lighting
 	GXColor m_lightColor [2];
 	GXColor m_background;
@@ -63,7 +65,6 @@ class GraphicSystem : public System {
 	GXTexObj m_paletteTexture;
 	//Debug
 	bool m_debug;
-	FreeTypeGX  m_debugFont;
 	std::vector < std::wstring > m_stringLogs;
 };
 
