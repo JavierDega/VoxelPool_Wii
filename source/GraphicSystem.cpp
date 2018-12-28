@@ -27,10 +27,6 @@ GraphicSystem::GraphicSystem() {
 	m_cam = {0.0F, 0.0F, 0.0F};
 	m_up = {0.0F, 1.0F, 0.0F};
 	m_look = {0.0F, 0.0F, -1.0F};
-
-	//setup our camera at the origin
-	//looking down the -z axis wth y up
-	guLookAt(m_view, &m_cam, &m_up, &m_look);
 	
 	m_lightColor[0] =  { 255, 255, 255, 255 }; // Light color 1
     m_lightColor[1] = { 180, 180, 180, 255 }; // Ambient 1
@@ -39,11 +35,12 @@ GraphicSystem::GraphicSystem() {
 	videoFrameBufferIndex = 0;
 
 	//Debug
-	m_debug = false;
+	m_debug = true;
 	m_debugFont = FreeTypeGX(GX_TF_IA8, GX_VTXFMT0);
 	m_debugFont.setCompatibilityMode(FTGX_COMPATIBILITY_DEFAULT_TEVOP_GX_MODULATE
 	| FTGX_COMPATIBILITY_DEFAULT_VTXDESC_GX_DIRECT);//BLEND AND TEX DIRECT
 	m_debugFont.loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, 15, false);	// Initialize the font system with the font parameters from rursus_compact_mono_ttf.h
+	
 }
 //Destructor (Singleton so..?)
 GraphicSystem::~GraphicSystem(){
@@ -60,6 +57,7 @@ void GraphicSystem::Update( float dt ){
 	//Draw all renderable components: Fonts last because of z buffer **
 	guLookAt(m_view, &m_cam, &m_up, &m_look);
 	SetLight();
+
 	ObjectSystem * os =  ObjectSystem::GetInstance();
 	std:: vector <MeshComponent *> meshList = os->GetMeshComponentList();
 
@@ -121,7 +119,7 @@ void GraphicSystem::Update( float dt ){
 		//@Make default arguments into flexible FontComponent m_variables.
 		font->m_font.drawText(0, 0, font->m_text.c_str(), font->m_color);
 	}
-	
+
 	//DEBUG
 	while (m_stringLogs.size() > 10){
 		m_stringLogs.pop_back();
@@ -129,11 +127,6 @@ void GraphicSystem::Update( float dt ){
 	//@Delete logs after certain time?
 	if (m_debug){
 		//Desc same as fonts
-		//Desc
-		GX_ClearVtxDesc();
-		GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
-		GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
-		GX_SetVtxDesc(GX_VA_CLR0, GX_DIRECT);
 		//Matrix
 		guMtxIdentity(m_model);
 		guMtxScaleApply(m_model, m_model, 0.0004f, -0.0004f, 0.0004f);
@@ -146,7 +139,7 @@ void GraphicSystem::Update( float dt ){
 			m_debugFont.drawText(-150, -115 + i*15, m_stringLogs[i].c_str(), (GXColor){255, 0, 0, 255}, FTGX_ALIGN_TOP | FTGX_JUSTIFY_LEFT);
 		}
 	}
-	
+
 	//End frame draw
 	EndDraw();
 }
