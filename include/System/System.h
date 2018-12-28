@@ -2,7 +2,6 @@
 #define SYSTEM_H_
 
 #include "Component/Component.h"
-#include <vector>
 
 class System
 {
