@@ -2,7 +2,7 @@
 #define PADSYSTEM_H_
 
 #include "System/System.h"
-#include <wiiuse/wpad.h> 
+#include <ogc/pad.h>
 
 class PadSystem : public System {
 	private:

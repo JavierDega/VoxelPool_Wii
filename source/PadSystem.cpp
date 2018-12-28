@@ -27,6 +27,7 @@ PadSystem::~PadSystem(){
 //Init
 void PadSystem::Initialize() {
 	PAD_Init();
+	exit(0);
 }
 //Update
 void PadSystem::Update( float dt ){

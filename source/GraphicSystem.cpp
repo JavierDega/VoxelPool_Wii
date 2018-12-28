@@ -39,8 +39,6 @@ GraphicSystem::GraphicSystem() {
 	m_debugFont = FreeTypeGX(GX_TF_IA8, GX_VTXFMT0);
 	m_debugFont.setCompatibilityMode(FTGX_COMPATIBILITY_DEFAULT_TEVOP_GX_MODULATE
 	| FTGX_COMPATIBILITY_DEFAULT_VTXDESC_GX_DIRECT);//BLEND AND TEX DIRECT
-	m_debugFont.loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, 15, false);	// Initialize the font system with the font parameters from rursus_compact_mono_ttf.h
-	
 }
 //Destructor (Singleton so..?)
 GraphicSystem::~GraphicSystem(){
@@ -48,8 +46,11 @@ GraphicSystem::~GraphicSystem(){
 }
 //Init
 void GraphicSystem::Initialize() {
+	//GX/VIDEO
 	InitGXVideo();
-	//Load meshes
+	//FONT
+	m_debugFont.loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, 15, false);
+	//MODEL PARSE
 	LoadMeshFromObj("PoolWIP", (void *)PoolWIP_obj, PoolWIP_obj_size);
 }
 //Update
@@ -144,6 +145,7 @@ void GraphicSystem::Update( float dt ){
 	EndDraw();
 }
 void GraphicSystem::InitGXVideo(){
+	
 	VIDEO_Init();
 	
 	videoMode = VIDEO_GetPreferredMode(NULL);

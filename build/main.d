@@ -79,6 +79,7 @@ main.o: \
  C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/PadSystem.h \
+ C:/devkitPro/libogc/include/ogc/pad.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/GraphicSystem.h
 
 C:/devkitPro/libogc/include/gccore.h:
@@ -238,5 +239,7 @@ C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h:
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/PadSystem.h:
+
+C:/devkitPro/libogc/include/ogc/pad.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/GraphicSystem.h:
