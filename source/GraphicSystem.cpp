@@ -69,7 +69,7 @@ void GraphicSystem::Update( float dt ){
 	GX_SetVtxDesc(GX_VA_NRM, GX_DIRECT);
 	GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
 
-	//RENDER MESHES
+	/*//RENDER MESHES
 	for (u16 i = 0 ; i < meshList.size(); i++){
 		MeshComponent * mesh = meshList[i];
 		TransformComponent transform = mesh->m_owner->m_transform;
@@ -92,8 +92,7 @@ void GraphicSystem::Update( float dt ){
 			GX_TexCoord2f32(uv.x,uv.y);
 		}	
 		GX_End();
-		exit(0);
-	}
+	}*/
 	//Second stage: Draw all FontComponents with their desc
 	std:: vector < FontComponent *> fontList = os->GetFontComponentList();
 	//Desc
@@ -102,6 +101,7 @@ void GraphicSystem::Update( float dt ){
 	GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
 	GX_SetVtxDesc(GX_VA_CLR0, GX_DIRECT);
 	//RENDER FONTS
+	/*
 	for (u16 i = 0; i < fontList.size(); i++){
 		FontComponent * font = fontList[i];
 		TransformComponent transform = font->m_owner->m_transform;
@@ -117,6 +117,7 @@ void GraphicSystem::Update( float dt ){
 		//@Make default arguments into flexible FontComponent m_variables.
 		m_font->drawText(0, 0, font->m_text.c_str(), font->m_color);
 	}
+	*/
 	//DEBUG FONTS
 	while (m_stringLogs.size() > 10){
 		m_stringLogs.pop_back();
@@ -136,6 +137,7 @@ void GraphicSystem::Update( float dt ){
 			m_font->drawText(-150, -115 + i*15, m_stringLogs[i].c_str(), (GXColor){255, 0, 0, 255}, FTGX_ALIGN_TOP | FTGX_JUSTIFY_LEFT);
 		}
 	}
+	exit(0);
 	//End frame draw
 	EndDraw();
 }
@@ -203,7 +205,6 @@ void GraphicSystem::InitGXVideo(){
 	// Texture vertext format 0 initialization
 	//FreeTypeGX draws fonts to this index
 	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XY, GX_F32, 0);
-	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_NRM_XYZ, GX_F32, 0);
 	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_F32, 0);
 	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGBA, GX_RGBA8, 0);
 	
