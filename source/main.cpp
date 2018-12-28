@@ -51,6 +51,7 @@ int main(int argc, char **argv) {
 		ps->Update(dt);
 		//Draw
 		gs->Update(dt);
+		exit(0);
 	}
 	delete os;
 	delete ps;
