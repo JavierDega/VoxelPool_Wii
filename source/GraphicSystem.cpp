@@ -50,7 +50,7 @@ void GraphicSystem::Initialize() {
 	//FONT
 	m_font->loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, 15, false);
 	//MODEL PARSE
-	LoadMeshFromObj("PoolWIP", (void *)PoolWIP_obj, PoolWIP_obj_size);
+	if(!LoadMeshFromObj("PoolWIP", (void *)PoolWIP_obj, PoolWIP_obj_size))exit(0);
 }
 //Update
 void GraphicSystem::Update( float dt ){
@@ -69,13 +69,14 @@ void GraphicSystem::Update( float dt ){
 	GX_SetVtxDesc(GX_VA_NRM, GX_DIRECT);
 	GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
 
-	/*//RENDER MESHES
+	/*
+	//RENDER MESHES
 	for (u16 i = 0 ; i < meshList.size(); i++){
 		MeshComponent * mesh = meshList[i];
 		TransformComponent transform = mesh->m_owner->m_transform;
 		//Matrix Setup
 		guMtxIdentity(m_model);
-		guMtxTransApply(m_model, m_model,transform.m_position.x, transform.m_position.y, transform.m_position.z);
+		guMtxTransApply(m_model, m_model, transform.m_position.x, transform.m_position.y, transform.m_position.z);
 		guMtxConcat(m_view, m_model, m_modelview);
 
 		// load the modelview matrix into matrix memory
@@ -122,6 +123,7 @@ void GraphicSystem::Update( float dt ){
 	while (m_stringLogs.size() > 10){
 		m_stringLogs.pop_back();
 	}
+	/*
 	//@Delete logs after certain time?
 	if (m_debug){
 		//Desc same as fonts
@@ -137,7 +139,7 @@ void GraphicSystem::Update( float dt ){
 			m_font->drawText(-150, -115 + i*15, m_stringLogs[i].c_str(), (GXColor){255, 0, 0, 255}, FTGX_ALIGN_TOP | FTGX_JUSTIFY_LEFT);
 		}
 	}
-	exit(0);
+	*/
 	//End frame draw
 	EndDraw();
 }
@@ -154,7 +156,7 @@ void GraphicSystem::InitGXVideo(){
 	videoFrameBufferIndex = 0;
 	
 	VIDEO_Configure(videoMode);
-	VIDEO_SetNextFramebuffer(videoFrameBuffer[0]);
+	VIDEO_SetNextFramebuffer(GetVideoFrameBuffer());
 	VIDEO_SetBlack(FALSE);
 	VIDEO_Flush();
 	VIDEO_WaitVSync();
