@@ -1,13 +1,6 @@
 /*---------------------------------------------------------------------------------
 	EEEH SI
 ---------------------------------------------------------------------------------*/
-#include <stdio.h>
-#include <stdlib.h>
-#include <malloc.h>
-#include <math.h>
-#include <gccore.h>
-#include <wiiuse/wpad.h>
-
 #include "System/ObjectSystem.h"
 #include "System/PadSystem.h"
 #include "System/GraphicSystem.h"

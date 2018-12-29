@@ -2,6 +2,8 @@
 #define GRAPHICSYSTEM_H_
 
 #include "System/System.h"
+#include "Component/MeshComponent.h"
+#include "Component/FontComponent.h"
 #include "FreeTypeGX.h"
 #include <string>
 #include <vector>
@@ -34,6 +36,8 @@ class GraphicSystem : public System {
 	void InitGXVideo();
 	bool LoadMeshFromObj(std::string name, void* fileStream, unsigned int fileSize);
 	void SetLight();
+	void DrawMeshes(std::vector<MeshComponent *> meshes);
+	void DrawFonts(std::vector<FontComponent *> fonts);
 	void EndDraw();
 	uint32_t * GetVideoFrameBuffer();
 	//Debug

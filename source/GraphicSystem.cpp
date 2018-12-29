@@ -54,92 +54,15 @@ void GraphicSystem::Initialize() {
 }
 //Update
 void GraphicSystem::Update( float dt ){
+
 	//Draw all renderable components: Fonts last because of z buffer **
+	//Singletons needed
+	ObjectSystem * os =  ObjectSystem::GetInstance();
+
 	guLookAt(m_view, &m_cam, &m_up, &m_look);
 	SetLight();
-
-	ObjectSystem * os =  ObjectSystem::GetInstance();
-	std:: vector <MeshComponent *> meshList = os->GetMeshComponentList();
-
-	//Texture	
-	GX_LoadTexObj(&m_paletteTexture, GX_TEXMAP0);
-	//Desc
-	GX_ClearVtxDesc();
-	GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
-	GX_SetVtxDesc(GX_VA_NRM, GX_DIRECT);
-	GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
-
-	/*
-	//RENDER MESHES
-	for (u16 i = 0 ; i < meshList.size(); i++){
-		MeshComponent * mesh = meshList[i];
-		TransformComponent transform = mesh->m_owner->m_transform;
-		//Matrix Setup
-		guMtxIdentity(m_model);
-		guMtxTransApply(m_model, m_model, transform.m_position.x, transform.m_position.y, transform.m_position.z);
-		guMtxConcat(m_view, m_model, m_modelview);
-
-		// load the modelview matrix into matrix memory
-		GX_LoadPosMtxImm(m_modelview, GX_PNMTX0);
-		GX_LoadNrmMtxImm(m_modelview, GX_PNMTX0);
-		//Render
-		GX_Begin(GX_TRIANGLES, GX_VTXFMT1, mesh->m_vertices.size() );
-		for (unsigned int i = 0; i < mesh->m_vertices.size(); i++){
-			guVector vertex = mesh->m_vertices[i];
-			guVector normal = mesh->m_normals[i];
-			guVector uv = mesh->m_uvs[i];
-			GX_Position3f32(vertex.x, vertex.y, vertex.z);
-			GX_Normal3f32(normal.x,normal.y,normal.z);
-			GX_TexCoord2f32(uv.x,uv.y);
-		}	
-		GX_End();
-	}*/
-	//Second stage: Draw all FontComponents with their desc
-	std:: vector < FontComponent *> fontList = os->GetFontComponentList();
-	//Desc
-	GX_ClearVtxDesc();
-	GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
-	GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
-	GX_SetVtxDesc(GX_VA_CLR0, GX_DIRECT);
-	//RENDER FONTS
-	/*
-	for (u16 i = 0; i < fontList.size(); i++){
-		FontComponent * font = fontList[i];
-		TransformComponent transform = font->m_owner->m_transform;
-		//Matrix setup
-		guMtxIdentity(m_model);
-		guMtxTransApply(m_model, m_model,transform.m_position.x, transform.m_position.y, transform.m_position.z);
-		guMtxConcat(m_view, m_model, m_modelview);
-
-		// load the modelview matrix into matrix memory
-		GX_LoadPosMtxImm(m_modelview, GX_PNMTX0);
-
-		//Render
-		//@Make default arguments into flexible FontComponent m_variables.
-		m_font->drawText(0, 0, font->m_text.c_str(), font->m_color);
-	}
-	*/
-	//DEBUG FONTS
-	while (m_stringLogs.size() > 10){
-		m_stringLogs.pop_back();
-	}
-	/*
-	//@Delete logs after certain time?
-	if (m_debug){
-		//Desc same as fonts
-		//Matrix
-		guMtxIdentity(m_model);
-		guMtxScaleApply(m_model, m_model, 0.0004f, -0.0004f, 0.0004f);
-		guMtxTransApply(m_model, m_model, m_cam.x, m_cam.y, m_cam.z -0.11f);
-		guMtxConcat( m_view, m_model, m_modelview );
-		// Apply changes to model view matrix
-		GX_LoadPosMtxImm(m_modelview,GX_PNMTX0);
-
-		for (u16 i = 0; i< m_stringLogs.size(); i++){
-			m_font->drawText(-150, -115 + i*15, m_stringLogs[i].c_str(), (GXColor){255, 0, 0, 255}, FTGX_ALIGN_TOP | FTGX_JUSTIFY_LEFT);
-		}
-	}
-	*/
+	DrawMeshes(os->GetMeshComponentList());
+	DrawFonts(os->GetFontComponentList());
 	//End frame draw
 	EndDraw();
 }
@@ -228,10 +151,13 @@ void GraphicSystem::InitGXVideo(){
 	TPL_OpenTPLFromMemory(&m_paletteTPL, (void *)palette_tpl,palette_tpl_size);
 	TPL_GetTexture(&m_paletteTPL,palette,&m_paletteTexture);
 	
-	//Setup TEV (Texture Environment) Stage
-	GX_SetTevOp(GX_TEVSTAGE0, GX_MODULATE);
+	// setup texture coordinate generation
+	// args: texcoord slot 0-7, matrix type, source to generate texture coordinates from, matrix to use
+	GX_SetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY);
+
+	// Set up TEV to paint the textures properly.
+	GX_SetTevOp(GX_TEVSTAGE0,GX_MODULATE);
 	GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
-	GX_SetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY);	
 
 	// setup our projection matrix
 	// this creates a perspective matrix with a view angle of 90,
@@ -344,6 +270,87 @@ void GraphicSystem::SetLight()
     GX_SetChanCtrl(GX_COLOR0A0,GX_ENABLE,GX_SRC_REG,GX_SRC_VTX,
 	GX_LIGHT0,GX_DF_CLAMP,GX_AF_NONE);
     GX_SetChanAmbColor(GX_COLOR0A0,m_lightColor[1]);
+}
+//Draw calls from Update()
+void GraphicSystem::DrawMeshes(std::vector<MeshComponent *> meshes){
+	//Texture	
+	GX_LoadTexObj(&m_paletteTexture, GX_TEXMAP0);
+	//Desc
+	GX_ClearVtxDesc();
+	GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GX_SetVtxDesc(GX_VA_NRM, GX_DIRECT);
+	GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+
+	//RENDER MESHES
+	for (unsigned int i = 0 ; i < meshes.size(); i++){
+		MeshComponent * mesh = meshes[i];
+		TransformComponent transform = mesh->m_owner->m_transform;
+		
+		//Matrix Setup
+		guMtxIdentity(m_model);
+		guMtxTransApply(m_model, m_model, transform.m_position.x, transform.m_position.y, transform.m_position.z);
+		guMtxConcat(m_view, m_model, m_modelview);
+		// load the modelview matrix into matrix memory
+		GX_LoadPosMtxImm(m_modelview, GX_PNMTX0);
+		GX_LoadNrmMtxImm(m_modelview, GX_PNMTX0);
+		
+		//Render
+		GX_Begin(GX_TRIANGLES, GX_VTXFMT1, mesh->m_vertices.size() );
+		for (unsigned int i = 0; i < mesh->m_vertices.size(); i++){
+			guVector vertex = mesh->m_vertices[i];
+			guVector normal = mesh->m_normals[i];
+			guVector uv = mesh->m_uvs[i];
+			GX_Position3f32(vertex.x, vertex.y, vertex.z);
+			GX_Normal3f32(normal.x,normal.y,normal.z);
+			GX_TexCoord2f32(uv.x,uv.y);
+		}	
+		GX_End();
+	}
+
+}
+void GraphicSystem::DrawFonts(std::vector<FontComponent *> fonts){
+	//Desc
+	GX_ClearVtxDesc();
+	GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+	GX_SetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+	
+	//RENDER FONTS
+	for (u16 i = 0; i < fonts.size(); i++){
+		FontComponent * font = fonts[i];
+		TransformComponent transform = font->m_owner->m_transform;
+		//Matrix setup
+		guMtxIdentity(m_model);
+		guMtxTransApply(m_model, m_model,transform.m_position.x, transform.m_position.y, transform.m_position.z);
+		guMtxConcat(m_view, m_model, m_modelview);
+
+		// load the modelview matrix into matrix memory
+		GX_LoadPosMtxImm(m_modelview, GX_PNMTX0);
+		//Render
+		//@Make default arguments into flexible FontComponent m_variables.
+		m_font->drawText(0, 0, font->m_text.c_str(), font->m_color);
+	}
+
+	//DEBUG FONTS
+	//Logic
+	while (m_stringLogs.size() > 10){
+		m_stringLogs.pop_back();
+	}
+	//@Delete logs after certain time?
+	if (m_debug){
+		//Desc same as fonts
+		//Matrix
+		guMtxIdentity(m_model);
+		guMtxScaleApply(m_model, m_model, 0.0004f, -0.0004f, 0.0004f);
+		guMtxTransApply(m_model, m_model, m_cam.x, m_cam.y, m_cam.z -0.11f);
+		guMtxConcat( m_view, m_model, m_modelview );
+		// Apply changes to model view matrix
+		GX_LoadPosMtxImm(m_modelview,GX_PNMTX0);
+
+		for (u16 i = 0; i< m_stringLogs.size(); i++){
+			m_font->drawText(-150, -115 + i*15, m_stringLogs[i].c_str(), (GXColor){255, 0, 0, 255}, FTGX_ALIGN_TOP | FTGX_JUSTIFY_LEFT);
+		}
+	}
 }
 //EndScene
 void GraphicSystem::EndDraw() {

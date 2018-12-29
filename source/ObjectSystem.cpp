@@ -36,7 +36,7 @@ GameObject * ObjectSystem::AddObject(){
 	GameObject obj = GameObject(guVector{0, 0, 0});
 	m_objectList.push_back(obj);
 	//return object just pushed
-	return &m_objectList[m_objectList.size() - 1];
+	return &m_objectList.back();
 }
 //Remove Objs
 void ObjectSystem::RemoveAllObjects(){
@@ -73,7 +73,7 @@ std::vector< FontComponent * > ObjectSystem::GetFontComponentList(){
 		GameObject curObj = m_objectList[i];
 		//Find components
 		for (u16 i = 0; i < curObj.m_components.size(); i++){
-			//Dynamic casting to identify type;
+			//Dynamic casting to identify type
 			FontComponent * fontComp = dynamic_cast<FontComponent *>(curObj.m_components[i]);
 			if (fontComp) fontCompList.push_back(fontComp);
 		}

@@ -1,5 +1,11 @@
 main.o: \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/source/main.cpp \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/ObjectSystem.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/System.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GameObject.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/TransformComponent.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
  C:/devkitPro/libogc/include/gctypes.h \
@@ -51,16 +57,6 @@ main.o: \
  C:/devkitPro/libogc/include/ogc/mutex.h \
  C:/devkitPro/libogc/include/ogc/system.h \
  C:/devkitPro/libogc/include/ogc/wiilaunch.h \
- C:/devkitPro/libogc/include/wiiuse/wpad.h \
- C:/devkitPro/libogc/include/wiiuse/wiiuse.h \
- C:/devkitPro/libogc/include/bte/bte.h \
- C:/devkitPro/libogc/include/bte/bd_addr.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/ObjectSystem.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/System.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GameObject.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/TransformComponent.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/MeshComponent.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/FontComponent.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/FreeTypeGX.h \
@@ -81,6 +77,18 @@ main.o: \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/PadSystem.h \
  C:/devkitPro/libogc/include/ogc/pad.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/GraphicSystem.h
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/ObjectSystem.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/System.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GameObject.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/TransformComponent.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 
@@ -183,26 +191,6 @@ C:/devkitPro/libogc/include/ogc/mutex.h:
 C:/devkitPro/libogc/include/ogc/system.h:
 
 C:/devkitPro/libogc/include/ogc/wiilaunch.h:
-
-C:/devkitPro/libogc/include/wiiuse/wpad.h:
-
-C:/devkitPro/libogc/include/wiiuse/wiiuse.h:
-
-C:/devkitPro/libogc/include/bte/bte.h:
-
-C:/devkitPro/libogc/include/bte/bd_addr.h:
-
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/ObjectSystem.h:
-
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/System.h:
-
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h:
-
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GameObject.h:
-
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h:
-
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/TransformComponent.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/MeshComponent.h:
 

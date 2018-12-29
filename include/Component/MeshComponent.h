@@ -16,7 +16,7 @@ public:
 	//Messaging
 	//virtual bool Receive( ComponentMessage * msg );
 	bool FetchModel(std::string name);
-
+	
 	//Variables
 	std::vector < guVector > m_vertices;
     std::vector < guVector > m_uvs;
