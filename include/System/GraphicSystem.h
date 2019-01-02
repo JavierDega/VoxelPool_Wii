@@ -39,7 +39,6 @@ class GraphicSystem : public System {
 	void DrawMeshes(std::vector<MeshComponent *> meshes);
 	void DrawFonts(std::vector<FontComponent *> fonts);
 	void EndDraw();
-	uint32_t * GetVideoFrameBuffer();
 	//Debug
 	void AddLog(std::wstring log);
 	void AddLog(std::string log);

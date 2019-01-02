@@ -3,12 +3,12 @@
 
 //Constructor
 GameObject::GameObject()
-	: m_transform(this)
+	: m_transform(guVector{ 0, 0, 0 })
 {
 	
 }
 GameObject::GameObject(guVector position)
-	: m_transform(this, position)
+	: m_transform(position)
 {
 
 }

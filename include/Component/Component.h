@@ -5,7 +5,7 @@ class GameObject;
 class Component{
 public:
 	//USE DYNAMIC CASTS FOR TYPE IDENTIFICATION?
-	Component(GameObject * owner);
+	Component();
 	virtual ~Component();
 	//@Messaging how to use them?
 	//virtual bool Receive (ComponentMessage * msg) = 0;

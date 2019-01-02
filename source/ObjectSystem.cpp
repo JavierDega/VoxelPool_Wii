@@ -1,4 +1,5 @@
 #include "System/ObjectSystem.h"
+#include "System/GraphicSystem.h"
 
 //Instance
 ObjectSystem * ObjectSystem::m_instance = NULL;
@@ -14,7 +15,7 @@ ObjectSystem * ObjectSystem::GetInstance()
 
 //Constructor
 ObjectSystem::ObjectSystem() {
-
+	m_objectCount = 0;
 }
 //Destructor @Singleton so?
 ObjectSystem::~ObjectSystem(){
@@ -23,7 +24,8 @@ ObjectSystem::~ObjectSystem(){
 //Init
 void ObjectSystem::Initialize()
 {
-	//@What do here?	
+	//@What do here?
+	//Initialize component references
 }
 //Update
 void ObjectSystem::Update( float dt )
@@ -32,20 +34,21 @@ void ObjectSystem::Update( float dt )
 }
 //Add Obj
 GameObject * ObjectSystem::AddObject(){
-	//Add to vector
-	GameObject obj = GameObject(guVector{0, 0, 0});
-	m_objectList.push_back(obj);
-	//return object just pushed
-	return &m_objectList.back();
+	
+	if (m_objectCount == MAX_GAMEOBJECTS){
+		GraphicSystem::GetInstance()->AddLog("Too many GameObjects!");
+		return nullptr;
+	}
+	//Add to array
+	m_objectList[m_objectCount] = GameObject();
+	//Increase iterator
+	m_objectCount++;
+	//Return address
+	return &m_objectList[m_objectCount - 1];
 }
 //Remove Objs
 void ObjectSystem::RemoveAllObjects(){
 	//Safety check
-	while (!m_objectList.empty()) {
-		//Remove from vector
-		m_objectList.pop_back();
-	}
-
 }
 //Get comp lists
 //Model meshes
@@ -53,7 +56,8 @@ std::vector< MeshComponent * > ObjectSystem::GetMeshComponentList(){
 	//Iterate through gameobjects, find MeshComponents through i.e dynamic_casts
 	//Add pointers to such meshcomponents to the vector, return such vector
 	std::vector< MeshComponent * > meshCompList;
-	for (u16 i = 0; i < m_objectList.size(); i++){
+	//@Beware of vectors dynamically moving instances in memory
+	for(u16 i = 0; i < m_objectCount ; i++){
 		GameObject curObj = m_objectList[i];
 		//Find mesh components
 		for (u16 i = 0; i < curObj.m_components.size(); i++){
@@ -66,15 +70,16 @@ std::vector< MeshComponent * > ObjectSystem::GetMeshComponentList(){
 }
 //Font meshes
 std::vector< FontComponent * > ObjectSystem::GetFontComponentList(){
-	//Iterate through gameobjects, find specific components through i.e dynamic_casts
-	//Add pointers to certain components to the vector, return such vector
+	//Iterate through gameobjects, find MeshComponents through i.e dynamic_casts
+	//Add pointers to such meshcomponents to the vector, return such vector
 	std::vector< FontComponent * > fontCompList;
-	for (u16 i = 0; i < m_objectList.size(); i++){
+	//@Beware of vectors dynamically moving instances in memory
+	for(u16 i = 0; i < m_objectCount ; i++){
 		GameObject curObj = m_objectList[i];
-		//Find components
+		//Find mesh components
 		for (u16 i = 0; i < curObj.m_components.size(); i++){
-			//Dynamic casting to identify type
-			FontComponent * fontComp = dynamic_cast<FontComponent *>(curObj.m_components[i]);
+			//Dynamic casting to identify type;
+			FontComponent * fontComp = dynamic_cast< FontComponent * >(curObj.m_components[i]);
 			if (fontComp) fontCompList.push_back(fontComp);
 		}
 	}

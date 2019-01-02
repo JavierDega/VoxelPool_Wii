@@ -2,8 +2,8 @@
 #include "GameObject.h"
 
 //Constructor
-Component::Component(GameObject * owner)
-	: m_owner(owner) 
+Component::Component()
+	: m_owner(nullptr) 
 {
 
 }

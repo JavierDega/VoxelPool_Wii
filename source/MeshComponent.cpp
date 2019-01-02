@@ -3,11 +3,10 @@
 #include <stdio.h>
 
 //Constructor
-MeshComponent::MeshComponent(GameObject * owner, std::string name)
-	: Component(owner)
+MeshComponent::MeshComponent(std::string name)
 {
 	//Copy contents from GSystem
-	FetchModel(name);
+	if(!FetchModel(name))exit(0);
 }
 //Destructor
 MeshComponent::~MeshComponent(){
@@ -35,5 +34,6 @@ bool MeshComponent::FetchModel(std::string name){
 			return true;
 		}
 	}
+	//Model not found
 	return false;
 }

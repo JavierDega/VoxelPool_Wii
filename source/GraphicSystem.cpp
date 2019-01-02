@@ -28,6 +28,7 @@ GraphicSystem::GraphicSystem() {
 	m_up = {0.0F, 1.0F, 0.0F};
 	m_look = {0.0F, 0.0F, -1.0F};
 	
+
 	m_lightColor[0] =  { 255, 255, 255, 255 }; // Light color 1
     m_lightColor[1] = { 180, 180, 180, 255 }; // Ambient 1
 	
@@ -35,9 +36,7 @@ GraphicSystem::GraphicSystem() {
 	videoFrameBufferIndex = 0;
 	//Debug
 	m_debug = true;
-	m_font = new FreeTypeGX(GX_TF_IA8, GX_VTXFMT0);
-	m_font->setCompatibilityMode(FTGX_COMPATIBILITY_DEFAULT_TEVOP_GX_MODULATE
-	| FTGX_COMPATIBILITY_DEFAULT_VTXDESC_GX_DIRECT);//BLEND AND TEX DIRECT
+	
 }
 //Destructor (Singleton so..?)
 GraphicSystem::~GraphicSystem(){
@@ -47,8 +46,27 @@ GraphicSystem::~GraphicSystem(){
 void GraphicSystem::Initialize() {
 	//GX/VIDEO
 	InitGXVideo();
+
 	//FONT
-	m_font->loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, 15, false);
+	m_font = new FreeTypeGX(GX_TF_IA8, GX_VTXFMT0);
+	m_font->setCompatibilityMode(FTGX_COMPATIBILITY_DEFAULT_TEVOP_GX_MODULATE
+	| FTGX_COMPATIBILITY_DEFAULT_VTXDESC_GX_DIRECT);//BLEND AND TEX DIRECT
+	FT_UInt fontSize = 30;
+	m_font->loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, fontSize, false);	// Initialize the font system with the font parameters from rursus_compact_mono_ttf.h
+	
+	//Set default logs
+	std::wstring log = L"Default string log";
+	m_stringLogs.insert(m_stringLogs.begin(), log);
+	m_stringLogs.insert(m_stringLogs.begin(), log);
+	m_stringLogs.insert(m_stringLogs.begin(), log);
+	m_stringLogs.insert(m_stringLogs.begin(), log);
+	m_stringLogs.insert(m_stringLogs.begin(), log);
+	m_stringLogs.insert(m_stringLogs.begin(), log);
+	m_stringLogs.insert(m_stringLogs.begin(), log);
+	m_stringLogs.insert(m_stringLogs.begin(), log);
+	m_stringLogs.insert(m_stringLogs.begin(), log);
+	m_stringLogs.insert(m_stringLogs.begin(), log);
+	
 	//MODEL PARSE
 	if(!LoadMeshFromObj("PoolWIP", (void *)PoolWIP_obj, PoolWIP_obj_size))exit(0);
 }
@@ -58,7 +76,6 @@ void GraphicSystem::Update( float dt ){
 	//Draw all renderable components: Fonts last because of z buffer **
 	//Singletons needed
 	ObjectSystem * os =  ObjectSystem::GetInstance();
-
 	guLookAt(m_view, &m_cam, &m_up, &m_look);
 	SetLight();
 	DrawMeshes(os->GetMeshComponentList());
@@ -79,7 +96,7 @@ void GraphicSystem::InitGXVideo(){
 	videoFrameBufferIndex = 0;
 	
 	VIDEO_Configure(videoMode);
-	VIDEO_SetNextFramebuffer(GetVideoFrameBuffer());
+	VIDEO_SetNextFramebuffer(videoFrameBuffer[videoFrameBufferIndex]);
 	VIDEO_SetBlack(FALSE);
 	VIDEO_Flush();
 	VIDEO_WaitVSync();
@@ -121,7 +138,7 @@ void GraphicSystem::InitGXVideo(){
 	}
 
 	GX_SetCullMode(GX_CULL_NONE);
-	GX_CopyDisp(GetVideoFrameBuffer(), GX_TRUE);
+	GX_CopyDisp(videoFrameBuffer[videoFrameBufferIndex], GX_TRUE);
 	GX_SetDispCopyGamma(GX_GM_1_0);
 	
 	// Texture vertex format setup
@@ -130,6 +147,7 @@ void GraphicSystem::InitGXVideo(){
 	// Texture vertext format 0 initialization
 	//FreeTypeGX draws fonts to this index
 	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XY, GX_F32, 0);
+	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_NRM_XYZ, GX_F32, 0);
 	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_F32, 0);
 	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGBA, GX_RGBA8, 0);
 	
@@ -151,13 +169,10 @@ void GraphicSystem::InitGXVideo(){
 	TPL_OpenTPLFromMemory(&m_paletteTPL, (void *)palette_tpl,palette_tpl_size);
 	TPL_GetTexture(&m_paletteTPL,palette,&m_paletteTexture);
 	
-	// setup texture coordinate generation
-	// args: texcoord slot 0-7, matrix type, source to generate texture coordinates from, matrix to use
-	GX_SetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY);
-
-	// Set up TEV to paint the textures properly.
-	GX_SetTevOp(GX_TEVSTAGE0,GX_MODULATE);
+	//Setup TEV (Texture Environment) Stage
+	GX_SetTevOp(GX_TEVSTAGE0, GX_MODULATE);
 	GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
+	GX_SetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY);	
 
 	// setup our projection matrix
 	// this creates a perspective matrix with a view angle of 90,
@@ -303,10 +318,9 @@ void GraphicSystem::DrawMeshes(std::vector<MeshComponent *> meshes){
 			GX_Position3f32(vertex.x, vertex.y, vertex.z);
 			GX_Normal3f32(normal.x,normal.y,normal.z);
 			GX_TexCoord2f32(uv.x,uv.y);
-		}	
+		}
 		GX_End();
 	}
-
 }
 void GraphicSystem::DrawFonts(std::vector<FontComponent *> fonts){
 	//Desc
@@ -321,14 +335,15 @@ void GraphicSystem::DrawFonts(std::vector<FontComponent *> fonts){
 		TransformComponent transform = font->m_owner->m_transform;
 		//Matrix setup
 		guMtxIdentity(m_model);
-		guMtxTransApply(m_model, m_model,transform.m_position.x, transform.m_position.y, transform.m_position.z);
+		guMtxScaleApply(m_model, m_model, 0.5f, -0.5f, 0.5f);
+		guMtxTransApply(m_model, m_model, transform.m_position.x, transform.m_position.y, transform.m_position.z);
 		guMtxConcat(m_view, m_model, m_modelview);
 
 		// load the modelview matrix into matrix memory
 		GX_LoadPosMtxImm(m_modelview, GX_PNMTX0);
 		//Render
 		//@Make default arguments into flexible FontComponent m_variables.
-		m_font->drawText(0, 0, font->m_text.c_str(), font->m_color);
+		m_font->drawText(font->m_screenPos.x, font->m_screenPos.y, font->m_text.c_str(), font->m_color);
 	}
 
 	//DEBUG FONTS
@@ -341,14 +356,14 @@ void GraphicSystem::DrawFonts(std::vector<FontComponent *> fonts){
 		//Desc same as fonts
 		//Matrix
 		guMtxIdentity(m_model);
-		guMtxScaleApply(m_model, m_model, 0.0004f, -0.0004f, 0.0004f);
+		guMtxScaleApply(m_model, m_model, 0.0003f, -0.0003f, 0.0003f);
 		guMtxTransApply(m_model, m_model, m_cam.x, m_cam.y, m_cam.z -0.11f);
 		guMtxConcat( m_view, m_model, m_modelview );
 		// Apply changes to model view matrix
 		GX_LoadPosMtxImm(m_modelview,GX_PNMTX0);
 
-		for (u16 i = 0; i< m_stringLogs.size(); i++){
-			m_font->drawText(-150, -115 + i*15, m_stringLogs[i].c_str(), (GXColor){255, 0, 0, 255}, FTGX_ALIGN_TOP | FTGX_JUSTIFY_LEFT);
+		for (u16 i = 0; i < m_stringLogs.size(); i++){
+			m_font->drawText(-180, -150 + i*25, m_stringLogs[i].c_str(), (GXColor){255, 0, 0, 128}, FTGX_ALIGN_TOP | FTGX_JUSTIFY_LEFT);
 		}
 	}
 }
@@ -359,20 +374,12 @@ void GraphicSystem::EndDraw() {
 	GX_SetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
 	GX_SetAlphaUpdate(GX_TRUE);
 	GX_SetColorUpdate(GX_TRUE);
-	GX_CopyDisp(GetVideoFrameBuffer(), GX_TRUE);
-	
+	GX_CopyDisp(videoFrameBuffer[videoFrameBufferIndex], GX_TRUE);
 	GX_DrawDone();
-
-	VIDEO_SetNextFramebuffer(GetVideoFrameBuffer());
-
+	VIDEO_SetNextFramebuffer(videoFrameBuffer[videoFrameBufferIndex]);
 	VIDEO_Flush();
 	VIDEO_WaitVSync();
-
 	videoFrameBufferIndex ^= 1;
-}
-//Video: Get fb
-uint32_t * GraphicSystem::GetVideoFrameBuffer() {
-	return videoFrameBuffer[videoFrameBufferIndex];
 }
 //Debug
 void GraphicSystem::AddLog(std::wstring log){

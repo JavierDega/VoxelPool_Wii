@@ -11,7 +11,7 @@ class MeshComponent : public Component{
 public:
 	//Funcs
 	//@Files to be taken from GraphicSystem, utilizing string name indexing
-	MeshComponent(GameObject * owner, std::string name);
+	MeshComponent(std::string name);
 	virtual ~MeshComponent();
 	//Messaging
 	//virtual bool Receive( ComponentMessage * msg );

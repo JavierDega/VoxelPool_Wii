@@ -7,8 +7,7 @@
 class TransformComponent: public Component {
 public:
 	//Functions
-	TransformComponent(GameObject * owner, guVector position);
-	TransformComponent(GameObject * owner);
+	TransformComponent(guVector position);
 	~TransformComponent();
 	//Messaging
 	//virtual bool Receive( ComponentMessage * msg);

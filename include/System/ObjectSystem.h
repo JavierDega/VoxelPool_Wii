@@ -7,6 +7,8 @@
 #include "Component/FontComponent.h"
 #include <vector>
 
+#define MAX_GAMEOBJECTS 24
+
 ///OBJECT FACTORY/ STORES POINTERS TO GAMEOBJECTS AND ALLOWS US TO FILTER COMPONENTS
 //FOR THE DIFFERENT SYSTEMS
 class ObjectSystem : public System {
@@ -28,7 +30,8 @@ class ObjectSystem : public System {
 	std::vector< FontComponent * > GetFontComponentList();
 		
 	//Variables
-	std::vector < GameObject > m_objectList;
+	GameObject m_objectList[MAX_GAMEOBJECTS];
+	unsigned int m_objectCount;
 };
 
 #endif /*OBJECTSYSTEM_H_*/
