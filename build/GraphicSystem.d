@@ -75,6 +75,8 @@ GraphicSystem.o: \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GameObject.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/TransformComponent.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/MenuComponent.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/LogicComponent.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/build/PoolWIP_obj.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/build/palette_tpl.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/build/palette.h \
@@ -229,6 +231,10 @@ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GameObject.h:
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/TransformComponent.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/MenuComponent.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/LogicComponent.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/build/PoolWIP_obj.h:
 

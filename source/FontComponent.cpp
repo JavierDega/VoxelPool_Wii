@@ -2,8 +2,8 @@
 #include "rursus_compact_mono_ttf.h"	// Include the compiled font.
 
 //Constructor
-FontComponent::FontComponent(std::wstring text, GXColor textColor, guVector screenPos)
-	: m_text(text), m_color(textColor), m_screenPos(screenPos)
+FontComponent::FontComponent(std::wstring text, guVector screenPos, GXColor textColor)
+	: m_text(text), m_screenPos(screenPos), m_color(textColor)
 {
 	//Data
 }

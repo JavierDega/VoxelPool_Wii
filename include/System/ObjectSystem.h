@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "Component/MeshComponent.h"
 #include "Component/FontComponent.h"
+#include "Component/MenuComponent.h"
 #include <vector>
 
 #define MAX_GAMEOBJECTS 24
@@ -28,6 +29,8 @@ class ObjectSystem : public System {
 	void RemoveAllObjects();
 	std::vector< MeshComponent * > GetMeshComponentList();
 	std::vector< FontComponent * > GetFontComponentList();
+	std::vector< LogicComponent * > GetLogicComponentList();
+	std::vector< MenuComponent * > GetMenuComponentList();
 		
 	//Variables
 	GameObject m_objectList[MAX_GAMEOBJECTS];

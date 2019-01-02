@@ -53,6 +53,7 @@ class GraphicSystem : public System {
 	uint32_t gsWidth;
 	uint32_t gsHeight;
 	//Matrices - Coordinate spaces
+	//@PoolStick component may point to camera position.
 	Mtx m_view, m_model, m_modelview;
 	Mtx44 m_projection;
 	guVector m_cam, m_up, m_look;

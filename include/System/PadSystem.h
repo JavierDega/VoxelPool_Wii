@@ -20,6 +20,7 @@ class PadSystem : public System {
 	void ScanPads(int controller);
 
 	//Variables
+	//@Logic components point to these variables
 	u16 m_buttonsHeld, m_buttonsDown, m_buttonsUp;
 
 	/*//From "PAD.H"

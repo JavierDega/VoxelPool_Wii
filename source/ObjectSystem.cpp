@@ -25,7 +25,6 @@ ObjectSystem::~ObjectSystem(){
 void ObjectSystem::Initialize()
 {
 	//@What do here?
-	//Initialize component references
 }
 //Update
 void ObjectSystem::Update( float dt )
@@ -84,4 +83,38 @@ std::vector< FontComponent * > ObjectSystem::GetFontComponentList(){
 		}
 	}
 	return fontCompList;
+}
+//Logic
+std::vector< LogicComponent * > ObjectSystem::GetLogicComponentList(){
+	//Iterate through gameobjects, find x components through i.e dynamic_casts
+	//Add pointers to such components to the vector, return such vector
+	std::vector< LogicComponent * > logicCompList;
+	//@Beware of vectors dynamically moving instances in memory
+	for(u16 i = 0; i < m_objectCount ; i++){
+		GameObject curObj = m_objectList[i];
+		//Find mesh components
+		for (u16 i = 0; i < curObj.m_components.size(); i++){
+			//Dynamic casting to identify type;
+			LogicComponent * logicComp = dynamic_cast< LogicComponent * >(curObj.m_components[i]);
+			if (logicComp) logicCompList.push_back(logicComp);
+		}
+	}
+	return logicCompList;
+}
+//Menu selectors
+std::vector< MenuComponent * > ObjectSystem::GetMenuComponentList(){
+	//Iterate through gameobjects, find MeshComponents through i.e dynamic_casts
+	//Add pointers to such meshcomponents to the vector, return such vector
+	std::vector< MenuComponent * > menuCompList;
+	//@Beware of vectors dynamically moving instances in memory
+	for(u16 i = 0; i < m_objectCount ; i++){
+		GameObject curObj = m_objectList[i];
+		//Find mesh components
+		for (u16 i = 0; i < curObj.m_components.size(); i++){
+			//Dynamic casting to identify type;
+			MenuComponent * menuComp = dynamic_cast< MenuComponent * >(curObj.m_components[i]);
+			if (menuComp) menuCompList.push_back(menuComp);
+		}
+	}
+	return menuCompList;
 }

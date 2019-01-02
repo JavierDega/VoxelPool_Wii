@@ -74,6 +74,8 @@ ObjectSystem.o: \
  C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h \
  C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/MenuComponent.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/LogicComponent.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/GraphicSystem.h
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/ObjectSystem.h:
@@ -223,5 +225,9 @@ C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h:
 C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/MenuComponent.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/LogicComponent.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/GraphicSystem.h:

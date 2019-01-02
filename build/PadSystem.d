@@ -5,8 +5,10 @@ PadSystem.o: \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h \
  C:/devkitPro/libogc/include/ogc/pad.h \
  C:/devkitPro/libogc/include/gctypes.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/GraphicSystem.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/MeshComponent.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/ObjectSystem.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GameObject.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/TransformComponent.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
  C:/devkitPro/libogc/include/ogc/aram.h \
@@ -57,6 +59,7 @@ PadSystem.o: \
  C:/devkitPro/libogc/include/ogc/mutex.h \
  C:/devkitPro/libogc/include/ogc/system.h \
  C:/devkitPro/libogc/include/ogc/wiilaunch.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/MeshComponent.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/FontComponent.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/FreeTypeGX.h \
  C:/devkitPro/portlibs/ppc/include/ft2build.h \
@@ -72,7 +75,10 @@ PadSystem.o: \
  C:/devkitPro/portlibs/ppc/include/freetype/ftmoderr.h \
  C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h \
  C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/MenuComponent.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/LogicComponent.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/GraphicSystem.h
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/PadSystem.h:
 
@@ -84,9 +90,13 @@ C:/devkitPro/libogc/include/ogc/pad.h:
 
 C:/devkitPro/libogc/include/gctypes.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/GraphicSystem.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/ObjectSystem.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/MeshComponent.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/GameObject.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/TransformComponent.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 
@@ -188,6 +198,8 @@ C:/devkitPro/libogc/include/ogc/system.h:
 
 C:/devkitPro/libogc/include/ogc/wiilaunch.h:
 
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/MeshComponent.h:
+
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/FontComponent.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/FreeTypeGX.h:
@@ -219,3 +231,9 @@ C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h:
 C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/MenuComponent.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/LogicComponent.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/System/GraphicSystem.h:

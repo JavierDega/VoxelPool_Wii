@@ -17,28 +17,32 @@
  * @return Program exit status code.
  */
 int main(int argc, char **argv) {
-	//Systems
+	//DECLARE SYSTEMS
 	//ObjectFactory
 	ObjectSystem * os = ObjectSystem::GetInstance();
-	os->Initialize();
+	//Graphics
+	GraphicSystem * gs = GraphicSystem::GetInstance();
 	//Input
 	PadSystem * ps = PadSystem::GetInstance();
-	ps->Initialize();
-	//GX/Video/Debug
-	GraphicSystem * gs = GraphicSystem::GetInstance();
-	gs->Initialize();
 
-	//GameObjects
+	//BUILD GAMEOBJECTS
 	GameObject * poolTable = os->AddObject();
-	poolTable->m_transform.m_position = guVector{ 0, 0, -100.0f};
+	poolTable->m_transform.m_position = guVector{ 0, -20, -125.0f};
 	poolTable->AddComponent(new MeshComponent("PoolWIP"));
-	poolTable->AddComponent(new FontComponent(L"PoolTable", GXColor{0, 255, 0, 255}, guVector{-75, -75, 0}));
+	poolTable->AddComponent(new FontComponent(L"PoolTable", guVector{-75, -75, 0}, GXColor{0, 255, 0, 255}));
 
 	GameObject * titleText = os->AddObject();
-	titleText->m_transform.m_position = guVector{0, 25, -50.0f};
-	titleText->AddComponent(new FontComponent(L"Default text", GXColor{0, 0, 0, 255}));
+	titleText->m_transform.m_position = guVector{-45, 0, -100.0f};
+	titleText->AddComponent(new MenuComponent(&ps->m_buttonsHeld, &ps->m_buttonsDown, &ps->m_buttonsUp));
+	titleText->AddComponent(new FontComponent(L"Start", guVector{ 0, 0, 0 }, GXColor{0, 0, 0, 255}));
+	titleText->AddComponent(new FontComponent(L"Options", guVector{ 0, 25, 0 }, GXColor{0, 0, 0, 255}));
+	titleText->AddComponent(new FontComponent(L"Quit", guVector{ 0, 50, 0 }, GXColor{0, 0, 0, 255}));
 
-	//Timestepping
+	//INIT SYSTEMS (CALL CERTAIN SCENE START EVENTS)
+	os->Initialize();
+	gs->Initialize();
+	ps->Initialize();
+	//TIME
 	float dt = 0.0f;
 	while(1) {
 		//Input

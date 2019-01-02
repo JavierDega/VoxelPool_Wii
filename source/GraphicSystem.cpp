@@ -36,14 +36,6 @@ GraphicSystem::GraphicSystem() {
 	videoFrameBufferIndex = 0;
 	//Debug
 	m_debug = true;
-	
-}
-//Destructor (Singleton so..?)
-GraphicSystem::~GraphicSystem(){
-
-}
-//Init
-void GraphicSystem::Initialize() {
 	//GX/VIDEO
 	InitGXVideo();
 
@@ -70,6 +62,13 @@ void GraphicSystem::Initialize() {
 	//MODEL PARSE
 	if(!LoadMeshFromObj("PoolWIP", (void *)PoolWIP_obj, PoolWIP_obj_size))exit(0);
 }
+//Destructor (Singleton so..?)
+GraphicSystem::~GraphicSystem(){
+
+}
+//Init
+void GraphicSystem::Initialize() {
+}
 //Update
 void GraphicSystem::Update( float dt ){
 
@@ -80,6 +79,7 @@ void GraphicSystem::Update( float dt ){
 	SetLight();
 	DrawMeshes(os->GetMeshComponentList());
 	DrawFonts(os->GetFontComponentList());
+
 	//End frame draw
 	EndDraw();
 }
@@ -344,6 +344,25 @@ void GraphicSystem::DrawFonts(std::vector<FontComponent *> fonts){
 		//Render
 		//@Make default arguments into flexible FontComponent m_variables.
 		m_font->drawText(font->m_screenPos.x, font->m_screenPos.y, font->m_text.c_str(), font->m_color);
+	}
+
+	//RENDER MENU SELECTORS
+	//DRAW MENUS
+	std::vector <MenuComponent * > menuSelectors = ObjectSystem::GetInstance()->GetMenuComponentList();
+	for (u16 i = 0; i < menuSelectors.size(); i++){
+		MenuComponent * menu = menuSelectors[i];
+		TransformComponent transform = menu->m_owner->m_transform;
+		//Matrix setup
+		guMtxIdentity(m_model);
+		guMtxScaleApply(m_model, m_model, 0.5f, -0.5f, 0.5f);
+		guMtxTransApply(m_model, m_model, transform.m_position.x, transform.m_position.y, transform.m_position.z);
+		guMtxConcat(m_view, m_model, m_modelview);
+
+		// load the modelview matrix into matrix memory
+		GX_LoadPosMtxImm(m_modelview, GX_PNMTX0);
+		//Render
+		//@Make default arguments into flexible FontComponent m_variables.
+		m_font->drawText(menu->m_screenPos.x, menu->m_screenPos.y, _TEXT(">"), (GXColor){0xff, 0x00, 0x00, 0xff});
 	}
 
 	//DEBUG FONTS

@@ -10,12 +10,12 @@
 class FontComponent : public Component{
 public:
 	//Constructor
-	FontComponent( std::wstring text = L"Default Text", GXColor textColor = GXColor{0, 0, 0, 255}, guVector screenPos = guVector{ 0, 0, 0 } );
+	FontComponent( std::wstring text = L"Default Text", guVector screenPos = guVector{ 0, 0, 0 }, GXColor textColor = GXColor{0, 0, 0, 255});
 	virtual ~FontComponent();
 	//Messaging
 	//virtual bool Receive( ComponentMessage * msg );
 	std::wstring m_text;
-	GXColor m_color;
 	guVector m_screenPos;
+	GXColor m_color;
 };
 #endif /*FONTCOMPONENT_H_*/
