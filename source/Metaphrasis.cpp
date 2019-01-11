@@ -19,7 +19,7 @@
  * along with Metaphrasis.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Metaphrasis.h"
+#include "Extra/Metaphrasis.h"
 
 /**
  * Default constructor for the Metaphrasis class.

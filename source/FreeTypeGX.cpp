@@ -19,7 +19,7 @@
  * along with FreeTypeGX.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "FreeTypeGX.h"
+#include "Extra/FreeTypeGX.h"
 
 /**
  * Default constructor for the FreeTypeGX class.

@@ -4,7 +4,7 @@
 #include "System/System.h"
 #include "Component/MeshComponent.h"
 #include "Component/FontComponent.h"
-#include "FreeTypeGX.h"
+#include "Extra/FreeTypeGX.h"
 #include <string>
 #include <vector>
 #include <gccore.h>

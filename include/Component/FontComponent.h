@@ -2,7 +2,7 @@
 #define FONTCOMPONENT_H_
 
 #include "Component/Component.h"
-#include "FreeTypeGX.h"
+#include "Extra/FreeTypeGX.h"
 #include <gccore.h>
 #include <string>
 

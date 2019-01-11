@@ -1,7 +1,7 @@
 LogicComponent.o: \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/source/LogicComponent.cpp \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/LogicComponent.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/source/LogicComponent.cpp \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
  C:/devkitPro/libogc/include/gctypes.h \
@@ -54,9 +54,9 @@ LogicComponent.o: \
  C:/devkitPro/libogc/include/ogc/system.h \
  C:/devkitPro/libogc/include/ogc/wiilaunch.h
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/LogicComponent.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 

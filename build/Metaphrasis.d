@@ -1,6 +1,6 @@
 Metaphrasis.o: \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/source/Metaphrasis.cpp \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/source/Metaphrasis.cpp \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Metaphrasis.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
  C:/devkitPro/libogc/include/gctypes.h \
@@ -53,7 +53,7 @@ Metaphrasis.o: \
  C:/devkitPro/libogc/include/ogc/system.h \
  C:/devkitPro/libogc/include/ogc/wiilaunch.h
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Metaphrasis.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 

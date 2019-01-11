@@ -1,8 +1,7 @@
 #include "Component/TransformComponent.h"
-
 //Constructor
-TransformComponent::TransformComponent(guVector position)
-	: m_position(position) 
+TransformComponent::TransformComponent(guVector position, guQuaternion rotation, guVector scale)
+	: m_position(position) , m_rotation(rotation) , m_scale(scale)
 {
 
 }

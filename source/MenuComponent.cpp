@@ -4,7 +4,7 @@
 
 //Constructor
 MenuComponent::MenuComponent(u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp)
-	: LogicComponent(buttonsHeld, buttonsDown, buttonsUp)
+	: ControllableComponent(buttonsHeld, buttonsDown, buttonsUp)
 {
 	m_option = 0;
 	m_screenPos = guVector{ 0, 0, 0 };
@@ -16,15 +16,10 @@ MenuComponent::~MenuComponent(){
 }
 //Start
 void MenuComponent::OnStart(){
-	//Get list of font components, place to the left of component index m_option = 0
-	std::vector<FontComponent*> fontComponents = GetMenuFonts();
-
-	FontComponent * selectedOption = fontComponents[m_option];
-	m_screenPos = selectedOption->m_screenPos;
-	m_screenPos.x -= 15;
+	
 }
 //Update
-void MenuComponent::ComputeLogic(){
+void MenuComponent::ComputeLogic(float dt){
 	//Choose option
 	std::vector<FontComponent*> fontComponents = GetMenuFonts();
 	u16 bdown = *(m_buttonsDown);

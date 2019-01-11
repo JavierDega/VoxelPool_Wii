@@ -8,33 +8,31 @@
 #include "Component/MenuComponent.h"
 #include <vector>
 
-#define MAX_GAMEOBJECTS 24
-
 ///OBJECT FACTORY/ STORES POINTERS TO GAMEOBJECTS AND ALLOWS US TO FILTER COMPONENTS
 //FOR THE DIFFERENT SYSTEMS
 class ObjectSystem : public System {
 	private:
 	/*Here will be the instance stored*/
-	static ObjectSystem* m_instance;
+	static ObjectSystem * m_instance;
 	/*Private constructor to prevent instancing*/
 	ObjectSystem();
 	public:
 	~ObjectSystem();
 	//Singleton
-	static ObjectSystem* GetInstance();	
+	static ObjectSystem * GetInstance();	
 	//Funcs
 	void Initialize();
 	void Update( float dt );
-	GameObject * AddObject();
+	GameObject * AddObject(std::string name, guVector position);
 	void RemoveAllObjects();
+	void RemoveObject( GameObject * object);
 	std::vector< MeshComponent * > GetMeshComponentList();
 	std::vector< FontComponent * > GetFontComponentList();
 	std::vector< LogicComponent * > GetLogicComponentList();
 	std::vector< MenuComponent * > GetMenuComponentList();
 		
 	//Variables
-	GameObject m_objectList[MAX_GAMEOBJECTS];
-	unsigned int m_objectCount;
+	std::vector<GameObject> m_objectList;
 };
 
 #endif /*OBJECTSYSTEM_H_*/

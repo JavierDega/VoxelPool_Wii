@@ -1,6 +1,6 @@
 FreeTypeGX.o: \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/source/FreeTypeGX.cpp \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/FreeTypeGX.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/source/FreeTypeGX.cpp \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/FreeTypeGX.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
  C:/devkitPro/libogc/include/gctypes.h \
@@ -65,9 +65,9 @@ FreeTypeGX.o: \
  C:/devkitPro/portlibs/ppc/include/freetype/ftmoderr.h \
  C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h \
  C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Metaphrasis.h
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/FreeTypeGX.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/FreeTypeGX.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 
@@ -197,4 +197,4 @@ C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h:
 
 C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Metaphrasis.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Metaphrasis.h:

@@ -1,10 +1,12 @@
 TransformComponent.o: \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/source/TransformComponent.cpp \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/TransformComponent.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/source/TransformComponent.cpp \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
+ C:/devkitPro/libogc/include/ogc/gu.h \
+ C:/devkitPro/libogc/include/gctypes.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
- C:/devkitPro/libogc/include/gctypes.h \
  C:/devkitPro/libogc/include/ogc/aram.h \
  C:/devkitPro/libogc/include/ogc/arqueue.h \
  C:/devkitPro/libogc/include/ogc/lwp_queue.h \
@@ -54,15 +56,19 @@ TransformComponent.o: \
  C:/devkitPro/libogc/include/ogc/system.h \
  C:/devkitPro/libogc/include/ogc/wiilaunch.h
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/TransformComponent.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/Template_5/include/Component/Component.h:
+C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
+
+C:/devkitPro/libogc/include/ogc/gu.h:
+
+C:/devkitPro/libogc/include/gctypes.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 
 C:/devkitPro/libogc/include/ogc/dsp.h:
-
-C:/devkitPro/libogc/include/gctypes.h:
 
 C:/devkitPro/libogc/include/ogc/aram.h:
 

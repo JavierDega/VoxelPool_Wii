@@ -8,6 +8,8 @@
 #include "palette.h"
 #include "rursus_compact_mono_ttf.h"	// Include the compiled font.
 
+using namespace std;
+
 //Instance
 GraphicSystem * GraphicSystem::m_instance = NULL;
 GraphicSystem * GraphicSystem::GetInstance()
@@ -22,45 +24,34 @@ GraphicSystem * GraphicSystem::GetInstance()
 
 //Constructor
 GraphicSystem::GraphicSystem() {
-	//Init vars
+	///Init vars
 	m_background = {255, 255, 255, 0};
 	m_cam = {0.0F, 0.0F, 0.0F};
 	m_up = {0.0F, 1.0F, 0.0F};
 	m_look = {0.0F, 0.0F, -1.0F};
-	
 
 	m_lightColor[0] =  { 255, 255, 255, 255 }; // Light color 1
     m_lightColor[1] = { 180, 180, 180, 255 }; // Ambient 1
 	
-	//Video
 	videoFrameBufferIndex = 0;
-	//Debug
+
 	m_debug = true;
+
 	//GX/VIDEO
 	InitGXVideo();
-
 	//FONT
 	m_font = new FreeTypeGX(GX_TF_IA8, GX_VTXFMT0);
 	m_font->setCompatibilityMode(FTGX_COMPATIBILITY_DEFAULT_TEVOP_GX_MODULATE
 	| FTGX_COMPATIBILITY_DEFAULT_VTXDESC_GX_DIRECT);//BLEND AND TEX DIRECT
 	FT_UInt fontSize = 30;
 	m_font->loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, fontSize, false);	// Initialize the font system with the font parameters from rursus_compact_mono_ttf.h
-	
+
+	//MODEL PARSE(Need to do before creating MeshComponents)
+	if(!LoadMeshFromObj("PoolWIP", (void *)PoolWIP_obj, PoolWIP_obj_size))exit(0);
+
 	//Set default logs
 	std::wstring log = L"Default string log";
 	m_stringLogs.insert(m_stringLogs.begin(), log);
-	m_stringLogs.insert(m_stringLogs.begin(), log);
-	m_stringLogs.insert(m_stringLogs.begin(), log);
-	m_stringLogs.insert(m_stringLogs.begin(), log);
-	m_stringLogs.insert(m_stringLogs.begin(), log);
-	m_stringLogs.insert(m_stringLogs.begin(), log);
-	m_stringLogs.insert(m_stringLogs.begin(), log);
-	m_stringLogs.insert(m_stringLogs.begin(), log);
-	m_stringLogs.insert(m_stringLogs.begin(), log);
-	m_stringLogs.insert(m_stringLogs.begin(), log);
-	
-	//MODEL PARSE
-	if(!LoadMeshFromObj("PoolWIP", (void *)PoolWIP_obj, PoolWIP_obj_size))exit(0);
 }
 //Destructor (Singleton so..?)
 GraphicSystem::~GraphicSystem(){
@@ -68,15 +59,20 @@ GraphicSystem::~GraphicSystem(){
 }
 //Init
 void GraphicSystem::Initialize() {
+	//@What do here?
 }
 //Update
 void GraphicSystem::Update( float dt ){
-
-	//Draw all renderable components: Fonts last because of z buffer **
+	///DRAW ALL RENDERABLES: Fonts last because of z buffer **
+	
 	//Singletons needed
 	ObjectSystem * os =  ObjectSystem::GetInstance();
+
+	//Begin frame draw
 	guLookAt(m_view, &m_cam, &m_up, &m_look);
 	SetLight();
+
+	//Draw Component pipeline
 	DrawMeshes(os->GetMeshComponentList());
 	DrawFonts(os->GetFontComponentList());
 
@@ -147,7 +143,6 @@ void GraphicSystem::InitGXVideo(){
 	// Texture vertext format 0 initialization
 	//FreeTypeGX draws fonts to this index
 	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XY, GX_F32, 0);
-	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_NRM_XYZ, GX_F32, 0);
 	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_F32, 0);
 	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGBA, GX_RGBA8, 0);
 	
@@ -287,7 +282,7 @@ void GraphicSystem::SetLight()
     GX_SetChanAmbColor(GX_COLOR0A0,m_lightColor[1]);
 }
 //Draw calls from Update()
-void GraphicSystem::DrawMeshes(std::vector<MeshComponent *> meshes){
+void GraphicSystem::DrawMeshes(std::vector<MeshComponent * > meshes){
 	//Texture	
 	GX_LoadTexObj(&m_paletteTexture, GX_TEXMAP0);
 	//Desc
@@ -297,10 +292,9 @@ void GraphicSystem::DrawMeshes(std::vector<MeshComponent *> meshes){
 	GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
 
 	//RENDER MESHES
-	for (unsigned int i = 0 ; i < meshes.size(); i++){
+	for (u16 i = 0 ; i < meshes.size(); i++){
 		MeshComponent * mesh = meshes[i];
 		TransformComponent transform = mesh->m_owner->m_transform;
-		
 		//Matrix Setup
 		guMtxIdentity(m_model);
 		guMtxTransApply(m_model, m_model, transform.m_position.x, transform.m_position.y, transform.m_position.z);

@@ -1,12 +1,20 @@
 /*---------------------------------------------------------------------------------
 	EEEH SI
 ---------------------------------------------------------------------------------*/
+#include <time.h>
+#include <ogc/lwp_watchdog.h>
+
 #include "System/ObjectSystem.h"
 #include "System/PadSystem.h"
 #include "System/GraphicSystem.h"
 #include "GameObject.h"
 #include "Component/MeshComponent.h"
 #include "Component/FontComponent.h"
+#include "Component/OrbitCameraComponent.h"
+
+using namespace std;
+
+float globalTime;
 
 /**
  * Program entry point.
@@ -18,33 +26,48 @@
  */
 int main(int argc, char **argv) {
 	//DECLARE SYSTEMS
+	//Time
+	/*
+	extern u32 gettick(void);
+	extern u64 gettime(void);
+	extern void settime(u64);
+	u32 diff_sec(u64 start,u64 end);
+	u32 diff_msec(u64 start,u64 end);
+	u32 diff_usec(u64 start,u64 end);
+	u32 diff_nsec(u64 start,u64 end);
+	*/
+	globalTime = gettime() / TB_TIMER_CLOCK;
 	//ObjectFactory
 	ObjectSystem * os = ObjectSystem::GetInstance();
-	//Graphics
-	GraphicSystem * gs = GraphicSystem::GetInstance();
 	//Input
 	PadSystem * ps = PadSystem::GetInstance();
+	//Graphics (Does WaitForVsync() stuff so maybe initialized last?)
+	GraphicSystem * gs = GraphicSystem::GetInstance();
 
 	//BUILD GAMEOBJECTS
-	GameObject * poolTable = os->AddObject();
-	poolTable->m_transform.m_position = guVector{ 0, -20, -125.0f};
+	//Beware of pointer becoming invalid arbitrarily(Like after adding another element to the vector)
+	GameObject * poolTable = os->AddObject("PoolTable", guVector{ 0, 0, -200.0f});
 	poolTable->AddComponent(new MeshComponent("PoolWIP"));
-	poolTable->AddComponent(new FontComponent(L"PoolTable", guVector{-75, -75, 0}, GXColor{0, 255, 0, 255}));
+	//poolTable->AddComponent(new FontComponent(L"PoolTable", guVector{-75, -75, 0}, GXColor{0, 255, 0, 255}));
+	poolTable->AddComponent(new OrbitCameraComponent());
 
-	GameObject * titleText = os->AddObject();
-	titleText->m_transform.m_position = guVector{-45, 0, -100.0f};
+	GameObject * titleText = os->AddObject("TitleText", guVector{-45, 0, -100.0f});
 	titleText->AddComponent(new MenuComponent(&ps->m_buttonsHeld, &ps->m_buttonsDown, &ps->m_buttonsUp));
-	titleText->AddComponent(new FontComponent(L"Start", guVector{ 0, 0, 0 }, GXColor{0, 0, 0, 255}));
-	titleText->AddComponent(new FontComponent(L"Options", guVector{ 0, 25, 0 }, GXColor{0, 0, 0, 255}));
-	titleText->AddComponent(new FontComponent(L"Quit", guVector{ 0, 50, 0 }, GXColor{0, 0, 0, 255}));
+	titleText->AddComponent(new FontComponent(L"Start", guVector{ 0, 0, 0 }, GXColor{100, 100, 100, 255}));
+	titleText->AddComponent(new FontComponent(L"Options", guVector{ 0, 25, 0 }, GXColor{100, 100, 100, 255}));
+	titleText->AddComponent(new FontComponent(L"Quit", guVector{ 0, 50, 0 }, GXColor{100, 100, 100, 255}));
 
 	//INIT SYSTEMS (CALL CERTAIN SCENE START EVENTS)
 	os->Initialize();
-	gs->Initialize();
 	ps->Initialize();
-	//TIME
-	float dt = 0.0f;
+	gs->Initialize();
 	while(1) {
+		//Timestep
+		float dt = 0;
+		float elapsedTime = diff_msec((gettime() / TB_TIMER_CLOCK), globalTime);
+		//Update
+		gs->AddLog(to_string(globalTime));
+		gs->AddLog(to_string(elapsedTime));
 		//Input
 		ps->Update(dt);
 		//Draw
