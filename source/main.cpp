@@ -36,7 +36,8 @@ int main(int argc, char **argv) {
 	u32 diff_usec(u64 start,u64 end);
 	u32 diff_nsec(u64 start,u64 end);
 	*/
-	globalTime = gettime() / TB_TIMER_CLOCK;
+	//__lwp_watchdog_init();
+	u64 starttime = gettime();
 	//ObjectFactory
 	ObjectSystem * os = ObjectSystem::GetInstance();
 	//Input
@@ -46,9 +47,9 @@ int main(int argc, char **argv) {
 
 	//BUILD GAMEOBJECTS
 	//Beware of pointer becoming invalid arbitrarily(Like after adding another element to the vector)
-	GameObject * poolTable = os->AddObject("PoolTable", guVector{ 0, 0, -200.0f});
+	GameObject * poolTable = os->AddObject("PoolTable", guVector{ 0, -20, -150.0f});
 	poolTable->AddComponent(new MeshComponent("PoolWIP"));
-	//poolTable->AddComponent(new FontComponent(L"PoolTable", guVector{-75, -75, 0}, GXColor{0, 255, 0, 255}));
+	poolTable->AddComponent(new FontComponent(L"PoolTable", guVector{-75, -75, 0}, GXColor{0, 255, 0, 255}));
 	poolTable->AddComponent(new OrbitCameraComponent());
 
 	GameObject * titleText = os->AddObject("TitleText", guVector{-45, 0, -100.0f});
@@ -63,11 +64,10 @@ int main(int argc, char **argv) {
 	gs->Initialize();
 	while(1) {
 		//Timestep
+		globalTime = diff_msec(starttime, gettime())/1000.0f;
 		float dt = 0;
-		float elapsedTime = diff_msec((gettime() / TB_TIMER_CLOCK), globalTime);
 		//Update
 		gs->AddLog(to_string(globalTime));
-		gs->AddLog(to_string(elapsedTime));
 		//Input
 		ps->Update(dt);
 		//Draw

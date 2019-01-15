@@ -15,7 +15,7 @@ public:
 	virtual void ComputeLogic(float dt);
 	//void OnDestroy()?
 	//Messaging
-	//virtual bool Receive( ComponentMessage * msg );
+	virtual bool Receive( ComponentMessage msg ) { return false;};
 
 	//Variables
 };

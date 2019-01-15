@@ -13,7 +13,7 @@ public:
 	//Functions
 	void AddComponent( Component * component );
 	//Messages
-	//virtual void Send(ComponentMessage * msg);
+	void Send(ComponentMessage msg);
 	//virtual Component * FindComponent(ComponentType type);
 	void RefreshComponentAddresses();
 	//Variables

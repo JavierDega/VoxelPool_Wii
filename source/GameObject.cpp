@@ -23,13 +23,19 @@ void GameObject::AddComponent( Component * component ){
 
 	//@Print obj address: GraphicSystem::GetInstance()->AddLog("Obj Addr: " + to_string((int)this));
 }
+void GameObject::Send(ComponentMessage msg){
+	for (u16 i = 0; i < m_components.size(); i++){
+		
+		m_components[i]->Receive(msg);
+	}
+
+
+}
 //Refresh addresses
 void GameObject::RefreshComponentAddresses(){
 	//@
 	for(u16 i = 0 ; i < m_components.size(); i++){
 		m_components[i]->m_owner = this;
 	}
-
-
 }
 

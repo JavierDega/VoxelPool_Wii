@@ -13,7 +13,7 @@ public:
 	FontComponent( std::wstring text = L"Default Text", guVector screenPos = guVector{ 0, 0, 0 }, GXColor textColor = GXColor{0, 0, 0, 255});
 	virtual ~FontComponent();
 	//Messaging
-	//virtual bool Receive( ComponentMessage * msg );
+	virtual bool Receive( ComponentMessage msg ){ return false;};
 	std::wstring m_text;
 	guVector m_screenPos;
 	GXColor m_color;

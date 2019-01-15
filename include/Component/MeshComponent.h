@@ -14,7 +14,7 @@ public:
 	MeshComponent(std::string name);
 	virtual ~MeshComponent();
 	//Messaging
-	//virtual bool Receive( ComponentMessage * msg );
+	virtual bool Receive( ComponentMessage msg ) { return false;} ;
 	bool FetchModel(std::string name);
 	
 	//Variables

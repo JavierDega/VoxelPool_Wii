@@ -17,7 +17,7 @@ public:
 	std::vector<FontComponent*> GetMenuFonts();
 	//void OnDestroy()?
 	//Messaging
-	//virtual bool Receive( ComponentMessage * msg );
+	virtual bool Receive( ComponentMessage msg ){ return false;};
 
 	//Variables
 	u16 m_option;

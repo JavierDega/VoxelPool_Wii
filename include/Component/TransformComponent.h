@@ -11,7 +11,7 @@ public:
 	TransformComponent(guVector position = guVector{ 0, 0, 0 }, guQuaternion rotation = Math::QuatIdentity, guVector scale = guVector{ 1, 1, 1 });
 	~TransformComponent();
 	//Messaging
-	//virtual bool Receive( ComponentMessage * msg);
+	virtual bool Receive( ComponentMessage msg){ return false;};
 	//Variables
 	guVector m_position;
 	guQuaternion m_rotation;
