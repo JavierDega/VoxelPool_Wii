@@ -58,7 +58,8 @@ OrbitCameraComponent.o: \
  C:/devkitPro/libogc/include/ogc/gu.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/GameObject.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitCameraComponent.h:
 
@@ -177,3 +178,5 @@ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/GameObject.h:
 C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:

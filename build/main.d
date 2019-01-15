@@ -1,8 +1,5 @@
 main.o: \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/source/main.cpp \
- C:/devkitPro/libogc/include/ogc/lwp_watchdog.h \
- C:/devkitPro/libogc/include/gctypes.h \
- C:/devkitPro/libogc/include/ogc/lwp_queue.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/System/ObjectSystem.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/System/System.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h \
@@ -11,6 +8,7 @@ main.o: \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
  C:/devkitPro/libogc/include/ogc/gu.h \
+ C:/devkitPro/libogc/include/gctypes.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
  C:/devkitPro/libogc/include/ogc/aram.h \
@@ -61,6 +59,7 @@ main.o: \
  C:/devkitPro/libogc/include/ogc/mutex.h \
  C:/devkitPro/libogc/include/ogc/system.h \
  C:/devkitPro/libogc/include/ogc/wiilaunch.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MeshComponent.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/FontComponent.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/FreeTypeGX.h \
@@ -84,13 +83,9 @@ main.o: \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/System/PadSystem.h \
  C:/devkitPro/libogc/include/ogc/pad.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/System/GraphicSystem.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitCameraComponent.h
-
-C:/devkitPro/libogc/include/ogc/lwp_watchdog.h:
-
-C:/devkitPro/libogc/include/gctypes.h:
-
-C:/devkitPro/libogc/include/ogc/lwp_queue.h:
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitCameraComponent.h \
+ C:/devkitPro/libogc/include/ogc/lwp_watchdog.h \
+ C:/devkitPro/libogc/include/ogc/lwp_queue.h
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/System/ObjectSystem.h:
 
@@ -107,6 +102,8 @@ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Trans
 C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
 
 C:/devkitPro/libogc/include/ogc/gu.h:
+
+C:/devkitPro/libogc/include/gctypes.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 
@@ -208,6 +205,8 @@ C:/devkitPro/libogc/include/ogc/system.h:
 
 C:/devkitPro/libogc/include/ogc/wiilaunch.h:
 
+C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
+
 C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MeshComponent.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/FontComponent.h:
@@ -255,3 +254,7 @@ C:/devkitPro/libogc/include/ogc/pad.h:
 C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/System/GraphicSystem.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitCameraComponent.h:
+
+C:/devkitPro/libogc/include/ogc/lwp_watchdog.h:
+
+C:/devkitPro/libogc/include/ogc/lwp_queue.h:

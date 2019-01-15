@@ -34,7 +34,7 @@ void ObjectSystem::Update( float dt )
 	//@What do here?
 }
 //Add Obj
-GameObject * ObjectSystem::AddObject(std::string name, guVector position){
+GameObject * ObjectSystem::AddObject(std::string name, guVector position, guQuaternion rotation, guVector scale ){
 	
 	//Add to array
 	bool m_reallocate = false;
@@ -43,7 +43,7 @@ GameObject * ObjectSystem::AddObject(std::string name, guVector position){
 		//This means its going to reallocate
 		m_reallocate = true;
 	}
-	m_objectList.push_back(GameObject( name, position ));
+	m_objectList.push_back(GameObject( name, position, rotation, scale ));
 
 	//Has just reallocated
 	if(m_reallocate){

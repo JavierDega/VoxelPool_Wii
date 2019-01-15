@@ -77,6 +77,7 @@ GraphicSystem.o: \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
  C:/devkitPro/libogc/include/ogc/gu.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MenuComponent.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/ControllableComponent.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h \
@@ -238,6 +239,8 @@ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Trans
 C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
 
 C:/devkitPro/libogc/include/ogc/gu.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MenuComponent.h:
 

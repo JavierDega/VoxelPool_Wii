@@ -6,6 +6,7 @@
 #include "Component/MeshComponent.h"
 #include "Component/FontComponent.h"
 #include "Component/MenuComponent.h"
+#include "Extra/Math.h"
 #include <vector>
 
 ///OBJECT FACTORY/ STORES POINTERS TO GAMEOBJECTS AND ALLOWS US TO FILTER COMPONENTS
@@ -23,7 +24,8 @@ class ObjectSystem : public System {
 	//Funcs
 	void Initialize();
 	void Update( float dt );
-	GameObject * AddObject(std::string name, guVector position);
+	GameObject * AddObject(std::string name, guVector position = guVector{ 0, 0, 0 }, guQuaternion rotation = Math::QuatIdentity,
+		guVector scale = guVector{ 1, 1, 1} );
 	void RemoveAllObjects();
 	void RemoveObject( GameObject * object);
 	std::vector< MeshComponent * > GetMeshComponentList();

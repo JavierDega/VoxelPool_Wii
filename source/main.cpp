@@ -1,8 +1,6 @@
 /*---------------------------------------------------------------------------------
 	EEEH SI
 ---------------------------------------------------------------------------------*/
-#include <time.h>
-#include <ogc/lwp_watchdog.h>
 
 #include "System/ObjectSystem.h"
 #include "System/PadSystem.h"
@@ -11,6 +9,11 @@
 #include "Component/MeshComponent.h"
 #include "Component/FontComponent.h"
 #include "Component/OrbitCameraComponent.h"
+
+#include "Extra/Math.h"
+
+#include <time.h>
+#include <ogc/lwp_watchdog.h>
 
 using namespace std;
 
@@ -49,12 +52,14 @@ int main(int argc, char **argv) {
 
 	//BUILD GAMEOBJECTS
 	//Beware of pointer becoming invalid arbitrarily(Like after adding another element to the vector)
-	GameObject * poolTable = os->AddObject("PoolTable", guVector{ 0, -20, -150.0f});
+	GameObject * poolTable = os->AddObject("PoolTable", guVector{ 0, -20, -150.0f}, Math::QuatIdentity,
+		 guVector{ 1, 1, 1 });
 	poolTable->AddComponent(new MeshComponent("PoolWIP"));
 	poolTable->AddComponent(new FontComponent(L"PoolTable", guVector{-75, -75, 0}, GXColor{0, 255, 0, 255}));
 	poolTable->AddComponent(new OrbitCameraComponent());
 
-	GameObject * titleText = os->AddObject("TitleText", guVector{-45, 0, -100.0f});
+	GameObject * titleText = os->AddObject("TitleText", guVector{-45, 0, -100.0f}, Math::QuatIdentity,
+		guVector{ 1, 1, 1 });
 	titleText->AddComponent(new MenuComponent(&ps->m_buttonsHeld, &ps->m_buttonsDown, &ps->m_buttonsUp));
 	titleText->AddComponent(new FontComponent(L"Start", guVector{ 0, 0, 0 }, GXColor{50, 50, 50, 255}));
 	titleText->AddComponent(new FontComponent(L"Options", guVector{ 0, 25, 0 }, GXColor{50, 50, 50, 255}));

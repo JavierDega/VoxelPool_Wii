@@ -297,7 +297,10 @@ void GraphicSystem::DrawMeshes(std::vector<MeshComponent * > meshes){
 		TransformComponent transform = mesh->m_owner->m_transform;
 		//Matrix Setup
 		guMtxIdentity(m_model);
+		guMtxScaleApply(m_model, m_model, transform.m_scale.x, transform.m_scale.y, transform.m_scale.z);
 		guMtxTransApply(m_model, m_model, transform.m_position.x, transform.m_position.y, transform.m_position.z);
+		c_guMtxQuat(m_model, &transform.m_rotation);
+
 		guMtxConcat(m_view, m_model, m_modelview);
 		// load the modelview matrix into matrix memory
 		GX_LoadPosMtxImm(m_modelview, GX_PNMTX0);
@@ -329,8 +332,11 @@ void GraphicSystem::DrawFonts(std::vector<FontComponent *> fonts){
 		TransformComponent transform = font->m_owner->m_transform;
 		//Matrix setup
 		guMtxIdentity(m_model);
+		//@Default scale?
 		guMtxScaleApply(m_model, m_model, 0.5f, -0.5f, 0.5f);
+		guMtxScaleApply(m_model, m_model, transform.m_scale.x, transform.m_scale.y, transform.m_scale.z );
 		guMtxTransApply(m_model, m_model, transform.m_position.x, transform.m_position.y, transform.m_position.z);
+		//c_guMtxQuat(m_model, &transform.m_rotation);
 		guMtxConcat(m_view, m_model, m_modelview);
 
 		// load the modelview matrix into matrix memory

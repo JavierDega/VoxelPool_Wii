@@ -5,8 +5,8 @@
 using namespace std;
 
 //Constructor
-GameObject::GameObject( std::string name, guVector position )
-	: m_name(name), m_transform(position)
+GameObject::GameObject( std::string name, guVector position, guQuaternion rotation, guVector scale )
+	: m_name(name), m_transform(position, rotation, scale)
 {
 
 }

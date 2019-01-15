@@ -59,6 +59,7 @@ ObjectSystem.o: \
  C:/devkitPro/libogc/include/ogc/mutex.h \
  C:/devkitPro/libogc/include/ogc/system.h \
  C:/devkitPro/libogc/include/ogc/wiilaunch.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MeshComponent.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/FontComponent.h \
  C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/FreeTypeGX.h \
@@ -198,6 +199,8 @@ C:/devkitPro/libogc/include/ogc/mutex.h:
 C:/devkitPro/libogc/include/ogc/system.h:
 
 C:/devkitPro/libogc/include/ogc/wiilaunch.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MeshComponent.h:
 

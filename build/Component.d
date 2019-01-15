@@ -56,7 +56,8 @@ Component.o: \
  C:/devkitPro/libogc/include/ogc/usbstorage.h \
  C:/devkitPro/libogc/include/ogc/mutex.h \
  C:/devkitPro/libogc/include/ogc/system.h \
- C:/devkitPro/libogc/include/ogc/wiilaunch.h
+ C:/devkitPro/libogc/include/ogc/wiilaunch.h \
+ C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h
 
 C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h:
 
@@ -171,3 +172,5 @@ C:/devkitPro/libogc/include/ogc/mutex.h:
 C:/devkitPro/libogc/include/ogc/system.h:
 
 C:/devkitPro/libogc/include/ogc/wiilaunch.h:
+
+C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:

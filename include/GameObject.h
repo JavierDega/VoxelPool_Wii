@@ -1,14 +1,15 @@
 #ifndef GAMEOBJECT_H_
 #define GAMEOBJECT_H_
 
-
 #include "Component/Component.h"
 #include "Component/TransformComponent.h"
+#include "Extra/Math.h"
 #include <string>
 #include <vector>
 class GameObject{
 public:
-	GameObject(std::string name = "Default name" , guVector position = guVector { 0, 0, 0 });
+	GameObject(std::string name = "Default name" , guVector position = guVector { 0, 0, 0 }, guQuaternion rotation = Math::QuatIdentity,
+			guVector scale = guVector{ 1, 1, 1 });
 	~GameObject();
 	//Functions
 	void AddComponent( Component * component );

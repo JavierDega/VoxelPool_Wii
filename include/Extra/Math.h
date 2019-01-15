@@ -8,6 +8,8 @@
 namespace Math{
 	//Vector
 	guVector operator * (guVector v, float f);
+	guVector operator * (float f, guVector v);
+
 	guVector operator + (guVector v, guVector v2);
 
 	guVector EulerToDirection (guVector eulerAngle);
@@ -18,7 +20,7 @@ namespace Math{
 
 
 	//Quaternion
-	const guQuaternion QuatIdentity { 0, 0, 0, 0 };
+	const guQuaternion QuatIdentity { 0, 0, 0, 1 };
 
 	guQuaternion operator*( guQuaternion lhs, guQuaternion rhs);
 

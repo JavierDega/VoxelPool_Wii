@@ -5,6 +5,10 @@ namespace Math{
 	guVector operator * (guVector v, float f){
 		return guVector{ v.x*f, v.y*f, v.z*f };
 	}
+	guVector operator * (float f, guVector v) 
+	{
+		return v*f;
+	}
 
 	guVector operator + (guVector v, guVector v2){
 		return guVector{ v.x + v2.x, v.y + v2.y, v.z + v2.z};
@@ -40,6 +44,7 @@ namespace Math{
 	}
 
 	//Quaternion
+	//@Duplicated
 	guQuaternion operator*( guQuaternion q, guQuaternion q2){
 		//RS = (SwRw – Sv· Rv, SwRv + RwSv + Rv X Sv)
 		guQuaternion rquat;
@@ -69,5 +74,12 @@ namespace Math{
 		quat.y = axis.y*sin(halfAngle);
 		quat.z = axis.z*sin(halfAngle);
 		return quat;
+	}
+
+	//Inverse unit quaternion
+	//@Duplicated
+	guQuaternion QuatInverse( guQuaternion q){
+
+		return guQuaternion { q.w, -q.x, -q.y, -q.z };
 	}	
 }
