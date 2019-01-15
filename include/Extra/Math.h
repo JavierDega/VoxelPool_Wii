@@ -8,8 +8,6 @@
 namespace Math{
 	//Vector
 	guVector operator * (guVector v, float f);
-	guVector operator * (float f, guVector v);
-
 	guVector operator + (guVector v, guVector v2);
 
 	guVector EulerToDirection (guVector eulerAngle);

@@ -25,7 +25,7 @@ GraphicSystem * GraphicSystem::GetInstance()
 //Constructor
 GraphicSystem::GraphicSystem() {
 	///Init vars
-	m_background = {255, 255, 255, 0};
+	m_background = {100, 100, 100, 0};
 	m_cam = {0.0F, 0.0F, 0.0F};
 	m_up = {0.0F, 1.0F, 0.0F};
 	m_look = {0.0F, 0.0F, -1.0F};

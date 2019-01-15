@@ -17,8 +17,9 @@ void OrbitCameraComponent::OnStart(){
 }
 void OrbitCameraComponent::ComputeLogic(float dt){
 	//Orbit around camera
-	m_owner->m_transform.m_position.x = 10*cosf(globalTime);
-	m_owner->m_transform.m_position.y = 10*sinf(globalTime);
+	m_owner->m_transform.m_position.x = 100*cosf(globalTime);
+	//m_owner->m_transform.m_position.y = 10*sinf(globalTime);
+	m_owner->m_transform.m_position.z = 100*sinf(globalTime);
 	
 
 }

@@ -36,8 +36,10 @@ int main(int argc, char **argv) {
 	u32 diff_usec(u64 start,u64 end);
 	u32 diff_nsec(u64 start,u64 end);
 	*/
-	//__lwp_watchdog_init();
+	__lwp_watchdog_init();
+	//settime(0);
 	u64 starttime = gettime();
+
 	//ObjectFactory
 	ObjectSystem * os = ObjectSystem::GetInstance();
 	//Input
@@ -54,9 +56,9 @@ int main(int argc, char **argv) {
 
 	GameObject * titleText = os->AddObject("TitleText", guVector{-45, 0, -100.0f});
 	titleText->AddComponent(new MenuComponent(&ps->m_buttonsHeld, &ps->m_buttonsDown, &ps->m_buttonsUp));
-	titleText->AddComponent(new FontComponent(L"Start", guVector{ 0, 0, 0 }, GXColor{100, 100, 100, 255}));
-	titleText->AddComponent(new FontComponent(L"Options", guVector{ 0, 25, 0 }, GXColor{100, 100, 100, 255}));
-	titleText->AddComponent(new FontComponent(L"Quit", guVector{ 0, 50, 0 }, GXColor{100, 100, 100, 255}));
+	titleText->AddComponent(new FontComponent(L"Start", guVector{ 0, 0, 0 }, GXColor{50, 50, 50, 255}));
+	titleText->AddComponent(new FontComponent(L"Options", guVector{ 0, 25, 0 }, GXColor{50, 50, 50, 255}));
+	titleText->AddComponent(new FontComponent(L"Quit", guVector{ 0, 50, 0 }, GXColor{50, 50, 50, 255}));
 
 	//INIT SYSTEMS (CALL CERTAIN SCENE START EVENTS)
 	os->Initialize();
@@ -64,10 +66,12 @@ int main(int argc, char **argv) {
 	gs->Initialize();
 	while(1) {
 		//Timestep
+		float prevTime = globalTime;
 		globalTime = diff_msec(starttime, gettime())/1000.0f;
-		float dt = 0;
+		float dt = globalTime-prevTime;
 		//Update
 		gs->AddLog(to_string(globalTime));
+		gs->AddLog(to_string(dt));
 		//Input
 		ps->Update(dt);
 		//Draw

@@ -5,10 +5,6 @@ namespace Math{
 	guVector operator * (guVector v, float f){
 		return guVector{ v.x*f, v.y*f, v.z*f };
 	}
-	guVector operator * (float f, guVector v) 
-	{
-		return v*f;
-	}
 
 	guVector operator + (guVector v, guVector v2){
 		return guVector{ v.x + v2.x, v.y + v2.y, v.z + v2.z};
