@@ -50,33 +50,17 @@ int main(int argc, char **argv) {
 	//Graphics (Does WaitForVsync() stuff so maybe initialized last?)
 	GraphicSystem * gs = GraphicSystem::GetInstance();
 
-	//BUILD GAMEOBJECTS
-	//Beware of pointer becoming invalid arbitrarily(Like after adding another element to the vector)
-	GameObject * poolTable = os->AddObject("PoolTable", guVector{ 0, -20, -150.0f}, Math::QuatIdentity,
-		 guVector{ 1, 1, 1 });
-	poolTable->AddComponent(new MeshComponent("PoolWIP"));
-	poolTable->AddComponent(new FontComponent(L"PoolTable", guVector{-75, -75, 0}, GXColor{0, 255, 0, 255}));
-	poolTable->AddComponent(new OrbitCameraComponent());
+	//Load Main Menu
+	os->LoadMenu(0);
 
-	GameObject * titleText = os->AddObject("TitleText", guVector{-45, 0, -100.0f}, Math::QuatIdentity,
-		guVector{ 1, 1, 1 });
-	titleText->AddComponent(new MenuComponent(&ps->m_buttonsHeld, &ps->m_buttonsDown, &ps->m_buttonsUp));
-	titleText->AddComponent(new FontComponent(L"Start", guVector{ 0, 0, 0 }, GXColor{50, 50, 50, 255}));
-	titleText->AddComponent(new FontComponent(L"Options", guVector{ 0, 25, 0 }, GXColor{50, 50, 50, 255}));
-	titleText->AddComponent(new FontComponent(L"Quit", guVector{ 0, 50, 0 }, GXColor{50, 50, 50, 255}));
-
-	//INIT SYSTEMS (CALL CERTAIN SCENE START EVENTS)
-	os->Initialize();
-	ps->Initialize();
-	gs->Initialize();
 	while(1) {
 		//Timestep
 		float prevTime = globalTime;
 		globalTime = diff_msec(starttime, gettime())/1000.0f;
 		float dt = globalTime-prevTime;
 		//Update
-		gs->AddLog(to_string(globalTime));
-		gs->AddLog(to_string(dt));
+		//gs->AddLog(to_string(globalTime));
+		//gs->AddLog(to_string(dt));
 		//Input
 		ps->Update(dt);
 		//Draw

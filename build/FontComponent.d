@@ -1,8 +1,8 @@
 FontComponent.o: \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/source/FontComponent.cpp \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/FontComponent.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/FreeTypeGX.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/source/FontComponent.cpp \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/FontComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/FreeTypeGX.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
  C:/devkitPro/libogc/include/gctypes.h \
@@ -67,14 +67,14 @@ FontComponent.o: \
  C:/devkitPro/portlibs/ppc/include/freetype/ftmoderr.h \
  C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h \
  C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Metaphrasis.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/build/rursus_compact_mono_ttf.h
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Metaphrasis.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/rursus_compact_mono_ttf.h
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/FontComponent.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/FontComponent.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/FreeTypeGX.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/FreeTypeGX.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 
@@ -204,6 +204,6 @@ C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h:
 
 C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Metaphrasis.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Metaphrasis.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/build/rursus_compact_mono_ttf.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/rursus_compact_mono_ttf.h:

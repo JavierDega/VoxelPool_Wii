@@ -1,5 +1,8 @@
 #include "System/ObjectSystem.h"
 #include "System/GraphicSystem.h"
+#include "System/PadSystem.h"
+#include "Component/OrbitCameraComponent.h"
+#include "GameObject.h"
 
 using namespace std;
 
@@ -32,6 +35,54 @@ void ObjectSystem::Initialize()
 void ObjectSystem::Update( float dt )
 {
 	//@What do here?
+}
+//Load main menu
+void ObjectSystem::LoadMenu(int sceneIndex){
+
+	//Input
+	PadSystem * ps = PadSystem::GetInstance();
+	//Graphics (Does WaitForVsync() stuff so maybe initialized last?)
+	GraphicSystem * gs = GraphicSystem::GetInstance();
+
+	//BUILD GAMEOBJECTS
+	switch (sceneIndex){
+		//@MENU
+		case 0:
+		{
+			//Beware of pointer becoming invalid arbitrarily(Like after adding another element to the vector)
+			GameObject * poolTable = AddObject( "PoolTable", guVector{ 0, -20, -150.0f}, Math::QuatIdentity, guVector{ 1, 1, 1 } );
+			poolTable->AddComponent(new MeshComponent("PoolWIP"));
+			poolTable->AddComponent(new FontComponent(L"PoolTable", guVector{-75, -75, 0}, GXColor{0, 255, 0, 255}, 0.5f));
+			poolTable->AddComponent(new OrbitCameraComponent());
+
+			GameObject * oldGuy = AddObject("FlyingOldMan", guVector { 10, 0, -100.f }, Math::QuatIdentity, guVector { 1, 1, 1 } );
+			oldGuy->AddComponent(new MeshComponent("chr_old"));
+			oldGuy->AddComponent(new FontComponent(L"Waaah!", guVector{-50, -50, 0}, GXColor{255, 0, 0, 255}, 0.25));
+			oldGuy->AddComponent(new OrbitCameraComponent( guVector { 1, 0, 0 }));
+
+			GameObject * titleText = AddObject("TitleText", guVector{-45, 0, -100.0f}, Math::QuatIdentity,
+				guVector{ 1, 1, 1 });
+			titleText->AddComponent(new MenuComponent(&ps->m_buttonsHeld, &ps->m_buttonsDown, &ps->m_buttonsUp));
+			titleText->AddComponent(new FontComponent(L"Start", guVector{ 0, 0, 0 }, GXColor{50, 50, 50, 255}, 0.5f));
+			titleText->AddComponent(new FontComponent(L"Options", guVector{ 0, 25, 0 }, GXColor{50, 50, 50, 255}, 0.5f));
+			titleText->AddComponent(new FontComponent(L"Quit", guVector{ 0, 50, 0 }, GXColor{50, 50, 50, 255}, 0.5f));
+			break;
+		}
+		case 1:
+		{
+			break;
+		}
+		default:
+		{
+
+		}
+		break;
+	}
+
+	//INIT SYSTEMS (CALL CERTAIN SCENE START EVENTS)
+	Initialize();
+	ps->Initialize();
+	gs->Initialize();
 }
 //Add Obj
 GameObject * ObjectSystem::AddObject(std::string name, guVector position, guQuaternion rotation, guVector scale ){

@@ -6,7 +6,7 @@
 MeshComponent::MeshComponent(std::string name)
 {
 	//Copy contents from GSystem
-	if(!FetchModel(name))exit(0);
+	if(!FetchModel(name))GraphicSystem::GetInstance()->AddLog("Couldn't find model!: " + name);
 }
 //Destructor
 MeshComponent::~MeshComponent(){

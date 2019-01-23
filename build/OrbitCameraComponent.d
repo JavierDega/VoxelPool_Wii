@@ -1,8 +1,8 @@
 OrbitCameraComponent.o: \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/source/OrbitCameraComponent.cpp \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitCameraComponent.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/source/OrbitCameraComponent.cpp \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitCameraComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
  C:/devkitPro/libogc/include/gctypes.h \
@@ -54,18 +54,18 @@ OrbitCameraComponent.o: \
  C:/devkitPro/libogc/include/ogc/mutex.h \
  C:/devkitPro/libogc/include/ogc/system.h \
  C:/devkitPro/libogc/include/ogc/wiilaunch.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
  C:/devkitPro/libogc/include/ogc/gu.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/GameObject.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/GameObject.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitCameraComponent.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitCameraComponent.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 
@@ -169,14 +169,14 @@ C:/devkitPro/libogc/include/ogc/system.h:
 
 C:/devkitPro/libogc/include/ogc/wiilaunch.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
 
 C:/devkitPro/libogc/include/ogc/gu.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/GameObject.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/GameObject.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:

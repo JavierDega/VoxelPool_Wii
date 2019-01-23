@@ -1,9 +1,9 @@
 GraphicSystem.o: \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/source/GraphicSystem.cpp \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/System/GraphicSystem.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/System/System.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MeshComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/source/GraphicSystem.cpp \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/GraphicSystem.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/System.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MeshComponent.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
  C:/devkitPro/libogc/include/gctypes.h \
@@ -55,8 +55,8 @@ GraphicSystem.o: \
  C:/devkitPro/libogc/include/ogc/mutex.h \
  C:/devkitPro/libogc/include/ogc/system.h \
  C:/devkitPro/libogc/include/ogc/wiilaunch.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/FontComponent.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/FreeTypeGX.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/FontComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/FreeTypeGX.h \
  C:/devkitPro/portlibs/ppc/include/ft2build.h \
  C:/devkitPro/portlibs/ppc/include/freetype/config/ftheader.h \
  C:/devkitPro/portlibs/ppc/include/freetype/freetype.h \
@@ -70,29 +70,33 @@ GraphicSystem.o: \
  C:/devkitPro/portlibs/ppc/include/freetype/ftmoderr.h \
  C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h \
  C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Metaphrasis.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/System/ObjectSystem.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/GameObject.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Metaphrasis.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/ObjectSystem.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/GameObject.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
  C:/devkitPro/libogc/include/ogc/gu.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MenuComponent.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/ControllableComponent.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/build/PoolWIP_obj.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/build/palette_tpl.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/build/palette.h \
- C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/build/rursus_compact_mono_ttf.h
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MenuComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/ControllableComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/PoolWIP_obj.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pool_ball_white_obj.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pool_ball_red_obj.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pool_ball_blue_obj.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/chr_old_obj.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/palette_tpl.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/palette.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/rursus_compact_mono_ttf.h
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/System/GraphicSystem.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/GraphicSystem.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/System/System.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/System.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MeshComponent.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MeshComponent.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 
@@ -196,9 +200,9 @@ C:/devkitPro/libogc/include/ogc/system.h:
 
 C:/devkitPro/libogc/include/ogc/wiilaunch.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/FontComponent.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/FontComponent.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/FreeTypeGX.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/FreeTypeGX.h:
 
 C:/devkitPro/portlibs/ppc/include/ft2build.h:
 
@@ -226,32 +230,40 @@ C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h:
 
 C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Metaphrasis.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Metaphrasis.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/System/ObjectSystem.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/ObjectSystem.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/GameObject.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/GameObject.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
 
 C:/devkitPro/libogc/include/ogc/gu.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MenuComponent.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MenuComponent.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/ControllableComponent.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/ControllableComponent.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/build/PoolWIP_obj.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/PoolWIP_obj.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/build/palette_tpl.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pool_ball_white_obj.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/build/palette.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pool_ball_red_obj.h:
 
-C:/Users/javie/OneDrive/Documents/CT6COPRE/VoxelPool_Wii/build/rursus_compact_mono_ttf.h:
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pool_ball_blue_obj.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/chr_old_obj.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/palette_tpl.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/palette.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/rursus_compact_mono_ttf.h:

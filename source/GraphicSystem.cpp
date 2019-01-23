@@ -4,6 +4,10 @@
 #include <stdio.h>
 
 #include "PoolWIP_obj.h"
+#include "pool_ball_white_obj.h"
+#include "pool_ball_red_obj.h"
+#include "pool_ball_blue_obj.h"
+#include "chr_old_obj.h"
 #include "palette_tpl.h"
 #include "palette.h"
 #include "rursus_compact_mono_ttf.h"	// Include the compiled font.
@@ -48,6 +52,10 @@ GraphicSystem::GraphicSystem() {
 
 	//MODEL PARSE(Need to do before creating MeshComponents)
 	if(!LoadMeshFromObj("PoolWIP", (void *)PoolWIP_obj, PoolWIP_obj_size))exit(0);
+	if(!LoadMeshFromObj("pool_ball_white", (void *)pool_ball_white_obj, pool_ball_white_obj_size))exit(0);
+	if(!LoadMeshFromObj("pool_ball_red", (void *)pool_ball_red_obj, pool_ball_red_obj_size))exit(0);
+	if(!LoadMeshFromObj("pool_ball_blue", (void *)pool_ball_blue_obj, pool_ball_blue_obj_size))exit(0);
+	if(!LoadMeshFromObj("chr_old", (void *)chr_old_obj, chr_old_obj_size))exit(0);
 
 	//Set default logs
 	std::wstring log = L"Default string log";
@@ -332,8 +340,9 @@ void GraphicSystem::DrawFonts(std::vector<FontComponent *> fonts){
 		TransformComponent transform = font->m_owner->m_transform;
 		//Matrix setup
 		guMtxIdentity(m_model);
+
 		//@Default scale?
-		guMtxScaleApply(m_model, m_model, 0.5f, -0.5f, 0.5f);
+		guMtxScaleApply(m_model, m_model, font->m_offsetScale, -font->m_offsetScale, font->m_offsetScale);
 		guMtxScaleApply(m_model, m_model, transform.m_scale.x, transform.m_scale.y, transform.m_scale.z );
 		guMtxTransApply(m_model, m_model, transform.m_position.x, transform.m_position.y, transform.m_position.z);
 		//c_guMtxQuat(m_model, &transform.m_rotation);

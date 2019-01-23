@@ -21,9 +21,13 @@ class ObjectSystem : public System {
 	~ObjectSystem();
 	//Singleton
 	static ObjectSystem * GetInstance();	
-	//Funcs
+	
+	///Functions
+	//Events
 	void Initialize();
 	void Update( float dt );
+	//Utility
+	void LoadMenu(int sceneIndex);
 	GameObject * AddObject(std::string name, guVector position = guVector{ 0, 0, 0 }, guQuaternion rotation = Math::QuatIdentity,
 		guVector scale = guVector{ 1, 1, 1} );
 	void RemoveAllObjects();
