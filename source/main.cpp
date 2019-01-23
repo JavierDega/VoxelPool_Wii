@@ -29,16 +29,6 @@ float globalTime;
  */
 int main(int argc, char **argv) {
 	//DECLARE SYSTEMS
-	//Time
-	/*
-	extern u32 gettick(void);
-	extern u64 gettime(void);
-	extern void settime(u64);
-	u32 diff_sec(u64 start,u64 end);
-	u32 diff_msec(u64 start,u64 end);
-	u32 diff_usec(u64 start,u64 end);
-	u32 diff_nsec(u64 start,u64 end);
-	*/
 	__lwp_watchdog_init();
 	//settime(0);
 	u64 starttime = gettime();
@@ -51,7 +41,7 @@ int main(int argc, char **argv) {
 	GraphicSystem * gs = GraphicSystem::GetInstance();
 
 	//Load Main Menu
-	os->LoadMenu(0);
+	os->LoadScene(0);
 
 	while(1) {
 		//Timestep
@@ -60,7 +50,7 @@ int main(int argc, char **argv) {
 		float dt = globalTime-prevTime;
 		//Update
 		//gs->AddLog(to_string(globalTime));
-		//gs->AddLog(to_string(dt));
+		gs->AddLog(to_string(1/dt));
 		//Input
 		ps->Update(dt);
 		//Draw

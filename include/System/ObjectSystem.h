@@ -27,11 +27,11 @@ class ObjectSystem : public System {
 	void Initialize();
 	void Update( float dt );
 	//Utility
-	void LoadMenu(int sceneIndex);
+	void LoadScene(int sceneIndex);
 	GameObject * AddObject(std::string name, guVector position = guVector{ 0, 0, 0 }, guQuaternion rotation = Math::QuatIdentity,
-		guVector scale = guVector{ 1, 1, 1} );
+		guVector scale = guVector{ 1, 1, 1 } );
 	void RemoveAllObjects();
-	void RemoveObject( GameObject * object);
+	void RemoveObject( GameObject * object );
 	std::vector< MeshComponent * > GetMeshComponentList();
 	std::vector< FontComponent * > GetFontComponentList();
 	std::vector< LogicComponent * > GetLogicComponentList();

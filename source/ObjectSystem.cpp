@@ -37,7 +37,7 @@ void ObjectSystem::Update( float dt )
 	//@What do here?
 }
 //Load main menu
-void ObjectSystem::LoadMenu(int sceneIndex){
+void ObjectSystem::LoadScene(int sceneIndex){
 
 	//Input
 	PadSystem * ps = PadSystem::GetInstance();
@@ -50,22 +50,36 @@ void ObjectSystem::LoadMenu(int sceneIndex){
 		case 0:
 		{
 			//Beware of pointer becoming invalid arbitrarily(Like after adding another element to the vector)
-			GameObject * poolTable = AddObject( "PoolTable", guVector{ 0, -20, -150.0f}, Math::QuatIdentity, guVector{ 1, 1, 1 } );
-			poolTable->AddComponent(new MeshComponent("PoolWIP"));
-			poolTable->AddComponent(new FontComponent(L"PoolTable", guVector{-75, -75, 0}, GXColor{0, 255, 0, 255}, 0.5f));
-			poolTable->AddComponent(new OrbitCameraComponent());
+			GameObject * gameTitle = AddObject("GameTitle", guVector{ 0, -10, -140.f}, Math::QuatIdentity, guVector { 0.5f, 0.5f, 0.5f } );
+			gameTitle->AddComponent(new FontComponent(L"Voxel Pool Wii", guVector{ -100, 0, 0 }, GXColor{255, 255, 255, 255}));
+			gameTitle->AddComponent(new OrbitCameraComponent( guVector { 1, 0, 0 }, guVector { 0, 0, 0 }, 0.07f ));
 
-			GameObject * oldGuy = AddObject("FlyingOldMan", guVector { 10, 0, -100.f }, Math::QuatIdentity, guVector { 1, 1, 1 } );
+			GameObject * oldGuy = AddObject( "FlyingOldMan", guVector{ 0, -20, 150.0f }, Math::QuatIdentity, guVector{ 2, 2, 2 } );
 			oldGuy->AddComponent(new MeshComponent("chr_old"));
-			oldGuy->AddComponent(new FontComponent(L"Waaah!", guVector{-50, -50, 0}, GXColor{255, 0, 0, 255}, 0.25));
-			oldGuy->AddComponent(new OrbitCameraComponent( guVector { 1, 0, 0 }));
+			oldGuy->AddComponent(new FontComponent(L"Waaah!", guVector{-50, -65, 0}, GXColor{ 255, 170, 0, 255 }, 0.20f));
+			oldGuy->AddComponent(new OrbitCameraComponent( guVector { 0, 1, 0 }, guVector { 0, 0, 1 }, .75f, 0.8f ));
 
+			GameObject * poolTable = AddObject("PoolTable", guVector{ -10, -150, -150.f}, Math::QuatIdentity, guVector { 1, 1, 1 } );
+			poolTable->AddComponent(new MeshComponent("PoolWIP"));
+			poolTable->AddComponent(new FontComponent(L"What IS pool?", guVector{-75, -90, 0}, GXColor{255, 255, 0, 255}, 0.5f));
+			poolTable->AddComponent(new OrbitCameraComponent( guVector { 1, 0, 0 }, guVector { 0, 0, 1}, 0.15f, 1.0f ));
+
+			GameObject * interestingQuote = AddObject("Quote", guVector{ 100.f, -150.f, -300.f }, Math::QuatIdentity,
+			 guVector { 0.5f, 0.5f, 0.5f } );
+			interestingQuote->AddComponent(new FontComponent(L"Who am I?", guVector{ 0, 0, 0 },
+			 GXColor{255, 255, 0, 255}));
+			interestingQuote->AddComponent(new FontComponent(L"For I have no model", guVector{ 0, 25, 0 },
+			 GXColor{255, 255, 0, 255}));
+			interestingQuote->AddComponent(new OrbitCameraComponent( guVector { -1, -1, 0 }, guVector { 0, 0, 0 }, 0.1f, 0.0f ));
+
+
+			//MENU
 			GameObject * titleText = AddObject("TitleText", guVector{-45, 0, -100.0f}, Math::QuatIdentity,
 				guVector{ 1, 1, 1 });
 			titleText->AddComponent(new MenuComponent(&ps->m_buttonsHeld, &ps->m_buttonsDown, &ps->m_buttonsUp));
-			titleText->AddComponent(new FontComponent(L"Start", guVector{ 0, 0, 0 }, GXColor{50, 50, 50, 255}, 0.5f));
-			titleText->AddComponent(new FontComponent(L"Options", guVector{ 0, 25, 0 }, GXColor{50, 50, 50, 255}, 0.5f));
-			titleText->AddComponent(new FontComponent(L"Quit", guVector{ 0, 50, 0 }, GXColor{50, 50, 50, 255}, 0.5f));
+			titleText->AddComponent(new FontComponent(L"Start", guVector{ 0, 0, 0 }, GXColor{255, 255, 255, 255}, 0.5f));
+			titleText->AddComponent(new FontComponent(L"Options", guVector{ 0, 25, 0 }, GXColor{255, 255, 255, 255}, 0.5f));
+			titleText->AddComponent(new FontComponent(L"Quit", guVector{ 0, 50, 0 }, GXColor{255, 255, 255, 255}, 0.5f));
 			break;
 		}
 		case 1:

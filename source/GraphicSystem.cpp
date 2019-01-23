@@ -1,6 +1,7 @@
 #include "System/GraphicSystem.h"
 #include "System/ObjectSystem.h"
 #include "Component/FontComponent.h"
+#include "ogc/gu.h"
 #include <stdio.h>
 
 #include "PoolWIP_obj.h"
@@ -29,13 +30,13 @@ GraphicSystem * GraphicSystem::GetInstance()
 //Constructor
 GraphicSystem::GraphicSystem() {
 	///Init vars
-	m_background = {100, 100, 100, 0};
+	m_background = {30, 30, 30, 0};
 	m_cam = {0.0F, 0.0F, 0.0F};
 	m_up = {0.0F, 1.0F, 0.0F};
 	m_look = {0.0F, 0.0F, -1.0F};
 
 	m_lightColor[0] =  { 255, 255, 255, 255 }; // Light color 1
-    m_lightColor[1] = { 180, 180, 180, 255 }; // Ambient 1
+    m_lightColor[1] = { 150, 150, 150, 255 }; // Ambient 1
 	
 	videoFrameBufferIndex = 0;
 
@@ -306,9 +307,10 @@ void GraphicSystem::DrawMeshes(std::vector<MeshComponent * > meshes){
 		//Matrix Setup
 		guMtxIdentity(m_model);
 		guMtxScaleApply(m_model, m_model, transform.m_scale.x, transform.m_scale.y, transform.m_scale.z);
+		Mtx tempRotMtx;
+		c_guMtxQuat(tempRotMtx, &transform.m_rotation);
+		guMtxConcat(m_model, tempRotMtx, m_model);
 		guMtxTransApply(m_model, m_model, transform.m_position.x, transform.m_position.y, transform.m_position.z);
-		c_guMtxQuat(m_model, &transform.m_rotation);
-
 		guMtxConcat(m_view, m_model, m_modelview);
 		// load the modelview matrix into matrix memory
 		GX_LoadPosMtxImm(m_modelview, GX_PNMTX0);

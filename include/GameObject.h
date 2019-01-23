@@ -17,6 +17,7 @@ public:
 	void Send(ComponentMessage msg);
 	//virtual Component * FindComponent(ComponentType type);
 	void RefreshComponentAddresses();
+	
 	//Variables
 	std::string m_name;
 	//All gameobjects have a transform component

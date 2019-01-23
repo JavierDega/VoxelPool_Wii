@@ -12,5 +12,4 @@ TransformComponent::~TransformComponent(){
 	m_position.x = 0;
 	m_position.y = 0;
 	m_position.z = 0;
-
 }

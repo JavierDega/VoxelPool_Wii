@@ -79,7 +79,6 @@ namespace Math{
 	//Inverse unit quaternion
 	//@Duplicated
 	guQuaternion QuatInverse( guQuaternion q){
-
-		return guQuaternion { q.w, -q.x, -q.y, -q.z };
+		return guQuaternion { -q.x, -q.y, -q.z, q.w };
 	}	
 }
