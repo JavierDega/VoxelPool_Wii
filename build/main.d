@@ -82,7 +82,6 @@ main.o: C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/source/main.cpp \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/PadSystem.h \
  C:/devkitPro/libogc/include/ogc/pad.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/GraphicSystem.h \
- C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitCameraComponent.h \
  C:/devkitPro/libogc/include/ogc/lwp_watchdog.h \
  C:/devkitPro/libogc/include/ogc/lwp_queue.h
 
@@ -251,8 +250,6 @@ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/PadSystem.h:
 C:/devkitPro/libogc/include/ogc/pad.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/GraphicSystem.h:
-
-C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitCameraComponent.h:
 
 C:/devkitPro/libogc/include/ogc/lwp_watchdog.h:
 

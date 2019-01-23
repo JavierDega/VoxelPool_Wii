@@ -1,7 +1,7 @@
 #include "System/ObjectSystem.h"
 #include "System/GraphicSystem.h"
 #include "System/PadSystem.h"
-#include "Component/OrbitCameraComponent.h"
+#include "Component/OrbitComponent.h"
 #include "GameObject.h"
 
 using namespace std;
@@ -49,33 +49,51 @@ void ObjectSystem::LoadScene(int sceneIndex){
 		//@MENU
 		case 0:
 		{
-			//Beware of pointer becoming invalid arbitrarily(Like after adding another element to the vector)
-			GameObject * gameTitle = AddObject("GameTitle", guVector{ 0, -10, -140.f}, Math::QuatIdentity, guVector { 0.5f, 0.5f, 0.5f } );
-			gameTitle->AddComponent(new FontComponent(L"Voxel Pool Wii", guVector{ -100, 0, 0 }, GXColor{255, 255, 255, 255}));
-			gameTitle->AddComponent(new OrbitCameraComponent( guVector { 1, 0, 0 }, guVector { 0, 0, 0 }, 0.07f ));
 
-			GameObject * oldGuy = AddObject( "FlyingOldMan", guVector{ 0, -20, 150.0f }, Math::QuatIdentity, guVector{ 2, 2, 2 } );
-			oldGuy->AddComponent(new MeshComponent("chr_old"));
-			oldGuy->AddComponent(new FontComponent(L"Waaah!", guVector{-50, -65, 0}, GXColor{ 255, 170, 0, 255 }, 0.20f));
-			oldGuy->AddComponent(new OrbitCameraComponent( guVector { 0, 1, 0 }, guVector { 0, 0, 1 }, .75f, 0.8f ));
-
-			GameObject * poolTable = AddObject("PoolTable", guVector{ -10, -150, -150.f}, Math::QuatIdentity, guVector { 1, 1, 1 } );
-			poolTable->AddComponent(new MeshComponent("PoolWIP"));
-			poolTable->AddComponent(new FontComponent(L"What IS pool?", guVector{-75, -90, 0}, GXColor{255, 255, 0, 255}, 0.5f));
-			poolTable->AddComponent(new OrbitCameraComponent( guVector { 1, 0, 0 }, guVector { 0, 0, 1}, 0.15f, 1.0f ));
-
+			//CRAP
 			GameObject * interestingQuote = AddObject("Quote", guVector{ 100.f, -150.f, -300.f }, Math::QuatIdentity,
 			 guVector { 0.5f, 0.5f, 0.5f } );
 			interestingQuote->AddComponent(new FontComponent(L"Who am I?", guVector{ 0, 0, 0 },
 			 GXColor{255, 255, 0, 255}));
 			interestingQuote->AddComponent(new FontComponent(L"For I have no model", guVector{ 0, 25, 0 },
 			 GXColor{255, 255, 0, 255}));
-			interestingQuote->AddComponent(new OrbitCameraComponent( guVector { -1, -1, 0 }, guVector { 0, 0, 0 }, 0.1f, 0.0f ));
+			interestingQuote->AddComponent(new OrbitComponent( guVector { 0, 0, 0 }, guVector { -1, -1, 0 }, guVector { 0, 0, 0 }, 0.1f, 0.0f ));
 
+			GameObject * poolTable = AddObject("PoolTable", guVector{ -10, -150, -150.f}, Math::QuatIdentity, guVector { 1, 1, 1 } );
+			poolTable->AddComponent(new MeshComponent("PoolWIP"));
+			poolTable->AddComponent(new FontComponent(L"What IS pool?", guVector{-75, -90, 0}, GXColor{255, 255, 0, 255}, 0.5f));
+			poolTable->AddComponent(new OrbitComponent( guVector { 0, 0, 0 }, guVector { 1, 0, 0 }, guVector { 0, 0, 1}, 0.15f, 1.0f ));
 
+			GameObject * oldGuy = AddObject( "FlyingOldMan", guVector{ 0, -20, 150.0f }, Math::QuatIdentity, guVector{ 2, 2, 2 } );
+			oldGuy->AddComponent(new MeshComponent("chr_old"));
+			oldGuy->AddComponent(new FontComponent(L"Waaah!", guVector{-50, -65, 0}, GXColor{ 255, 170, 0, 255 }, 0.20f));
+			oldGuy->AddComponent(new OrbitComponent( guVector { 0, 0, 0 }, guVector { 0, 1, 0 }, guVector { 0, 0, 1 }, .75f, 0.8f ));
+
+			GameObject * gameTitle = AddObject("GameTitle", guVector{ 0, -10, -140.f}, Math::QuatIdentity, guVector { 0.5f, 0.5f, 0.5f } );
+			gameTitle->AddComponent(new FontComponent(L"Voxel Pool Wii", guVector{ -100, 0, 0 }, GXColor{255, 255, 255, 255}));
+			gameTitle->AddComponent(new OrbitComponent( guVector { 0, 0, 0 }, guVector { 1, 0, 0 }, guVector { 0, 0, 0 }, 0.07f ));
+
+			//MESHES
+			GameObject * ball = AddObject( "ball1", guVector { 0, 0, 100 }, Math::QuatIdentity, guVector{ 1, 1, 1} );
+			ball->AddComponent( new MeshComponent( "pool_ball_white" ));
+			ball->AddComponent( new OrbitComponent( guVector { 0, 0, 0 }, guVector { 0.4, 0.9, 0 }, guVector{ 0, 1, 0 }, 0.25f ));
+
+			GameObject * ball2 = AddObject( "ball2", guVector { 0, -20, 80 }, Math::QuatIdentity, guVector{ 1, 1, 1 } );
+			ball2->AddComponent( new MeshComponent( "pool_ball_red" ));
+			ball2->AddComponent( new OrbitComponent( guVector { 0, 0, 0 }, guVector { 0.9, 0.4, 0 }, guVector{ 1, 0, 0 }, 0.33f ));
+
+			GameObject * ball3 = AddObject( "ball3", guVector { 0, -20, 80 }, Math::QuatIdentity, guVector{ 1, 1, 1 } );
+			ball3->AddComponent( new MeshComponent( "pool_ball_blue" ));
+			ball3->AddComponent( new OrbitComponent( guVector { 0, 0, 0 }, guVector { -0.4, 0.9, 0 }, guVector{ 1, 0, 0 }, 0.33f ));
+
+			GameObject * doomguy = AddObject( "doomguy", guVector { 0, 0, 130 }, Math::QuatIdentity, guVector{ 1, 1, 1 } );
+			doomguy->AddComponent( new MeshComponent( "mydoom" ));
+			doomguy->AddComponent( new OrbitComponent( guVector { 0, 0, 0 }, guVector { -1, 0, 0 }, guVector{ 0, 0, 0 }, 1.33f, 0.f ));
+
+			//GameObject * ball1 = AddObject( "ball2", guVector {});
 			//MENU
 			GameObject * titleText = AddObject("TitleText", guVector{-45, 0, -100.0f}, Math::QuatIdentity,
-				guVector{ 1, 1, 1 });
+			 guVector{ 1, 1, 1 });
 			titleText->AddComponent(new MenuComponent(&ps->m_buttonsHeld, &ps->m_buttonsDown, &ps->m_buttonsUp));
 			titleText->AddComponent(new FontComponent(L"Start", guVector{ 0, 0, 0 }, GXColor{255, 255, 255, 255}, 0.5f));
 			titleText->AddComponent(new FontComponent(L"Options", guVector{ 0, 25, 0 }, GXColor{255, 255, 255, 255}, 0.5f));

@@ -9,6 +9,8 @@
 #include "pool_ball_red_obj.h"
 #include "pool_ball_blue_obj.h"
 #include "chr_old_obj.h"
+#include "mydoom_obj.h"
+
 #include "palette_tpl.h"
 #include "palette.h"
 #include "rursus_compact_mono_ttf.h"	// Include the compiled font.
@@ -57,7 +59,7 @@ GraphicSystem::GraphicSystem() {
 	if(!LoadMeshFromObj("pool_ball_red", (void *)pool_ball_red_obj, pool_ball_red_obj_size))exit(0);
 	if(!LoadMeshFromObj("pool_ball_blue", (void *)pool_ball_blue_obj, pool_ball_blue_obj_size))exit(0);
 	if(!LoadMeshFromObj("chr_old", (void *)chr_old_obj, chr_old_obj_size))exit(0);
-
+	if(!LoadMeshFromObj("mydoom", (void *)mydoom_obj, mydoom_obj_size))exit(0);
 	//Set default logs
 	std::wstring log = L"Default string log";
 	m_stringLogs.insert(m_stringLogs.begin(), log);

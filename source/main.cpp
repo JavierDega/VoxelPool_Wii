@@ -5,10 +5,6 @@
 #include "System/ObjectSystem.h"
 #include "System/PadSystem.h"
 #include "System/GraphicSystem.h"
-#include "GameObject.h"
-#include "Component/MeshComponent.h"
-#include "Component/FontComponent.h"
-#include "Component/OrbitCameraComponent.h"
 
 #include "Extra/Math.h"
 
