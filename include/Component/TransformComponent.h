@@ -9,7 +9,7 @@ class TransformComponent: public Component {
 public:
 	//Functions
 	TransformComponent(guVector position = guVector{ 0, 0, 0 }, guQuaternion rotation = Math::QuatIdentity, guVector scale = guVector{ 1, 1, 1 });
-	~TransformComponent();
+	virtual ~TransformComponent();
 	//Messaging
 	virtual bool Receive( ComponentMessage msg){ return false;};
 	//Variables

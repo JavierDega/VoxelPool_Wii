@@ -11,8 +11,7 @@ MenuComponent::MenuComponent(u16 * buttonsHeld, u16 * buttonsDown, u16 * buttons
 }
 //Destructor
 MenuComponent::~MenuComponent(){
-	m_option = 0;
-	m_screenPos = guVector{ 0, 0, 0 };
+	//@
 }
 //Start
 void MenuComponent::OnStart(){

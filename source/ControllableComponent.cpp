@@ -6,6 +6,7 @@ ControllableComponent::ControllableComponent(u16 * buttonsHeld, u16 * buttonsDow
 
 };
 ControllableComponent::~ControllableComponent(){
+	//@The actual values are held inside the PadSystem
 	m_buttonsHeld = nullptr;
 	m_buttonsDown = nullptr;
 	m_buttonsUp = nullptr;

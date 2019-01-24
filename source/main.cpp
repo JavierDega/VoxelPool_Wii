@@ -11,6 +11,9 @@
 #include <time.h>
 #include <ogc/lwp_watchdog.h>
 
+#include <iostream>
+#include <fstream>
+
 using namespace std;
 
 float globalTime;
@@ -23,6 +26,16 @@ float globalTime;
  *
  * @return Program exit status code.
  */
+int WriteToFile (string toWrite) 
+{
+  ofstream myfile;
+  myfile.open ("debug.txt");
+  myfile << "Writing this to a file.\n";
+  myfile << toWrite + "\n";
+  myfile.close();
+  return 0;
+}
+
 int main(int argc, char **argv) {
 	//DECLARE SYSTEMS
 	__lwp_watchdog_init();

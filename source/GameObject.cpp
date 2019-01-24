@@ -13,7 +13,12 @@ GameObject::GameObject( std::string name, guVector position, guQuaternion rotati
 //Destructor
 GameObject::~GameObject()
 {
-
+	//empty component vector
+	for (Component * comp : m_components){
+		delete comp;
+		//comp = nullptr;
+	}
+	m_components.clear();
 }
 //AddComp
 void GameObject::AddComponent( Component * component ){
@@ -28,14 +33,12 @@ void GameObject::Send(ComponentMessage msg){
 		
 		m_components[i]->Receive(msg);
 	}
-
-
 }
 //Refresh addresses
 void GameObject::RefreshComponentAddresses(){
 	//@
-	for(u16 i = 0 ; i < m_components.size(); i++){
-		m_components[i]->m_owner = this;
+	for(Component * comp : m_components){
+		comp->m_owner = this;
 	}
 }
 

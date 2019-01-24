@@ -9,7 +9,5 @@ TransformComponent::TransformComponent(guVector position, guQuaternion rotation,
 //Destructor
 TransformComponent::~TransformComponent(){
 	//Empty vars
-	m_position.x = 0;
-	m_position.y = 0;
-	m_position.z = 0;
+	
 }

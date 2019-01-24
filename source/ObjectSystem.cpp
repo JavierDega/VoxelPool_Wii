@@ -6,6 +6,8 @@
 
 using namespace std;
 
+extern int WriteToFile(string toWrite);
+
 //Instance
 ObjectSystem * ObjectSystem::m_instance = NULL;
 ObjectSystem * ObjectSystem::GetInstance()
@@ -44,12 +46,13 @@ void ObjectSystem::LoadScene(int sceneIndex){
 	//Graphics (Does WaitForVsync() stuff so maybe initialized last?)
 	GraphicSystem * gs = GraphicSystem::GetInstance();
 
+	//Empty scene
+	RemoveAllObjects();
 	//BUILD GAMEOBJECTS
 	switch (sceneIndex){
 		//@MENU
 		case 0:
 		{
-
 			//CRAP
 			GameObject * interestingQuote = AddObject("Quote", guVector{ 100.f, -150.f, -300.f }, Math::QuatIdentity,
 			 guVector { 0.5f, 0.5f, 0.5f } );
@@ -57,9 +60,9 @@ void ObjectSystem::LoadScene(int sceneIndex){
 			 GXColor{255, 255, 0, 255}));
 			interestingQuote->AddComponent(new FontComponent(L"For I have no model", guVector{ 0, 25, 0 },
 			 GXColor{255, 255, 0, 255}));
-			interestingQuote->AddComponent(new OrbitComponent( guVector { 0, 0, 0 }, guVector { -1, -1, 0 }, guVector { 0, 0, 0 }, 0.1f, 0.0f ));
+			interestingQuote->AddComponent(new OrbitComponent( guVector { 0, 0, 0 }, guVector { -1, -1, 0 }, guVector { 0, 0, 0 }, 0.15f, 0.0f ));
 
-			GameObject * poolTable = AddObject("PoolTable", guVector{ -10, -150, -150.f}, Math::QuatIdentity, guVector { 1, 1, 1 } );
+			GameObject * poolTable = AddObject("PoolTable", guVector{ -10, -180, -130.f}, Math::QuatIdentity, guVector { 1, 1, 1 } );
 			poolTable->AddComponent(new MeshComponent("PoolWIP"));
 			poolTable->AddComponent(new FontComponent(L"What IS pool?", guVector{-75, -90, 0}, GXColor{255, 255, 0, 255}, 0.5f));
 			poolTable->AddComponent(new OrbitComponent( guVector { 0, 0, 0 }, guVector { 1, 0, 0 }, guVector { 0, 0, 1}, 0.15f, 1.0f ));
@@ -69,9 +72,14 @@ void ObjectSystem::LoadScene(int sceneIndex){
 			oldGuy->AddComponent(new FontComponent(L"Waaah!", guVector{-50, -65, 0}, GXColor{ 255, 170, 0, 255 }, 0.20f));
 			oldGuy->AddComponent(new OrbitComponent( guVector { 0, 0, 0 }, guVector { 0, 1, 0 }, guVector { 0, 0, 1 }, .75f, 0.8f ));
 
-			GameObject * gameTitle = AddObject("GameTitle", guVector{ 0, -10, -140.f}, Math::QuatIdentity, guVector { 0.5f, 0.5f, 0.5f } );
-			gameTitle->AddComponent(new FontComponent(L"Voxel Pool Wii", guVector{ -100, 0, 0 }, GXColor{255, 255, 255, 255}));
-			gameTitle->AddComponent(new OrbitComponent( guVector { 0, 0, 0 }, guVector { 1, 0, 0 }, guVector { 0, 0, 0 }, 0.07f ));
+			GameObject * doomGuy = AddObject( "doomGuy", guVector { 0, 0, 180 }, Math::QuatIdentity, guVector{ 1, 1, 1 } );
+			doomGuy->AddComponent( new MeshComponent( "mydoom" ));
+			doomGuy->AddComponent(new FontComponent(L"Wait, this isn't hell..", guVector{-170, -240, 0}, GXColor{ 255, 170, 0, 255 }, 0.25f));
+			doomGuy->AddComponent( new OrbitComponent( guVector { 0, 0, 0 }, guVector { -1, 0, 0 }, guVector{ 0, 0, 0 }, 0.18f, 0.f ));
+
+			GameObject * gameTitle = AddObject("GameTitle", guVector{ -10, 35, -140.f}, Math::QuatIdentity, guVector { 0.5f, 0.5f, 0.5f } );
+			gameTitle->AddComponent(new FontComponent(L"Voxel Pool Wii", guVector{ -100, 0, 0 }, GXColor{ 0, 255, 0, 255 }, 1.0f, true ));
+			gameTitle->AddComponent(new OrbitComponent( guVector { 0, 0, 0 }, guVector { 0, 1, 0 }, guVector { 0, 1, 0 }, 0.0f ));
 
 			//MESHES
 			GameObject * ball = AddObject( "ball1", guVector { 0, 0, 100 }, Math::QuatIdentity, guVector{ 1, 1, 1} );
@@ -86,22 +94,19 @@ void ObjectSystem::LoadScene(int sceneIndex){
 			ball3->AddComponent( new MeshComponent( "pool_ball_blue" ));
 			ball3->AddComponent( new OrbitComponent( guVector { 0, 0, 0 }, guVector { -0.4, 0.9, 0 }, guVector{ 1, 0, 0 }, 0.33f ));
 
-			GameObject * doomguy = AddObject( "doomguy", guVector { 0, 0, 130 }, Math::QuatIdentity, guVector{ 1, 1, 1 } );
-			doomguy->AddComponent( new MeshComponent( "mydoom" ));
-			doomguy->AddComponent( new OrbitComponent( guVector { 0, 0, 0 }, guVector { -1, 0, 0 }, guVector{ 0, 0, 0 }, 1.33f, 0.f ));
-
 			//GameObject * ball1 = AddObject( "ball2", guVector {});
 			//MENU
-			GameObject * titleText = AddObject("TitleText", guVector{-45, 0, -100.0f}, Math::QuatIdentity,
+			GameObject * menuText = AddObject("TitleText", guVector{-45, 0, -100.0f}, Math::QuatIdentity,
 			 guVector{ 1, 1, 1 });
-			titleText->AddComponent(new MenuComponent(&ps->m_buttonsHeld, &ps->m_buttonsDown, &ps->m_buttonsUp));
-			titleText->AddComponent(new FontComponent(L"Start", guVector{ 0, 0, 0 }, GXColor{255, 255, 255, 255}, 0.5f));
-			titleText->AddComponent(new FontComponent(L"Options", guVector{ 0, 25, 0 }, GXColor{255, 255, 255, 255}, 0.5f));
-			titleText->AddComponent(new FontComponent(L"Quit", guVector{ 0, 50, 0 }, GXColor{255, 255, 255, 255}, 0.5f));
+			menuText->AddComponent(new MenuComponent(&ps->m_buttonsHeld, &ps->m_buttonsDown, &ps->m_buttonsUp));
+			menuText->AddComponent(new FontComponent(L"Start", guVector{ 0, 0, 0 }, GXColor{255, 255, 255, 255}, 0.5f));
+			menuText->AddComponent(new FontComponent(L"Options", guVector{ 0, 25, 0 }, GXColor{255, 255, 255, 255}, 0.5f));
+			menuText->AddComponent(new FontComponent(L"Quit", guVector{ 0, 50, 0 }, GXColor{255, 255, 255, 255}, 0.5f));
 			break;
 		}
 		case 1:
-		{
+		{	
+			//Gamescene
 			break;
 		}
 		default:
@@ -126,8 +131,8 @@ GameObject * ObjectSystem::AddObject(std::string name, guVector position, guQuat
 		//This means its going to reallocate
 		m_reallocate = true;
 	}
-	m_objectList.push_back(GameObject( name, position, rotation, scale ));
 
+	m_objectList.push_back(GameObject( name, position, rotation, scale ));
 	//Has just reallocated
 	if(m_reallocate){
 		for (u16 i = 0; i < m_objectList.size(); i++){
@@ -140,6 +145,7 @@ GameObject * ObjectSystem::AddObject(std::string name, guVector position, guQuat
 //Remove Objs
 void ObjectSystem::RemoveAllObjects(){
 	//Safety check
+	m_objectList.clear();
 }
 void ObjectSystem::RemoveObject(GameObject * object){
 	//Remove specific object. ideally called from Component itself.
@@ -150,6 +156,7 @@ void ObjectSystem::RemoveObject(GameObject * object){
 		if (object == &(m_objectList[i])){
 			//Remove
 			//Swap and pop approach
+			//@Try not to miss update on swapped object
 			swap(m_objectList[i], m_objectList.back());
 			m_objectList.pop_back();
 			m_objectList[i].RefreshComponentAddresses();

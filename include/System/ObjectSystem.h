@@ -28,7 +28,7 @@ class ObjectSystem : public System {
 	void Update( float dt );
 	//Utility
 	void LoadScene(int sceneIndex);
-	GameObject * AddObject(std::string name, guVector position = guVector{ 0, 0, 0 }, guQuaternion rotation = Math::QuatIdentity,
+	GameObject * AddObject(std::string name = "Default name", guVector position = guVector{ 0, 0, 0 }, guQuaternion rotation = Math::QuatIdentity,
 		guVector scale = guVector{ 1, 1, 1 } );
 	void RemoveAllObjects();
 	void RemoveObject( GameObject * object );

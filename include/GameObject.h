@@ -22,7 +22,7 @@ public:
 	std::string m_name;
 	//All gameobjects have a transform component
 	TransformComponent m_transform;
-	//Cache coherency avoiding 'new'
+	//Cache coherency avoiding 'new'?
 	std::vector<Component *> m_components;
 };
 #endif /*GAMEOBJECT_H_*/

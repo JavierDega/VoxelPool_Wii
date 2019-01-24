@@ -348,8 +348,12 @@ void GraphicSystem::DrawFonts(std::vector<FontComponent *> fonts){
 		//@Default scale?
 		guMtxScaleApply(m_model, m_model, font->m_offsetScale, -font->m_offsetScale, font->m_offsetScale);
 		guMtxScaleApply(m_model, m_model, transform.m_scale.x, transform.m_scale.y, transform.m_scale.z );
+		/*if (font->m_rotate){ NOT WORKING
+			Mtx tempRotMtx;
+			c_guMtxQuat(m_model, &transform.m_rotation);
+			guMtxConcat(m_model, tempRotMtx, m_model);
+		}*/
 		guMtxTransApply(m_model, m_model, transform.m_position.x, transform.m_position.y, transform.m_position.z);
-		//c_guMtxQuat(m_model, &transform.m_rotation);
 		guMtxConcat(m_view, m_model, m_modelview);
 
 		// load the modelview matrix into matrix memory

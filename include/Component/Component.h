@@ -2,7 +2,6 @@
 #define COMPONENT_H_
 
 enum ComponentMessage {
-
 	MSG_01,
 	MSG_02
 };

@@ -10,8 +10,8 @@ MeshComponent::MeshComponent(std::string name)
 }
 //Destructor
 MeshComponent::~MeshComponent(){
-	//Empty vectors?
-	while (!m_vertices.empty()){
+	//@Empty vectors already done in their destructor
+	/*while (!m_vertices.empty()){
 		m_vertices.pop_back();
 	}
 	while (!m_uvs.empty()){
@@ -19,7 +19,7 @@ MeshComponent::~MeshComponent(){
 	}
 	while (!m_normals.empty()){
 		m_normals.pop_back();
-	}
+	}*/
 }
 //Fetch mesh from GraphicSystem
 bool MeshComponent::FetchModel(std::string name){
