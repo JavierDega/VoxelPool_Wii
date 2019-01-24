@@ -23,6 +23,6 @@ public:
 	//All gameobjects have a transform component
 	TransformComponent m_transform;
 	//Cache coherency avoiding 'new'?
-	std::vector<Component *> m_components;
+	std::vector<Component * > m_components;
 };
 #endif /*GAMEOBJECT_H_*/

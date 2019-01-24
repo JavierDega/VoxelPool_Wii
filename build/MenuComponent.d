@@ -77,6 +77,9 @@ MenuComponent.o: \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
  C:/devkitPro/libogc/include/ogc/gu.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/ObjectSystem.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/System.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MeshComponent.h \
  C:/devkitPro/libogc/include/ogc/pad.h
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MenuComponent.h:
@@ -232,5 +235,11 @@ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
 C:/devkitPro/libogc/include/ogc/gu.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/ObjectSystem.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/System.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MeshComponent.h:
 
 C:/devkitPro/libogc/include/ogc/pad.h:

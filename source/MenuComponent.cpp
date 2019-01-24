@@ -1,5 +1,7 @@
 #include "Component/MenuComponent.h"
 #include "GameObject.h"
+#include "System/ObjectSystem.h"
+
 #include <ogc/pad.h>
 
 //Constructor
@@ -20,6 +22,8 @@ void MenuComponent::OnStart(){
 //Update
 void MenuComponent::ComputeLogic(float dt){
 	//Choose option
+	ObjectSystem * os = ObjectSystem::GetInstance();
+
 	std::vector<FontComponent*> fontComponents = GetMenuFonts();
 	u16 bdown = *(m_buttonsDown);
 
@@ -34,6 +38,19 @@ void MenuComponent::ComputeLogic(float dt){
 		if ( m_option == fontComponents.size()) m_option = 0;
 	}
 
+	if (bdown & ( PAD_BUTTON_A )){
+		switch (m_option){
+			case 0:
+			{
+				//Start option
+				os->LoadScene(1);
+				break;
+			}
+			default:
+				break;
+		}
+
+	}
 	FontComponent * selectedOption = fontComponents[m_option];
 	m_screenPos = selectedOption->m_screenPos;
 	m_screenPos.x -= 15;

@@ -14,11 +14,12 @@ GameObject::GameObject( std::string name, guVector position, guQuaternion rotati
 GameObject::~GameObject()
 {
 	//empty component vector
-	for (Component * comp : m_components){
-		delete comp;
-		//comp = nullptr;
+	while (!m_components.empty()){
+		Component * curComp = m_components.back();
+		//delete curComp;
+		curComp = nullptr;
+		m_components.pop_back();
 	}
-	m_components.clear();
 }
 //AddComp
 void GameObject::AddComponent( Component * component ){
