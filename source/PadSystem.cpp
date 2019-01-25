@@ -45,12 +45,14 @@ void PadSystem::Update( float dt ){
 	GraphicSystem * gs = GraphicSystem::GetInstance();
 	ObjectSystem * os = ObjectSystem::GetInstance();
 	
+	std::vector <LogicComponent *> logicComponents = os->GetLogicComponentList();
+	
+	//@Generic input
 	if ( m_buttonsDown & PAD_BUTTON_X){
 		gs->m_debug = !gs->m_debug;
 	}
 
-	//Update logic components
-	std::vector <LogicComponent *> logicComponents = os->GetLogicComponentList();
+	//@Update logic components
 	for (u16 i = 0; i < logicComponents.size(); i++){
 		logicComponents[i]->ComputeLogic(dt);
 	}

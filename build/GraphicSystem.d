@@ -87,6 +87,9 @@ GraphicSystem.o: \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pool_ball_blue_obj.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/chr_old_obj.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/mydoom_obj.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pool_scene1_obj.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pooltable_obj.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/poolstick_obj.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/palette_tpl.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/palette.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/rursus_compact_mono_ttf.h
@@ -264,6 +267,12 @@ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pool_ball_blue_obj.h:
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/chr_old_obj.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/mydoom_obj.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pool_scene1_obj.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pooltable_obj.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/poolstick_obj.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/palette_tpl.h:
 

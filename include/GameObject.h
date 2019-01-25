@@ -6,6 +6,7 @@
 #include "Extra/Math.h"
 #include <string>
 #include <vector>
+
 class GameObject{
 public:
 	GameObject(std::string name = "Default name" , guVector position = guVector { 0, 0, 0 }, guQuaternion rotation = Math::QuatIdentity,

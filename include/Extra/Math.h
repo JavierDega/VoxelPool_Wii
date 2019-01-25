@@ -6,7 +6,7 @@
 //@Math function extensions for the engine. Mainly matrices, vectors, quaternion functions.
 
 namespace Math{
-	//Vector
+	//Vector @@CREATE OWN CLASSES INSTEAD
 	guVector operator * (guVector v, float f);
 	guVector operator * (float f, guVector v);
 

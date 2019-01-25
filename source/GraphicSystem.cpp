@@ -4,12 +4,17 @@
 #include "ogc/gu.h"
 #include <stdio.h>
 
+#include "Extra/Math.h"
+
 #include "PoolWIP_obj.h"
 #include "pool_ball_white_obj.h"
 #include "pool_ball_red_obj.h"
 #include "pool_ball_blue_obj.h"
 #include "chr_old_obj.h"
 #include "mydoom_obj.h"
+#include "pool_scene1_obj.h"
+#include "pooltable_obj.h"
+#include "poolstick_obj.h"
 
 #include "palette_tpl.h"
 #include "palette.h"
@@ -32,7 +37,7 @@ GraphicSystem * GraphicSystem::GetInstance()
 //Constructor
 GraphicSystem::GraphicSystem() {
 	///Init vars
-	m_background = {30, 30, 30, 0};
+	m_background = {20, 20, 20, 0};
 	m_cam = {0.0F, 0.0F, 0.0F};
 	m_up = {0.0F, 1.0F, 0.0F};
 	m_look = {0.0F, 0.0F, -1.0F};
@@ -44,6 +49,17 @@ GraphicSystem::GraphicSystem() {
 
 	m_debug = true;
 
+	//MODEL PARSE(Need to do before creating MeshComponents)
+	if(!LoadMeshFromObj("PoolWIP", (void *)PoolWIP_obj, PoolWIP_obj_size))exit(0);
+	if(!LoadMeshFromObj("pool_ball_white", (void *)pool_ball_white_obj, pool_ball_white_obj_size))exit(0);
+	if(!LoadMeshFromObj("pool_ball_red", (void *)pool_ball_red_obj, pool_ball_red_obj_size))exit(0);
+	if(!LoadMeshFromObj("pool_ball_blue", (void *)pool_ball_blue_obj, pool_ball_blue_obj_size))exit(0);
+	if(!LoadMeshFromObj("chr_old", (void *)chr_old_obj, chr_old_obj_size))exit(0);
+	if(!LoadMeshFromObj("mydoom", (void *)mydoom_obj, mydoom_obj_size))exit(0);
+	if(!LoadMeshFromObj("pool_scene1", (void *)pool_scene1_obj, pool_scene1_obj_size))exit(0);
+	if(!LoadMeshFromObj("pooltable", (void *)pooltable_obj, pooltable_obj_size))exit(0);
+	if(!LoadMeshFromObj("poolstick", (void *)poolstick_obj, poolstick_obj_size))exit(0);
+
 	//GX/VIDEO
 	InitGXVideo();
 	//FONT
@@ -53,13 +69,6 @@ GraphicSystem::GraphicSystem() {
 	FT_UInt fontSize = 30;
 	m_font->loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, fontSize, false);	// Initialize the font system with the font parameters from rursus_compact_mono_ttf.h
 
-	//MODEL PARSE(Need to do before creating MeshComponents)
-	if(!LoadMeshFromObj("PoolWIP", (void *)PoolWIP_obj, PoolWIP_obj_size))exit(0);
-	if(!LoadMeshFromObj("pool_ball_white", (void *)pool_ball_white_obj, pool_ball_white_obj_size))exit(0);
-	if(!LoadMeshFromObj("pool_ball_red", (void *)pool_ball_red_obj, pool_ball_red_obj_size))exit(0);
-	if(!LoadMeshFromObj("pool_ball_blue", (void *)pool_ball_blue_obj, pool_ball_blue_obj_size))exit(0);
-	if(!LoadMeshFromObj("chr_old", (void *)chr_old_obj, chr_old_obj_size))exit(0);
-	if(!LoadMeshFromObj("mydoom", (void *)mydoom_obj, mydoom_obj_size))exit(0);
 	//Set default logs
 	std::wstring log = L"Default string log";
 	m_stringLogs.insert(m_stringLogs.begin(), log);
@@ -414,7 +423,7 @@ void GraphicSystem::EndDraw() {
 	GX_DrawDone();
 	VIDEO_SetNextFramebuffer(videoFrameBuffer[videoFrameBufferIndex]);
 	VIDEO_Flush();
-	VIDEO_WaitVSync();
+	//VIDEO_WaitVSync();
 	videoFrameBufferIndex ^= 1;
 }
 //Debug

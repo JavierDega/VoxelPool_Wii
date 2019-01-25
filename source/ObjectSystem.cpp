@@ -5,7 +5,7 @@
 #include "GameObject.h"
 
 using namespace std;
-
+using namespace Math;
 extern int WriteToFile(string toWrite);
 
 //Instance
@@ -62,7 +62,7 @@ void ObjectSystem::LoadScene(int sceneIndex){
 			 GXColor{255, 255, 0, 255}));
 			interestingQuote->AddComponent(new OrbitComponent( guVector { 0, 0, 0 }, guVector { -1, -1, 0 }, guVector { 0, 0, 0 }, 0.15f, 0.0f ));
 
-			GameObject * poolTable = AddObject("PoolTable", guVector{ -10, -180, -130.f}, Math::QuatIdentity, guVector { 1, 1, 1 } );
+			GameObject * poolTable = AddObject("PoolTable", guVector{ -10, -170, -140.f}, Math::QuatIdentity, guVector { 1, 1, 1 } );
 			poolTable->AddComponent(new MeshComponent("PoolWIP"));
 			poolTable->AddComponent(new FontComponent(L"What IS pool?", guVector{-75, -90, 0}, GXColor{255, 255, 0, 255}, 0.5f));
 			poolTable->AddComponent(new OrbitComponent( guVector { 0, 0, 0 }, guVector { 1, 0, 0 }, guVector { 0, 0, 1}, 0.15f, 1.0f ));
@@ -94,6 +94,10 @@ void ObjectSystem::LoadScene(int sceneIndex){
 			ball3->AddComponent( new MeshComponent( "pool_ball_blue" ));
 			ball3->AddComponent( new OrbitComponent( guVector { 0, 0, 0 }, guVector { -0.4, 0.9, 0 }, guVector{ 1, 0, 0 }, 0.33f ));
 
+			GameObject * stick = AddObject( "PoolStick", guVector { 0, -20, 80 }, Math::QuatIdentity, guVector{ 1, 1, 1 } );
+			stick->AddComponent( new MeshComponent( "poolstick" ));
+			stick->AddComponent( new OrbitComponent( guVector { 0, 0, 0 }, guVector { 0.5, 0.5, 0 }, guVector{ 0, 0, 1 }, 0.11f ));
+
 			//GameObject * ball1 = AddObject( "ball2", guVector {});
 			//MENU
 			GameObject * menuText = AddObject("TitleText", guVector{-45, 0, -100.0f}, Math::QuatIdentity,
@@ -107,6 +111,12 @@ void ObjectSystem::LoadScene(int sceneIndex){
 		case 1:
 		{	
 			//Gamescene
+			///@PLACE CAMERA
+			GameObject * scenery = AddObject( "Scenery", guVector { 0, -30, -60 }, QuatFromAxisAngle(guVector { 0, 1, 0 }, 2.6f ) );
+			scenery->AddComponent( new MeshComponent("pool_scene1"));
+
+			GameObject * table = AddObject("PoolTable", guVector { 0, -30, -67 }, QuatFromAxisAngle(guVector { 0, 1, 0 }, 2.6f ), guVector { 0.5, 0.5, 0.5 } );
+			table->AddComponent( new MeshComponent( "pooltable" ));
 			break;
 		}
 		default:

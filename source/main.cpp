@@ -26,6 +26,8 @@ float globalTime;
  *
  * @return Program exit status code.
  */
+
+//@For debugging?
 int WriteToFile (string toWrite) 
 {
   ofstream myfile;
