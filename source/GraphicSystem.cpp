@@ -6,6 +6,7 @@
 
 #include "Extra/Math.h"
 
+//@MODELS
 #include "PoolWIP_obj.h"
 #include "pool_ball_white_obj.h"
 #include "pool_ball_red_obj.h"
@@ -15,7 +16,7 @@
 #include "pool_scene1_obj.h"
 #include "pooltable_obj.h"
 #include "poolstick_obj.h"
-
+//@TEXTURES
 #include "palette_tpl.h"
 #include "palette.h"
 #include "rursus_compact_mono_ttf.h"	// Include the compiled font.
@@ -281,7 +282,7 @@ bool GraphicSystem::LoadMeshFromObj( std::string name, void* fileStream, unsigne
 //Lighting
 void GraphicSystem::SetLight()
 {
-	//Part of Update
+	//@Part of update
 	guVector lpos;
 	GXLightObj lobj;
 

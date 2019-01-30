@@ -6,6 +6,7 @@
 #include "Component/MeshComponent.h"
 #include "Component/FontComponent.h"
 #include "Component/MenuComponent.h"
+#include "Component/RigidbodyComponent.h"
 #include "Extra/Math.h"
 #include <vector>
 
@@ -25,17 +26,17 @@ class ObjectSystem : public System {
 	///Functions
 	//Events
 	void Initialize();
-	void Update( float dt );
+	void Update( float dt = 0 );
 	//Utility
 	void LoadScene(int sceneIndex);
-	GameObject * AddObject(std::string name = "Default name", guVector position = guVector{ 0, 0, 0 }, guQuaternion rotation = Math::QuatIdentity,
-		guVector scale = guVector{ 1, 1, 1 } );
+	int AddObject(GameObject * obj);
 	void RemoveAllObjects();
 	void RemoveObject( GameObject * object );
 	std::vector< MeshComponent * > GetMeshComponentList();
 	std::vector< FontComponent * > GetFontComponentList();
 	std::vector< LogicComponent * > GetLogicComponentList();
 	std::vector< MenuComponent * > GetMenuComponentList();
+	std::vector< RigidbodyComponent * > GetRigidbodyComponentList();
 	
 	///MEMORY MANAGEMENT
 	/*typedef struct pool
@@ -67,7 +68,10 @@ class ObjectSystem : public System {
 	}*/
 
 	//Variables
-	std::vector<GameObject> m_objectList;
+	std::vector<GameObject * > m_objectList;
 };
 
 #endif /*OBJECTSYSTEM_H_*/
+
+
+

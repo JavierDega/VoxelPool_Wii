@@ -4,7 +4,7 @@
 #include "Component/LogicComponent.h"
 #include <gccore.h>
 
-//@Quaternions, rotate around its center , and orbit circularly around the camera
+//@Quaternions, rotate around its center , and orbit circularly around the camera (Rodriguez formula)
 class OrbitComponent : public LogicComponent{
 public:
 	//Constructor

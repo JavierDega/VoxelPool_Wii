@@ -7,15 +7,14 @@
 
 namespace Math{
 	//Vector @@CREATE OWN CLASSES INSTEAD
-	guVector operator * (guVector v, float f);
-	guVector operator * (float f, guVector v);
 
-	guVector operator + (guVector v, guVector v2);
-
+	const guVector VecZero { 0, 0, 0 };
+	const guVector VecOne { 1, 1, 1 }; 
+	float Length( guVector v );
+	float LengthSq( guVector v );
+	float DistSq(guVector v, guVector v2);
 	guVector EulerToDirection (guVector eulerAngle);
-
 	guVector VectorLerp (guVector v , guVector v2 , float frac);
-
 	guVector RotateVectorAroundAxis (float angle , guVector axis , guVector vector);
 
 

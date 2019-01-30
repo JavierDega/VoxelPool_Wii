@@ -15,9 +15,8 @@ GameObject::~GameObject()
 {
 	//empty component vector
 	while (!m_components.empty()){
-		//Component * curComp = m_components.back();
-		//delete curComp;
-		//curComp = nullptr;
+		Component * curComp = m_components.back();
+		delete curComp;
 		m_components.pop_back();
 	}
 }
