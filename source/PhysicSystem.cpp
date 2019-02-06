@@ -64,7 +64,7 @@ void PhysicSystem::UpdatePhysics(float dt) {
 	vector<RigidbodyComponent*> m_rigidbodies = ObjectSystem::GetInstance()->GetRigidbodyComponentList();
 	vector<pair<RigidbodyComponent*, RigidbodyComponent*>> m_collidingPairs;
 
-	/*
+	/*@@LIST OF VECTOR GU COMMANDS
 	void c_guVecAdd(guVector *a,guVector *b,guVector *ab);
 	void c_guVecSub(guVector *a,guVector *b,guVector *ab);
 	void c_guVecScale(guVector *src,guVector *dst,f32 scale);
@@ -89,7 +89,7 @@ void PhysicSystem::UpdatePhysics(float dt) {
 			guVecScale( &currentRb->m_velocity, &airViscosityForce, m_airViscosity );
 			guVecSub( &currentRb->m_force, &airViscosityForce, &currentRb->m_force );
 			//currentRb->m_force -= m_airViscosity * currentRb->m_velocity;
-			guVecAdd( &currentRb->m_force, &m_gravity, &currentRb->m_force);
+			//@NO GRAVITY AS OF NOW: guVecAdd( &currentRb->m_force, &m_gravity, &currentRb->m_force);
 			//currentRb->m_force += m_gravity;
 			guVecScale( &currentRb->m_force, &currentRb->m_acceleration, 1 / currentRb->m_mass );
 			//currentRb->m_acceleration = currentRb->m_force / currentRb->m_mass;
@@ -106,7 +106,7 @@ void PhysicSystem::UpdatePhysics(float dt) {
 		currentRb->m_force = Math::VecZero;
 
 		//@CREATE CONSTRAINT
-		
+
 		//@SSScheme
 
 		//@BroadPhase

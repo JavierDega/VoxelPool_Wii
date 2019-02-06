@@ -57,6 +57,7 @@ class GraphicSystem : public System {
 	Mtx m_view, m_model, m_modelview;
 	Mtx44 m_projection;
 	guVector m_cam, m_up, m_look;
+	float m_pitch,m_yaw;
 	//Models
 	std::vector<Mesh> m_meshes;
 	//Font

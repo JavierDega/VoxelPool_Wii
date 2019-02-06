@@ -43,6 +43,9 @@ GraphicSystem::GraphicSystem() {
 	m_up = {0.0F, 1.0F, 0.0F};
 	m_look = {0.0F, 0.0F, -1.0F};
 
+	m_pitch = 0;
+	m_yaw = 0;
+
 	m_lightColor[0] =  { 255, 255, 255, 255 }; // Light color 1
     m_lightColor[1] = { 150, 150, 150, 255 }; // Ambient 1
 	
@@ -354,15 +357,14 @@ void GraphicSystem::DrawFonts(std::vector<FontComponent *> fonts){
 		TransformComponent transform = font->m_owner->m_transform;
 		//Matrix setup
 		guMtxIdentity(m_model);
-
 		//@Default scale?
 		guMtxScaleApply(m_model, m_model, font->m_offsetScale, -font->m_offsetScale, font->m_offsetScale);
 		guMtxScaleApply(m_model, m_model, transform.m_scale.x, transform.m_scale.y, transform.m_scale.z );
-		/*if (font->m_rotate){ NOT WORKING
+		if (font->m_rotate){
 			Mtx tempRotMtx;
-			c_guMtxQuat(m_model, &transform.m_rotation);
+			c_guMtxQuat(tempRotMtx, &transform.m_rotation);
 			guMtxConcat(m_model, tempRotMtx, m_model);
-		}*/
+		}
 		guMtxTransApply(m_model, m_model, transform.m_position.x, transform.m_position.y, transform.m_position.z);
 		guMtxConcat(m_view, m_model, m_modelview);
 
@@ -381,7 +383,7 @@ void GraphicSystem::DrawFonts(std::vector<FontComponent *> fonts){
 		TransformComponent transform = menu->m_owner->m_transform;
 		//Matrix setup
 		guMtxIdentity(m_model);
-		guMtxScaleApply(m_model, m_model, 0.5f, -0.5f, 0.5f);
+		guMtxScaleApply(m_model, m_model, menu->m_offsetScale, -menu->m_offsetScale, menu->m_offsetScale );
 		guMtxTransApply(m_model, m_model, transform.m_position.x, transform.m_position.y, transform.m_position.z);
 		guMtxConcat(m_view, m_model, m_modelview);
 
@@ -400,16 +402,41 @@ void GraphicSystem::DrawFonts(std::vector<FontComponent *> fonts){
 	//@Delete logs after certain time?
 	if (m_debug){
 		//Desc same as fonts
+		//Calculate dirVector
+		guVector dirVector;
+		guVecSub(&m_look, &m_cam, &dirVector);
+		guVecNormalize(&dirVector);
+		guVecScale(&dirVector, &dirVector, 0.11f);
+
 		//Matrix
 		guMtxIdentity(m_model);
-		guMtxScaleApply(m_model, m_model, 0.0003f, -0.0003f, 0.0003f);
-		guMtxTransApply(m_model, m_model, m_cam.x, m_cam.y, m_cam.z -0.11f);
+		guMtxScaleApply(m_model, m_model, 0.0002f, -0.0002f, 0.0002f);
+
+
+		//@Calculate pitch and yaw quaternion utilizing QuatFromAxisAngle, and then multiplying them together
+		//@Alternatively, use matrices and gu.h's guMtxRotAxisRad.
+		Mtx tempRotMtx;
+		Mtx yawMtx;
+		Mtx pitchMtx;
+		guMtxIdentity(tempRotMtx);
+		guVector yawAxis = guVector{ 0, 1, 0 };
+		guVector pitchAxis = guVector{ 1, 0, 0 };
+		guMtxRotAxisRad(yawMtx, &yawAxis, m_yaw);
+		guMtxRotAxisRad( pitchMtx, &pitchAxis, m_pitch);
+		guMtxConcat( yawMtx, pitchMtx, tempRotMtx );
+		/*@@QUATERNION APPROACH DIDNT WORK: INVESTIGATE*/
+		//guQuaternion yawQuat = Math::QuatFromAxisAngle(guVector{ 0, -1, 0 }, m_yaw);
+		//guQuaternion pitchQuat = Math::QuatFromAxisAngle(guVector{ -1, 0, 0 }, m_pitch);
+		//c_guMtxQuat(tempRotMtx, &yawQuat);
+		//c_guMtxQuat(tempRotMtx, &pitchQuat);
+		guMtxConcat(m_model, tempRotMtx, m_model);
+		guMtxTransApply(m_model, m_model, m_cam.x + dirVector.x , m_cam.y + dirVector.y, m_cam.z + dirVector.z);
 		guMtxConcat( m_view, m_model, m_modelview );
 		// Apply changes to model view matrix
 		GX_LoadPosMtxImm(m_modelview,GX_PNMTX0);
 
 		for (u16 i = 0; i < m_stringLogs.size(); i++){
-			m_font->drawText(-180, -150 + i*25, m_stringLogs[i].c_str(), (GXColor){255, 0, 0, 128}, FTGX_ALIGN_TOP | FTGX_JUSTIFY_LEFT);
+			m_font->drawText(-300, -200 + i*25, m_stringLogs[i].c_str(), (GXColor){255, 255, 255, 255}, FTGX_ALIGN_TOP | FTGX_JUSTIFY_LEFT);
 		}
 	}
 }

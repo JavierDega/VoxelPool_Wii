@@ -10,7 +10,7 @@
 class MenuComponent : public ControllableComponent{
 public:
 	//Constructor
-	MenuComponent(u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp);
+	MenuComponent(u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp, float offsetScale = 1.0f);
 	virtual ~MenuComponent();
 	virtual void OnStart();
 	virtual void ComputeLogic(float dt);
@@ -22,5 +22,6 @@ public:
 	//Variables
 	u16 m_option;
 	guVector m_screenPos;
+	float m_offsetScale;
 };
 #endif /*MENUSELECTOR_H_*/

@@ -2,6 +2,7 @@
 #include "System/GraphicSystem.h"
 #include "System/PadSystem.h"
 #include "Component/OrbitComponent.h"
+#include "Component/OrbitCameraComponent.h"
 #include "GameObject.h"
 
 using namespace std;
@@ -57,10 +58,8 @@ void ObjectSystem::LoadScene(int sceneIndex){
 			//CRAP
 			GameObject * interestingQuote =  new GameObject("Quote", guVector{ 100.f, -150.f, -300.f }, Math::QuatIdentity,
 			 guVector { 0.5f, 0.5f, 0.5f } );
-			interestingQuote->AddComponent(new FontComponent(L"Who am I?", guVector{ 0, 0, 0 },
-			 GXColor{255, 255, 0, 255}));
-			interestingQuote->AddComponent(new FontComponent(L"For I have no model", guVector{ 0, 25, 0 },
-			 GXColor{255, 255, 0, 255}));
+			interestingQuote->AddComponent(new FontComponent(L"Who am I?", guVector{ 0, 0, 0 }, GXColor{255, 255, 0, 255}));
+			interestingQuote->AddComponent(new FontComponent(L"For I have no model", guVector{ 0, 25, 0 }, GXColor{255, 255, 0, 255}));
 			interestingQuote->AddComponent(new OrbitComponent( guVector { 0, 0, 0 }, guVector { -1, -1, 0 }, guVector { 0, 0, 0 }, 0.15f, 0.0f ));
 
 			AddObject(interestingQuote);
@@ -120,7 +119,7 @@ void ObjectSystem::LoadScene(int sceneIndex){
 			//MENU
 			GameObject * menuText =  new GameObject("TitleText", guVector{-45, 0, -100.0f}, Math::QuatIdentity,
 			 guVector{ 1, 1, 1 });
-			menuText->AddComponent(new MenuComponent(&ps->m_buttonsHeld, &ps->m_buttonsDown, &ps->m_buttonsUp));
+			menuText->AddComponent(new MenuComponent(&ps->m_buttonsHeld, &ps->m_buttonsDown, &ps->m_buttonsUp, 0.5f));
 			menuText->AddComponent(new FontComponent(L"Start", guVector{ 0, 0, 0 }, GXColor{255, 255, 255, 255}, 0.5f));
 			menuText->AddComponent(new FontComponent(L"Options", guVector{ 0, 25, 0 }, GXColor{255, 255, 255, 255}, 0.5f));
 			menuText->AddComponent(new FontComponent(L"Quit", guVector{ 0, 50, 0 }, GXColor{255, 255, 255, 255}, 0.5f));
@@ -133,21 +132,48 @@ void ObjectSystem::LoadScene(int sceneIndex){
 		{	
 			//Gamescene
 			///@PLACE CAMERA
-			GameObject * scenery =  new GameObject( "Scenery", guVector { 0, -30, -60 }, QuatFromAxisAngle(guVector { 0, 1, 0 }, 2.6f ) );
+			GraphicSystem * gs = GraphicSystem::GetInstance();
+			PadSystem * ps = PadSystem::GetInstance();
+
+			GameObject * gameController = new GameObject( "GameController" );
+			gameController->AddComponent( new OrbitCameraComponent( &gs->m_cam, &gs->m_look, &gs->m_pitch, &gs->m_yaw, &ps->m_buttonsHeld, &ps->m_buttonsDown, &ps->m_buttonsUp ));
+
+			AddObject(gameController);
+
+			GameObject * scenery =  new GameObject( "Scenery", guVector { -20, -7, 20 } );
 			scenery->AddComponent( new MeshComponent("pool_scene1"));
 
 			AddObject(scenery);
 	
-			GameObject * table =  new GameObject("PoolTable", guVector { 0, -30, -67 }, QuatFromAxisAngle(guVector { 0, 1, 0 }, 2.6f ), guVector { 0.5, 0.5, 0.5 } );
+			GameObject * table =  new GameObject("PoolTable", guVector { 0, -7, 0 }, Math::QuatIdentity, guVector { 0.5, 0.5, 0.5 } );
 			table->AddComponent( new MeshComponent( "pooltable" ));
 
 			AddObject(table);
 
-			GameObject * ball = new GameObject("SphereTest", guVector { 0 , 0, -67 }, QuatIdentity );
+			GameObject * ball = new GameObject("SphereTest", guVector { 0 , -1.5, 0 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball->AddComponent( new MeshComponent( "pool_ball_red" ));
-			ball->AddComponent( new RigidbodyComponent());
+			RigidbodyComponent * ballRb = new RigidbodyComponent();
+			ballRb->m_force = guVector{ 400, 0, 0 };
+			ball->AddComponent( ballRb );
 
 			AddObject(ball);
+
+
+			GameObject * ball2 = new GameObject("SphereTest2", guVector { 5, -1.5, 0 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
+			ball2->AddComponent( new MeshComponent( "pool_ball_blue" ));
+			RigidbodyComponent * ball2Rb = new RigidbodyComponent();
+			ball2Rb->m_force = guVector{ -400, 0, 0 };
+			ball2->AddComponent( ball2Rb );
+
+			AddObject(ball2);
+
+			GameObject * ball3 = new GameObject("SphereTest3", guVector { 2.5, -1.5, 2.6 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
+			ball3->AddComponent( new MeshComponent( "pool_ball_white" ));
+			RigidbodyComponent * ball3Rb = new RigidbodyComponent();
+			ball3Rb->m_force = guVector{ 0, 0, -400 };
+			ball3->AddComponent( ball3Rb );
+
+			AddObject(ball3);
 
 			break;
 		}
@@ -283,7 +309,7 @@ std::vector< RigidbodyComponent * > ObjectSystem::GetRigidbodyComponentList(){
 	for(u16 i = 0; i < m_objectList.size() ; i++){
 		GameObject * curObj = m_objectList[i];
 		for (u16 j = 0; j < curObj->m_components.size(); j++){
-			//Dynamic casting to identify type;
+			//Dynamic casting to identify type
 			RigidbodyComponent * rbComp = dynamic_cast< RigidbodyComponent * >(curObj->m_components[j]);
 			if (rbComp) rbCompList.push_back(rbComp);
 		}

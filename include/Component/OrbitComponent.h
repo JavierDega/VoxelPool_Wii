@@ -1,5 +1,5 @@
-#ifndef ORBITCAMERACOMPONENT_H_
-#define ORBITCAMERACOMPONENT_H_
+#ifndef ORBITCOMPONENT_H_
+#define ORBITCOMPONENT_H_
 
 #include "Component/LogicComponent.h"
 #include <gccore.h>
@@ -25,4 +25,4 @@ public:
 	float m_speed;
 	float m_rotSpeed;
 };
-#endif /*ORBITCAMERACOMPONENT_H_*/
+#endif /*ORBITCOMPONENT_H_*/

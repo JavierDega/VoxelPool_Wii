@@ -6,8 +6,10 @@
 //@Math function extensions for the engine. Mainly matrices, vectors, quaternion functions.
 
 namespace Math{
-	//Vector @@CREATE OWN CLASSES INSTEAD
 
+	//Defines
+	const float PI = 3.1416f;
+	//Vector @@CREATE OWN CLASSES INSTEAD
 	const guVector VecZero { 0, 0, 0 };
 	const guVector VecOne { 1, 1, 1 }; 
 	float Length( guVector v );

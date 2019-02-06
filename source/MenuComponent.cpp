@@ -5,8 +5,8 @@
 #include <ogc/pad.h>
 
 //Constructor
-MenuComponent::MenuComponent(u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp)
-	: ControllableComponent(buttonsHeld, buttonsDown, buttonsUp)
+MenuComponent::MenuComponent(u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp, float offsetScale)
+	: ControllableComponent(buttonsHeld, buttonsDown, buttonsUp), m_offsetScale(offsetScale)
 {
 	m_option = 0;
 	m_screenPos = guVector{ 0, 0, 0 };

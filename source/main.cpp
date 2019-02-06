@@ -60,9 +60,11 @@ int main(int argc, char **argv) {
 	while(1) {
 		//Timestep
 		float prevTime = globalTime;
-		globalTime = diff_msec(starttime, gettime())/1000.0f;
+		globalTime = diff_msec(starttime, gettime())/1000.f;
 		float dt = globalTime-prevTime;
-		gs->AddLog(to_string(1/dt));
+		
+		//gs->AddLog(to_string(1/dt));
+		
 		//Main Loop
 		//Input
 		ps->Update(dt);
