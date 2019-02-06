@@ -66,7 +66,8 @@ void OrbitCameraComponent::ComputeLogic(float dt){
 	if (bheld & PAD_TRIGGER_R ){
 		
 		m_zoom +=0.3f;
-	}	
+	}
+
 	m_zoom = MAX( 0.1f, m_zoom);
 	m_zoom = MIN( 30.f, m_zoom);
 

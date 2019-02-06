@@ -11,7 +11,9 @@ Sphere::~Sphere()
 {
 }
 
-AABB Sphere::ComputeAABB()
+
+//@AABB Culling
+/*AABB Sphere::ComputeAABB()
 {	
 	//@Update AABB extents and return it (In case of Spheres, extents never change)
 	//minExtent: (-radius, -radius, -radius )
@@ -21,4 +23,4 @@ AABB Sphere::ComputeAABB()
 		guVector{m_radius, m_radius, m_radius}
 	};
 	return m_AABB;
-}
+}*/

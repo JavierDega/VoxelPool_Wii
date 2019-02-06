@@ -1,6 +1,7 @@
 #include "System\PhysicSystem.h"
 #include "System\ObjectSystem.h"
 #include "Sphere.h"
+#include "AABB.h"
 #include "Extra/Math.h"
 
 using namespace std;
