@@ -5,6 +5,7 @@
 
 //@MODELS
 #include "8x8x8_obj.h"
+#include "8x8x8Red_obj.h"
 #include "PoolWIP_obj.h"
 #include "pool_ball_white_obj.h"
 #include "pool_ball_red_obj.h"
@@ -61,6 +62,7 @@ GraphicSystem::GraphicSystem() {
 	if(!LoadMeshFromObj("pooltable", (void *)pooltable_obj, pooltable_obj_size))exit(0);
 	if(!LoadMeshFromObj("poolstick", (void *)poolstick_obj, poolstick_obj_size))exit(0);
 	if(!LoadMeshFromObj("8x8x8", (void *)_8x8x8_obj, _8x8x8_obj_size))exit(0);
+	if(!LoadMeshFromObj("8x8x8Red", (void *)_8x8x8Red_obj, _8x8x8Red_obj_size))exit(0);
 	//GX/VIDEO
 	InitGXVideo();
 	//FONT

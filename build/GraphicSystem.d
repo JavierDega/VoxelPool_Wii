@@ -84,6 +84,7 @@ GraphicSystem.o: \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/RigidbodyComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Shape.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/8x8x8_obj.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/8x8x8Red_obj.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/PoolWIP_obj.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pool_ball_white_obj.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pool_ball_red_obj.h \
@@ -264,6 +265,8 @@ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/RigidbodyCompo
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Shape.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/8x8x8_obj.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/8x8x8Red_obj.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/PoolWIP_obj.h:
 
