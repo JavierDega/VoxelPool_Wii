@@ -50,17 +50,15 @@ int main(int argc, char **argv) {
 	PhysicSystem * pss = PhysicSystem::GetInstance();
 	//Graphics (Does WaitForVsync() stuff so maybe initialized last?)
 	GraphicSystem * gs = GraphicSystem::GetInstance();
-
 	//Load Main Menu (Initializes systems)
 	os->LoadScene(0);
-
 	while(1) {
 		//Timestep
 		float prevTime = globalTime;
 		globalTime = diff_msec(starttime, gettime())/1000.f;
 		float dt = globalTime-prevTime;
 		
-		gs->AddLog(to_string(1/dt));
+		//gs->AddLog(to_string(1/dt));
 		
 		//Main Loop
 		//Input

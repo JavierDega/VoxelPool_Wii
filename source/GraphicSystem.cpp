@@ -3,10 +3,8 @@
 #include "Component/FontComponent.h"
 #include "Extra/Math.h"
 
-#include "ogc/gu.h"
-#include <stdio.h>
-
 //@MODELS
+#include "8x8x8_obj.h"
 #include "PoolWIP_obj.h"
 #include "pool_ball_white_obj.h"
 #include "pool_ball_red_obj.h"
@@ -52,7 +50,6 @@ GraphicSystem::GraphicSystem() {
 	videoFrameBufferIndex = 0;
 
 	m_debug = true;
-
 	//MODEL PARSE(Need to do before creating MeshComponents)
 	if(!LoadMeshFromObj("PoolWIP", (void *)PoolWIP_obj, PoolWIP_obj_size))exit(0);
 	if(!LoadMeshFromObj("pool_ball_white", (void *)pool_ball_white_obj, pool_ball_white_obj_size))exit(0);
@@ -63,7 +60,7 @@ GraphicSystem::GraphicSystem() {
 	if(!LoadMeshFromObj("pool_scene1", (void *)pool_scene1_obj, pool_scene1_obj_size))exit(0);
 	if(!LoadMeshFromObj("pooltable", (void *)pooltable_obj, pooltable_obj_size))exit(0);
 	if(!LoadMeshFromObj("poolstick", (void *)poolstick_obj, poolstick_obj_size))exit(0);
-
+	if(!LoadMeshFromObj("8x8x8", (void *)_8x8x8_obj, _8x8x8_obj_size))exit(0);
 	//GX/VIDEO
 	InitGXVideo();
 	//FONT
@@ -72,7 +69,7 @@ GraphicSystem::GraphicSystem() {
 	| FTGX_COMPATIBILITY_DEFAULT_VTXDESC_GX_DIRECT);//BLEND AND TEX DIRECT
 	FT_UInt fontSize = 30;
 	m_font->loadFont(rursus_compact_mono_ttf, rursus_compact_mono_ttf_size, fontSize, false);	// Initialize the font system with the font parameters from rursus_compact_mono_ttf.h
-
+	//@@LINE ABOVE GIVES INVALID READ
 	//Set default logs
 	std::wstring log = L"Default string log";
 	m_stringLogs.insert(m_stringLogs.begin(), log);
@@ -396,7 +393,7 @@ void GraphicSystem::DrawFonts(std::vector<FontComponent *> fonts){
 
 	//DEBUG FONTS
 	//Logic
-	while (m_stringLogs.size() > 10){
+	while (m_stringLogs.size() > 15){
 		m_stringLogs.pop_back();
 	}
 	//@Delete logs after certain time?

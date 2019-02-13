@@ -83,8 +83,10 @@ PhysicSystem.o: \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MenuComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/ControllableComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System\GraphicSystem.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Sphere.h \
- C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Shape.h
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Shape.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/BoundingBox.h
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System\PhysicSystem.h:
 
@@ -252,6 +254,10 @@ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/ControllableCo
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h:
 
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System\GraphicSystem.h:
+
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Sphere.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Shape.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/BoundingBox.h:

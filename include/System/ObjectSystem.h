@@ -31,7 +31,7 @@ class ObjectSystem : public System {
 	void LoadScene(int sceneIndex);
 	int AddObject(GameObject * obj);
 	void RemoveAllObjects();
-	void RemoveObject( GameObject * object );
+	void RemoveObject( GameObject * object , int optionalIndex = -1);
 	std::vector< MeshComponent * > GetMeshComponentList();
 	std::vector< FontComponent * > GetFontComponentList();
 	std::vector< LogicComponent * > GetLogicComponentList();

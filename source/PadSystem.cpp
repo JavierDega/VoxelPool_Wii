@@ -1,5 +1,6 @@
 #include "System/PadSystem.h"
 #include "System/ObjectSystem.h"
+#include "System/PhysicSystem.h"
 #include "System/GraphicSystem.h"
 
 //Instance
@@ -44,12 +45,19 @@ void PadSystem::Update( float dt ){
 	//Systems it may interact with:
 	GraphicSystem * gs = GraphicSystem::GetInstance();
 	ObjectSystem * os = ObjectSystem::GetInstance();
+	PhysicSystem * ps = PhysicSystem::GetInstance();
 	
 	std::vector <LogicComponent *> logicComponents = os->GetLogicComponentList();
 	
 	//@Generic input
 	if ( m_buttonsDown & PAD_BUTTON_X){
 		gs->m_debug = !gs->m_debug;
+	}
+	if ( m_buttonsDown & PAD_BUTTON_Y ){
+		ps->m_stepMode = !ps->m_stepMode;
+	}
+	if ( m_buttonsDown & PAD_TRIGGER_Z ){
+		ps->m_stepOnce = true;
 	}
 
 	//@Update logic components

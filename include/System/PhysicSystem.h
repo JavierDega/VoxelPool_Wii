@@ -27,12 +27,15 @@ public:
 	bool NarrowPhase(RigidbodyComponent * rb1, RigidbodyComponent *rb2, float dt);
 	bool SphereToSphere(RigidbodyComponent * rb1, RigidbodyComponent * rb2, float dt);
 	bool SphereToAABB(RigidbodyComponent * rb1, RigidbodyComponent * rb2, float dt );
+	//Helpful queries
+	guVector ClosestPtPointAABB(guVector point, RigidbodyComponent * rb);
 
 	//Variables
 	//@Timestep
 	float m_minDt;
 	float m_accumulator;
 	//@Simulation settings
+	bool m_stepMode, m_stepOnce;
 	guVector m_gravity;
 	float m_airViscosity;
 	float m_frictionCoefficient;

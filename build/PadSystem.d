@@ -84,6 +84,7 @@ PadSystem.o: \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/RigidbodyComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Shape.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/PhysicSystem.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/GraphicSystem.h
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/PadSystem.h:
@@ -253,5 +254,7 @@ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/RigidbodyComponent.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Shape.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/PhysicSystem.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/GraphicSystem.h:

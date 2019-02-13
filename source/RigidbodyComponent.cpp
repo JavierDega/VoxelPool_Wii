@@ -2,8 +2,8 @@
 #include "BoundingBox.h"
 #include "Sphere.h"
 
-RigidbodyComponent::RigidbodyComponent(float radius, float mass, bool isKinematic)
-	: m_mass(mass), m_isKinematic(isKinematic)
+RigidbodyComponent::RigidbodyComponent(float radius, float mass, bool isKinematic, bool isTrigger)
+	: m_mass(mass), m_isKinematic(isKinematic), m_isTrigger(isTrigger)
 {
 	m_shape = new Sphere(radius);
 	m_force = guVector{ 0, 0, 0 };
@@ -11,8 +11,8 @@ RigidbodyComponent::RigidbodyComponent(float radius, float mass, bool isKinemati
 	m_velocity = guVector{ 0, 0, 0 };
 }
 //AABB Constructor
-RigidbodyComponent::RigidbodyComponent( guVector halfExtents, float mass, bool isKinematic)
-	: m_mass(mass), m_isKinematic(isKinematic)
+RigidbodyComponent::RigidbodyComponent( guVector halfExtents, float mass, bool isKinematic, bool isTrigger)
+	: m_mass(mass), m_isKinematic(isKinematic), m_isTrigger(isTrigger)
 {
 	m_shape = new BoundingBox(halfExtents);
 	m_force = guVector { 0, 0, 0 };

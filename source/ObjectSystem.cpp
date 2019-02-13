@@ -37,10 +37,17 @@ void ObjectSystem::Initialize()
 //Update
 void ObjectSystem::Update( float dt )
 {
-	//@What do here?
 	//@Late update pass to delete GameObjects flagged for deletion
+	for (u16 i = 0; i < m_objectList.size(); i++){
+		if (m_objectList[i]->m_isDeleted){
+			//Delete object with swap and pop, so we keep on iterating through list correctly
+			RemoveObject(nullptr, i);
+			//Object that was on the back is on this one's position, and we need to update on it too.
+			i--;
+		}
+	}
 }
-//Load main menu
+//Load scenes
 void ObjectSystem::LoadScene(int sceneIndex){
 
 	//Input
@@ -150,19 +157,98 @@ void ObjectSystem::LoadScene(int sceneIndex){
 
 			AddObject(table);
 
+
+			//@TABLE COLLIDERS
+
+			GameObject * tableCollider = new GameObject("TableCollider", guVector{ 6.25f, -1.5, 7.25 }, Math::QuatIdentity, guVector{ 1.45, 0.15, 0.19 });
+			tableCollider->AddComponent( new MeshComponent( "8x8x8" ));
+			tableCollider->AddComponent( new RigidbodyComponent( guVector { 6.f, 0.5f, 0.7f }, 10.0f, true ));
+			
+			AddObject(tableCollider);
+
+			GameObject * tableCollider2 = new GameObject("TableCollider2", guVector{ 6.25f, -1.5, -7.25 }, Math::QuatIdentity, guVector{ 1.45, 0.15, 0.19 });
+			tableCollider2->AddComponent( new MeshComponent( "8x8x8" ));
+			tableCollider2->AddComponent( new RigidbodyComponent( guVector { 6.f, 0.5f, 0.7f }, 10.0f, true ));
+			
+			AddObject(tableCollider2);
+
+			GameObject * tableCollider3 = new GameObject("TableCollider3", guVector{ -6.5f, -1.5, 7.25  }, Math::QuatIdentity, guVector{ 1.4, 0.15, 0.19 });
+			tableCollider3->AddComponent( new MeshComponent( "8x8x8" ));
+			tableCollider3->AddComponent( new RigidbodyComponent( guVector { 6.f, 0.5f, 0.7f }, 10.0f, true ));
+			
+			AddObject(tableCollider3);
+
+			GameObject * tableCollider4 = new GameObject("TableCollider4", guVector{ -6.5f, -1.5, -7.25 }, Math::QuatIdentity, guVector{ 1.4, 0.15, 0.19 });
+			tableCollider4->AddComponent( new MeshComponent( "8x8x8" ));
+			tableCollider4->AddComponent( new RigidbodyComponent( guVector { 6.f, 0.5f, 0.7f }, 10.0f, true ));
+			
+			AddObject(tableCollider4);
+
+			GameObject * tableCollider5 = new GameObject("TableCollider5", guVector{ -13.75f, -1.5, 0 }, Math::QuatIdentity, guVector{ 0.19, 0.15, 1.4 });
+			tableCollider5->AddComponent( new MeshComponent( "8x8x8" ));
+			tableCollider5->AddComponent( new RigidbodyComponent( guVector { 0.7f, 0.5f, 6.0f }, 10.0f, true ));
+			
+			AddObject(tableCollider5);
+
+			GameObject * tableCollider6 = new GameObject("TableCollider6", guVector{ 13.75f, -1.5, 0 }, Math::QuatIdentity, guVector{ 0.19, 0.15, 1.4 });
+			tableCollider6->AddComponent( new MeshComponent( "8x8x8" ));
+			tableCollider6->AddComponent( new RigidbodyComponent( guVector { 0.7f, 0.5f, 6.0f }, 10.0f, true ));
+			
+			AddObject(tableCollider6);
+
+			//TRIGGERS
+
+			/*GameObject * trigger = new GameObject("trigger", guVector{ 6.25f, -1.5, 7.25 }, Math::QuatIdentity, guVector{ 1.45, 0.15, 0.19 });
+			trigger->AddComponent( new MeshComponent( "8x8x8" ));
+			trigger->AddComponent( new RigidbodyComponent( guVector { 6.f, 0.5f, 0.7f }, 10.0f, true ));
+			
+			AddObject(trigger);
+
+			GameObject * trigger2 = new GameObject("trigger2", guVector{ 6.25f, -1.5, -7.25 }, Math::QuatIdentity, guVector{ 1.45, 0.15, 0.19 });
+			trigger2->AddComponent( new MeshComponent( "8x8x8" ));
+			trigger2->AddComponent( new RigidbodyComponent( guVector { 6.f, 0.5f, 0.7f }, 10.0f, true ));
+			
+			AddObject(trigger2);
+
+			GameObject * trigger3 = new GameObject("trigger3", guVector{ -6.5f, -1.5, 7.25  }, Math::QuatIdentity, guVector{ 1.4, 0.15, 0.19 });
+			trigger3->AddComponent( new MeshComponent( "8x8x8" ));
+			trigger3->AddComponent( new RigidbodyComponent( guVector { 6.f, 0.5f, 0.7f }, 10.0f, true ));
+			
+			AddObject(trigger3);
+
+			GameObject * trigger4 = new GameObject("trigger4", guVector{ -6.5f, -1.5, -7.25 }, Math::QuatIdentity, guVector{ 1.4, 0.15, 0.19 });
+			trigger4->AddComponent( new MeshComponent( "8x8x8" ));
+			trigger4->AddComponent( new RigidbodyComponent( guVector { 6.f, 0.5f, 0.7f }, 10.0f, true ));
+			
+			AddObject(trigger4);
+
+			GameObject * trigger5 = new GameObject("trigger5", guVector{ -13.75f, -1.5, 0 }, Math::QuatIdentity, guVector{ 0.19, 0.15, 1.4 });
+			trigger5->AddComponent( new MeshComponent( "8x8x8" ));
+			trigger5->AddComponent( new RigidbodyComponent( guVector { 0.7f, 0.5f, 6.0f }, 10.0f, true ));
+			
+			AddObject(trigger5);
+
+			GameObject * trigger6 = new GameObject("trigger6", guVector{ 13.75f, -1.5, 0 }, Math::QuatIdentity, guVector{ 0.19, 0.15, 1.4 });
+			trigger6->AddComponent( new MeshComponent( "8x8x8" ));
+			trigger6->AddComponent( new RigidbodyComponent( guVector { 0.7f, 0.5f, 6.0f }, 10.0f, true ));
+			
+			AddObject(trigger6);*/
+
+			//@POOL BALLS
+
+
 			GameObject * ball = new GameObject("SphereTest", guVector { 0 , -1.5, 0 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball->AddComponent( new MeshComponent( "pool_ball_red" ));
 			RigidbodyComponent * ballRb = new RigidbodyComponent( 0.5f );
-			ballRb->m_force = guVector{ 400, 0, 0 };
+			ballRb->m_force = guVector{ 800, 0, 0 };
 			ball->AddComponent( ballRb );
 
 			AddObject(ball);
 
-
 			GameObject * ball2 = new GameObject("SphereTest2", guVector { 5, -1.5, 0 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball2->AddComponent( new MeshComponent( "pool_ball_blue" ));
 			RigidbodyComponent * ball2Rb = new RigidbodyComponent( 0.5f );
-			ball2Rb->m_force = guVector{ -400, 0, 0 };
+			ball2Rb->m_force = guVector{ -800, 0, 0 };
 			ball2->AddComponent( ball2Rb );
 
 			AddObject(ball2);
@@ -170,7 +256,7 @@ void ObjectSystem::LoadScene(int sceneIndex){
 			GameObject * ball3 = new GameObject("SphereTest3", guVector { 2.5, -1.5, 2.6 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball3->AddComponent( new MeshComponent( "pool_ball_white" ));
 			RigidbodyComponent * ball3Rb = new RigidbodyComponent( 0.5f );
-			ball3Rb->m_force = guVector{ 0, 0, -400 };
+			ball3Rb->m_force = guVector{ 0, 0, -800 };
 			ball3->AddComponent( ball3Rb );
 
 			AddObject(ball3);
@@ -208,24 +294,38 @@ void ObjectSystem::RemoveAllObjects(){
 	//Safety check
 	m_objectList.clear();
 }
-void ObjectSystem::RemoveObject(GameObject * object){
+void ObjectSystem::RemoveObject(GameObject * object, int optionalIndex){
 	//Remove specific object. ideally called from Component itself.
 	//i.e. Sphere collider requests removing attached gameObject when it is put on a hole.
 	//We give an index? a pointer to the gameObject?
-	for (u16 i = 0; i < m_objectList.size(); i++){
-		//Compare addresses
-		if (object == (m_objectList[i])){
-			//Remove
-			//Swap and pop approach
-			//@Try not to miss update on swapped object
-			//Swap and pop approach (NOT Needed)
-			if (i < m_objectList.size() - 1) {
-				swap(m_objectList[i], m_objectList.back());
+	if( optionalIndex != -1)
+	{
+		//We remove by index
+		//Remove
+		//Swap and pop approach
+		//@Try not to miss update on swapped object
+		if ((u16)optionalIndex < m_objectList.size() - 1) {
+			swap(m_objectList[optionalIndex], m_objectList.back());
+		}
+		GameObject * curObj = m_objectList.back();
+		delete curObj;
+		m_objectList.pop_back();
+	}
+	else{
+		//We remove by ptrRef
+		for (u16 i = 0; i < m_objectList.size(); i++){
+			//Compare addresses
+			if (object == (m_objectList[i])){
+				//Remove
+				//Swap and pop approach
+				//@Try not to miss update on swapped object
+				if (i < m_objectList.size() - 1) {
+					swap(m_objectList[i], m_objectList.back());
+				}
+				GameObject * curObj = m_objectList.back();
+				delete curObj;
+				m_objectList.pop_back();
 			}
-			GameObject * curObj = m_objectList.back();
-			delete curObj;
-			m_objectList.pop_back();
-		
 		}
 	}
 }

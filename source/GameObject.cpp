@@ -8,7 +8,7 @@ using namespace std;
 GameObject::GameObject( std::string name, guVector position, guQuaternion rotation, guVector scale )
 	: m_name(name), m_transform(position, rotation, scale)
 {
-
+	m_isDeleted = false;
 }
 //Destructor
 GameObject::~GameObject()
@@ -25,8 +25,6 @@ void GameObject::AddComponent( Component * component ){
 	//We add the component to the vector, and we set reference (Just in case)
 	component->m_owner = this;
 	m_components.push_back(component);
-
-	//@Print obj address: GraphicSystem::GetInstance()->AddLog("Obj Addr: " + to_string((int)this));
 }
 void GameObject::Send(ComponentMessage msg){
 	for (u16 i = 0; i < m_components.size(); i++){

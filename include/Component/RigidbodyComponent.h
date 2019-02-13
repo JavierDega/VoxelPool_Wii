@@ -14,9 +14,9 @@ class RigidbodyComponent :
 public:
 	//Funcs
 	//Sphere constructor
-	RigidbodyComponent(float radius = 0.5f, float mass = 10.0f, bool m_isKinematic = false );
+	RigidbodyComponent(float radius = 0.5f, float mass = 1.f, bool isKinematic = false, bool isTrigger = false );
 	//@AABB constructor
-	RigidbodyComponent( guVector halfExtents = Math::VecOne, float mass = 10.0f, bool isKinematic = false);
+	RigidbodyComponent( guVector halfExtents = Math::VecOne, float mass = 1.0f, bool isKinematic = false, bool isTrigger = false );
 	virtual ~RigidbodyComponent();
 	//Messaging
 	virtual bool Receive(ComponentMessage msg);
@@ -25,6 +25,7 @@ public:
 	Shape * m_shape;
 	float m_mass;
 	bool m_isKinematic;
+	bool m_isTrigger;
 	//Semi euler
 	guVector m_force, m_acceleration, m_velocity;
 };

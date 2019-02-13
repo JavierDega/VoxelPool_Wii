@@ -21,6 +21,7 @@ public:
 	
 	//Variables
 	std::string m_name;
+	bool m_isDeleted;
 	//All gameobjects have a transform component
 	TransformComponent m_transform;
 	//Cache coherency avoiding 'new'?

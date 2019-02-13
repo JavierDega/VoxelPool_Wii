@@ -2,7 +2,7 @@
 #define COMPONENT_H_
 
 enum ComponentMessage {
-	MSG_01,
+	BALL_IN_POT,
 	MSG_02
 };
 class GameObject;
