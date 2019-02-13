@@ -8,7 +8,6 @@ class Sphere :
 public:
 	Sphere(float radius = 0.5f);
 	~Sphere();
-	//virtual AABB ComputeAABB();
 	//Variables
 	float m_radius;
 };

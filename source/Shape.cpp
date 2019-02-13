@@ -1,7 +1,8 @@
 #include "Shape.h"
 
 
-Shape::Shape()
+Shape::Shape(ShapeType type)
+	: m_type(type)
 {
 
 }

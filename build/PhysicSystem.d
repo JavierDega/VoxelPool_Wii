@@ -7,11 +7,11 @@ PhysicSystem.o: \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Shape.h \
  C:/devkitPro/libogc/include/ogc/gu.h \
  C:/devkitPro/libogc/include/gctypes.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System\ObjectSystem.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/GameObject.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h \
- C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
  C:/devkitPro/libogc/include/ogc/aram.h \
@@ -84,8 +84,7 @@ PhysicSystem.o: \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/ControllableComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Sphere.h \
- C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Shape.h \
- C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/AABB.h
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Shape.h
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System\PhysicSystem.h:
 
@@ -101,6 +100,8 @@ C:/devkitPro/libogc/include/ogc/gu.h:
 
 C:/devkitPro/libogc/include/gctypes.h:
 
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
+
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System\ObjectSystem.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/GameObject.h:
@@ -108,8 +109,6 @@ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/GameObject.h:
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h:
-
-C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 
@@ -256,5 +255,3 @@ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Sphere.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Shape.h:
-
-C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/AABB.h:

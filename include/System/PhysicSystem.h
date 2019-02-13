@@ -24,8 +24,9 @@ public:
 	virtual void Update(float dt);
 	//Utility
 	void UpdatePhysics(float dt);
-	bool BroadPhase(RigidbodyComponent * rb1, RigidbodyComponent *rb2);
-	bool NarrowPhase(RigidbodyComponent * rb1, RigidbodyComponent *rb2);
+	bool NarrowPhase(RigidbodyComponent * rb1, RigidbodyComponent *rb2, float dt);
+	bool SphereToSphere(RigidbodyComponent * rb1, RigidbodyComponent * rb2, float dt);
+	bool SphereToAABB(RigidbodyComponent * rb1, RigidbodyComponent * rb2, float dt );
 
 	//Variables
 	//@Timestep
@@ -34,8 +35,8 @@ public:
 	//@Simulation settings
 	guVector m_gravity;
 	float m_airViscosity;
+	float m_frictionCoefficient;
 	//Space subdivision
-	//Medium phase
 
 };
 #endif /*PHYSICSYSTEM_H_*/

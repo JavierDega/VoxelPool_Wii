@@ -1,22 +1,21 @@
 #ifndef SHAPE_H_
 #define SHAPE_H_
+#include <ogc/gu.h>
 
-#include "ogc/gu.h"
-
-/*struct AABB {
-	guVector m_minExtent;
-	guVector m_maxExtent;
-};*/
-
+//@To avoid convoluted shape downcasts
+enum ShapeType {
+	SPHERE,
+	AABB
+};
 //@Finds the common ground between all collider types, including those used for broad phase.
 class Shape
 {
 public:
-	Shape();
+	Shape(ShapeType type);
 	virtual ~Shape();
 	//Funcs
-	//virtual AABB ComputeAABB() = 0;
 
 	//Variables
+	ShapeType m_type;
 };
 #endif /*SHAPE_H_*/

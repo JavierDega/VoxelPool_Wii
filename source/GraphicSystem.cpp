@@ -1,10 +1,10 @@
 #include "System/GraphicSystem.h"
 #include "System/ObjectSystem.h"
 #include "Component/FontComponent.h"
+#include "Extra/Math.h"
+
 #include "ogc/gu.h"
 #include <stdio.h>
-
-#include "Extra/Math.h"
 
 //@MODELS
 #include "PoolWIP_obj.h"

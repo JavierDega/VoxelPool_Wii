@@ -7,9 +7,6 @@
 #include "System/PhysicSystem.h"
 #include "System/GraphicSystem.h"
 
-#include "Extra/Math.h"
-
-#include <time.h>
 #include <ogc/lwp_watchdog.h>
 
 #include <iostream>
@@ -63,7 +60,7 @@ int main(int argc, char **argv) {
 		globalTime = diff_msec(starttime, gettime())/1000.f;
 		float dt = globalTime-prevTime;
 		
-		//gs->AddLog(to_string(1/dt));
+		gs->AddLog(to_string(1/dt));
 		
 		//Main Loop
 		//Input

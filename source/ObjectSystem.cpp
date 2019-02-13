@@ -152,7 +152,7 @@ void ObjectSystem::LoadScene(int sceneIndex){
 
 			GameObject * ball = new GameObject("SphereTest", guVector { 0 , -1.5, 0 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball->AddComponent( new MeshComponent( "pool_ball_red" ));
-			RigidbodyComponent * ballRb = new RigidbodyComponent();
+			RigidbodyComponent * ballRb = new RigidbodyComponent( 0.5f );
 			ballRb->m_force = guVector{ 400, 0, 0 };
 			ball->AddComponent( ballRb );
 
@@ -161,7 +161,7 @@ void ObjectSystem::LoadScene(int sceneIndex){
 
 			GameObject * ball2 = new GameObject("SphereTest2", guVector { 5, -1.5, 0 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball2->AddComponent( new MeshComponent( "pool_ball_blue" ));
-			RigidbodyComponent * ball2Rb = new RigidbodyComponent();
+			RigidbodyComponent * ball2Rb = new RigidbodyComponent( 0.5f );
 			ball2Rb->m_force = guVector{ -400, 0, 0 };
 			ball2->AddComponent( ball2Rb );
 
@@ -169,7 +169,7 @@ void ObjectSystem::LoadScene(int sceneIndex){
 
 			GameObject * ball3 = new GameObject("SphereTest3", guVector { 2.5, -1.5, 2.6 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball3->AddComponent( new MeshComponent( "pool_ball_white" ));
-			RigidbodyComponent * ball3Rb = new RigidbodyComponent();
+			RigidbodyComponent * ball3Rb = new RigidbodyComponent( 0.5f );
 			ball3Rb->m_force = guVector{ 0, 0, -400 };
 			ball3->AddComponent( ball3Rb );
 

@@ -3,7 +3,9 @@
 
 #include "Component/Component.h"
 #include "Shape.h"
-#include "ogc/gu.h"
+#include "Extra/Math.h"
+
+#include <ogc/gu.h>
 
 //@Handles physics
 class RigidbodyComponent :
@@ -13,6 +15,8 @@ public:
 	//Funcs
 	//Sphere constructor
 	RigidbodyComponent(float radius = 0.5f, float mass = 10.0f, bool m_isKinematic = false );
+	//@AABB constructor
+	RigidbodyComponent( guVector halfExtents = Math::VecOne, float mass = 10.0f, bool isKinematic = false);
 	virtual ~RigidbodyComponent();
 	//Messaging
 	virtual bool Receive(ComponentMessage msg);
