@@ -22,6 +22,7 @@ public:
 	//Events
 	void Initialize();
 	virtual void Update(float dt);
+	void SendMessage(ComponentMessage msg);
 	//Utility
 	void UpdatePhysics(float dt);
 	bool NarrowPhase(RigidbodyComponent * rb1, RigidbodyComponent *rb2, float dt);
@@ -36,7 +37,7 @@ public:
 	float m_accumulator;
 	//@Simulation settings
 	bool m_stepMode, m_stepOnce;
-	guVector m_gravity;
+	float m_gravity;
 	float m_airViscosity;
 	float m_frictionCoefficient;
 	//Space subdivision

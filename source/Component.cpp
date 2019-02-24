@@ -5,7 +5,7 @@
 Component::Component()
 	: m_owner(nullptr) 
 {
-
+	m_isActive = true;
 }
 //Destructor
 Component::~Component()

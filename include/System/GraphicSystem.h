@@ -31,8 +31,11 @@ class GraphicSystem : public System {
 	//Singleton
 	static GraphicSystem* GetInstance();	
 	//Funcs
+	//Events
 	void Initialize();
 	void Update( float dt );
+	void SendMessage(ComponentMessage msg);
+	//Utility
 	void InitGXVideo();
 	bool LoadMeshFromObj(std::string name, void* fileStream, unsigned int fileSize);
 	void SetLight();

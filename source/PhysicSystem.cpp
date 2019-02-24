@@ -1,6 +1,7 @@
 #include "System\PhysicSystem.h"
 #include "System\ObjectSystem.h"
 #include "System\GraphicSystem.h"
+#include "System\PadSystem.h"
 #include "Sphere.h"
 #include "BoundingBox.h"
 
@@ -25,7 +26,7 @@ PhysicSystem * PhysicSystem::GetInstance()
 //Constructor
 PhysicSystem::PhysicSystem()
 {
-	m_gravity = guVector{ 0, -9.8f, 0 };
+	m_gravity = 9.8f;
 	//Viscosity for earth's air @  0'Celsius = 1.33*10^-5 kg/ms^2
 	m_airViscosity = 0.133f;
 	m_minDt = 1.0f / 60.0f;
@@ -43,7 +44,7 @@ PhysicSystem::~PhysicSystem()
 void PhysicSystem::Initialize()
 {
 	//@What do here?
-	exit(0);
+	//exit(0);
 }
 ///Timestep and run physics
 
@@ -77,6 +78,10 @@ void PhysicSystem::Update(float dt)
 		//float alpha = m_accumulator / m_minDt;
 	}
 }
+//@Messaging
+void PhysicSystem::SendMessage(ComponentMessage msg){
+
+}
 ///Utility
 ///Physics loop
 void PhysicSystem::UpdatePhysics(float dt) {
@@ -105,13 +110,35 @@ void PhysicSystem::UpdatePhysics(float dt) {
 		}
 		else
 		{	
-			TransformComponent * t = &currentRb->m_owner->m_transform;
-			guVector airViscosityForce;
-			guVecScale( &currentRb->m_velocity, &airViscosityForce, m_airViscosity );
-			guVecSub( &currentRb->m_force, &airViscosityForce, &currentRb->m_force );
-			//currentRb->m_force -= m_airViscosity * currentRb->m_velocity;
-			//@NO GRAVITY AS OF NOW: guVecAdd( &currentRb->m_force, &m_gravity, &currentRb->m_force);
-			//currentRb->m_force += m_gravity;
+			//TransformComponent * t = &currentRb->m_owner->m_transform;
+			if (Math::LengthSq(currentRb->m_velocity) > m_frictionCoefficient*m_frictionCoefficient){
+				currentRb->m_isSleeping = false;
+			}
+			else {
+				currentRb->m_isSleeping = true;
+				currentRb->m_velocity = Math::VecZero;
+			}
+			if (!currentRb->m_isSleeping){
+
+				guVector airViscosityForce;
+				guVecScale( &currentRb->m_velocity, &airViscosityForce, m_airViscosity );
+				guVecSub( &currentRb->m_force, &airViscosityForce, &currentRb->m_force );
+				//currentRb->m_force -= m_airViscosity * currentRb->m_velocity;
+				//@BAKED KINETIC FRICTION SINCE WE ASSUMED WE'RE COLLIDING WITH THE TABLE'S PLANE DUE TO GRAVITY
+				//@Friction:
+				//Calculate normal force from impulse
+				//f = m*a
+				//f = mdv/dt
+				float forceAgainstTable = m_gravity*currentRb->m_mass;
+				guVector velNorm = currentRb->m_velocity;
+
+				guVecNormalize(&velNorm);
+
+				guVector friction;
+				guVecScale( &velNorm, &friction, -abs(forceAgainstTable)*m_frictionCoefficient );
+				guVecAdd( &currentRb->m_force, &friction, &currentRb->m_force);
+			}
+			//@INTEGRATE
 			guVecScale( &currentRb->m_force, &currentRb->m_acceleration, 1 / currentRb->m_mass );
 			//currentRb->m_acceleration = currentRb->m_force / currentRb->m_mass;
 			guVector accTimesDt;
@@ -122,14 +149,15 @@ void PhysicSystem::UpdatePhysics(float dt) {
 			guVecScale( &currentRb->m_velocity, &velTimesDt, dt);
 			guVecAdd( &currentRb->m_owner->m_transform.m_position, &velTimesDt, &currentRb->m_owner->m_transform.m_position);
 			//currentRb->m_owner->m_transform.m_position += currentRb->m_velocity*dt;
+			currentRb->m_force = Math::VecZero;
+
 			/*PRINTPOS*/
-			gs->AddLog(to_string(t->m_position.z));
-			gs->AddLog(to_string(t->m_position.y));
-			gs->AddLog(to_string(t->m_position.x));
-			gs->AddLog( currentRb->m_owner->m_name + " position:");
+			gs->AddLog(to_string(currentRb->m_velocity.z));
+			gs->AddLog(to_string(currentRb->m_velocity.y));
+			gs->AddLog(to_string(currentRb->m_velocity.x));
+			gs->AddLog( currentRb->m_owner->m_name + " velocity:");
+			if (currentRb->m_isSleeping) gs->AddLog(currentRb->m_owner->m_name + " is sleeping");
 		}
-		//Forces are computed every frame
-		currentRb->m_force = Math::VecZero;
 
 		//@SSScheme
 		for (unsigned int j = i + 1; j < m_rigidbodies.size(); j++) {
@@ -312,11 +340,33 @@ bool PhysicSystem::SphereToSphere(RigidbodyComponent * rb1, RigidbodyComponent *
 		guVecNormalize( &vel2Norm );
 
 		guVector friction1;
-		guVecScale( &vel1Norm, &friction1, -abs(normalForce)*m_frictionCoefficient );
+		if (rb1->m_isSleeping){
+			//Static friction model:
+			//Friction is twice the m_frictionCoefficient
+			guVecScale(&vel1Norm, &friction1, -abs(normalForce)*m_frictionCoefficient*2);
+			if (Math::LengthSq(friction1) > Math::LengthSq(rb1Force)){
+				guVecScale(&rb1Force, &friction1, -1);
+			}
+		}
+		else{
+			//Kinetic friction
+			guVecScale( &vel1Norm, &friction1, -abs(normalForce)*m_frictionCoefficient );
+		}
 		guVecAdd( &rb1->m_force, &friction1, &rb1->m_force);
 
+
 		guVector friction2;
-		guVecScale( &vel2Norm, &friction2, -abs(normal2Force)*m_frictionCoefficient );
+		if (rb2->m_isSleeping){
+			//Static friction model:
+			//Friction is twice the m_frictionCoefficient
+			guVecScale(&vel2Norm, &friction2, -abs(normalForce)*m_frictionCoefficient*2);
+			if (Math::LengthSq(friction2) > Math::LengthSq(rb2Force)){
+				guVecScale(&rb2Force, &friction2, -1);
+			}
+		}
+		else{
+			guVecScale( &vel2Norm, &friction2, -abs(normal2Force)*m_frictionCoefficient );
+		}
 		guVecAdd( &rb2->m_force, &friction2, &rb2->m_force);
 		
 		//@Put to rest?
@@ -344,7 +394,9 @@ bool PhysicSystem::SphereToAABB(RigidbodyComponent * rb1, RigidbodyComponent * r
 		gs->AddLog("Sphere-AABB collision at:");
 		if (rb2->m_isTrigger){
 			//@We just send necessary messages
-			rb1->m_owner->Send(ComponentMessage::BALL_IN_POT);
+			rb1->m_owner->Send(ComponentMessage::BALL_IN_POT);//Deletes ball
+			//Message to pad system, for ball scored
+			PadSystem::GetInstance()->SendMessage(ComponentMessage::PLAYER_SCORED);//Adds point to right player
 			return true;
 		}
 		else{

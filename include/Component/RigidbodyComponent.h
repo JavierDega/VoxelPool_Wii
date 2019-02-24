@@ -7,6 +7,12 @@
 
 #include <ogc/gu.h>
 
+enum BallType{
+	BALL_NONE,//@AABB RIGIDBODIES
+	BALL_RED,
+	BALL_BLUE
+};
+
 //@Handles physics
 class RigidbodyComponent :
 	public Component
@@ -26,6 +32,7 @@ public:
 	float m_mass;
 	bool m_isKinematic;
 	bool m_isTrigger;
+	bool m_isSleeping;
 	//Semi euler
 	guVector m_force, m_acceleration, m_velocity;
 };

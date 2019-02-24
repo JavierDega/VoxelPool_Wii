@@ -29,14 +29,15 @@ void GameObject::AddComponent( Component * component ){
 void GameObject::Send(ComponentMessage msg){
 	for (u16 i = 0; i < m_components.size(); i++){
 		
-		m_components[i]->Receive(msg);
+		m_components[i]->Receive(msg);//@Receive returns boolean stating whether message was received or not.
 	}
 }
-//Refresh addresses
+//Refresh addresses //NOT NEEDED
+/*
 void GameObject::RefreshComponentAddresses(){
 	//@
 	for(Component * comp : m_components){
 		comp->m_owner = this;
 	}
-}
+}*/
 

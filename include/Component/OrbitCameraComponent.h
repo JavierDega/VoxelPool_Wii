@@ -14,9 +14,10 @@ public:
 	virtual void OnStart();
 	virtual void ComputeLogic (float dt);
 	//Messaging
-	virtual bool Receive( ComponentMessage msg ){ return false;};
+	virtual bool Receive( ComponentMessage msg );
 
 	//Variables
 	float m_zoom;
+	bool m_pitchConstrained;//@For shooting routine
 };
 #endif /*ORBITCAMERACOMPONENT_H_*/

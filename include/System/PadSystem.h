@@ -15,8 +15,11 @@ class PadSystem : public System {
 	//Singleton
 	static PadSystem* GetInstance();
 	//Funcs
+	//Events
 	virtual void Initialize();
 	virtual void Update( float dt ); 
+	void SendMessage(ComponentMessage msg);
+	//Utility
 	void ScanPads(int controller);
 
 	//Variables

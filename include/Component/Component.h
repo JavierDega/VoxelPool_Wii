@@ -3,7 +3,11 @@
 
 enum ComponentMessage {
 	BALL_IN_POT,
-	MSG_02
+	PLAYER_SCORED,
+	BALLS_SLEEPING,
+	PLAYER1_TURN,
+	PLAYER2_TURN,
+	SHOOT_CLOSEUP
 };
 class GameObject;
 class Component{
@@ -16,5 +20,6 @@ public:
 
 	//Variables
 	GameObject * m_owner;
+	bool m_isActive;
 };
 #endif /*COMPONENT_H_*/

@@ -1,5 +1,5 @@
-#ifndef MENUSELECTOR_H_
-#define MENUSELECTOR_H_
+#ifndef MENUCOMPONENT_H_
+#define MENUCOMPONENT_H_
 
 #include "Component/ControllableComponent.h"
 #include "Component/FontComponent.h"
@@ -10,7 +10,7 @@
 class MenuComponent : public ControllableComponent{
 public:
 	//Constructor
-	MenuComponent(u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp, float offsetScale = 1.0f);
+	MenuComponent(u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp, float offsetScale = 1.0f, bool rotate = false, bool isScreenSpace = false);
 	virtual ~MenuComponent();
 	virtual void OnStart();
 	virtual void ComputeLogic(float dt);
@@ -23,5 +23,7 @@ public:
 	u16 m_option;
 	guVector m_screenPos;
 	float m_offsetScale;
+	bool m_rotate;
+	bool m_isScreenSpace;
 };
-#endif /*MENUSELECTOR_H_*/
+#endif /*MENUCOMPONENT_H_*/

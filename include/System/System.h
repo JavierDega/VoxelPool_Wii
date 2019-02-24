@@ -15,7 +15,7 @@ public:
   	// All systems must update each game loop
   	virtual void Update( float dt ) = 0;
   	// This recieves any messages sent to the core engine in Engine.cpp
-  	//virtual void SendMessage( ComponentMessage *msg ) = 0;
+  	virtual void SendMessage( ComponentMessage msg ) = 0;
 };
 
 #endif /*SYSTEM_H_*/

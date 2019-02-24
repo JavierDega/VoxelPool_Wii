@@ -65,6 +65,15 @@ void PadSystem::Update( float dt ){
 		logicComponents[i]->ComputeLogic(dt);
 	}
 }
+//@Messaging
+void PadSystem::SendMessage(ComponentMessage msg){
+	//@Catch Player_Scored message
+	if (msg == ComponentMessage::PLAYER_SCORED){
+		//Get all logic components, find the one that's the player controller
+
+	}
+}
+//Utility
 //Scan
 void PadSystem::ScanPads(int controller) {
 	PAD_ScanPads();

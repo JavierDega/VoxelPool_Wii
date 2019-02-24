@@ -27,11 +27,13 @@ class ObjectSystem : public System {
 	//Events
 	void Initialize();
 	void Update( float dt = 0 );
+	void SendMessage(ComponentMessage msg);
 	//Utility
 	void LoadScene(int sceneIndex);
 	int AddObject(GameObject * obj);
 	void RemoveAllObjects();
 	void RemoveObject( GameObject * object , int optionalIndex = -1);
+	GameObject * FindObjectByName(std::string name);
 	std::vector< MeshComponent * > GetMeshComponentList();
 	std::vector< FontComponent * > GetFontComponentList();
 	std::vector< LogicComponent * > GetLogicComponentList();

@@ -1,11 +1,12 @@
 #include "Component/OrbitCameraComponent.h"
+#include "System/ObjectSystem.h"
 #include "System/GraphicSystem.h"
 #include "Extra/Math.h"
-
+#include "GameObject.h"
 #include <ogc/pad.h>
 
 OrbitCameraComponent::OrbitCameraComponent( guVector * cam, guVector* look, float * pitch, float * yaw, u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp)
-	: CameraComponent( cam, look, pitch, yaw, buttonsHeld, buttonsDown, buttonsUp ), m_zoom(20.f)
+	: CameraComponent( cam, look, pitch, yaw, buttonsHeld, buttonsDown, buttonsUp ), m_zoom(20.f), m_pitchConstrained(false)
 {
 
 };
@@ -76,6 +77,7 @@ void OrbitCameraComponent::ComputeLogic(float dt){
 	float limit = Math::PI / 2.0f - 0.01f;
 	*m_pitch = MAX(0, *m_pitch);
 	*m_pitch = MIN(limit, *m_pitch);
+	if (m_pitchConstrained)*m_pitch = 0.3f;
 	// keep longitude in sane range by wrapping
 	if (*m_yaw > Math::PI)
 	{
@@ -94,6 +96,7 @@ void OrbitCameraComponent::ComputeLogic(float dt){
 	float x = r * sinf(*m_yaw);
 
 	guVector camOffset = guVector{ m_zoom*x, m_zoom*y, m_zoom*z };
+	*m_look = m_owner->m_transform.m_position;//Circle around transform
 	guVecAdd(m_look, &camOffset, m_cam);
 
 	std::string camLog = "Camera: " + std::to_string(m_cam->x) + " " + std::to_string(m_cam->y) + " " + std::to_string(m_cam->z);
@@ -103,4 +106,18 @@ void OrbitCameraComponent::ComputeLogic(float dt){
 	std::string lookLog = "Look: " + std::to_string(m_look->x) + " " + std::to_string(m_look->y) + " " + std::to_string(m_look->z);
 	//Print camera and look
 	//gs->AddLog(lookLog);
+}
+bool OrbitCameraComponent::Receive(ComponentMessage msg){
+
+	switch (msg){
+		case (ComponentMessage::SHOOT_CLOSEUP):
+		{
+			//@Find white ball by name, set position to be its position.
+			ObjectSystem * os = ObjectSystem::GetInstance();
+			TransformComponent whiteBallTransform = os->FindObjectByName("White_Ball")->m_transform;
+		}
+		break;
+		default:
+		break;
+	}
 }
