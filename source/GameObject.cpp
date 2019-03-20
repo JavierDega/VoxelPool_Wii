@@ -32,7 +32,28 @@ void GameObject::Send(ComponentMessage msg){
 		m_components[i]->Receive(msg);//@Receive returns boolean stating whether message was received or not.
 	}
 }
-//Refresh addresses //NOT NEEDED
+OrbitCameraComponent * GameObject::FindOrbitCameraComponent(){
+	//@For whoever needs it's data
+
+	//Iterate through components, find OrbitCameraComponent through i.e dynamic_casts
+	for (u16 i = 0; i < m_components.size(); i++){
+		//Dynamic casting to identify type;
+		OrbitCameraComponent * orbitCamComp = dynamic_cast< OrbitCameraComponent * >(m_components[i]);
+		if (orbitCamComp)return orbitCamComp;//We return the first one found (Could be active/inactive)
+	}
+	return nullptr;
+
+}
+PoolStateComponent * GameObject::FindPoolStateComponent(){
+	//@Same as above
+	for (u16 i = 0; i < m_components.size(); i++){
+		//Dynamic cast
+		PoolStateComponent * poolStateComp = dynamic_cast<PoolStateComponent *>(m_components[i]);
+		if (poolStateComp) return poolStateComp;//We return the first one found
+	}
+	return nullptr;
+}
+//Refresh addresses //NOT NEEDED DUE TO HEAP ALLOCATED POINTERS APPROACH
 /*
 void GameObject::RefreshComponentAddresses(){
 	//@

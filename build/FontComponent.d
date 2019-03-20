@@ -68,6 +68,17 @@ FontComponent.o: \
  C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h \
  C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Metaphrasis.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/GameObject.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
+ C:/devkitPro/libogc/include/ogc/gu.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitCameraComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/CameraComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/ControllableComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/PoolStateComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/rursus_compact_mono_ttf.h
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/FontComponent.h:
@@ -205,5 +216,27 @@ C:/devkitPro/portlibs/ppc/include/freetype/fterrdef.h:
 C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Metaphrasis.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/GameObject.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
+
+C:/devkitPro/libogc/include/ogc/gu.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitCameraComponent.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/CameraComponent.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/ControllableComponent.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/PoolStateComponent.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/rursus_compact_mono_ttf.h:

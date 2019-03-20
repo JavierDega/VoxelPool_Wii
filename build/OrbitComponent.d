@@ -59,6 +59,10 @@ OrbitComponent.o: \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/GameObject.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitCameraComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/CameraComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/ControllableComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/PoolStateComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitComponent.h:
@@ -178,5 +182,13 @@ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/GameObject.h:
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitCameraComponent.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/CameraComponent.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/ControllableComponent.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/PoolStateComponent.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:

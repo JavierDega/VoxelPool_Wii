@@ -20,8 +20,13 @@ PadSystem::PadSystem() {
 	m_buttonsUp = 0;
 	m_buttonsDown = 0;
 
+	m_wButtonsHeld = 0;
+	m_wButtonsUp = 0;
+	m_wButtonsDown = 0;
+
 	//INPUT
 	PAD_Init();
+	WPAD_Init();
 }
 //Destructor
 PadSystem::~PadSystem(){
@@ -62,7 +67,8 @@ void PadSystem::Update( float dt ){
 
 	//@Update logic components
 	for (u16 i = 0; i < logicComponents.size(); i++){
-		logicComponents[i]->ComputeLogic(dt);
+		LogicComponent * logic = logicComponents[i];
+		logic->ComputeLogic(dt);
 	}
 }
 //@Messaging
@@ -70,7 +76,7 @@ void PadSystem::SendMessage(ComponentMessage msg){
 	//@Catch Player_Scored message
 	if (msg == ComponentMessage::PLAYER_SCORED){
 		//Get all logic components, find the one that's the player controller
-
+		
 	}
 }
 //Utility

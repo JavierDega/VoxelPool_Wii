@@ -7,7 +7,6 @@
 #include "Component/FontComponent.h"
 #include "Component/MenuComponent.h"
 #include "Component/RigidbodyComponent.h"
-#include "Extra/Math.h"
 #include <vector>
 
 ///OBJECT FACTORY/ STORES POINTERS TO GAMEOBJECTS AND ALLOWS US TO FILTER COMPONENTS

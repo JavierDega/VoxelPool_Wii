@@ -6,6 +6,8 @@
 #include "Component/OrbitCameraComponent.h"
 #include "GameObject.h"
 
+#include "Extra/Math.h"
+
 using namespace std;
 using namespace Math;
 extern int WriteToFile(string toWrite);
@@ -148,8 +150,8 @@ void ObjectSystem::LoadScene(int sceneIndex){
 			//GraphicSystem * gs = GraphicSystem::GetInstance();
 			//PadSystem * ps = PadSystem::GetInstance();
 
-			GameObject * gameController = new GameObject( "GameController" );
-			gameController->AddComponent(new PoolStateComponent());
+			GameObject * gameController = new GameObject( "GameController", guVector{ 6.5, -0.5, -7.5}, Math::QuatIdentity, guVector{.3, .3, .3 } );
+			gameController->AddComponent(new PoolStateComponent(&ps->m_buttonsHeld, &ps->m_buttonsDown, &ps->m_buttonsUp));
 
 			AddObject(gameController);
 
@@ -238,24 +240,72 @@ void ObjectSystem::LoadScene(int sceneIndex){
 			
 			AddObject(trigger6);
 
-			//@POOL BALLS
-			GameObject * ball = new GameObject("SphereTest", guVector { 0 , -1.5, 0 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
+			//@POOL BALLS @REMEMBER TO SET UP BALLTYPES (TEAM)
+			GameObject * ball = new GameObject("BallRed", guVector { 5 , -1.0, 0.6 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball->AddComponent( new MeshComponent( "pool_ball_red" ));
 			ball->AddComponent( new RigidbodyComponent( 0.5f ) );
 
 			AddObject(ball);
 
-			GameObject * ball2 = new GameObject("SphereTest2", guVector { 5, -1.5, 0 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
+			GameObject * ball2 = new GameObject("BallBlue", guVector { 5, -1.0, -0.6 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball2->AddComponent( new MeshComponent( "pool_ball_blue" ));
 			ball2->AddComponent( new RigidbodyComponent( 0.5f ) );
 
 			AddObject(ball2);
 
-			GameObject * ball3 = new GameObject("SphereTest3", guVector { 2.5, -1.5, 2.6 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
+			GameObject * ball3 = new GameObject("White_Ball", guVector { -5, -1.0, 0 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball3->AddComponent( new MeshComponent( "pool_ball_white" ));
 			ball3->AddComponent( new RigidbodyComponent( 0.5f ) );
 
 			AddObject(ball3);
+
+			GameObject * ball4 = new GameObject("BallRed2", guVector { 4, -1.0, 0 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
+			ball4->AddComponent( new MeshComponent( "pool_ball_red" ));
+			ball4->AddComponent( new RigidbodyComponent( 0.5f ) );
+
+			AddObject(ball4);
+
+			GameObject * ball5 = new GameObject("BallBlue2", guVector { 6, -1.0, 0 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
+			ball5->AddComponent( new MeshComponent( "pool_ball_blue" ));
+			ball5->AddComponent( new RigidbodyComponent( 0.5f ) );
+
+			AddObject(ball5);
+
+			GameObject * ball6 = new GameObject("BallRed3", guVector { 6, -1.0, -1.2 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
+			ball6->AddComponent( new MeshComponent( "pool_ball_red" ));
+			ball6->AddComponent( new RigidbodyComponent( 0.5f ) );
+
+			AddObject(ball6);
+
+			GameObject * ball7 = new GameObject("BallBlue3", guVector { 6, -1.0, 1.2 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
+			ball7->AddComponent( new MeshComponent( "pool_ball_blue" ));
+			ball7->AddComponent( new RigidbodyComponent( 0.5f ) );
+
+			AddObject(ball7);
+
+			GameObject * ball8 = new GameObject("BallRed4", guVector { 7, -1.0, 0.6 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
+			ball8->AddComponent( new MeshComponent( "pool_ball_red" ));
+			ball8->AddComponent( new RigidbodyComponent( 0.5f ) );
+
+			AddObject(ball8);
+
+			GameObject * ball9 = new GameObject("BallBlue4", guVector { 7, -1.0, -0.6 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
+			ball9->AddComponent( new MeshComponent( "pool_ball_blue" ));
+			ball9->AddComponent( new RigidbodyComponent( 0.5f ) );
+
+			AddObject(ball9);
+
+			GameObject * ball10 = new GameObject("BallRed5", guVector { 7, -1.0, -1.8 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
+			ball10->AddComponent( new MeshComponent( "pool_ball_red" ));
+			ball10->AddComponent( new RigidbodyComponent( 0.5f ) );
+
+			AddObject(ball10);
+
+			GameObject * ball11 = new GameObject("BallBlue5", guVector { 7, -1.0, 1.8 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
+			ball11->AddComponent( new MeshComponent( "pool_ball_blue" ));
+			ball11->AddComponent( new RigidbodyComponent( 0.5f ) );
+
+			AddObject(ball11);
 
 			break;
 		}
@@ -328,7 +378,10 @@ void ObjectSystem::RemoveObject(GameObject * object, int optionalIndex){
 GameObject * ObjectSystem::FindObjectByName( string name ){
 	GameObject * returnedObj = nullptr;
 	for (u16 i = 0; i < m_objectList.size(); i++){
-		if (m_objectList[i]->m_name.compare(name) == 0 ) returnedObj = m_objectList[i];
+		if (m_objectList[i]->m_name.compare(name) == 0 ) {
+			returnedObj = m_objectList[i];
+			GraphicSystem::GetInstance()->AddLog("Object: " + m_objectList[i]->m_name + " found");
+		}
 	}
 	return returnedObj;
 }
@@ -345,7 +398,7 @@ std::vector< MeshComponent * > ObjectSystem::GetMeshComponentList(){
 		for (u16 j = 0; j < curObj->m_components.size(); j++){
 			//Dynamic casting to identify type;
 			MeshComponent * meshComp = dynamic_cast< MeshComponent * >(curObj->m_components[j]);
-			if (meshComp){ 
+			if (meshComp && meshComp->m_isActive){ 
 	 			meshCompList.push_back(meshComp);
 			}
 		}
@@ -364,7 +417,7 @@ std::vector< FontComponent * > ObjectSystem::GetFontComponentList(){
 		for (u16 j = 0; j < curObj->m_components.size(); j++){
 			//Dynamic casting to identify type;
 			FontComponent * fontComp = dynamic_cast< FontComponent * >(curObj->m_components[j]);
-			if (fontComp) fontCompList.push_back(fontComp);
+			if (fontComp && fontComp->m_isActive ) fontCompList.push_back(fontComp);
 		}
 	}
 	return fontCompList;
@@ -381,7 +434,7 @@ std::vector< LogicComponent * > ObjectSystem::GetLogicComponentList(){
 		for (u16 j = 0; j < curObj->m_components.size(); j++){
 			//Dynamic casting to identify type;
 			LogicComponent * logicComp = dynamic_cast< LogicComponent * >(curObj->m_components[j]);
-			if (logicComp) logicCompList.push_back(logicComp);
+			if (logicComp && logicComp->m_isActive) logicCompList.push_back(logicComp);
 		}
 	}
 	return logicCompList;
@@ -398,7 +451,7 @@ std::vector< MenuComponent * > ObjectSystem::GetMenuComponentList(){
 		for (u16 j = 0; j < curObj->m_components.size(); j++){
 			//Dynamic casting to identify type;
 			MenuComponent * menuComp = dynamic_cast< MenuComponent * >(curObj->m_components[j]);
-			if (menuComp) menuCompList.push_back(menuComp);
+			if (menuComp && menuComp->m_isActive) menuCompList.push_back(menuComp);
 		}
 	}
 	return menuCompList;
@@ -414,7 +467,7 @@ std::vector< RigidbodyComponent * > ObjectSystem::GetRigidbodyComponentList(){
 		for (u16 j = 0; j < curObj->m_components.size(); j++){
 			//Dynamic casting to identify type
 			RigidbodyComponent * rbComp = dynamic_cast< RigidbodyComponent * >(curObj->m_components[j]);
-			if (rbComp) rbCompList.push_back(rbComp);
+			if (rbComp && rbComp->m_isActive) rbCompList.push_back(rbComp);
 		}
 	}
 	return rbCompList;

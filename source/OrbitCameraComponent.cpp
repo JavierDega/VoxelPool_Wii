@@ -5,8 +5,8 @@
 #include "GameObject.h"
 #include <ogc/pad.h>
 
-OrbitCameraComponent::OrbitCameraComponent( guVector * cam, guVector* look, float * pitch, float * yaw, u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp)
-	: CameraComponent( cam, look, pitch, yaw, buttonsHeld, buttonsDown, buttonsUp ), m_zoom(20.f), m_pitchConstrained(false)
+OrbitCameraComponent::OrbitCameraComponent( guVector orbitOrigin, guVector * cam, guVector* look, float * pitch, float * yaw, u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp)
+	: CameraComponent( cam, look, pitch, yaw, buttonsHeld, buttonsDown, buttonsUp ), m_orbitOrigin(orbitOrigin), m_zoom(20.f)
 {
 
 };
@@ -20,22 +20,13 @@ void OrbitCameraComponent::OnStart(){
 
 	//Look goes to origin, pitch and yaw are zero,
 	//We set camera
-	*m_look = Math::VecZero;
+	*m_look = m_orbitOrigin;
 	*m_pitch = 0;
 	*m_yaw = 0;
-
-	//@Euler to direction vector
-	float y = sinf(*m_pitch);
-	float r = cosf(*m_pitch);
-	float z = r * cosf(*m_yaw);
-	float x = r * sinf(*m_yaw);
-
-	guVector camOffset = guVector{ x, y, z };
-	guVecAdd(m_look, &camOffset, m_cam);
 }
 void OrbitCameraComponent::ComputeLogic(float dt){
 	//Orbit camera around point (PoolTable?)
-	//GraphicSystem * gs = GraphicSystem::GetInstance();
+	GraphicSystem * gs = GraphicSystem::GetInstance();
 	//@React to input
 
 	u16 bheld = *(m_buttonsHeld);
@@ -77,7 +68,6 @@ void OrbitCameraComponent::ComputeLogic(float dt){
 	float limit = Math::PI / 2.0f - 0.01f;
 	*m_pitch = MAX(0, *m_pitch);
 	*m_pitch = MIN(limit, *m_pitch);
-	if (m_pitchConstrained)*m_pitch = 0.3f;
 	// keep longitude in sane range by wrapping
 	if (*m_yaw > Math::PI)
 	{
@@ -88,7 +78,6 @@ void OrbitCameraComponent::ComputeLogic(float dt){
 		*m_yaw += Math::PI * 2.0f;
 	}
 
-
 	//@Euler to direction vector
 	float y = sinf(*m_pitch);
 	float r = cosf(*m_pitch);
@@ -96,28 +85,28 @@ void OrbitCameraComponent::ComputeLogic(float dt){
 	float x = r * sinf(*m_yaw);
 
 	guVector camOffset = guVector{ m_zoom*x, m_zoom*y, m_zoom*z };
-	*m_look = m_owner->m_transform.m_position;//Circle around transform
+	*m_look = m_orbitOrigin;//Circle around transform
 	guVecAdd(m_look, &camOffset, m_cam);
 
 	std::string camLog = "Camera: " + std::to_string(m_cam->x) + " " + std::to_string(m_cam->y) + " " + std::to_string(m_cam->z);
 	//Print camera and look
-	//gs->AddLog(camLog);
+	gs->AddLog(camLog);
 	
 	std::string lookLog = "Look: " + std::to_string(m_look->x) + " " + std::to_string(m_look->y) + " " + std::to_string(m_look->z);
 	//Print camera and look
-	//gs->AddLog(lookLog);
+	gs->AddLog(lookLog);
 }
 bool OrbitCameraComponent::Receive(ComponentMessage msg){
 
 	switch (msg){
-		case (ComponentMessage::SHOOT_CLOSEUP):
+		case ComponentMessage::START_AIMING:
 		{
-			//@Find white ball by name, set position to be its position.
-			ObjectSystem * os = ObjectSystem::GetInstance();
-			TransformComponent whiteBallTransform = os->FindObjectByName("White_Ball")->m_transform;
+			//@We set the right m_orbitOrigin with a findbyName query
+			m_orbitOrigin = ObjectSystem::GetInstance()->FindObjectByName("White_Ball")->m_transform.m_position;
 		}
 		break;
 		default:
 		break;
 	}
+	return false;
 }

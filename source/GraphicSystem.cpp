@@ -357,9 +357,9 @@ void GraphicSystem::DrawFonts(std::vector<FontComponent *> fonts){
 	for (u16 i = 0; i < fonts.size(); i++){
 		FontComponent * font = fonts[i];
 		TransformComponent transform = font->m_owner->m_transform;
-
 		//Matrix setup
 		guMtxIdentity(m_model);
+		//@SCREEN SPACE UI VS WORLD SPACE FONTS
 		if (font->m_isScreenSpace){
 			//Calculate dirVector
 			guVector dirVector;

@@ -5,12 +5,9 @@ PadSystem.o: \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h \
  C:/devkitPro/libogc/include/ogc/pad.h \
  C:/devkitPro/libogc/include/gctypes.h \
- C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/ObjectSystem.h \
- C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/GameObject.h \
- C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h \
- C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h \
- C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
- C:/devkitPro/libogc/include/ogc/gu.h \
+ C:/devkitPro/libogc/include/wiiuse/wpad.h \
+ C:/devkitPro/libogc/include/wiiuse/wiiuse.h \
+ C:/devkitPro/libogc/include/bte/bte.h \
  C:/devkitPro/libogc/include/gccore.h \
  C:/devkitPro/libogc/include/ogc/dsp.h \
  C:/devkitPro/libogc/include/ogc/aram.h \
@@ -61,6 +58,18 @@ PadSystem.o: \
  C:/devkitPro/libogc/include/ogc/mutex.h \
  C:/devkitPro/libogc/include/ogc/system.h \
  C:/devkitPro/libogc/include/ogc/wiilaunch.h \
+ C:/devkitPro/libogc/include/bte/bd_addr.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/ObjectSystem.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/GameObject.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
+ C:/devkitPro/libogc/include/ogc/gu.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitCameraComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/CameraComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/ControllableComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/PoolStateComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MeshComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/FontComponent.h \
@@ -80,8 +89,6 @@ PadSystem.o: \
  C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Metaphrasis.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MenuComponent.h \
- C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/ControllableComponent.h \
- C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/RigidbodyComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Shape.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/PhysicSystem.h \
@@ -97,17 +104,11 @@ C:/devkitPro/libogc/include/ogc/pad.h:
 
 C:/devkitPro/libogc/include/gctypes.h:
 
-C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/ObjectSystem.h:
+C:/devkitPro/libogc/include/wiiuse/wpad.h:
 
-C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/GameObject.h:
+C:/devkitPro/libogc/include/wiiuse/wiiuse.h:
 
-C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h:
-
-C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h:
-
-C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
-
-C:/devkitPro/libogc/include/ogc/gu.h:
+C:/devkitPro/libogc/include/bte/bte.h:
 
 C:/devkitPro/libogc/include/gccore.h:
 
@@ -209,6 +210,30 @@ C:/devkitPro/libogc/include/ogc/system.h:
 
 C:/devkitPro/libogc/include/ogc/wiilaunch.h:
 
+C:/devkitPro/libogc/include/bte/bd_addr.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/ObjectSystem.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/GameObject.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/Component.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/TransformComponent.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
+
+C:/devkitPro/libogc/include/ogc/gu.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitCameraComponent.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/CameraComponent.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/ControllableComponent.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/PoolStateComponent.h:
+
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MeshComponent.h:
@@ -246,10 +271,6 @@ C:/devkitPro/portlibs/ppc/include/freetype/ftbitmap.h:
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Metaphrasis.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MenuComponent.h:
-
-C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/ControllableComponent.h:
-
-C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/RigidbodyComponent.h:
 

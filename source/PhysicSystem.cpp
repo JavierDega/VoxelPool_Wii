@@ -79,14 +79,15 @@ void PhysicSystem::Update(float dt)
 	}
 }
 //@Messaging
-void PhysicSystem::SendMessage(ComponentMessage msg){
+void PhysicSystem::SendMessage(ComponentMessage msg)
+{
 
 }
 ///Utility
 ///Physics loop
 void PhysicSystem::UpdatePhysics(float dt) {
 
-	GraphicSystem * gs = GraphicSystem::GetInstance();
+	//GraphicSystem * gs = GraphicSystem::GetInstance();
 	vector<RigidbodyComponent*> m_rigidbodies = ObjectSystem::GetInstance()->GetRigidbodyComponentList();
 	vector<pair<RigidbodyComponent*, RigidbodyComponent*>> m_pairs;
 	
@@ -110,7 +111,7 @@ void PhysicSystem::UpdatePhysics(float dt) {
 		}
 		else
 		{	
-			//TransformComponent * t = &currentRb->m_owner->m_transform;
+			TransformComponent * t = &currentRb->m_owner->m_transform;
 			if (Math::LengthSq(currentRb->m_velocity) > m_frictionCoefficient*m_frictionCoefficient){
 				currentRb->m_isSleeping = false;
 			}
@@ -139,6 +140,8 @@ void PhysicSystem::UpdatePhysics(float dt) {
 				guVecAdd( &currentRb->m_force, &friction, &currentRb->m_force);
 			}
 			//@INTEGRATE
+			guQuaternion rotation = Math::QuatFromAxisAngle(guVector{1,0,0}, 0.1f);
+			guQuatMultiply( &t->m_rotation, &rotation, &t->m_rotation);
 			guVecScale( &currentRb->m_force, &currentRb->m_acceleration, 1 / currentRb->m_mass );
 			//currentRb->m_acceleration = currentRb->m_force / currentRb->m_mass;
 			guVector accTimesDt;
@@ -152,11 +155,11 @@ void PhysicSystem::UpdatePhysics(float dt) {
 			currentRb->m_force = Math::VecZero;
 
 			/*PRINTPOS*/
-			gs->AddLog(to_string(currentRb->m_velocity.z));
-			gs->AddLog(to_string(currentRb->m_velocity.y));
-			gs->AddLog(to_string(currentRb->m_velocity.x));
-			gs->AddLog( currentRb->m_owner->m_name + " velocity:");
-			if (currentRb->m_isSleeping) gs->AddLog(currentRb->m_owner->m_name + " is sleeping");
+			//gs->AddLog(to_string(currentRb->m_velocity.z));
+			//gs->AddLog(to_string(currentRb->m_velocity.y));
+			//gs->AddLog(to_string(currentRb->m_velocity.x));
+			//gs->AddLog( currentRb->m_owner->m_name + " velocity:");
+			if (currentRb->m_isSleeping); //gs->AddLog(currentRb->m_owner->m_name + " is sleeping");
 		}
 
 		//@SSScheme
@@ -345,6 +348,7 @@ bool PhysicSystem::SphereToSphere(RigidbodyComponent * rb1, RigidbodyComponent *
 			//Friction is twice the m_frictionCoefficient
 			guVecScale(&vel1Norm, &friction1, -abs(normalForce)*m_frictionCoefficient*2);
 			if (Math::LengthSq(friction1) > Math::LengthSq(rb1Force)){
+				//Scale friction to be equal to rb1Force, on the opposite direction
 				guVecScale(&rb1Force, &friction1, -1);
 			}
 		}
@@ -387,11 +391,11 @@ bool PhysicSystem::SphereToAABB(RigidbodyComponent * rb1, RigidbodyComponent * r
 	float distSq = Math::DistSq(t1->m_position, closestPoint);
 	if (distSq <= sphere1->m_radius*sphere1->m_radius){
 
-		GraphicSystem * gs = GraphicSystem::GetInstance();
-		gs->AddLog(to_string(closestPoint.z));
-		gs->AddLog(to_string(closestPoint.y));
-		gs->AddLog(to_string(closestPoint.x));
-		gs->AddLog("Sphere-AABB collision at:");
+		//GraphicSystem * gs = GraphicSystem::GetInstance();
+		//gs->AddLog(to_string(closestPoint.z));
+		//gs->AddLog(to_string(closestPoint.y));
+		//gs->AddLog(to_string(closestPoint.x));
+		//gs->AddLog("Sphere-AABB collision at:");
 		if (rb2->m_isTrigger){
 			//@We just send necessary messages
 			rb1->m_owner->Send(ComponentMessage::BALL_IN_POT);//Deletes ball

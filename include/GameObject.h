@@ -3,6 +3,8 @@
 
 #include "Component/Component.h"
 #include "Component/TransformComponent.h"
+#include "Component/OrbitCameraComponent.h"
+#include "Component/PoolStateComponent.h"
 #include "Extra/Math.h"
 #include <string>
 #include <vector>
@@ -17,7 +19,8 @@ public:
 	//Messages
 	void Send(ComponentMessage msg);
 	//virtual Component * FindComponent(ComponentType type);
-	
+	OrbitCameraComponent * FindOrbitCameraComponent();
+	PoolStateComponent * FindPoolStateComponent();
 	//Variables
 	std::string m_name;
 	bool m_isDeleted;

@@ -3,6 +3,7 @@
 
 #include "System/System.h"
 #include <ogc/pad.h>
+#include <wiiuse/wpad.h>
 
 class PadSystem : public System {
 	private:
@@ -25,7 +26,7 @@ class PadSystem : public System {
 	//Variables
 	//@Logic components point to these variables
 	u16 m_buttonsHeld, m_buttonsDown, m_buttonsUp;
-
+	u16 m_wButtonsHeld, m_wButtonsDown, m_wButtonsUp;
 	/*//From "PAD.H"
 	u32 PAD_Init(void);
 	u32 PAD_Sync(void);
