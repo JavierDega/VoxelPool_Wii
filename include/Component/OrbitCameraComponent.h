@@ -3,13 +3,15 @@
 
 #include "Component/CameraComponent.h"
 #include <gccore.h>
+#include <wiiuse/wpad.h>
 
 //@Makes camera orbit lookPoint, depending on input
 class OrbitCameraComponent : public CameraComponent{
 public:
 	//Constructor
 	//@Point to instances in PadSystem
-	OrbitCameraComponent( guVector orbitOrigin, guVector * cam, guVector* look, float * pitch, float * yaw, u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp );
+	OrbitCameraComponent( guVector orbitOrigin, guVector * cam, guVector* look, float * pitch, float * yaw,
+	 u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp, u16 * wButtonsHeld, u16 * wButtonsDown, u16 * wButtonsUp);
 	virtual ~OrbitCameraComponent();
 	virtual void OnStart();
 	virtual void ComputeLogic (float dt);

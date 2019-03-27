@@ -5,8 +5,9 @@
 #include <ogc/pad.h>
 
 //Constructor
-MenuComponent::MenuComponent(u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp, float offsetScale, bool rotate, bool isScreenSpace)
-	: ControllableComponent(buttonsHeld, buttonsDown, buttonsUp), m_offsetScale(offsetScale), m_rotate(rotate), m_isScreenSpace(isScreenSpace)
+MenuComponent::MenuComponent(u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp, u16 * wButtonsHeld, u16 * wButtonsDown, u16 * wButtonsUp,
+ 	float offsetScale, bool rotate, bool isScreenSpace)
+	: ControllableComponent(buttonsHeld, buttonsDown, buttonsUp, wButtonsHeld, wButtonsDown, wButtonsUp ), m_offsetScale(offsetScale), m_rotate(rotate), m_isScreenSpace(isScreenSpace)
 {
 	m_option = 0;
 	m_screenPos = guVector{ 0, 0, 0 };
@@ -25,20 +26,20 @@ void MenuComponent::ComputeLogic(float dt){
 	ObjectSystem * os = ObjectSystem::GetInstance();
 
 	std::vector<FontComponent*> fontComponents = GetMenuFonts();
-	u16 bdown = *(m_buttonsDown);
+	u16 bdown = *(m_wButtonsDown);
 
-	if (bdown & (PAD_BUTTON_LEFT | PAD_BUTTON_UP)){
+	if (bdown & (WPAD_BUTTON_LEFT | WPAD_BUTTON_UP)){
 		
 		if(m_option == 0) m_option = fontComponents.size() - 1;
 		else m_option--;
 
 	}
-	if (bdown & (PAD_BUTTON_RIGHT | PAD_BUTTON_DOWN)){
+	if (bdown & (WPAD_BUTTON_RIGHT | WPAD_BUTTON_DOWN)){
 		m_option++;
 		if ( m_option == fontComponents.size()) m_option = 0;
 	}
 
-	if (bdown & ( PAD_BUTTON_A )){
+	if (bdown & ( WPAD_BUTTON_A )){
 		switch (m_option){
 			case 0:
 			{

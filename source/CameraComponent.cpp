@@ -1,7 +1,8 @@
 #include "Component/CameraComponent.h"
 
-CameraComponent::CameraComponent( guVector * cam, guVector* look, float * pitch, float * yaw, u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp)
-	: ControllableComponent( buttonsHeld, buttonsDown, buttonsUp ), m_cam(cam), m_look(look), m_pitch(pitch), m_yaw(yaw)
+CameraComponent::CameraComponent( guVector * cam, guVector* look, float * pitch, float * yaw, u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp,
+	u16 * wButtonsHeld, u16 * wButtonsDown, u16 * wButtonsUp )
+	: ControllableComponent( buttonsHeld, buttonsDown, buttonsUp, wButtonsHeld, wButtonsDown, wButtonsUp ), m_cam(cam), m_look(look), m_pitch(pitch), m_yaw(yaw)
 {
 
 };

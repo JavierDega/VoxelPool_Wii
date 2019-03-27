@@ -63,6 +63,10 @@ ObjectSystem.o: \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/CameraComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/ControllableComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h \
+ C:/devkitPro/libogc/include/wiiuse/wpad.h \
+ C:/devkitPro/libogc/include/wiiuse/wiiuse.h \
+ C:/devkitPro/libogc/include/bte/bte.h \
+ C:/devkitPro/libogc/include/bte/bd_addr.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/PoolStateComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MeshComponent.h \
@@ -88,10 +92,6 @@ ObjectSystem.o: \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/GraphicSystem.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/PadSystem.h \
  C:/devkitPro/libogc/include/ogc/pad.h \
- C:/devkitPro/libogc/include/wiiuse/wpad.h \
- C:/devkitPro/libogc/include/wiiuse/wiiuse.h \
- C:/devkitPro/libogc/include/bte/bte.h \
- C:/devkitPro/libogc/include/bte/bd_addr.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/PoolStateComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitCameraComponent.h
@@ -222,6 +222,14 @@ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/ControllableCo
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/LogicComponent.h:
 
+C:/devkitPro/libogc/include/wiiuse/wpad.h:
+
+C:/devkitPro/libogc/include/wiiuse/wiiuse.h:
+
+C:/devkitPro/libogc/include/bte/bte.h:
+
+C:/devkitPro/libogc/include/bte/bd_addr.h:
+
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/PoolStateComponent.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
@@ -271,14 +279,6 @@ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/GraphicSystem.h:
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/PadSystem.h:
 
 C:/devkitPro/libogc/include/ogc/pad.h:
-
-C:/devkitPro/libogc/include/wiiuse/wpad.h:
-
-C:/devkitPro/libogc/include/wiiuse/wiiuse.h:
-
-C:/devkitPro/libogc/include/bte/bte.h:
-
-C:/devkitPro/libogc/include/bte/bd_addr.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitComponent.h:
 

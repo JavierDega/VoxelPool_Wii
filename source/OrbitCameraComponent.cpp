@@ -5,8 +5,10 @@
 #include "GameObject.h"
 #include <ogc/pad.h>
 
-OrbitCameraComponent::OrbitCameraComponent( guVector orbitOrigin, guVector * cam, guVector* look, float * pitch, float * yaw, u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp)
-	: CameraComponent( cam, look, pitch, yaw, buttonsHeld, buttonsDown, buttonsUp ), m_orbitOrigin(orbitOrigin), m_zoom(20.f)
+OrbitCameraComponent::OrbitCameraComponent( guVector orbitOrigin, guVector * cam, guVector* look, float * pitch, float * yaw,
+ u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp, u16 * wButtonsHeld, u16 * wButtonsDown, u16 * wButtonsUp )
+	: CameraComponent( cam, look, pitch, yaw, buttonsHeld, buttonsDown, buttonsUp, wButtonsHeld, wButtonsDown, wButtonsUp),
+	 m_orbitOrigin(orbitOrigin), m_zoom(20.f)
 {
 
 };
@@ -17,7 +19,6 @@ OrbitCameraComponent::~OrbitCameraComponent(){
 };
 
 void OrbitCameraComponent::OnStart(){
-
 	//Look goes to origin, pitch and yaw are zero,
 	//We set camera
 	*m_look = m_orbitOrigin;
@@ -29,33 +30,36 @@ void OrbitCameraComponent::ComputeLogic(float dt){
 	GraphicSystem * gs = GraphicSystem::GetInstance();
 	//@React to input
 
-	u16 bheld = *(m_buttonsHeld);
+	u16 bheld = *(m_wButtonsHeld);
 
-	if (bheld & PAD_BUTTON_LEFT ){
+	u16 bdown = *(m_wButtonsDown);
+	if (bdown & WPAD_BUTTON_LEFT) gs->AddLog("OrbitComp left just pressed");
+	if (bdown & WPAD_BUTTON_RIGHT) gs->AddLog("OrbitComp right just pressed");
+
+	if (bheld & WPAD_BUTTON_LEFT ){
 		
 		*m_yaw -= 0.02f;
-
 	}
-	if (bheld & PAD_BUTTON_RIGHT ){
+	if (bheld & WPAD_BUTTON_RIGHT ){
 		
 		*m_yaw +=0.02f;
 	}
 
-	if (bheld & PAD_BUTTON_DOWN ){
+	if (bheld & WPAD_BUTTON_DOWN ){
 		
 		*m_pitch -= 0.02f;
 
 	}
-	if (bheld & PAD_BUTTON_UP ){
+	if (bheld & WPAD_BUTTON_UP ){
 		
 		*m_pitch +=0.02f;
 	}
 
-	if (bheld & PAD_TRIGGER_L ){
+	if (bheld & WPAD_BUTTON_MINUS ){
 		
 		m_zoom -=0.3f;
 	}
-	if (bheld & PAD_TRIGGER_R ){
+	if (bheld & WPAD_BUTTON_PLUS ){
 		
 		m_zoom +=0.3f;
 	}
@@ -88,13 +92,13 @@ void OrbitCameraComponent::ComputeLogic(float dt){
 	*m_look = m_orbitOrigin;//Circle around transform
 	guVecAdd(m_look, &camOffset, m_cam);
 
-	std::string camLog = "Camera: " + std::to_string(m_cam->x) + " " + std::to_string(m_cam->y) + " " + std::to_string(m_cam->z);
+	//std::string camLog = "Camera: " + std::to_string(m_cam->x) + " " + std::to_string(m_cam->y) + " " + std::to_string(m_cam->z);
 	//Print camera and look
-	gs->AddLog(camLog);
+	//gs->AddLog(camLog);
 	
-	std::string lookLog = "Look: " + std::to_string(m_look->x) + " " + std::to_string(m_look->y) + " " + std::to_string(m_look->z);
+	//std::string lookLog = "Look: " + std::to_string(m_look->x) + " " + std::to_string(m_look->y) + " " + std::to_string(m_look->z);
 	//Print camera and look
-	gs->AddLog(lookLog);
+	//gs->AddLog(lookLog);
 }
 bool OrbitCameraComponent::Receive(ComponentMessage msg){
 

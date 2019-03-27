@@ -10,7 +10,8 @@
 class MenuComponent : public ControllableComponent{
 public:
 	//Constructor
-	MenuComponent(u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp, float offsetScale = 1.0f, bool rotate = false, bool isScreenSpace = false);
+	MenuComponent(u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp, u16 * wButtonsHeld, u16 * wButtonsDown, u16 * wButtonsUp,
+	 float offsetScale = 1.0f, bool rotate = false, bool isScreenSpace = false);
 	virtual ~MenuComponent();
 	virtual void OnStart();
 	virtual void ComputeLogic(float dt);

@@ -9,7 +9,8 @@ class CameraComponent : public ControllableComponent{
 public:
 	//Constructor
 	//@Point to instances in PadSystem
-	CameraComponent( guVector * cam, guVector* look, float * pitch, float * yaw, u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp );
+	CameraComponent( guVector * cam, guVector* look, float * pitch, float * yaw, u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp,
+	u16 * wButtonsHeld, u16 * wButtonsDown, u16 * wButtonsUp);
 	virtual ~CameraComponent();
 	//Messaging
 	//virtual bool Receive( ComponentMessage * msg );

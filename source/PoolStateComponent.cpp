@@ -8,11 +8,12 @@
 //You are a wizard
 using namespace std;
 
-PoolStateComponent::PoolStateComponent(u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp)
-	: ControllableComponent(buttonsHeld, buttonsDown, buttonsUp)
+PoolStateComponent::PoolStateComponent(u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp, u16 * wButtonsHeld, u16 *wButtonsDown, u16 * wButtonsUp)
+	: ControllableComponent(buttonsHeld, buttonsDown, buttonsUp, wButtonsHeld, wButtonsDown, wButtonsUp )
 {
 	m_activeState = STATE_LOOKING;
 	m_playerTurn = false;//Player 1's turn
+	//@Accel delta
 	m_backDelta = 0;
 	m_forwardDelta = 0;
 };
@@ -22,9 +23,9 @@ PoolStateComponent::~PoolStateComponent(){
 void PoolStateComponent::OnStart(){
 
 	GraphicSystem * gs = GraphicSystem::GetInstance();
-	PadSystem * ps = PadSystem::GetInstance();
 	//@Add a Pan camera component
-	m_owner->AddComponent(new OrbitCameraComponent( Math::VecZero, &gs->m_cam, &gs->m_look, &gs->m_pitch, &gs->m_yaw, &ps->m_buttonsHeld, &ps->m_buttonsDown, &ps->m_buttonsUp ));
+	m_owner->AddComponent(new OrbitCameraComponent( Math::VecZero, &gs->m_cam, &gs->m_look, &gs->m_pitch, &gs->m_yaw,
+	 m_buttonsHeld, m_buttonsDown, m_buttonsUp, m_wButtonsHeld, m_wButtonsDown, m_wButtonsUp ));
 	m_owner->AddComponent(new FontComponent(L"Waiting for turn...", guVector{ -175, 200, 0}, GXColor{ 100, 250, 100, 200 }, 3, true, true));
 	m_owner->AddComponent(new FontComponent(L"P1: Balls left", guVector{ -300, -200, 0}, GXColor{ 250, 100, 100, 250 }, 3, true, true));
 	m_owner->AddComponent(new FontComponent(L"P2: Balls left", guVector{ 0, -200, 0}, GXColor{ 100, 100, 250, 250 }, 3, true, true));
@@ -59,7 +60,7 @@ void PoolStateComponent::ComputeLogic(float dt){
 		{
 			//Here we listen for our own input, to go into the next state basically
 			//@Button B to go back?
-			if (*m_buttonsDown & PAD_BUTTON_A){
+			if (*m_wButtonsDown & WPAD_BUTTON_A){
 				m_owner->Send(ComponentMessage::START_AIMING);
 				m_activeState = PoolStates::STATE_AIMING;
 			}
@@ -70,7 +71,7 @@ void PoolStateComponent::ComputeLogic(float dt){
 			OrbitCameraComponent * occ = m_owner->FindOrbitCameraComponent();
 			*occ->m_pitch =0.3f;//Constrains pitch and zoom
 			occ->m_zoom = 4.0f;
-			if (*m_buttonsDown & PAD_BUTTON_A){
+			if (*m_wButtonsDown & WPAD_BUTTON_A){
 				m_owner->Send(ComponentMessage::START_LOCKED_DIRECTION);
 				m_activeState = PoolStates::STATE_LOCKED_DIRECTION;
 			}

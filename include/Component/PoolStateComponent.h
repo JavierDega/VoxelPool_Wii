@@ -20,7 +20,7 @@ class PoolStateComponent : public ControllableComponent{
 public:
 	//Constructor
 	//@Point to instances in PadSystem
-	PoolStateComponent(u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp);
+	PoolStateComponent(u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp, u16 * wButtonsHeld, u16 * wButtonsDown, u16 * wButtonsUp );
 	virtual ~PoolStateComponent();
 	virtual void OnStart();
 	virtual void ComputeLogic(float dt);

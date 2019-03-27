@@ -9,7 +9,7 @@ class ControllableComponent : public LogicComponent{
 public:
 	//Constructor
 	//@Point to instances in PadSystem
-	ControllableComponent(u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp);
+	ControllableComponent(u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp, u16 * wButtonsHeld, u16 * wButtonsDown, u16 * wButtonsUp);
 	virtual ~ControllableComponent();
 	//Messaging
 	//virtual bool Receive( ComponentMessage * msg );
@@ -18,5 +18,8 @@ public:
 	u16 * m_buttonsHeld;
 	u16 * m_buttonsDown;
 	u16 * m_buttonsUp;
+	u16 * m_wButtonsHeld;
+	u16 * m_wButtonsDown;
+	u16 * m_wButtonsUp;
 };
 #endif /*CONTROLLABLECOMPONENT_H_*/
