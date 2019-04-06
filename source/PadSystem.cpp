@@ -29,8 +29,7 @@ PadSystem::PadSystem() {
 	//INPUT
 	PAD_Init();
 	WPAD_Init();
-	WPAD_SetVRes(0, 640, 480);
-	WPAD_SetDataFormat(WPAD_CHAN_0, WPAD_FMT_BTNS_ACC_IR); 
+	WPAD_SetDataFormat(WPAD_CHAN_0, WPAD_FMT_BTNS_ACC); 
 }
 //Destructor
 PadSystem::~PadSystem(){
@@ -70,7 +69,7 @@ void PadSystem::Update( float dt ){
 	}
 
 	//@Debug logs
-	if ( m_wButtonsHeld & WPAD_BUTTON_LEFT){
+	/*if ( m_wButtonsHeld & WPAD_BUTTON_LEFT){
 		gs->AddLog("Left button is being held");
 	}
 	if (m_wButtonsDown & WPAD_BUTTON_LEFT){
@@ -81,7 +80,7 @@ void PadSystem::Update( float dt ){
 	}
 	if (m_wButtonsDown & WPAD_BUTTON_RIGHT){
 		gs->AddLog("Right button was just pressed");
-	}
+	}*/
 
 	//@Update logic components
 	for (u16 i = 0; i < logicComponents.size(); i++){
@@ -113,12 +112,7 @@ void PadSystem::ScanPads(int controller) {
 	m_wButtonsDown = WPAD_ButtonsDown(controller);
 	m_wButtonsUp = WPAD_ButtonsUp(controller);
 
-	vec3w_t accel = vec3w_t{0,0,0};
-	gforce_t gforce = gforce_t{ 0, 0, 0 };
-	WPAD_Accel(0, &accel);
-	WPAD_GForce(0, &gforce);
-	string accel_log = "Accelerometer: " + to_string(accel.x) + " " + to_string(accel.y) + " " + to_string(accel.z);
-	string gforce_log = "GForce: " + to_string(gforce.x) + " " + to_string(gforce.y) + " " + to_string(gforce.z);
+	WPADData * data = WPAD_Data(0);
+	string accel_log = "Accelerometer: " + to_string(data->accel.x) + " " + to_string(data->accel.y) + " " + to_string(data->accel.z);
 	gs->AddLog(accel_log);
-	gs->AddLog(gforce_log);
 }
