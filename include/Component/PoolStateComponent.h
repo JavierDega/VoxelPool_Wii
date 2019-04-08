@@ -20,7 +20,8 @@ class PoolStateComponent : public ControllableComponent{
 public:
 	//Constructor
 	//@Point to instances in PadSystem
-	PoolStateComponent(u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp, u16 * wButtonsHeld, u16 * wButtonsDown, u16 * wButtonsUp );
+	PoolStateComponent(u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp, u16 * wButtonsHeld, u16 * wButtonsDown, u16 * wButtonsUp,
+	float * swing, float * pitch, float * deviation, float * roll );
 	virtual ~PoolStateComponent();
 	virtual void OnStart();
 	virtual void ComputeLogic(float dt);
@@ -33,6 +34,6 @@ public:
 	PoolStates m_activeState;
 	bool m_playerTurn;//0/1 depending on player 1/2
 	float m_constrainedYaw;
-	float m_backDelta, m_forwardDelta;
+	float m_backMotion, m_lateralMotion;
 };
 #endif /*POOLSTATECOMPONENT_H_*/

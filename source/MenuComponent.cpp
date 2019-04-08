@@ -6,8 +6,9 @@
 
 //Constructor
 MenuComponent::MenuComponent(u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp, u16 * wButtonsHeld, u16 * wButtonsDown, u16 * wButtonsUp,
- 	float offsetScale, bool rotate, bool isScreenSpace)
-	: ControllableComponent(buttonsHeld, buttonsDown, buttonsUp, wButtonsHeld, wButtonsDown, wButtonsUp ), m_offsetScale(offsetScale), m_rotate(rotate), m_isScreenSpace(isScreenSpace)
+ 	float * swing, float * pitch, float * deviation, float * roll, float offsetScale, bool rotate, bool isScreenSpace)
+	: ControllableComponent(buttonsHeld, buttonsDown, buttonsUp, wButtonsHeld, wButtonsDown, wButtonsUp, swing, pitch, deviation, roll ),
+	 m_offsetScale(offsetScale), m_rotate(rotate), m_isScreenSpace(isScreenSpace)
 {
 	m_option = 0;
 	m_screenPos = guVector{ 0, 0, 0 };

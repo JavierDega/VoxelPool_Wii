@@ -21,7 +21,6 @@ PadSystem::PadSystem() {
 	m_buttonsHeld = 0;
 	m_buttonsUp = 0;
 	m_buttonsDown = 0;
-
 	m_wButtonsHeld = 0;
 	m_wButtonsUp = 0;
 	m_wButtonsDown = 0;
@@ -101,18 +100,18 @@ void PadSystem::SendMessage(ComponentMessage msg){
 void PadSystem::ScanPads(int controller) {
 
 	GraphicSystem * gs = GraphicSystem::GetInstance();
-
 	PAD_ScanPads();
 	WPAD_ScanPads();
+	m_data = *WPAD_Data(0);
 	m_buttonsHeld = PAD_ButtonsHeld(controller);
 	m_buttonsDown = PAD_ButtonsDown(controller);
 	m_buttonsUp = PAD_ButtonsUp(controller);
-
-	m_wButtonsHeld = WPAD_ButtonsHeld(controller);
-	m_wButtonsDown = WPAD_ButtonsDown(controller);
-	m_wButtonsUp = WPAD_ButtonsUp(controller);
-
-	WPADData * data = WPAD_Data(0);
-	string accel_log = "Accelerometer: " + to_string(data->accel.x) + " " + to_string(data->accel.y) + " " + to_string(data->accel.z);
-	gs->AddLog(accel_log);
+	m_wButtonsHeld = m_data.btns_h;
+	m_wButtonsDown = m_data.btns_d;
+	m_wButtonsUp = m_data.btns_u;
+	//string accel_log = "Accelerometer: " + to_string(data->accel.x) + " " + to_string(data->accel.y) + " " + to_string(data->accel.z);
+	//string gforce_log = "G Force: " + to_string(data->gforce.x) + " " + to_string(data->gforce.y) + " " + to_string(data->gforce.z);
+	string orient_log = "Pitch: " + to_string(m_data.orient.pitch) + " Roll: " + to_string(m_data.orient.roll);
+	gs->AddLog(to_string(m_data.gforce.y));
+	gs->AddLog(orient_log);
 }

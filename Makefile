@@ -35,7 +35,7 @@ LDFLAGS	=	-g $(MACHDEP) -Wl,-Map,$(notdir $@).map
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
-LIBS	:= -lwiiuse -lbte -logc -lm -lfreetype -lpng -lz -lbz2
+LIBS	:= -lwiiuse -lbte -lmad -lasnd -logc -lm -lfreetype -lpng -lz -lbz2
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
 # include and lib
@@ -141,7 +141,6 @@ $(OFILES_SOURCES) : $(HFILES)
 	$(bin2o)
 
 -include $(DEPENDS)
-
 #---------------------------------------------------------------------------------
 # This rule links in binary data with the .tpl extension
 #---------------------------------------------------------------------------------
@@ -160,7 +159,15 @@ $(OFILES_SOURCES) : $(HFILES)
 	@echo $(notdir $<)
 	@$(bin2o)
 
+#---------------------------------------------------------------------------------
+# This rule links in binary data with the .mp3 extension
+#---------------------------------------------------------------------------------
+%.mp3.o	%_mp3.h :	%.mp3
+#---------------------------------------------------------------------------------
+	@echo $(notdir $<)
+	$(bin2o)
 
+-include $(DEPENDS)
 #---------------------------------------------------------------------------------
 endif
 #---------------------------------------------------------------------------------

@@ -92,6 +92,10 @@ ObjectSystem.o: \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/GraphicSystem.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/PadSystem.h \
  C:/devkitPro/libogc/include/ogc/pad.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/AudioSystem.h \
+ C:/devkitPro/libogc/include/asndlib.h \
+ C:/devkitPro/libogc/include/mp3player.h \
+ C:/devkitPro/libogc/include/mad.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/PoolStateComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitCameraComponent.h
@@ -279,6 +283,14 @@ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/GraphicSystem.h:
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/PadSystem.h:
 
 C:/devkitPro/libogc/include/ogc/pad.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/AudioSystem.h:
+
+C:/devkitPro/libogc/include/asndlib.h:
+
+C:/devkitPro/libogc/include/mp3player.h:
+
+C:/devkitPro/libogc/include/mad.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitComponent.h:
 

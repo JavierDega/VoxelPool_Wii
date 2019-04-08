@@ -480,7 +480,7 @@ void GraphicSystem::EndDraw() {
 	GX_DrawDone();
 	VIDEO_SetNextFramebuffer(videoFrameBuffer[videoFrameBufferIndex]);
 	VIDEO_Flush();
-	//VIDEO_WaitVSync();
+	VIDEO_WaitVSync();
 	videoFrameBufferIndex ^= 1;
 }
 //Debug

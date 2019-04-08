@@ -1,6 +1,7 @@
 #include "System/ObjectSystem.h"
 #include "System/GraphicSystem.h"
 #include "System/PadSystem.h"
+#include "System/AudioSystem.h"
 #include "Component/OrbitComponent.h"
 #include "Component/PoolStateComponent.h"
 #include "Component/OrbitCameraComponent.h"
@@ -135,7 +136,8 @@ void ObjectSystem::LoadScene(int sceneIndex){
 			GameObject * menuText =  new GameObject("TitleText", guVector{-45, 0, -100.0f}, Math::QuatIdentity,
 			 guVector{ 1, 1, 1 });
 			menuText->AddComponent(new MenuComponent(&ps->m_buttonsHeld, &ps->m_buttonsDown, &ps->m_buttonsUp,
-			 &ps->m_wButtonsHeld, &ps->m_wButtonsDown, &ps->m_wButtonsUp, 0.5f));
+			 &ps->m_wButtonsHeld, &ps->m_wButtonsDown, &ps->m_wButtonsUp, &ps->m_data.gforce.y, &ps->m_data.orient.pitch, &ps->m_data.gforce.x,
+			  &ps->m_data.orient.roll, 0.5f));
 			menuText->AddComponent(new FontComponent(L"Start", guVector{ 0, 0, 0 }, GXColor{255, 255, 255, 255}, 0.5f));
 			menuText->AddComponent(new FontComponent(L"Options", guVector{ 0, 25, 0 }, GXColor{255, 255, 255, 255}, 0.5f));
 			menuText->AddComponent(new FontComponent(L"Quit", guVector{ 0, 50, 0 }, GXColor{255, 255, 255, 255}, 0.5f));
@@ -147,13 +149,13 @@ void ObjectSystem::LoadScene(int sceneIndex){
 		case 1:
 		{	
 			//Gamescene
-			///@PLACE CAMERA
-			//GraphicSystem * gs = GraphicSystem::GetInstance();
-			//PadSystem * ps = PadSystem::GetInstance();
+			//@Music
+			AudioSystem::GetInstance()->PlayMusic(0);
 
 			GameObject * gameController = new GameObject( "GameController", guVector{ 6.5, -0.5, -7.5}, Math::QuatIdentity, guVector{.3, .3, .3 } );
 			gameController->AddComponent(new PoolStateComponent(&ps->m_buttonsHeld, &ps->m_buttonsDown, &ps->m_buttonsUp, 
-				&ps->m_wButtonsHeld, &ps->m_wButtonsDown, &ps->m_wButtonsUp));
+				&ps->m_wButtonsHeld, &ps->m_wButtonsDown, &ps->m_wButtonsUp, &ps->m_data.gforce.y, &ps->m_data.orient.pitch, &ps->m_data.gforce.x,
+				&ps->m_data.orient.roll ));
 
 			AddObject(gameController);
 

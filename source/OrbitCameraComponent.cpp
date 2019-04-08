@@ -6,8 +6,10 @@
 #include <ogc/pad.h>
 
 OrbitCameraComponent::OrbitCameraComponent( guVector orbitOrigin, guVector * cam, guVector* look, float * pitch, float * yaw,
- u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp, u16 * wButtonsHeld, u16 * wButtonsDown, u16 * wButtonsUp )
-	: CameraComponent( cam, look, pitch, yaw, buttonsHeld, buttonsDown, buttonsUp, wButtonsHeld, wButtonsDown, wButtonsUp),
+ u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp, u16 * wButtonsHeld, u16 * wButtonsDown, u16 * wButtonsUp, float * swing, float * wPitch
+ 	, float * deviation, float * wRoll )
+	: CameraComponent( cam, look, pitch, yaw, buttonsHeld, buttonsDown, buttonsUp, wButtonsHeld, wButtonsDown, wButtonsUp, swing, wPitch, deviation,
+		 wRoll ),
 	 m_orbitOrigin(orbitOrigin), m_zoom(20.f)
 {
 

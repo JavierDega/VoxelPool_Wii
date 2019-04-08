@@ -44,8 +44,30 @@ bool FontComponent::Receive(ComponentMessage msg){
 		break;
 		case ComponentMessage::START_COMMIT_CHARGING:
 		{
-			if (m_text.compare(L"Swing back to charge shot") == 0){
+			if ((m_text.compare(L"Swing back to charge shot") == 0) || (m_text.compare(L"Swing to shoot") == 0)){
 				m_text = L"Keep charging..";
+			}
+		}
+		break;
+		case ComponentMessage::WIIMOTE_BALANCED:
+		{
+			if (m_text.compare(L"Wiimote off balance!") == 0){
+				m_text = L"Swing to shoot";
+			}
+		}
+		break;
+		case ComponentMessage::WIIMOTE_UNBALANCED:
+		{
+			if ((m_text.compare(L"Swing back to charge shot") == 0) || 
+				(m_text.compare(L"Swing forward to shoot!") == 0) || (m_text.compare(L"Swing to shoot") == 0) ){
+				m_text = L"Wiimote off balance!";
+			}//else its probably already displaying this text
+		}
+		break;
+		case ComponentMessage::START_LOCKED_CHARGE:
+		{
+			if (m_text.compare(L"Keep charging..") == 0){
+				m_text = L"Swing forward to shoot!";
 			}
 		}
 		break;

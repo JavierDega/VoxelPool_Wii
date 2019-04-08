@@ -25,6 +25,7 @@ class PadSystem : public System {
 
 	//Variables
 	//@Logic components point to these variables
+	WPADData m_data;
 	u16 m_buttonsHeld, m_buttonsDown, m_buttonsUp;
 	u16 m_wButtonsHeld, m_wButtonsDown, m_wButtonsUp;
 	/*//From "PAD.H"

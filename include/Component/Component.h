@@ -12,6 +12,8 @@ enum ComponentMessage {
 	START_COMMIT_CHARGING,
 	START_LOCKED_CHARGE,
 	START_COMMIT_SHOOTING,
+	WIIMOTE_BALANCED,
+	WIIMOTE_UNBALANCED
 };
 class GameObject;
 class Component{

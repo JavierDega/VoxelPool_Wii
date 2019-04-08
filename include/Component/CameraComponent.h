@@ -10,7 +10,7 @@ public:
 	//Constructor
 	//@Point to instances in PadSystem
 	CameraComponent( guVector * cam, guVector* look, float * pitch, float * yaw, u16 * buttonsHeld, u16 * buttonsDown, u16 * buttonsUp,
-	u16 * wButtonsHeld, u16 * wButtonsDown, u16 * wButtonsUp);
+	u16 * wButtonsHeld, u16 * wButtonsDown, u16 * wButtonsUp, float * swing, float * wPitch, float * deviation, float * wRoll);
 	virtual ~CameraComponent();
 	//Messaging
 	//virtual bool Receive( ComponentMessage * msg );
