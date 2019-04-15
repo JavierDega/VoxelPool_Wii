@@ -11,6 +11,8 @@
 #include "pool_ball_red_obj.h"
 #include "pool_ball_blue_obj.h"
 #include "chr_old_obj.h"
+#include "chr_red_obj.h"
+#include "chr_blue_obj.h"
 #include "mydoom_obj.h"
 #include "pool_scene1_obj.h"
 #include "pooltable_obj.h"
@@ -57,6 +59,8 @@ GraphicSystem::GraphicSystem() {
 	if(!LoadMeshFromObj("pool_ball_red", (void *)pool_ball_red_obj, pool_ball_red_obj_size))exit(0);
 	if(!LoadMeshFromObj("pool_ball_blue", (void *)pool_ball_blue_obj, pool_ball_blue_obj_size))exit(0);
 	if(!LoadMeshFromObj("chr_old", (void *)chr_old_obj, chr_old_obj_size))exit(0);
+	if(!LoadMeshFromObj("chr_red", (void *)chr_red_obj, chr_red_obj_size))exit(0);
+	if(!LoadMeshFromObj("chr_blue", (void *)chr_blue_obj, chr_blue_obj_size))exit(0);
 	if(!LoadMeshFromObj("mydoom", (void *)mydoom_obj, mydoom_obj_size))exit(0);
 	if(!LoadMeshFromObj("pool_scene1", (void *)pool_scene1_obj, pool_scene1_obj_size))exit(0);
 	if(!LoadMeshFromObj("pooltable", (void *)pooltable_obj, pooltable_obj_size))exit(0);
@@ -103,7 +107,16 @@ void GraphicSystem::Update( float dt ){
 	EndDraw();
 }
 void GraphicSystem::SendMessage(ComponentMessage msg){
-	
+	//@Send message to all attached, logic components
+	ObjectSystem * os = ObjectSystem::GetInstance();
+	std::vector< MeshComponent * > meshComponents = os->GetMeshComponentList();
+	vector< FontComponent * > fontComponents = os->GetFontComponentList();
+	for ( u16 i = 0; i < meshComponents.size(); i++){
+		meshComponents[i]->Receive(msg);
+	}
+	for (u16 i = 0; i < fontComponents.size(); i++){
+		fontComponents[i]->Receive(msg);
+	}
 }
 void GraphicSystem::InitGXVideo(){
 	

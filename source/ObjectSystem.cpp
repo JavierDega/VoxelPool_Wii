@@ -1,6 +1,7 @@
 #include "System/ObjectSystem.h"
 #include "System/GraphicSystem.h"
 #include "System/PadSystem.h"
+#include "System/PhysicSystem.h"
 #include "System/AudioSystem.h"
 #include "Component/OrbitComponent.h"
 #include "Component/PoolStateComponent.h"
@@ -61,9 +62,12 @@ void ObjectSystem::LoadScene(int sceneIndex){
 
 	//Input
 	PadSystem * ps = PadSystem::GetInstance();
+	//Physics
+	PhysicSystem * pss = PhysicSystem::GetInstance();
 	//Graphics (Does WaitForVsync() stuff so maybe initialized last?)
 	GraphicSystem * gs = GraphicSystem::GetInstance();
-
+	//Audio
+	AudioSystem * as = AudioSystem::GetInstance();
 	//Empty scene
 	RemoveAllObjects();
 	//BUILD GAMEOBJECTS
@@ -71,6 +75,14 @@ void ObjectSystem::LoadScene(int sceneIndex){
 		//@MENU
 		case 0:
 		{
+			as->PlayMusic(99);//@To stop music from playing
+			gs->m_cam = {0.0F, 0.0F, 0.0F};
+			gs->m_up = {0.0F, 1.0F, 0.0F};
+			gs->m_look = {0.0F, 0.0F, -1.0F};
+			//@@QUICK FIX
+			gs->m_yaw = 0;
+			gs->m_pitch = 0;
+
 			//CRAP
 			GameObject * interestingQuote =  new GameObject("Quote", guVector{ 100.f, -150.f, -300.f }, Math::QuatIdentity,
 			 guVector { 0.5f, 0.5f, 0.5f } );
@@ -150,7 +162,7 @@ void ObjectSystem::LoadScene(int sceneIndex){
 		{	
 			//Gamescene
 			//@Music
-			AudioSystem::GetInstance()->PlayMusic(0);
+			as->PlayMusic(0);
 
 			GameObject * gameController = new GameObject( "GameController", guVector{ 6.5, -0.5, -7.5}, Math::QuatIdentity, guVector{.3, .3, .3 } );
 			gameController->AddComponent(new PoolStateComponent(&ps->m_buttonsHeld, &ps->m_buttonsDown, &ps->m_buttonsUp, 
@@ -210,7 +222,7 @@ void ObjectSystem::LoadScene(int sceneIndex){
 			//TRIGGERS
 			GameObject * trigger = new GameObject("trigger", guVector{ 13.f, -1.5f, 6.5f }, Math::QuatIdentity, guVector{ 0.19, 0.15, 0.19 });
 			trigger->AddComponent( new MeshComponent( "8x8x8Red" ));
-			trigger->AddComponent( new RigidbodyComponent( guVector { 0.7f, 0.5f, 0.7f }, 10.0f, true ));
+			trigger->AddComponent( new RigidbodyComponent( guVector { 0.7f, 0.5f, 0.7f }, 10.0f, true, true ));
 			
 			AddObject(trigger);
 
@@ -220,11 +232,13 @@ void ObjectSystem::LoadScene(int sceneIndex){
 			
 			AddObject(trigger2);
 
+
 			GameObject * trigger3 = new GameObject("trigger3", guVector{ -13.f, -1.5f, 6.5f  }, Math::QuatIdentity, guVector{ 0.19, 0.15, 0.19 });
 			trigger3->AddComponent( new MeshComponent( "8x8x8Red" ));
 			trigger3->AddComponent( new RigidbodyComponent( guVector { 0.7f, 0.5f, 0.7f }, 10.0f, true, true ));
 			
 			AddObject(trigger3);
+
 
 			GameObject * trigger4 = new GameObject("trigger4", guVector{ -13.f, -1.5, -6.5f }, Math::QuatIdentity, guVector{ 0.19, 0.15, 0.19 });
 			trigger4->AddComponent( new MeshComponent( "8x8x8Red" ));
@@ -234,80 +248,81 @@ void ObjectSystem::LoadScene(int sceneIndex){
 
 			GameObject * trigger5 = new GameObject("trigger5", guVector{ -0.25f, -1.5, 7.0f }, Math::QuatIdentity, guVector{ 0.19, 0.15, 0.19 });
 			trigger5->AddComponent( new MeshComponent( "8x8x8Red" ));
-			trigger5->AddComponent( new RigidbodyComponent( guVector { 0.7f, 0.5f, 6.5f }, 10.0f, true, true ));
+			trigger5->AddComponent( new RigidbodyComponent( guVector { 0.7f, 0.5f, 0.7f }, 10.0f, true, true ));
 			
 			AddObject(trigger5);
-
+			
 			GameObject * trigger6 = new GameObject("trigger6", guVector{ -0.25f, -1.5f, -7.0f }, Math::QuatIdentity, guVector{ 0.19, 0.15, 0.19 });
 			trigger6->AddComponent( new MeshComponent( "8x8x8Red" ));
 			trigger6->AddComponent( new RigidbodyComponent( guVector { 0.7f, 0.5f, 0.7f }, 10.0f, true, true ));
 			
 			AddObject(trigger6);
+			
 
 			//@POOL BALLS @REMEMBER TO SET UP BALLTYPES (TEAM)
 			GameObject * ball = new GameObject("BallRed", guVector { 5 , -1.0, 0.6 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball->AddComponent( new MeshComponent( "pool_ball_red" ));
-			ball->AddComponent( new RigidbodyComponent( 0.5f ) );
+			ball->AddComponent( new RigidbodyComponent( 0.5f, 1.0f, false, false, BallType::BALL_RED));
 
 			AddObject(ball);
 
 			GameObject * ball2 = new GameObject("BallBlue", guVector { 5, -1.0, -0.6 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball2->AddComponent( new MeshComponent( "pool_ball_blue" ));
-			ball2->AddComponent( new RigidbodyComponent( 0.5f ) );
+			ball2->AddComponent( new RigidbodyComponent( 0.5f, 1.0f, false, false, BallType::BALL_BLUE ) );
 
 			AddObject(ball2);
 
 			GameObject * ball3 = new GameObject("White_Ball", guVector { -5, -1.0, 0 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball3->AddComponent( new MeshComponent( "pool_ball_white" ));
-			ball3->AddComponent( new RigidbodyComponent( 0.5f ) );
+			ball3->AddComponent( new RigidbodyComponent( 0.5f, 1.0f, false, false, BallType::BALL_NONE ) );
 
 			AddObject(ball3);
 
 			GameObject * ball4 = new GameObject("BallRed2", guVector { 4, -1.0, 0 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball4->AddComponent( new MeshComponent( "pool_ball_red" ));
-			ball4->AddComponent( new RigidbodyComponent( 0.5f ) );
+			ball4->AddComponent( new RigidbodyComponent( 0.5f, 1.0f, false, false, BallType::BALL_RED ) );
 
 			AddObject(ball4);
 
 			GameObject * ball5 = new GameObject("BallBlue2", guVector { 6, -1.0, 0 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball5->AddComponent( new MeshComponent( "pool_ball_blue" ));
-			ball5->AddComponent( new RigidbodyComponent( 0.5f ) );
+			ball5->AddComponent( new RigidbodyComponent( 0.5f, 1.0f, false, false, BallType::BALL_BLUE ) );
 
 			AddObject(ball5);
 
 			GameObject * ball6 = new GameObject("BallRed3", guVector { 6, -1.0, -1.2 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball6->AddComponent( new MeshComponent( "pool_ball_red" ));
-			ball6->AddComponent( new RigidbodyComponent( 0.5f ) );
+			ball6->AddComponent( new RigidbodyComponent( 0.5f, 1.0f, false, false, BallType::BALL_RED ) );
 
 			AddObject(ball6);
 
 			GameObject * ball7 = new GameObject("BallBlue3", guVector { 6, -1.0, 1.2 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball7->AddComponent( new MeshComponent( "pool_ball_blue" ));
-			ball7->AddComponent( new RigidbodyComponent( 0.5f ) );
+			ball7->AddComponent( new RigidbodyComponent( 0.5f, 1.0f, false, false, BallType::BALL_BLUE ) );
 
 			AddObject(ball7);
 
 			GameObject * ball8 = new GameObject("BallRed4", guVector { 7, -1.0, 0.6 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball8->AddComponent( new MeshComponent( "pool_ball_red" ));
-			ball8->AddComponent( new RigidbodyComponent( 0.5f ) );
+			ball8->AddComponent( new RigidbodyComponent( 0.5f, 1.0f, false, false, BallType::BALL_RED ) );
 
 			AddObject(ball8);
 
 			GameObject * ball9 = new GameObject("BallBlue4", guVector { 7, -1.0, -0.6 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball9->AddComponent( new MeshComponent( "pool_ball_blue" ));
-			ball9->AddComponent( new RigidbodyComponent( 0.5f ) );
+			ball9->AddComponent( new RigidbodyComponent( 0.5f, 1.0f, false, false, BallType::BALL_BLUE ) );
 
 			AddObject(ball9);
 
 			GameObject * ball10 = new GameObject("BallRed5", guVector { 7, -1.0, -1.8 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball10->AddComponent( new MeshComponent( "pool_ball_red" ));
-			ball10->AddComponent( new RigidbodyComponent( 0.5f ) );
+			ball10->AddComponent( new RigidbodyComponent( 0.5f, 1.0f, false, false, BallType::BALL_RED ) );
 
 			AddObject(ball10);
 
 			GameObject * ball11 = new GameObject("BallBlue5", guVector { 7, -1.0, 1.8 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball11->AddComponent( new MeshComponent( "pool_ball_blue" ));
-			ball11->AddComponent( new RigidbodyComponent( 0.5f ) );
+			ball11->AddComponent( new RigidbodyComponent( 0.5f, 1.0f, false, false, BallType::BALL_BLUE ) );
 
 			AddObject(ball11);
 
@@ -323,7 +338,10 @@ void ObjectSystem::LoadScene(int sceneIndex){
 	//INIT SYSTEMS (CALL CERTAIN SCENE START EVENTS)
 	Initialize();
 	ps->Initialize();
+	pss->Initialize();
+	as->Initialize();
 	gs->Initialize();
+
 }
 //Add Obj
 int ObjectSystem::AddObject(GameObject * obj){

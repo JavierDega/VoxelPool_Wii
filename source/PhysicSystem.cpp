@@ -31,7 +31,7 @@ PhysicSystem::PhysicSystem()
 	m_airViscosity = 0.133f;
 	m_minDt = 1.0f / 60.0f;
 	m_accumulator = 0;
-	m_frictionCoefficient = 0.01f;
+	m_frictionCoefficient = 0.03f;
 	m_stepMode = false;
 	m_stepOnce = false;
 }
@@ -101,6 +101,7 @@ void PhysicSystem::UpdatePhysics(float dt) {
 	void c_guVecMultiplySR(Mtx mt,guVector *src,guVector *dst);
 	f32 c_guVecDotProduct(guVector *a,guVector *b);
 	*/
+
 	//@First loop: Integration + First culling algorithm
 	for (unsigned int i = 0; i < m_rigidbodies.size(); i++) {
 		RigidbodyComponent* currentRb = m_rigidbodies[i];
@@ -110,7 +111,7 @@ void PhysicSystem::UpdatePhysics(float dt) {
 			currentRb->m_velocity = Math::VecZero;
 		}
 		else
-		{	
+		{
 			TransformComponent * t = &currentRb->m_owner->m_transform;
 			if (Math::LengthSq(currentRb->m_velocity) > m_frictionCoefficient*m_frictionCoefficient){
 				currentRb->m_isSleeping = false;
@@ -138,10 +139,15 @@ void PhysicSystem::UpdatePhysics(float dt) {
 				guVector friction;
 				guVecScale( &velNorm, &friction, -abs(forceAgainstTable)*m_frictionCoefficient );
 				guVecAdd( &currentRb->m_force, &friction, &currentRb->m_force);
+
+				//@Derived rotation from movement
+				guVector rotVector;
+				guVector up = guVector { 0, 1, 0 };	
+				guVecCross(&velNorm, &up, &rotVector);
+				guQuaternion rotation = Math::QuatFromAxisAngle( rotVector, Math::Length(currentRb->m_velocity)/20);
+				guQuatMultiply( &t->m_rotation, &rotation, &t->m_rotation);
 			}
 			//@INTEGRATE
-			guQuaternion rotation = Math::QuatFromAxisAngle(guVector{1,0,0}, 0.1f);
-			guQuatMultiply( &t->m_rotation, &rotation, &t->m_rotation);
 			guVecScale( &currentRb->m_force, &currentRb->m_acceleration, 1 / currentRb->m_mass );
 			//currentRb->m_acceleration = currentRb->m_force / currentRb->m_mass;
 			guVector accTimesDt;
@@ -177,7 +183,7 @@ void PhysicSystem::UpdatePhysics(float dt) {
 	///@Surviving pairs MUST be colliding.
 	
 	//@Narrow Phase
-	for (unsigned int i = 0; i < m_pairs.size(); i++) {
+	for (u16 i = 0; i < m_pairs.size(); i++) {
 		NarrowPhase(m_pairs[i].first, m_pairs[i].second, dt);
 	}
 }
@@ -273,19 +279,28 @@ bool PhysicSystem::SphereToSphere(RigidbodyComponent * rb1, RigidbodyComponent *
 		//@Static collision resolution based on speed
 		float v1Length = Math::Length(rb1->m_velocity);
 		float v2Length = Math::Length(rb2->m_velocity);
-		//@What if two objects with no velocity just collided?
-		float v1Ratio = v1Length / (v1Length + v2Length);
-		float v2Ratio = v2Length / (v1Length + v2Length);
-			
-		if (!rb1->m_isKinematic){
+		if ( v1Length + v2Length <= __FLT_EPSILON__){
+			//@Displace 0.5 each
 			guVector normalMultiplied;
-			guVecScale( &normal, &normalMultiplied, overlap*v1Ratio );
-			guVecAdd( &t1->m_position, &normalMultiplied, &t1->m_position );
+			guVecScale(&normal, &normalMultiplied, overlap*0.5f);
+			guVecAdd( &t1->m_position, &normalMultiplied, &t1->m_position);
+			guVecSub( &t2->m_position, &normalMultiplied, &t2->m_position);
 		}
-		if (!rb2->m_isKinematic){
-			guVector normalMultiplied;
-			guVecScale( &normal, &normalMultiplied, overlap*v2Ratio );
-			guVecSub( &t2->m_position, &normalMultiplied, &t2->m_position );
+		else{
+			//@What if two objects with no velocity just collided?
+			float v1Ratio = v1Length / (v1Length + v2Length);
+			float v2Ratio = v2Length / (v1Length + v2Length);
+			
+			if (!rb1->m_isKinematic){
+				guVector normalMultiplied;
+				guVecScale( &normal, &normalMultiplied, overlap*v1Ratio );
+				guVecAdd( &t1->m_position, &normalMultiplied, &t1->m_position );
+			}
+			if (!rb2->m_isKinematic){
+				guVector normalMultiplied;
+				guVecScale( &normal, &normalMultiplied, overlap*v2Ratio );
+				guVecSub( &t2->m_position, &normalMultiplied, &t2->m_position );
+			}
 		}
 
 		///2:Dynamic resolution
@@ -391,21 +406,32 @@ bool PhysicSystem::SphereToAABB(RigidbodyComponent * rb1, RigidbodyComponent * r
 	float distSq = Math::DistSq(t1->m_position, closestPoint);
 	if (distSq <= sphere1->m_radius*sphere1->m_radius){
 
-		//GraphicSystem * gs = GraphicSystem::GetInstance();
+		GraphicSystem * gs = GraphicSystem::GetInstance();
 		//gs->AddLog(to_string(closestPoint.z));
 		//gs->AddLog(to_string(closestPoint.y));
 		//gs->AddLog(to_string(closestPoint.x));
 		//gs->AddLog("Sphere-AABB collision at:");
 		if (rb2->m_isTrigger){
 			//@We just send necessary messages
-			rb1->m_owner->Send(ComponentMessage::BALL_IN_POT);//Deletes ball
+			rb1->m_owner->m_isDeleted = true;
+			gs->AddLog("Ball hit trigger");
+			if (rb1->m_ballType == BallType::BALL_NONE){
+				PadSystem::GetInstance()->SendMessage(ComponentMessage::WHITE_IN_POT);
+			}
 			//Message to pad system, for ball scored
-			PadSystem::GetInstance()->SendMessage(ComponentMessage::PLAYER_SCORED);//Adds point to right player
+			if (rb1->m_ballType == BallType::BALL_RED) {
+				PadSystem::GetInstance()->SendMessage(ComponentMessage::PLAYER_RED_SCORED);
+				GraphicSystem::GetInstance()->SendMessage(ComponentMessage::PLAYER_RED_SCORED);
+			}
+			if (rb1->m_ballType == BallType::BALL_BLUE) {
+				PadSystem::GetInstance()->SendMessage(ComponentMessage::PLAYER_BLUE_SCORED);
+				GraphicSystem::GetInstance()->SendMessage(ComponentMessage::PLAYER_BLUE_SCORED);//Adds point to right player
+			}
 			return true;
 		}
 		else{
 			//They collide
-			//@We assume and only solver for SHALLOW penetration
+			//@We assume and only solve for SHALLOW penetration
 			//Collision normal is literally closestPoint to sphereCenter
 			float dist = sqrtf(distSq);
 			float overlap = sphere1->m_radius - dist;

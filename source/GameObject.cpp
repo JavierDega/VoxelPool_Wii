@@ -53,6 +53,14 @@ PoolStateComponent * GameObject::FindPoolStateComponent(){
 	}
 	return nullptr;
 }
+RigidbodyComponent * GameObject::FindRigidbodyComponent(){
+	for (u16 i = 0; i < m_components.size(); i++){
+		//@Dynamic cast
+		RigidbodyComponent * rbComp = dynamic_cast<RigidbodyComponent *>(m_components[i]);
+		if (rbComp) return rbComp;//@Return first one found
+	}
+	return nullptr;
+}
 //Refresh addresses //NOT NEEDED DUE TO HEAP ALLOCATED POINTERS APPROACH
 /*
 void GameObject::RefreshComponentAddresses(){

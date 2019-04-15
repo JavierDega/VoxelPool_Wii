@@ -89,10 +89,11 @@ void PadSystem::Update( float dt ){
 }
 //@Messaging
 void PadSystem::SendMessage(ComponentMessage msg){
-	//@Catch Player_Scored message
-	if (msg == ComponentMessage::PLAYER_SCORED){
-		//Get all logic components, find the one that's the player controller
-		
+	//@Send message to all attached, logic components
+	ObjectSystem * os = ObjectSystem::GetInstance();
+	std::vector< LogicComponent * > logicComponents = os->GetLogicComponentList();
+	for ( u16 i = 0; i < logicComponents.size(); i++){
+		logicComponents[i]->Receive(msg);
 	}
 }
 //Utility
@@ -112,6 +113,6 @@ void PadSystem::ScanPads(int controller) {
 	//string accel_log = "Accelerometer: " + to_string(data->accel.x) + " " + to_string(data->accel.y) + " " + to_string(data->accel.z);
 	//string gforce_log = "G Force: " + to_string(data->gforce.x) + " " + to_string(data->gforce.y) + " " + to_string(data->gforce.z);
 	string orient_log = "Pitch: " + to_string(m_data.orient.pitch) + " Roll: " + to_string(m_data.orient.roll);
-	gs->AddLog(to_string(m_data.gforce.y));
-	gs->AddLog(orient_log);
+	//gs->AddLog(to_string(m_data.gforce.y));
+	//gs->AddLog(orient_log);
 }

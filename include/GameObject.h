@@ -5,6 +5,7 @@
 #include "Component/TransformComponent.h"
 #include "Component/OrbitCameraComponent.h"
 #include "Component/PoolStateComponent.h"
+#include "Component/RigidbodyComponent.h"
 #include "Extra/Math.h"
 #include <string>
 #include <vector>
@@ -21,6 +22,7 @@ public:
 	//virtual Component * FindComponent(ComponentType type);
 	OrbitCameraComponent * FindOrbitCameraComponent();
 	PoolStateComponent * FindPoolStateComponent();
+	RigidbodyComponent * FindRigidbodyComponent();
 	//Variables
 	std::string m_name;
 	bool m_isDeleted;

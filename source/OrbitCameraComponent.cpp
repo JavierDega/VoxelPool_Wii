@@ -35,8 +35,6 @@ void OrbitCameraComponent::ComputeLogic(float dt){
 	u16 bheld = *(m_wButtonsHeld);
 
 	u16 bdown = *(m_wButtonsDown);
-	if (bdown & WPAD_BUTTON_LEFT) gs->AddLog("OrbitComp left just pressed");
-	if (bdown & WPAD_BUTTON_RIGHT) gs->AddLog("OrbitComp right just pressed");
 
 	if (bheld & WPAD_BUTTON_LEFT ){
 		
@@ -46,17 +44,14 @@ void OrbitCameraComponent::ComputeLogic(float dt){
 		
 		*m_yaw +=0.02f;
 	}
-
 	if (bheld & WPAD_BUTTON_DOWN ){
-		
-		*m_pitch -= 0.02f;
 
+		*m_pitch -= 0.02f;
 	}
 	if (bheld & WPAD_BUTTON_UP ){
 		
 		*m_pitch +=0.02f;
 	}
-
 	if (bheld & WPAD_BUTTON_MINUS ){
 		
 		m_zoom -=0.3f;
@@ -108,7 +103,16 @@ bool OrbitCameraComponent::Receive(ComponentMessage msg){
 		case ComponentMessage::START_AIMING:
 		{
 			//@We set the right m_orbitOrigin with a findbyName query
-			m_orbitOrigin = ObjectSystem::GetInstance()->FindObjectByName("White_Ball")->m_transform.m_position;
+			guVector whiteBallT = ObjectSystem::GetInstance()->FindObjectByName("White_Ball")->m_transform.m_position;
+			m_orbitOrigin = guVector { whiteBallT.x, whiteBallT.y + 1, whiteBallT.z };
+		}
+		break;
+		case ComponentMessage::START_LOOKING:
+		{
+			//@Set origin
+			m_orbitOrigin = Math::VecZero;
+			*m_pitch = Math::PI / 2.0f - 0.01f;
+			m_zoom = 30.f;
 		}
 		break;
 		default:

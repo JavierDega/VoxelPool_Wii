@@ -39,6 +39,8 @@ void AudioSystem::SendMessage(ComponentMessage msg ){
 }
 //Utility
 void AudioSystem::PlayMusic(unsigned int index){
+	//@Only plays once
+	
 	if (MP3Player_IsPlaying()) MP3Player_Stop();
 	switch (index){
 		case 0:

@@ -86,10 +86,11 @@ GraphicSystem.o: \
  C:/devkitPro/libogc/include/bte/bte.h \
  C:/devkitPro/libogc/include/bte/bd_addr.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/PoolStateComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/RigidbodyComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Shape.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MenuComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/RigidbodyComponent.h \
- C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Shape.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/8x8x8_obj.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/8x8x8Red_obj.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/PoolWIP_obj.h \
@@ -97,6 +98,8 @@ GraphicSystem.o: \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pool_ball_red_obj.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pool_ball_blue_obj.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/chr_old_obj.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/chr_red_obj.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/chr_blue_obj.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/mydoom_obj.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pool_scene1_obj.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pooltable_obj.h \
@@ -277,13 +280,15 @@ C:/devkitPro/libogc/include/bte/bd_addr.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/PoolStateComponent.h:
 
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/RigidbodyComponent.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Shape.h:
+
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MenuComponent.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/RigidbodyComponent.h:
-
-C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Shape.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/8x8x8_obj.h:
 
@@ -298,6 +303,10 @@ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pool_ball_red_obj.h:
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pool_ball_blue_obj.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/chr_old_obj.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/chr_red_obj.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/chr_blue_obj.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/mydoom_obj.h:
 

@@ -69,6 +69,8 @@ OrbitCameraComponent.o: \
  C:/devkitPro/libogc/include/ogc/gu.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitCameraComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/PoolStateComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/RigidbodyComponent.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Shape.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MeshComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/FontComponent.h \
@@ -89,7 +91,6 @@ OrbitCameraComponent.o: \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Metaphrasis.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MenuComponent.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/RigidbodyComponent.h \
- C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Shape.h \
  C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/GraphicSystem.h \
  C:/devkitPro/libogc/include/ogc/pad.h
 
@@ -231,6 +232,10 @@ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/OrbitCameraCom
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/PoolStateComponent.h:
 
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/RigidbodyComponent.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Shape.h:
+
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Math.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MeshComponent.h:
@@ -270,8 +275,6 @@ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Extra/Metaphrasis.h:
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/MenuComponent.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Component/RigidbodyComponent.h:
-
-C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/Shape.h:
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/GraphicSystem.h:
 

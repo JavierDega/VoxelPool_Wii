@@ -6,6 +6,7 @@
 #include "System/PadSystem.h"
 #include "System/PhysicSystem.h"
 #include "System/GraphicSystem.h"
+#include "System/AudioSystem.h"
 
 #include <ogc/lwp_watchdog.h>
 
@@ -48,6 +49,8 @@ int main(int argc, char **argv) {
 	PadSystem * ps = PadSystem::GetInstance();
 	//Physics
 	PhysicSystem * pss = PhysicSystem::GetInstance();
+	//Audio
+	AudioSystem * as = AudioSystem::GetInstance();
 	//Graphics (Does WaitForVsync() stuff so maybe initialized last?)
 	GraphicSystem * gs = GraphicSystem::GetInstance();
 	//Load Main Menu (Initializes systems)
@@ -64,6 +67,7 @@ int main(int argc, char **argv) {
 		//Input
 		ps->Update(dt);
 		pss->Update(dt);
+		as->Update(dt);
 		//Draw
 		gs->Update(dt);
 		//Object pass (Delete)

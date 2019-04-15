@@ -1,5 +1,6 @@
 #include "Component/PoolStateComponent.h"
 #include "Component/OrbitCameraComponent.h"
+#include "Component/BackToMenuComponent.h"
 #include "GameObject.h"
 #include "System/ObjectSystem.h"
 #include "System/GraphicSystem.h"
@@ -14,9 +15,13 @@ PoolStateComponent::PoolStateComponent(u16 * buttonsHeld, u16 * buttonsDown, u16
 {
 	m_activeState = STATE_LOOKING;
 	m_playerTurn = false;//Player 1's turn
+	m_redExtraTurn = false;
+	m_blueExtraTurn = false;
 	//@Accel delta
 	m_backMotion = 0;
 	m_lateralMotion = 0;
+	m_redBalls = 5;
+	m_blueBalls = 5;
 };
 PoolStateComponent::~PoolStateComponent(){
 //You are a wizard
@@ -28,8 +33,8 @@ void PoolStateComponent::OnStart(){
 	m_owner->AddComponent(new OrbitCameraComponent( Math::VecZero, &gs->m_cam, &gs->m_look, &gs->m_pitch, &gs->m_yaw,
 	 m_buttonsHeld, m_buttonsDown, m_buttonsUp, m_wButtonsHeld, m_wButtonsDown, m_wButtonsUp, m_swing, m_wPitch, m_deviation, m_wRoll));
 	m_owner->AddComponent(new FontComponent(L"Waiting for turn...", guVector{ -175, 200, 0}, GXColor{ 100, 250, 100, 200 }, 3, true, true));
-	m_owner->AddComponent(new FontComponent(L"P1: Balls left", guVector{ -300, -200, 0}, GXColor{ 250, 100, 100, 250 }, 3, true, true));
-	m_owner->AddComponent(new FontComponent(L"P2: Balls left", guVector{ 0, -200, 0}, GXColor{ 100, 100, 250, 250 }, 3, true, true));
+	m_owner->AddComponent(new FontComponent(L"P1: Balls left: " + to_wstring(m_redBalls), guVector{ -300, -200, 0}, GXColor{ 250, 100, 100, 250 }, 3, true, true));
+	m_owner->AddComponent(new FontComponent(L"P2: Balls left: " + to_wstring(m_blueBalls), guVector{ 0, -200, 0}, GXColor{ 100, 100, 250, 250 }, 3, true, true));
 	m_owner->AddComponent( new MeshComponent("poolstick"));
 }
 void PoolStateComponent::ComputeLogic(float dt){
@@ -51,7 +56,6 @@ void PoolStateComponent::ComputeLogic(float dt){
 			}
 
 			if (allSleeping){
-				m_playerTurn ^= 1;
 				m_owner->Send(ComponentMessage::START_ALL_SLEEPING);
 				m_activeState = PoolStates::STATE_ALL_SLEEPING;
 			}
@@ -70,7 +74,7 @@ void PoolStateComponent::ComputeLogic(float dt){
 		case STATE_AIMING:
 		{
 			OrbitCameraComponent * occ = m_owner->FindOrbitCameraComponent();
-			*occ->m_pitch =0.3f;//Constrains pitch and zoom
+			*occ->m_pitch = 0.35f;//Constrains pitch and zoom
 			occ->m_zoom = 4.0f;
 			if (*m_wButtonsDown & WPAD_BUTTON_A){
 				m_owner->Send(ComponentMessage::START_LOCKED_DIRECTION);
@@ -82,7 +86,7 @@ void PoolStateComponent::ComputeLogic(float dt){
 		{
 			//We have a threshold to commit
 			OrbitCameraComponent * occ = m_owner->FindOrbitCameraComponent();
-			*occ->m_pitch = 0.3f;
+			*occ->m_pitch = 0.35f;
 			*occ->m_yaw = m_constrainedYaw;
 			occ->m_zoom = 4.5f;
 
@@ -104,7 +108,7 @@ void PoolStateComponent::ComputeLogic(float dt){
 		{
 			//@We keep on charging
 			OrbitCameraComponent * occ = m_owner->FindOrbitCameraComponent();
-			*occ->m_pitch = 0.3f;
+			*occ->m_pitch = 0.35f;
 			*occ->m_yaw = m_constrainedYaw;
 			occ->m_zoom = 4.5f;
 
@@ -121,21 +125,49 @@ void PoolStateComponent::ComputeLogic(float dt){
 		case STATE_LOCKED_CHARGE:
 		{
 			OrbitCameraComponent * occ = m_owner->FindOrbitCameraComponent();
-			*occ->m_pitch = 0.3f;
+			*occ->m_pitch = 0.35f;
 			*occ->m_yaw = m_constrainedYaw;
 			occ->m_zoom = 4.5f;
 
 			if ((abs(*m_wPitch) < 45) && (abs(*m_wRoll) < 45)){
 				m_owner->Send(ComponentMessage::WIIMOTE_BALANCED);
-				if (*m_swing < -0.8f){
+				if (*m_swing > 0.8f){
 					//@We comitted to a shot
-					m_owner->Send(ComponentMessage::START_COMMIT_CHARGING);
-					m_activeState = PoolStates::STATE_COMMIT_CHARGING;
+					m_owner->Send(ComponentMessage::START_COMMIT_SHOOTING);
+					m_activeState = PoolStates::STATE_COMMIT_SHOOTING;
 				}
 			}
 			else {
 				//Send message to balance wiimote
 				m_owner->Send(ComponentMessage::WIIMOTE_UNBALANCED);
+			}
+		}
+		break;
+		case STATE_COMMIT_SHOOTING:
+		{
+			//@We keep on charging
+			OrbitCameraComponent * occ = m_owner->FindOrbitCameraComponent();
+			*occ->m_pitch = 0.35f;
+			*occ->m_yaw = m_constrainedYaw;
+			occ->m_zoom = 4.5f;
+
+			//@Store highest lateral delta
+			if (abs(*m_deviation) > abs(m_lateralMotion)){
+				m_lateralMotion = *m_deviation;
+			}
+			if (*m_swing <= 0 || abs(*m_wPitch >= 45) || abs(*m_wRoll >= 45)){
+				//@Finish routine
+				//@Shoot white ball in the right direction
+				m_owner->Send(ComponentMessage::START_LOOKING);
+				m_activeState = PoolStates::STATE_LOOKING;
+
+				RigidbodyComponent * whiteBallRb = ObjectSystem::GetInstance()->FindObjectByName("White_Ball")->FindRigidbodyComponent();
+
+				float deviationDegrees = *m_deviation*2.f*3.1416f/180.f * 10.f;
+				guVector shootVector = Math::EulerToDirection(guVector{0, *occ->m_yaw + deviationDegrees, 0 });
+				guVecScale(&shootVector, &shootVector, -10*abs(m_backMotion));
+				whiteBallRb->m_velocity = shootVector;
+				whiteBallRb->m_isSleeping = false;
 			}
 		}
 		break;
@@ -159,6 +191,87 @@ std::vector<LogicComponent *> PoolStateComponent::GetLogicComponents(){
 bool PoolStateComponent::Receive(ComponentMessage msg){
 	bool returned = false;
 	switch (msg){
+		case ComponentMessage::RED_WIN:
+		{
+			//m_owner->m_isDeleted = true;
+			//@Create a mesh ,screen space font and menu to go back to start.
+			m_isActive = false;
+			GameObject * redPlayer = new GameObject("Red_Player", guVector{ 0, -1.5, 0 }, Math::QuatIdentity, guVector{ 0.5, 0.5, 0.5 });
+			redPlayer->AddComponent(new MeshComponent("chr_red"));
+			redPlayer->AddComponent(new FontComponent(L"Player red wins!", guVector{-150, 0, 0 }, GXColor{ 255, 0, 0, 255 }, 3, false, true));
+			redPlayer->AddComponent ( new BackToMenuComponent(m_buttonsHeld, m_buttonsDown, m_buttonsUp, m_wButtonsHeld, m_wButtonsDown,
+			 m_wButtonsUp, m_swing, m_wPitch, m_deviation, m_wRoll));
+			ObjectSystem::GetInstance()->AddObject(redPlayer);
+		}
+		break;
+		case ComponentMessage::BLUE_WIN:
+		{
+			m_isActive = false;
+			GameObject * bluePlayer = new GameObject("Blue_Player", guVector { 0, -1.5, 0 }, Math::QuatIdentity, guVector { 0.5, 0.5, 0.5 });
+			bluePlayer->AddComponent(new MeshComponent("chr_blue"));
+			bluePlayer->AddComponent( new FontComponent(L"Player blue wins!", guVector{ -150, 0, 0 }, GXColor{ 0, 0, 255, 255 }, 3, false, true ));
+			bluePlayer->AddComponent ( new BackToMenuComponent(m_buttonsHeld, m_buttonsDown, m_buttonsUp, m_wButtonsHeld, m_wButtonsDown,
+			 m_wButtonsUp, m_swing, m_wPitch, m_deviation, m_wRoll));
+			ObjectSystem::GetInstance()->AddObject(bluePlayer);
+		}
+		break;
+		case ComponentMessage::WHITE_IN_POT:
+		{
+			if (m_playerTurn){
+				//@Blue turn, give redExtraTurn
+				m_redExtraTurn = true;
+			}
+			else{
+				//@Red turn, give blueExtraTurn
+				m_blueExtraTurn = true;
+			}	
+		}
+		break;
+		case ComponentMessage::PLAYER_RED_SCORED:
+		{
+			//If it's red's turn, add extra shot, otherwise, do nothing.
+			m_redBalls --;
+			if (m_redBalls  == 0) m_owner->Send(ComponentMessage::RED_WIN);
+			if (m_playerTurn){
+				//@Blue
+			}
+			else {
+				//@Red turn
+				m_redExtraTurn = true;
+			}
+			//Reduce remaining ball counter and display on FontComponent
+		}
+		break;
+		case ComponentMessage::PLAYER_BLUE_SCORED:
+		{
+			m_blueBalls --;
+			if (m_blueBalls == 0) m_owner->Send(ComponentMessage::BLUE_WIN);
+			if (m_playerTurn){
+				//@Blue turn
+				m_blueExtraTurn = true;
+			}
+			else{
+				//@Red turn
+			}
+		}
+		break;
+		case ComponentMessage::START_ALL_SLEEPING:
+		{
+			if (m_playerTurn){
+				if (m_blueExtraTurn){
+					m_blueExtraTurn = false;
+				}
+				else m_playerTurn ^= 1;
+			}
+			else {
+				//@Red player's turn
+				if (m_redExtraTurn){
+					m_redExtraTurn = false;
+				}
+				else m_playerTurn ^= 1;
+			}
+		}
+		break;
 		case ComponentMessage::START_LOCKED_DIRECTION:
 		{
 			OrbitCameraComponent * occ = m_owner->FindOrbitCameraComponent();

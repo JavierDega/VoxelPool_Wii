@@ -32,7 +32,8 @@ public:
 
 	//Variables
 	PoolStates m_activeState;
-	bool m_playerTurn;//0/1 depending on player 1/2
+	int m_redBalls, m_blueBalls;//@Remaining
+	bool m_playerTurn, m_redExtraTurn, m_blueExtraTurn;//0/1 depending on player 1/2
 	float m_constrainedYaw;
 	float m_backMotion, m_lateralMotion;
 };

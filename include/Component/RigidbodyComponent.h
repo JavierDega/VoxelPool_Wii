@@ -8,7 +8,7 @@
 #include <ogc/gu.h>
 
 enum BallType{
-	BALL_NONE,//@AABB RIGIDBODIES
+	BALL_NONE,//@AABB RIGIDBODIES / WHITE_BALL
 	BALL_RED,
 	BALL_BLUE
 };

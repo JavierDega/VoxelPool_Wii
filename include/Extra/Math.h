@@ -19,7 +19,6 @@ namespace Math{
 	guVector VectorLerp (guVector v , guVector v2 , float frac);
 	guVector RotateVectorAroundAxis (float angle , guVector axis , guVector vector);
 
-
 	//Quaternion
 	const guQuaternion QuatIdentity { 0, 0, 0, 1 };
 
