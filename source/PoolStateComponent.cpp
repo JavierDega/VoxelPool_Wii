@@ -20,6 +20,9 @@ PoolStateComponent::PoolStateComponent(u16 * buttonsHeld, u16 * buttonsDown, u16
 	//@Accel delta
 	m_backMotion = 0;
 	m_lateralMotion = 0;
+	m_lerpDelta = 0;
+	m_lerpStart = Math::VecZero;
+	m_lerpEnd = Math::VecZero;
 	m_redBalls = 5;
 	m_blueBalls = 5;
 };
@@ -75,11 +78,21 @@ void PoolStateComponent::ComputeLogic(float dt){
 		{
 			OrbitCameraComponent * occ = m_owner->FindOrbitCameraComponent();
 			*occ->m_pitch = 0.35f;//Constrains pitch and zoom
-			occ->m_zoom = 4.0f;
+			occ->m_zoom = 6.0f;
+
+			guVector lookToCam;
+			guVecSub( occ->m_cam, occ->m_look, &lookToCam);
+			guVecScale( &lookToCam, &lookToCam, 1.2f);
+			lookToCam.y = -0.75;
+
+			guVecAdd( &occ->m_orbitOrigin, &lookToCam, &m_owner->m_transform.m_position);
+			m_owner->m_transform.m_rotation = Math::QuatFromAxisAngle( guVector{ 0, -1, 0 }, *occ->m_yaw + 1.57);
+
 			if (*m_wButtonsDown & WPAD_BUTTON_A){
 				m_owner->Send(ComponentMessage::START_LOCKED_DIRECTION);
 				m_activeState = PoolStates::STATE_LOCKED_DIRECTION;
 			}
+
 		}
 		break;
 		case STATE_LOCKED_DIRECTION:
@@ -88,7 +101,7 @@ void PoolStateComponent::ComputeLogic(float dt){
 			OrbitCameraComponent * occ = m_owner->FindOrbitCameraComponent();
 			*occ->m_pitch = 0.35f;
 			*occ->m_yaw = m_constrainedYaw;
-			occ->m_zoom = 4.5f;
+			occ->m_zoom = 6.5f;
 
 			if ((abs(*m_wPitch) < 45) && (abs(*m_wRoll) < 45)){
 				m_owner->Send(ComponentMessage::WIIMOTE_BALANCED);
@@ -106,11 +119,14 @@ void PoolStateComponent::ComputeLogic(float dt){
 		break;
 		case STATE_COMMIT_CHARGING:
 		{
-			//@We keep on charging
 			OrbitCameraComponent * occ = m_owner->FindOrbitCameraComponent();
 			*occ->m_pitch = 0.35f;
 			*occ->m_yaw = m_constrainedYaw;
-			occ->m_zoom = 4.5f;
+			occ->m_zoom = 6.5f;	
+			//@Lerp
+			m_lerpDelta += dt;
+			m_lerpDelta = min(m_lerpDelta, 1.f);
+			m_owner->m_transform.m_position = Math::VectorLerp( m_lerpStart, m_lerpEnd, m_lerpDelta);
 
 			//@Store highest delta
 			if (*m_swing < m_backMotion){
@@ -127,7 +143,7 @@ void PoolStateComponent::ComputeLogic(float dt){
 			OrbitCameraComponent * occ = m_owner->FindOrbitCameraComponent();
 			*occ->m_pitch = 0.35f;
 			*occ->m_yaw = m_constrainedYaw;
-			occ->m_zoom = 4.5f;
+			occ->m_zoom = 6.5f;
 
 			if ((abs(*m_wPitch) < 45) && (abs(*m_wRoll) < 45)){
 				m_owner->Send(ComponentMessage::WIIMOTE_BALANCED);
@@ -149,7 +165,12 @@ void PoolStateComponent::ComputeLogic(float dt){
 			OrbitCameraComponent * occ = m_owner->FindOrbitCameraComponent();
 			*occ->m_pitch = 0.35f;
 			*occ->m_yaw = m_constrainedYaw;
-			occ->m_zoom = 4.5f;
+			occ->m_zoom = 6.5f;
+
+			//@Lerp
+			m_lerpDelta += dt;
+			m_lerpDelta = min(m_lerpDelta, 1.f);
+			m_owner->m_transform.m_position = Math::VectorLerp( m_lerpStart, m_lerpEnd, m_lerpDelta);
 
 			//@Store highest lateral delta
 			if (abs(*m_deviation) > abs(m_lateralMotion)){
@@ -220,10 +241,12 @@ bool PoolStateComponent::Receive(ComponentMessage msg){
 			if (m_playerTurn){
 				//@Blue turn, give redExtraTurn
 				m_redExtraTurn = true;
+				m_blueExtraTurn = false;//@Cancels any extra shots we had
 			}
 			else{
 				//@Red turn, give blueExtraTurn
 				m_blueExtraTurn = true;
+				m_redExtraTurn = false;//@Cancel extra shots
 			}	
 		}
 		break;
@@ -255,8 +278,15 @@ bool PoolStateComponent::Receive(ComponentMessage msg){
 			}
 		}
 		break;
-		case ComponentMessage::START_ALL_SLEEPING:
+		case ComponentMessage::START_LOOKING:
 		{
+			m_owner->m_transform.m_position = guVector{ 6.5, -0.5, -7.5};
+			m_owner->m_transform.m_rotation =  Math::QuatIdentity;
+		}
+		break;
+		case ComponentMessage::START_ALL_SLEEPING:
+		{	
+			ObjectSystem * os = ObjectSystem::GetInstance();
 			if (m_playerTurn){
 				if (m_blueExtraTurn){
 					m_blueExtraTurn = false;
@@ -270,6 +300,14 @@ bool PoolStateComponent::Receive(ComponentMessage msg){
 				}
 				else m_playerTurn ^= 1;
 			}
+			//@If there's no White_Ball, spawn it
+			if (os->FindObjectByName("White_Ball") == nullptr){
+				GameObject * ball3 = new GameObject("White_Ball", guVector { -5, -1.0, 0 }, Math::QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
+				ball3->AddComponent( new MeshComponent( "pool_ball_white" ));
+				ball3->AddComponent( new RigidbodyComponent( 0.5f, 1.0f, false, false, BallType::BALL_NONE ) );
+
+				os->AddObject(ball3);
+			}//@else do nothing
 		}
 		break;
 		case ComponentMessage::START_LOCKED_DIRECTION:
@@ -286,7 +324,26 @@ bool PoolStateComponent::Receive(ComponentMessage msg){
 			m_backMotion = 0;
 			m_lateralMotion = 0;
 			returned = true;
+
+			//@Start and end of lerp
+			m_lerpDelta = 0;
+			m_lerpStart = m_owner->m_transform.m_position;
+			OrbitCameraComponent * occ = m_owner->FindOrbitCameraComponent();
+			guVector lookToCam;
+			guVecSub( occ->m_cam, occ->m_look, &lookToCam);
+			guVecAdd( &m_lerpStart, &lookToCam, &m_lerpEnd);
 		}
+		break;
+		case ComponentMessage::START_COMMIT_SHOOTING:
+		{
+			//@Flip lerp
+			guVector m_newStart = m_lerpStart;
+			m_lerpStart = m_lerpEnd;
+			m_lerpEnd = m_newStart;
+			//@Reset delta
+			m_lerpDelta = 1 - m_lerpDelta;
+		}
+		break;
 		default:
 		break;
 	}

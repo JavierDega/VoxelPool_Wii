@@ -285,6 +285,7 @@ bool PhysicSystem::SphereToSphere(RigidbodyComponent * rb1, RigidbodyComponent *
 			guVecScale(&normal, &normalMultiplied, overlap*0.5f);
 			guVecAdd( &t1->m_position, &normalMultiplied, &t1->m_position);
 			guVecSub( &t2->m_position, &normalMultiplied, &t2->m_position);
+			return true;
 		}
 		else{
 			//@What if two objects with no velocity just collided?

@@ -29,12 +29,12 @@ void OrbitCameraComponent::OnStart(){
 }
 void OrbitCameraComponent::ComputeLogic(float dt){
 	//Orbit camera around point (PoolTable?)
-	GraphicSystem * gs = GraphicSystem::GetInstance();
+	//GraphicSystem * gs = GraphicSystem::GetInstance();
 	//@React to input
 
 	u16 bheld = *(m_wButtonsHeld);
 
-	u16 bdown = *(m_wButtonsDown);
+	//u16 bdown = *(m_wButtonsDown);
 
 	if (bheld & WPAD_BUTTON_LEFT ){
 		
@@ -88,14 +88,6 @@ void OrbitCameraComponent::ComputeLogic(float dt){
 	guVector camOffset = guVector{ m_zoom*x, m_zoom*y, m_zoom*z };
 	*m_look = m_orbitOrigin;//Circle around transform
 	guVecAdd(m_look, &camOffset, m_cam);
-
-	//std::string camLog = "Camera: " + std::to_string(m_cam->x) + " " + std::to_string(m_cam->y) + " " + std::to_string(m_cam->z);
-	//Print camera and look
-	//gs->AddLog(camLog);
-	
-	//std::string lookLog = "Look: " + std::to_string(m_look->x) + " " + std::to_string(m_look->y) + " " + std::to_string(m_look->z);
-	//Print camera and look
-	//gs->AddLog(lookLog);
 }
 bool OrbitCameraComponent::Receive(ComponentMessage msg){
 

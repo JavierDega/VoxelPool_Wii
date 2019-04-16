@@ -36,5 +36,7 @@ public:
 	bool m_playerTurn, m_redExtraTurn, m_blueExtraTurn;//0/1 depending on player 1/2
 	float m_constrainedYaw;
 	float m_backMotion, m_lateralMotion;
+	float m_lerpDelta;
+	guVector m_lerpStart, m_lerpEnd;
 };
 #endif /*POOLSTATECOMPONENT_H_*/

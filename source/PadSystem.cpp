@@ -100,7 +100,7 @@ void PadSystem::SendMessage(ComponentMessage msg){
 //Scan
 void PadSystem::ScanPads(int controller) {
 
-	GraphicSystem * gs = GraphicSystem::GetInstance();
+	//GraphicSystem * gs = GraphicSystem::GetInstance();
 	PAD_ScanPads();
 	WPAD_ScanPads();
 	m_data = *WPAD_Data(0);
