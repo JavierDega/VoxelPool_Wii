@@ -7,8 +7,8 @@ AudioSystem.o: \
  C:/devkitPro/libogc/include/gctypes.h \
  C:/devkitPro/libogc/include/mp3player.h \
  C:/devkitPro/libogc/include/mad.h \
- C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/PoolHallJam_320_110bpm_mp3.h \
- C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/PoolHallJam_128kb_120bpm_mp3.h
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/PoolHallJam_128kb_120bpm_mp3.h \
+ C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pphimno_mp3.h
 
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/include/System/AudioSystem.h:
 
@@ -24,6 +24,6 @@ C:/devkitPro/libogc/include/mp3player.h:
 
 C:/devkitPro/libogc/include/mad.h:
 
-C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/PoolHallJam_320_110bpm_mp3.h:
-
 C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/PoolHallJam_128kb_120bpm_mp3.h:
+
+C:/Users/javie/Documents/CT6COPRE/VoxelPool_Wii/build/pphimno_mp3.h:

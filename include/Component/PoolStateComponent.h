@@ -34,6 +34,7 @@ public:
 	PoolStates m_activeState;
 	int m_redBalls, m_blueBalls;//@Remaining
 	bool m_playerTurn, m_redExtraTurn, m_blueExtraTurn;//0/1 depending on player 1/2
+	bool m_foul;//@White in pot
 	float m_constrainedYaw;
 	float m_backMotion, m_lateralMotion;
 	float m_lerpDelta;

@@ -75,7 +75,7 @@ void ObjectSystem::LoadScene(int sceneIndex){
 		//@MENU
 		case 0:
 		{
-			as->PlayMusic(99);//@To stop music from playing
+			as->PlayMusic(1);//@To stop music from playing
 			gs->m_cam = {0.0F, 0.0F, 0.0F};
 			gs->m_up = {0.0F, 1.0F, 0.0F};
 			gs->m_look = {0.0F, 0.0F, -1.0F};

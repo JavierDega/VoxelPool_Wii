@@ -17,6 +17,7 @@ PoolStateComponent::PoolStateComponent(u16 * buttonsHeld, u16 * buttonsDown, u16
 	m_playerTurn = false;//Player 1's turn
 	m_redExtraTurn = false;
 	m_blueExtraTurn = false;
+	m_foul = false;
 	//@Accel delta
 	m_backMotion = 0;
 	m_lateralMotion = 0;
@@ -35,7 +36,7 @@ void PoolStateComponent::OnStart(){
 	//@Add a Pan camera component
 	m_owner->AddComponent(new OrbitCameraComponent( Math::VecZero, &gs->m_cam, &gs->m_look, &gs->m_pitch, &gs->m_yaw,
 	 m_buttonsHeld, m_buttonsDown, m_buttonsUp, m_wButtonsHeld, m_wButtonsDown, m_wButtonsUp, m_swing, m_wPitch, m_deviation, m_wRoll));
-	m_owner->AddComponent(new FontComponent(L"Waiting for turn...", guVector{ -175, 200, 0}, GXColor{ 100, 250, 100, 200 }, 3, true, true));
+	m_owner->AddComponent(new FontComponent(L"Waiting for turn...", guVector{ -175, 200, 0}, GXColor{ 255, 255, 255, 255 }, 3, true, true));
 	m_owner->AddComponent(new FontComponent(L"P1: Balls left: " + to_wstring(m_redBalls), guVector{ -300, -200, 0}, GXColor{ 250, 100, 100, 250 }, 3, true, true));
 	m_owner->AddComponent(new FontComponent(L"P2: Balls left: " + to_wstring(m_blueBalls), guVector{ 0, -200, 0}, GXColor{ 100, 100, 250, 250 }, 3, true, true));
 	m_owner->AddComponent( new MeshComponent("poolstick"));
@@ -220,6 +221,7 @@ bool PoolStateComponent::Receive(ComponentMessage msg){
 			GameObject * redPlayer = new GameObject("Red_Player", guVector{ 0, -1.5, 0 }, Math::QuatIdentity, guVector{ 0.5, 0.5, 0.5 });
 			redPlayer->AddComponent(new MeshComponent("chr_red"));
 			redPlayer->AddComponent(new FontComponent(L"Player red wins!", guVector{-150, 0, 0 }, GXColor{ 255, 0, 0, 255 }, 3, false, true));
+			redPlayer->AddComponent( new FontComponent(L"A to continue", guVector { -135, 35, 0 }, GXColor { 255, 255, 255, 255 }, 3, false, true));
 			redPlayer->AddComponent ( new BackToMenuComponent(m_buttonsHeld, m_buttonsDown, m_buttonsUp, m_wButtonsHeld, m_wButtonsDown,
 			 m_wButtonsUp, m_swing, m_wPitch, m_deviation, m_wRoll));
 			ObjectSystem::GetInstance()->AddObject(redPlayer);
@@ -231,23 +233,15 @@ bool PoolStateComponent::Receive(ComponentMessage msg){
 			GameObject * bluePlayer = new GameObject("Blue_Player", guVector { 0, -1.5, 0 }, Math::QuatIdentity, guVector { 0.5, 0.5, 0.5 });
 			bluePlayer->AddComponent(new MeshComponent("chr_blue"));
 			bluePlayer->AddComponent( new FontComponent(L"Player blue wins!", guVector{ -150, 0, 0 }, GXColor{ 0, 0, 255, 255 }, 3, false, true ));
+			bluePlayer->AddComponent( new FontComponent(L"A to continue", guVector { -135, 35, 0 }, GXColor { 255, 255, 255, 255 }, 3, false, true));
 			bluePlayer->AddComponent ( new BackToMenuComponent(m_buttonsHeld, m_buttonsDown, m_buttonsUp, m_wButtonsHeld, m_wButtonsDown,
 			 m_wButtonsUp, m_swing, m_wPitch, m_deviation, m_wRoll));
 			ObjectSystem::GetInstance()->AddObject(bluePlayer);
 		}
 		break;
 		case ComponentMessage::WHITE_IN_POT:
-		{
-			if (m_playerTurn){
-				//@Blue turn, give redExtraTurn
-				m_redExtraTurn = true;
-				m_blueExtraTurn = false;//@Cancels any extra shots we had
-			}
-			else{
-				//@Red turn, give blueExtraTurn
-				m_blueExtraTurn = true;
-				m_redExtraTurn = false;//@Cancel extra shots
-			}	
+		{	
+			m_foul = true;//@Boolean for white in pot
 		}
 		break;
 		case ComponentMessage::PLAYER_RED_SCORED:
@@ -255,10 +249,7 @@ bool PoolStateComponent::Receive(ComponentMessage msg){
 			//If it's red's turn, add extra shot, otherwise, do nothing.
 			m_redBalls --;
 			if (m_redBalls  == 0) m_owner->Send(ComponentMessage::RED_WIN);
-			if (m_playerTurn){
-				//@Blue
-			}
-			else {
+			if (!m_playerTurn){
 				//@Red turn
 				m_redExtraTurn = true;
 			}
@@ -273,9 +264,6 @@ bool PoolStateComponent::Receive(ComponentMessage msg){
 				//@Blue turn
 				m_blueExtraTurn = true;
 			}
-			else{
-				//@Red turn
-			}
 		}
 		break;
 		case ComponentMessage::START_LOOKING:
@@ -288,6 +276,12 @@ bool PoolStateComponent::Receive(ComponentMessage msg){
 		{	
 			ObjectSystem * os = ObjectSystem::GetInstance();
 			if (m_playerTurn){
+				//@Blue player's turn
+				if (m_foul){
+					m_blueExtraTurn = false;
+					m_redExtraTurn = true;
+					m_foul = false;
+				}
 				if (m_blueExtraTurn){
 					m_blueExtraTurn = false;
 				}
@@ -295,6 +289,11 @@ bool PoolStateComponent::Receive(ComponentMessage msg){
 			}
 			else {
 				//@Red player's turn
+				if (m_foul){
+					m_redExtraTurn = false;
+					m_blueExtraTurn = true;
+					m_foul = false;
+				}
 				if (m_redExtraTurn){
 					m_redExtraTurn = false;
 				}
