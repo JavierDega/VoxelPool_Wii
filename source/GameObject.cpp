@@ -14,11 +14,8 @@ GameObject::GameObject( std::string name, guVector position, guQuaternion rotati
 GameObject::~GameObject()
 {
 	//empty component vector
-	while (!m_components.empty()){
-		Component * curComp = m_components.back();
-		delete curComp;
-		m_components.pop_back();
-	}
+	for (Component * comp : m_components) delete comp;
+	m_components.clear();
 }
 //AddComp
 void GameObject::AddComponent( Component * component ){
@@ -28,13 +25,11 @@ void GameObject::AddComponent( Component * component ){
 }
 void GameObject::Send(ComponentMessage msg){
 	for (u16 i = 0; i < m_components.size(); i++){
-		
 		m_components[i]->Receive(msg);//@Receive returns boolean stating whether message was received or not.
 	}
 }
 OrbitCameraComponent * GameObject::FindOrbitCameraComponent(){
 	//@For whoever needs it's data
-
 	//Iterate through components, find OrbitCameraComponent through i.e dynamic_casts
 	for (u16 i = 0; i < m_components.size(); i++){
 		//Dynamic casting to identify type;
@@ -42,7 +37,6 @@ OrbitCameraComponent * GameObject::FindOrbitCameraComponent(){
 		if (orbitCamComp)return orbitCamComp;//We return the first one found (Could be active/inactive)
 	}
 	return nullptr;
-
 }
 PoolStateComponent * GameObject::FindPoolStateComponent(){
 	//@Same as above

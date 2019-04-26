@@ -44,7 +44,6 @@ PhysicSystem::~PhysicSystem()
 void PhysicSystem::Initialize()
 {
 	//@What do here?
-	//exit(0);
 }
 ///Timestep and run physics
 
@@ -165,7 +164,7 @@ void PhysicSystem::UpdatePhysics(float dt) {
 			//gs->AddLog(to_string(currentRb->m_velocity.y));
 			//gs->AddLog(to_string(currentRb->m_velocity.x));
 			//gs->AddLog( currentRb->m_owner->m_name + " velocity:");
-			if (currentRb->m_isSleeping); //gs->AddLog(currentRb->m_owner->m_name + " is sleeping");
+			//if (currentRb->m_isSleeping) gs->AddLog(currentRb->m_owner->m_name + " is sleeping");
 		}
 
 		//@SSScheme
@@ -194,7 +193,6 @@ bool PhysicSystem::NarrowPhase(RigidbodyComponent * rb1, RigidbodyComponent * rb
 	//Resting contact, moving contact, contact vs kinematic
 	//@Impulse based collision response
 	if (rb1->m_isKinematic && rb2->m_isKinematic) return false; //No collisions between AABBs
-
 	switch (rb1->m_shape->m_type) {
 		case ShapeType::SPHERE:
 		{
@@ -396,7 +394,6 @@ bool PhysicSystem::SphereToSphere(RigidbodyComponent * rb1, RigidbodyComponent *
 }
 //Sphere-AABB
 bool PhysicSystem::SphereToAABB(RigidbodyComponent * rb1, RigidbodyComponent * rb2, float dt ){
-
 	//@At this point it can be a static_cast
 	Sphere * sphere1 = dynamic_cast<Sphere*>(rb1->m_shape);
 
@@ -406,7 +403,6 @@ bool PhysicSystem::SphereToAABB(RigidbodyComponent * rb1, RigidbodyComponent * r
 
 	float distSq = Math::DistSq(t1->m_position, closestPoint);
 	if (distSq <= sphere1->m_radius*sphere1->m_radius){
-
 		GraphicSystem * gs = GraphicSystem::GetInstance();
 		//gs->AddLog(to_string(closestPoint.z));
 		//gs->AddLog(to_string(closestPoint.y));
@@ -528,7 +524,6 @@ bool PhysicSystem::SphereToAABB(RigidbodyComponent * rb1, RigidbodyComponent * r
 
 		}
 	}
-
 	return false;
 }
 //Helpful queries

@@ -1,7 +1,7 @@
 #include "System/AudioSystem.h"
 
 #include "PoolHallJam_128kb_120bpm_mp3.h"
-#include "pphimno_mp3.h"
+//#include "pphimno_mp3.h"
 
 using namespace std;
 
@@ -26,6 +26,7 @@ AudioSystem::~AudioSystem(){
 }
 //@Initialize (called on every scene load)
 void AudioSystem::Initialize(){
+	
 }
 void AudioSystem::Update( float dt ){
 }
@@ -42,7 +43,7 @@ void AudioSystem::PlayMusic(unsigned int index){
 		MP3Player_PlayBuffer(PoolHallJam_128kb_120bpm_mp3, PoolHallJam_128kb_120bpm_mp3_size, NULL);
 		break;
 		case 1:
-		MP3Player_PlayBuffer(pphimno_mp3, pphimno_mp3_size, NULL);
+		//MP3Player_PlayBuffer(pphimno_mp3, pphimno_mp3_size, NULL);
 		break;
 		default:
 		break;

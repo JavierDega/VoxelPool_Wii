@@ -82,7 +82,6 @@ GraphicSystem::GraphicSystem() {
 }
 //Destructor (Singleton so..?)
 GraphicSystem::~GraphicSystem(){
-
 }
 //Init
 void GraphicSystem::Initialize() {

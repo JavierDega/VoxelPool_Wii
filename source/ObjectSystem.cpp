@@ -75,7 +75,7 @@ void ObjectSystem::LoadScene(int sceneIndex){
 		//@MENU
 		case 0:
 		{
-			as->PlayMusic(1);//@To stop music from playing
+			as->PlayMusic(1);
 			gs->m_cam = {0.0F, 0.0F, 0.0F};
 			gs->m_up = {0.0F, 1.0F, 0.0F};
 			gs->m_look = {0.0F, 0.0F, -1.0F};
@@ -163,7 +163,6 @@ void ObjectSystem::LoadScene(int sceneIndex){
 			//Gamescene
 			//@Music
 			as->PlayMusic(0);
-
 			GameObject * gameController = new GameObject( "GameController", guVector{ 6.5, -0.5, -7.5}, Math::QuatIdentity, guVector{.3, .3, .3 } );
 			gameController->AddComponent(new PoolStateComponent(&ps->m_buttonsHeld, &ps->m_buttonsDown, &ps->m_buttonsUp, 
 				&ps->m_wButtonsHeld, &ps->m_wButtonsDown, &ps->m_wButtonsUp, &ps->m_data.gforce.y, &ps->m_data.orient.pitch, &ps->m_data.gforce.x,
@@ -232,13 +231,12 @@ void ObjectSystem::LoadScene(int sceneIndex){
 			
 			AddObject(trigger2);
 
-
+			
 			GameObject * trigger3 = new GameObject("trigger3", guVector{ -13.f, -1.5f, 6.5f  }, Math::QuatIdentity, guVector{ 0.19, 0.15, 0.19 });
 			//trigger3->AddComponent( new MeshComponent( "8x8x8Red" ));
 			trigger3->AddComponent( new RigidbodyComponent( guVector { 0.7f, 0.5f, 0.7f }, 10.0f, true, true ));
 			
 			AddObject(trigger3);
-
 
 			GameObject * trigger4 = new GameObject("trigger4", guVector{ -13.f, -1.5, -6.5f }, Math::QuatIdentity, guVector{ 0.19, 0.15, 0.19 });
 			//trigger4->AddComponent( new MeshComponent( "8x8x8Red" ));
@@ -277,6 +275,7 @@ void ObjectSystem::LoadScene(int sceneIndex){
 			ball3->AddComponent( new RigidbodyComponent( 0.5f, 1.0f, false, false, BallType::BALL_NONE ) );
 
 			AddObject(ball3);
+
 
 			GameObject * ball4 = new GameObject("BallRed2", guVector { 4, -1.0, 0 }, QuatIdentity, guVector { 0.15f, 0.15f, 0.15f });
 			ball4->AddComponent( new MeshComponent( "pool_ball_red" ));
@@ -325,7 +324,6 @@ void ObjectSystem::LoadScene(int sceneIndex){
 			ball11->AddComponent( new RigidbodyComponent( 0.5f, 1.0f, false, false, BallType::BALL_BLUE ) );
 
 			AddObject(ball11);
-
 			break;
 		}
 		default:
